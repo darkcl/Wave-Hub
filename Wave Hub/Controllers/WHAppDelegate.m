@@ -7,7 +7,20 @@
 //
 
 #import "WHAppDelegate.h"
+#import "WHRootViewController.h"
 
 @implementation WHAppDelegate
+
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(nullable NSDictionary *)launchOptions{
+    
+    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    
+    WHRootViewController *rootVC = [[WHRootViewController alloc] initWithNibName:@"WHRootViewController" bundle:nil];
+    UINavigationController *rootNav = [[UINavigationController alloc] initWithRootViewController:rootVC];
+    [self.window setRootViewController:rootNav];
+    [self.window makeKeyAndVisible];
+    
+    return YES;
+}
 
 @end

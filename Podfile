@@ -3,6 +3,9 @@ source 'https://github.com/CocoaPods/Specs'
 platform :ios, '8.0'
 
 # Add Application pods here
+pod 'ABMSoundCloudAPI'
+pod 'ReactiveCocoa'
+
 
 target :unit_tests, :exclusive => true do
   link_with 'UnitTests'
