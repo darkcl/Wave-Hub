@@ -10,6 +10,7 @@
 		0E7DA1731BE9BB60006551C4 /* WHRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E7DA1711BE9BB60006551C4 /* WHRootViewController.m */; };
 		0E7DA1741BE9BB60006551C4 /* WHRootViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0E7DA1721BE9BB60006551C4 /* WHRootViewController.xib */; };
 		1A44E872A0401F9F6EC5084C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 7535691D532C79453A972784 /* main.m */; };
+		476696573063B162B2B854E9 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F7E617E74F03F0E5992B5CD8 /* libPods.a */; };
 		6C5DC8333D90F8BAC26108B1 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 450213D723237E9D8191F6EF /* Images.xcassets */; };
 		74F6F47EBD6BFC73460670B1 /* libPods-unit_tests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 90882ADB27A7D5FDEDA7B24A /* libPods-unit_tests.a */; };
 		C4F64ECA2A55365875E190E6 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B0FF2CBA0859ED2691E65FF5 /* Foundation.framework */; };
@@ -35,6 +36,7 @@
 		241B6531260B64A07C64DCF3 /* WHAppDelegate.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = WHAppDelegate.m; sourceTree = "<group>"; };
 		332F5D8192372502D2F48D04 /* Pods-unit_tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-unit_tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-unit_tests/Pods-unit_tests.release.xcconfig"; sourceTree = "<group>"; };
 		450213D723237E9D8191F6EF /* Images.xcassets */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		4A4358BE8B68B8B9325F3AAC /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		6C0AE585EC62527A7EF19A9D /* UnitTests-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "UnitTests-Info.plist"; sourceTree = "<group>"; };
 		7535691D532C79453A972784 /* main.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		781D2B8E9A1F36A0D4E8AF0E /* WHAppDelegate.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = WHAppDelegate.h; sourceTree = "<group>"; };
@@ -42,11 +44,13 @@
 		90FCF8C4B6CA595E3FD6BFD3 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B0FF2CBA0859ED2691E65FF5 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS7.1.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
 		B7ACDBAC3CF1439A84F9FD9C /* UnitTests-Prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "UnitTests-Prefix.pch"; sourceTree = "<group>"; };
+		C72FFDCC6550CA5F84D4B088 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		D267D2C6B176DB4BDE7EC0FE /* Wave Hub.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Wave Hub.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DEC77C216DD81033353F5511 /* Settings.bundle */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		DFDA417E07FC436481C222DE /* Wave Hub-Prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Wave Hub-Prefix.pch"; sourceTree = "<group>"; };
 		E85B4BE7428A28FDA5A26607 /* LaunchScreen.xib */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file.xib; path = LaunchScreen.xib; sourceTree = "<group>"; };
 		EDC6480DC94CD8D08DCA8BEF /* Pods-unit_tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-unit_tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-unit_tests/Pods-unit_tests.debug.xcconfig"; sourceTree = "<group>"; };
+		F7E617E74F03F0E5992B5CD8 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		FDAC66FBF22076C1587DD750 /* UnitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UnitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -56,6 +60,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C4F64ECA2A55365875E190E6 /* Foundation.framework in Frameworks */,
+				476696573063B162B2B854E9 /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -161,6 +166,8 @@
 			children = (
 				332F5D8192372502D2F48D04 /* Pods-unit_tests.release.xcconfig */,
 				EDC6480DC94CD8D08DCA8BEF /* Pods-unit_tests.debug.xcconfig */,
+				4A4358BE8B68B8B9325F3AAC /* Pods.release.xcconfig */,
+				C72FFDCC6550CA5F84D4B088 /* Pods.debug.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -192,6 +199,7 @@
 			children = (
 				2F69A4BE35D1B8F4B0E05306 /* iOS */,
 				90882ADB27A7D5FDEDA7B24A /* libPods-unit_tests.a */,
+				F7E617E74F03F0E5992B5CD8 /* libPods.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -285,11 +293,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 6F62ED2E12575E77861332A2 /* Build configuration list for PBXNativeTarget "Wave Hub" */;
 			buildPhases = (
+				84A3618B8BA1B4BF7265D8E3 /* Check Pods Manifest.lock */,
 				FD47D93BE1E2AFDAEEB3E9CE /* Sources */,
 				432AED63A1AAA6026CD5B656 /* Frameworks */,
 				287A64EB97E6BCD7530E8830 /* Resources */,
 				7B8A4A9553B8436D3FE2A7B4 /* Warn for TODO and FIXME comments */,
 				6D2EE5C3B0D33F7B2F4DCD0B /* Set version number */,
+				9015F0E1B5639AB45F439F93 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -309,6 +319,11 @@
 				CLASSPREFIX = WH;
 				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = "Memory Leaks";
+				TargetAttributes = {
+					FBB4F1253763E2CDB498808A = {
+						DevelopmentTeam = M56A72A6G5;
+					};
+				};
 			};
 			buildConfigurationList = 2A75D9C633E425B862B05F4D /* Build configuration list for PBXProject "Wave Hub" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -392,6 +407,36 @@
 			shellPath = /bin/sh;
 			shellScript = "KEYWORDS=\"TODO:|FIXME:|\\?\\?\\?:|\\!\\!\\!:\"\nFILE_EXTENSIONS=\"swift|h|m|mm|c|cpp\"\nfind -E \"${SRCROOT}\" -ipath \"${SRCROOT}/pods\" -prune -o \\( -regex \".*\\.($FILE_EXTENSIONS)$\" \\) -print0 | xargs -0 egrep --with-filename --line-number --only-matching \"($KEYWORDS).*\\$\" | perl -p -e \"s/($KEYWORDS)/ warning: \\$1/\"\n";
 		};
+		84A3618B8BA1B4BF7265D8E3 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		9015F0E1B5639AB45F439F93 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		C14174F4056246AA0F39D663 /* Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -441,8 +486,10 @@
 /* Begin XCBuildConfiguration section */
 		104889AE533E30BDAF1F473A /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4A4358BE8B68B8B9325F3AAC /* Pods.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
 				DSTROOT = /tmp/xcodeproj.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -450,6 +497,7 @@
 				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
 				INFOPLIST_FILE = "Wave Hub/Resources/Other-Sources/Info.plist";
 				INSTALL_PATH = "$(BUILT_PRODUCTS_DIR)";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_CFLAGS = (
 					"-DNS_BLOCK_ASSERTIONS=1",
@@ -610,8 +658,10 @@
 		};
 		ECFE72449707485D792C1E82 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C72FFDCC6550CA5F84D4B088 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DSTROOT = /tmp/xcodeproj.dst;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -625,6 +675,7 @@
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				INFOPLIST_FILE = "Wave Hub/Resources/Other-Sources/Info.plist";
 				INSTALL_PATH = "$(BUILT_PRODUCTS_DIR)";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PUBLIC_HEADERS_FOLDER_PATH = "$(TARGET_NAME)";
