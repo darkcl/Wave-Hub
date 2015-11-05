@@ -3,10 +3,16 @@ source 'https://github.com/CocoaPods/Specs'
 platform :ios, '7.0'
 
 # Add Application pods here
-pod 'ABMSoundCloudAPI'
+pod 'ABMSoundCloudAPI', :git => 'https://github.com/darkcl/ABMSoundCloudAPI.git'
 pod 'ReactiveCocoa'
 pod 'GCDWebServer/WebUploader'
 pod 'OrigamiEngine'
+pod 'DZNEmptyDataSet'
+
+pod 'FontAwesomeKit', '~> 2.1.0'
+
+pod 'ChameleonFramework'
+
 
 target :unit_tests, :exclusive => true do
   link_with 'UnitTests'

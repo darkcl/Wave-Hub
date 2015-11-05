@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0E44F8671BEB4DD400F8571D /* WHWebrequestManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E44F8661BEB4DD400F8571D /* WHWebrequestManager.m */; };
+		0E44F86B1BEB4FB700F8571D /* WHDashBoardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E44F8691BEB4FB700F8571D /* WHDashBoardViewController.m */; };
+		0E44F8701BEB550B00F8571D /* WHFavouriteTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E44F86F1BEB550B00F8571D /* WHFavouriteTableViewController.m */; };
+		0E44F8751BEB553300F8571D /* WHPlaylistTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E44F8741BEB553300F8571D /* WHPlaylistTableViewController.m */; };
+		0E44F8791BEB557600F8571D /* WHLocalSongsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E44F8781BEB557600F8571D /* WHLocalSongsTableViewController.m */; };
 		0E7DA1731BE9BB60006551C4 /* WHRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E7DA1711BE9BB60006551C4 /* WHRootViewController.m */; };
 		0E7DA1741BE9BB60006551C4 /* WHRootViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0E7DA1721BE9BB60006551C4 /* WHRootViewController.xib */; };
 		1A44E872A0401F9F6EC5084C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 7535691D532C79453A972784 /* main.m */; };
@@ -30,6 +35,16 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0E44F8651BEB4DD400F8571D /* WHWebrequestManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WHWebrequestManager.h; sourceTree = "<group>"; };
+		0E44F8661BEB4DD400F8571D /* WHWebrequestManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WHWebrequestManager.m; sourceTree = "<group>"; };
+		0E44F8681BEB4FB700F8571D /* WHDashBoardViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WHDashBoardViewController.h; sourceTree = "<group>"; };
+		0E44F8691BEB4FB700F8571D /* WHDashBoardViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WHDashBoardViewController.m; sourceTree = "<group>"; };
+		0E44F86E1BEB550B00F8571D /* WHFavouriteTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WHFavouriteTableViewController.h; sourceTree = "<group>"; };
+		0E44F86F1BEB550B00F8571D /* WHFavouriteTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WHFavouriteTableViewController.m; sourceTree = "<group>"; };
+		0E44F8731BEB553300F8571D /* WHPlaylistTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WHPlaylistTableViewController.h; sourceTree = "<group>"; };
+		0E44F8741BEB553300F8571D /* WHPlaylistTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WHPlaylistTableViewController.m; sourceTree = "<group>"; };
+		0E44F8771BEB557600F8571D /* WHLocalSongsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WHLocalSongsTableViewController.h; sourceTree = "<group>"; };
+		0E44F8781BEB557600F8571D /* WHLocalSongsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WHLocalSongsTableViewController.m; sourceTree = "<group>"; };
 		0E7DA1701BE9BB60006551C4 /* WHRootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WHRootViewController.h; sourceTree = "<group>"; };
 		0E7DA1711BE9BB60006551C4 /* WHRootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WHRootViewController.m; sourceTree = "<group>"; };
 		0E7DA1721BE9BB60006551C4 /* WHRootViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WHRootViewController.xib; sourceTree = "<group>"; };
@@ -87,6 +102,45 @@
 			children = (
 			);
 			path = Headers;
+			sourceTree = "<group>";
+		};
+		0E44F86D1BEB4FBB00F8571D /* Dash Board */ = {
+			isa = PBXGroup;
+			children = (
+				0E44F8761BEB555A00F8571D /* Local Songs */,
+				0E44F8721BEB552000F8571D /* Playlist */,
+				0E44F8711BEB550F00F8571D /* Favourite */,
+				0E44F8681BEB4FB700F8571D /* WHDashBoardViewController.h */,
+				0E44F8691BEB4FB700F8571D /* WHDashBoardViewController.m */,
+			);
+			name = "Dash Board";
+			sourceTree = "<group>";
+		};
+		0E44F8711BEB550F00F8571D /* Favourite */ = {
+			isa = PBXGroup;
+			children = (
+				0E44F86E1BEB550B00F8571D /* WHFavouriteTableViewController.h */,
+				0E44F86F1BEB550B00F8571D /* WHFavouriteTableViewController.m */,
+			);
+			name = Favourite;
+			sourceTree = "<group>";
+		};
+		0E44F8721BEB552000F8571D /* Playlist */ = {
+			isa = PBXGroup;
+			children = (
+				0E44F8731BEB553300F8571D /* WHPlaylistTableViewController.h */,
+				0E44F8741BEB553300F8571D /* WHPlaylistTableViewController.m */,
+			);
+			name = Playlist;
+			sourceTree = "<group>";
+		};
+		0E44F8761BEB555A00F8571D /* Local Songs */ = {
+			isa = PBXGroup;
+			children = (
+				0E44F8771BEB557600F8571D /* WHLocalSongsTableViewController.h */,
+				0E44F8781BEB557600F8571D /* WHLocalSongsTableViewController.m */,
+			);
+			name = "Local Songs";
 			sourceTree = "<group>";
 		};
 		0E7DA1751BE9BB65006551C4 /* Root View Controller */ = {
@@ -214,6 +268,7 @@
 		C0378A827E14424F6D9580F4 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				0E44F86D1BEB4FBB00F8571D /* Dash Board */,
 				0E7DA1751BE9BB65006551C4 /* Root View Controller */,
 				781D2B8E9A1F36A0D4E8AF0E /* WHAppDelegate.h */,
 				241B6531260B64A07C64DCF3 /* WHAppDelegate.m */,
@@ -253,6 +308,8 @@
 		DC4CFE12F9FE9D539C497C16 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				0E44F8651BEB4DD400F8571D /* WHWebrequestManager.h */,
+				0E44F8661BEB4DD400F8571D /* WHWebrequestManager.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -278,6 +335,7 @@
 				971D9433527D20DBD6F18282 /* Frameworks */,
 				65571681941D7DCA5E683F1C /* Resources */,
 				62A3FB3E862076F729307C4D /* Copy Pods Resources */,
+				F0F20413BE122A42FEFD20A4 /* Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -300,6 +358,7 @@
 				7B8A4A9553B8436D3FE2A7B4 /* Warn for TODO and FIXME comments */,
 				6D2EE5C3B0D33F7B2F4DCD0B /* Set version number */,
 				9015F0E1B5639AB45F439F93 /* Copy Pods Resources */,
+				74BACF6A11231DBEAB398027 /* Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -393,6 +452,21 @@
 			shellPath = /bin/sh;
 			shellScript = "git=$(sh /etc/profile; which git)\ngit_release_version=$(\"$git\" describe --tags --always --abbrev=0)\nnumber_of_commits=$(\"$git\" rev-list master | wc -l | tr -d ' ')\ntarget_plist=\"$TARGET_BUILD_DIR/$INFOPLIST_PATH\"\ndsym_plist=\"$DWARF_DSYM_FOLDER_PATH/$DWARF_DSYM_FILE_NAME/Contents/Info.plist\"\n\nfor plist in \"$target_plist\" \"$dsym_plist\"; do\n  if [ -f \"$plist\" ]; then\n    /usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $number_of_commits\" \"$plist\"\n    /usr/libexec/PlistBuddy -c \"Set :CFBundleShortVersionString ${git_release_version#*v}\" \"$plist\"\n  fi\ndone\n";
 		};
+		74BACF6A11231DBEAB398027 /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		7B8A4A9553B8436D3FE2A7B4 /* Warn for TODO and FIXME comments */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -452,6 +526,21 @@
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
+		F0F20413BE122A42FEFD20A4 /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-unit_tests/Pods-unit_tests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -466,9 +555,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0E44F8701BEB550B00F8571D /* WHFavouriteTableViewController.m in Sources */,
 				F9272AE40B26984E04F01944 /* WHAppDelegate.m in Sources */,
+				0E44F8751BEB553300F8571D /* WHPlaylistTableViewController.m in Sources */,
 				EA1D28C0C6A5011119F82B73 /* LaunchScreen.xib in Sources */,
+				0E44F86B1BEB4FB700F8571D /* WHDashBoardViewController.m in Sources */,
+				0E44F8791BEB557600F8571D /* WHLocalSongsTableViewController.m in Sources */,
 				1A44E872A0401F9F6EC5084C /* main.m in Sources */,
+				0E44F8671BEB4DD400F8571D /* WHWebrequestManager.m in Sources */,
 				0E7DA1731BE9BB60006551C4 /* WHRootViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -14,9 +14,76 @@
         <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="splash-image" translatesAutoresizingMaskIntoConstraints="NO" id="mxt-KB-TGn">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                </imageView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="b5f-i6-oDv">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CaU-AH-mdV">
+                            <rect key="frame" x="40" y="189" width="240" height="190"/>
+                            <subviews>
+                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="soundcloud-icon-white" translatesAutoresizingMaskIntoConstraints="NO" id="91H-A5-urp">
+                                    <rect key="frame" x="0.0" y="0.0" width="240" height="123"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="123" id="OHn-23-f6m"/>
+                                    </constraints>
+                                </imageView>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Connect to Soundcloud" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RRV-s2-upA">
+                                    <rect key="frame" x="30" y="131" width="180.5" height="20.5"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b3s-Fg-to0">
+                                    <rect key="frame" x="0.0" y="0.0" width="240" height="190"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                    <connections>
+                                        <action selector="loginSoundCloud:" destination="-1" eventType="touchUpInside" id="btd-jg-qcv"/>
+                                    </connections>
+                                </button>
+                            </subviews>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstItem="RRV-s2-upA" firstAttribute="centerX" secondItem="CaU-AH-mdV" secondAttribute="centerX" id="0Ct-Ue-KqC"/>
+                                <constraint firstAttribute="trailing" secondItem="b3s-Fg-to0" secondAttribute="trailing" id="0hD-1m-aXc"/>
+                                <constraint firstAttribute="trailing" secondItem="91H-A5-urp" secondAttribute="trailing" id="Hjt-d6-bQM"/>
+                                <constraint firstAttribute="bottom" secondItem="b3s-Fg-to0" secondAttribute="bottom" id="MAF-qw-Apl"/>
+                                <constraint firstItem="91H-A5-urp" firstAttribute="leading" secondItem="CaU-AH-mdV" secondAttribute="leading" id="NKn-Bo-Sw3"/>
+                                <constraint firstItem="b3s-Fg-to0" firstAttribute="leading" secondItem="CaU-AH-mdV" secondAttribute="leading" id="NWm-f8-OX1"/>
+                                <constraint firstItem="91H-A5-urp" firstAttribute="top" secondItem="CaU-AH-mdV" secondAttribute="top" id="U8u-Tf-6RG"/>
+                                <constraint firstAttribute="height" constant="190" id="VaE-ee-lPW"/>
+                                <constraint firstItem="RRV-s2-upA" firstAttribute="top" secondItem="91H-A5-urp" secondAttribute="bottom" constant="8" id="bnb-oP-slA"/>
+                                <constraint firstItem="b3s-Fg-to0" firstAttribute="top" secondItem="CaU-AH-mdV" secondAttribute="top" id="shx-iN-5aZ"/>
+                                <constraint firstAttribute="width" constant="240" id="zIM-pJ-2Bm"/>
+                            </constraints>
+                        </view>
+                    </subviews>
+                    <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.5" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstItem="CaU-AH-mdV" firstAttribute="centerX" secondItem="b5f-i6-oDv" secondAttribute="centerX" id="Sit-1l-Wm3"/>
+                        <constraint firstItem="CaU-AH-mdV" firstAttribute="centerY" secondItem="b5f-i6-oDv" secondAttribute="centerY" id="bMn-4d-gtq"/>
+                    </constraints>
+                </view>
+            </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="b5f-i6-oDv" secondAttribute="trailing" id="5rb-qW-POt"/>
+                <constraint firstItem="b5f-i6-oDv" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="99P-hV-JwM"/>
+                <constraint firstItem="mxt-KB-TGn" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="RVj-Au-Lf0"/>
+                <constraint firstAttribute="trailing" secondItem="mxt-KB-TGn" secondAttribute="trailing" id="WT1-eX-MNy"/>
+                <constraint firstAttribute="bottom" secondItem="b5f-i6-oDv" secondAttribute="bottom" id="aXo-uv-JTX"/>
+                <constraint firstAttribute="bottom" secondItem="mxt-KB-TGn" secondAttribute="bottom" id="fyV-Rl-xWw"/>
+                <constraint firstItem="mxt-KB-TGn" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="mfi-mC-oQH"/>
+                <constraint firstItem="b5f-i6-oDv" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="w40-Gm-4T5"/>
+            </constraints>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
-            <point key="canvasLocation" x="97" y="340"/>
+            <point key="canvasLocation" x="134" y="372"/>
         </view>
     </objects>
+    <resources>
+        <image name="soundcloud-icon-white" width="335" height="166"/>
+        <image name="splash-image" width="1248" height="1872"/>
+    </resources>
 </document>

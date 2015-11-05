@@ -25,7 +25,26 @@ PODS:
     - AFNetworking/NSURLSession
   - AFOAuth2Manager (2.2.0):
     - AFNetworking/NSURLConnection (~> 2.2)
+  - ChameleonFramework (2.0.4):
+    - ChameleonFramework/Default (= 2.0.4)
+  - ChameleonFramework/Default (2.0.4)
+  - DZNEmptyDataSet (1.7.2)
   - Expecta (1.0.3)
+  - FontAwesomeKit (2.1.8):
+    - FontAwesomeKit/Core (= 2.1.8)
+    - FontAwesomeKit/FontAwesome (= 2.1.8)
+    - FontAwesomeKit/FoundationIcons (= 2.1.8)
+    - FontAwesomeKit/IonIcons (= 2.1.8)
+    - FontAwesomeKit/Zocial (= 2.1.8)
+  - FontAwesomeKit/Core (2.1.8)
+  - FontAwesomeKit/FontAwesome (2.1.8):
+    - FontAwesomeKit/Core
+  - FontAwesomeKit/FoundationIcons (2.1.8):
+    - FontAwesomeKit/Core
+  - FontAwesomeKit/IonIcons (2.1.8):
+    - FontAwesomeKit/Core
+  - FontAwesomeKit/Zocial (2.1.8):
+    - FontAwesomeKit/Core
   - GCDWebServer/Core (3.2.7)
   - GCDWebServer/WebUploader (3.2.7):
     - GCDWebServer/Core
@@ -57,7 +76,10 @@ PODS:
 
 DEPENDENCIES:
   - ABMSoundCloudAPI
+  - ChameleonFramework
+  - DZNEmptyDataSet
   - Expecta
+  - FontAwesomeKit (~> 2.1.0)
   - GCDWebServer/WebUploader
   - OCMock
   - OHHTTPStubs
@@ -69,7 +91,10 @@ SPEC CHECKSUMS:
   ABMSoundCloudAPI: 8dc79f47f64a681c2b57032cc5396636b6c0753a
   AFNetworking: 8e4e60500beb8bec644cf575beee72990a76d399
   AFOAuth2Manager: 952eb62e8fd8022971e64c6e8fe28b9e999224af
+  ChameleonFramework: 5abe69b1f2a6cc79c3c435fcd9d3d855748225ee
+  DZNEmptyDataSet: 0ec00bfc230d7450997b60c127afdd0b9f24f3b6
   Expecta: 9d1bff6c8b0eeee73a166a2ee898892478927a15
+  FontAwesomeKit: 64759fb28b5d2e74a1bd81553d7c11ca10e32179
   GCDWebServer: 76a9540371d5f12f850b32ec7f555dd2d266e543
   OCMock: 28def049ef47f996b515a8eeea958be7ccab2dbb
   OHHTTPStubs: f9ed5d0574877f6008261de9c2728cc1662a6566
@@ -77,4 +102,4 @@ SPEC CHECKSUMS:
   ReactiveCocoa: e2db045570aa97c695e7aa97c2bcab222ae51f4a
   Specta: 69bb134672aae190a1379ff91df07dad8dd1f869
 
-COCOAPODS: 0.38.2
+COCOAPODS: 0.39.0

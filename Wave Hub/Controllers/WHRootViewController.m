@@ -17,11 +17,25 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    [self setStatusBarStyle:UIStatusBarStyleContrast];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (IBAction)loginSoundCloud:(id)sender {
+    [[[WHWebrequestManager sharedManager] soundCloudPort]
+     loginWithResult:^(BOOL success) {
+         if (success) {
+             NSLog(@"Login success");
+         }else{
+             NSLog(@"Login fail");
+         }
+     }
+     usingParentVC:self
+     redirectURL:@"wavehub://oauth"];
 }
 
 /*
