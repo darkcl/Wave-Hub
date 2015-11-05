@@ -24,6 +24,7 @@
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
     self.title = @"Playlist";
+    [self setStatusBarStyle:UIStatusBarStyleContrast];
     
     [[[WHWebrequestManager sharedManager] soundCloudPort]
      requestPlaylistsWithSuccess:^(NSArray *playlists) {

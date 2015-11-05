@@ -24,6 +24,7 @@
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
     self.title = @"Favourites";
+    [self setStatusBarStyle:UIStatusBarStyleContrast];
 }
 
 - (void)didReceiveMemoryWarning {
