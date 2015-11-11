@@ -21,41 +21,44 @@
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
-//    [Chameleon setGlobalThemeUsingPrimaryColor:[UIColor colorWithHexString:@"#ff7700"] withContentStyle:UIContentStyleContrast];
+    [Chameleon setGlobalThemeUsingPrimaryColor:[UIColor colorWithHexString:@"#ff7700"] withContentStyle:UIContentStyleContrast];
+    WHDashBoardViewController *rootVC = [[WHDashBoardViewController alloc] init];
+    WHFavouriteTableViewController *favouriteVC = [[WHFavouriteTableViewController alloc] init];
+    UINavigationController *favNav = [[UINavigationController alloc] initWithRootViewController:favouriteVC];
+    favNav.hidesNavigationBarHairline = NO;
     
+    favouriteVC.title = @"Favourite";
+    FAKFontAwesome *starIcon = [FAKFontAwesome starIconWithSize:25];
+    favNav.tabBarItem.image = [starIcon imageWithSize:CGSizeMake(40.0, 40.0)];
     
-    if ([[WHWebrequestManager sharedManager] soundCloudPort].isValidToken == YES) {
-        WHDashBoardViewController *rootVC = [[WHDashBoardViewController alloc] init];
-        WHFavouriteTableViewController *favouriteVC = [[WHFavouriteTableViewController alloc] init];
-        UINavigationController *favNav = [[UINavigationController alloc] initWithRootViewController:favouriteVC];
-        
-        favouriteVC.title = @"Favourite";
-        FAKFontAwesome *starIcon = [FAKFontAwesome starIconWithSize:25];
-        favNav.tabBarItem.image = [starIcon imageWithSize:CGSizeMake(40.0, 40.0)];
-        
-        WHPlaylistTableViewController *playlistVC = [[WHPlaylistTableViewController alloc] init];
-        UINavigationController *playlistNav = [[UINavigationController alloc] initWithRootViewController:playlistVC];
-        
-        playlistVC.title = @"Playlist";
-        FAKFontAwesome *playlistIcon = [FAKFontAwesome musicIconWithSize:25];
-        playlistNav.tabBarItem.image = [playlistIcon imageWithSize:CGSizeMake(40.0, 40.0)];
-        
-        WHLocalSongsTableViewController *localVC = [[WHLocalSongsTableViewController alloc] init];
-        UINavigationController *localSongNav = [[UINavigationController alloc] initWithRootViewController:localVC];
-        
-        localVC.title = @"Local Songs";
-        FAKFoundationIcons *phoneIcon = [FAKFoundationIcons usbIconWithSize:25];
-        localSongNav.tabBarItem.image = [phoneIcon imageWithSize:CGSizeMake(40.0, 40.0)];
-        rootVC.viewControllers = @[favNav, playlistNav, localSongNav];
-        
-        [self.window setRootViewController:rootVC];
-        [self.window makeKeyAndVisible];
-    }else{
-        WHRootViewController *rootVC = [[WHRootViewController alloc] initWithNibName:@"WHRootViewController" bundle:nil];
-        [self.window setRootViewController:rootVC];
-        [self.window makeKeyAndVisible];
-    }
+    WHPlaylistTableViewController *playlistVC = [[WHPlaylistTableViewController alloc] init];
+    UINavigationController *playlistNav = [[UINavigationController alloc] initWithRootViewController:playlistVC];
+    playlistNav.hidesNavigationBarHairline = NO;
     
+    playlistVC.title = @"Playlist";
+    FAKFontAwesome *playlistIcon = [FAKFontAwesome musicIconWithSize:25];
+    playlistNav.tabBarItem.image = [playlistIcon imageWithSize:CGSizeMake(40.0, 40.0)];
+    
+    WHLocalSongsTableViewController *localVC = [[WHLocalSongsTableViewController alloc] init];
+    UINavigationController *localSongNav = [[UINavigationController alloc] initWithRootViewController:localVC];
+    localSongNav.hidesNavigationBarHairline = NO;
+    
+    localVC.title = @"Local Songs";
+    FAKFoundationIcons *phoneIcon = [FAKFoundationIcons usbIconWithSize:25];
+    localSongNav.tabBarItem.image = [phoneIcon imageWithSize:CGSizeMake(40.0, 40.0)];
+    rootVC.viewControllers = @[favNav, playlistNav, localSongNav];
+    
+    [self.window setRootViewController:rootVC];
+    [self.window makeKeyAndVisible];
+    
+    [[WHWebrequestManager sharedManager]
+     loginToSoundCloud:^(id responseObject) {
+         
+     }
+     failure:^(NSError *error) {
+         
+     }
+     withViewController:rootVC];
     
     return YES;
 }

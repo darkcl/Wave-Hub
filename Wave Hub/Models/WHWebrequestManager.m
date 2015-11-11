@@ -5,11 +5,13 @@
 //  Created by Yeung Yiu Hung on 5/11/15.
 //  Copyright © 2015 Memory Leaks. All rights reserved.
 //
-
+#import <AFNetworking/AFNetworking.h>
 #import "WHWebrequestManager.h"
 
+static NSString * const kBaseURL = @"https://api.soundcloud.com";
+
 @interface WHWebrequestManager ()
-@property (nonatomic, strong) SoundCloudPort *soundCloudPort;
+
 @end
 
 @implementation WHWebrequestManager
@@ -26,10 +28,165 @@
 
 - (id)init{
     if (self = [super init]) {
-        self.soundCloudPort = [[SoundCloudPort alloc] initWithClientId:@"47724625bbc02bbc335e84f2ed87c001"
-                                                          clientSecret:@"8614d82e8d7e8f90c91ec144aec29986"];
+        apiManager = [[AFHTTPRequestOperationManager alloc] initWithBaseURL:[NSURL URLWithString:kBaseURL]];
+        apiManager.responseSerializer = [AFJSONResponseSerializer serializer];
+        
+        [SCSoundCloud  setClientID:@"47724625bbc02bbc335e84f2ed87c001"
+                            secret:@"8614d82e8d7e8f90c91ec144aec29986"
+                       redirectURL:[NSURL URLWithString:@"wavehub://oauth"]];
     }
     return self;
+}
+
+- (void)loginToSoundCloud:(RequestSuccess)successBlock
+                  failure:(RequestFailure)failureBlock
+       withViewController:(UIViewController *)viewController{
+    if ([SCSoundCloud account]) {
+        successBlock(nil);
+    }else{
+        [SCSoundCloud requestAccessWithPreparedAuthorizationURLHandler:^(NSURL *preparedURL){
+            
+            SCLoginViewController *loginViewController;
+            loginViewController = [SCLoginViewController loginViewControllerWithPreparedURL:preparedURL
+                                                                          completionHandler:^(NSError *error){
+                                                                              
+                                                                              if (SC_CANCELED(error)) {
+                                                                                  NSLog(@"Canceled!");
+                                                                                  failureBlock(error);
+                                                                              } else if (error) {
+                                                                                  NSLog(@"Ooops, something went wrong: %@", [error localizedDescription]);
+                                                                                  failureBlock(error);
+                                                                              } else {
+                                                                                  NSLog(@"Done!");
+                                                                                  successBlock(nil);
+                                                                              }
+                                                                          }];
+            
+            [viewController presentViewController:loginViewController
+                                         animated:YES
+                                       completion:nil];
+            
+        }];
+    }
+}
+
+- (void)fetchMyPlaylistWithInfo:(id)info
+                        success:(RequestSuccess)successBlock
+                        failure:(RequestFailure)failureBlock{
+    NSString *url = @"https://api.soundcloud.com/me/playlists";
+    
+    [SCRequest performMethod:SCRequestMethodGET
+                  onResource:[NSURL URLWithString:url]
+             usingParameters:@{@"linked_partitioning":@"1"}
+                 withAccount:[SCSoundCloud account]
+      sendingProgressHandler:^(unsigned long long bytesSend, unsigned long long bytesTotal) {
+          
+      }
+             responseHandler:^(NSURLResponse *response, NSData *responseData, NSError *error) {
+                 if (error) {
+                     failureBlock(error);
+                     
+                 }else{
+                     NSError *jsonError;
+                     NSDictionary *aDict = [NSJSONSerialization JSONObjectWithData:responseData
+                                                                           options:NSJSONReadingAllowFragments
+                                                                             error:&jsonError];
+                     if (jsonError) {
+                         failureBlock(jsonError);
+                     }else{
+                         NSString *debugString = [[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding];
+                         NSLog(@"%@", debugString);
+                         
+                         successBlock(aDict);
+                     }
+                 }
+             }];
+}
+
+- (void)fetchMyFavouriteWithInfo:(MyFavourite *)info
+                         success:(RequestSuccess)successBlock
+                         failure:(RequestFailure)failureBlock{
+    NSString *url;
+    if (info != nil) {
+        if (info.nextHref != nil && info.nextHref.length != 0) {
+            url = info.nextHref;
+        }else{
+            NSError *error = [NSError errorWithDomain:@"WebRequestError"
+                                                 code:0
+                                             userInfo:@{NSLocalizedDescriptionKey : @"No more favourites."}];
+            
+            failureBlock(error);
+            return;
+        }
+    }else{
+        url = @"https://api.soundcloud.com/me/favorites";
+    }
+    
+    [SCRequest performMethod:SCRequestMethodGET
+                  onResource:[NSURL URLWithString:url]
+             usingParameters:@{@"linked_partitioning":@"1"}
+                 withAccount:[SCSoundCloud account]
+      sendingProgressHandler:^(unsigned long long bytesSend, unsigned long long bytesTotal) {
+          
+      }
+             responseHandler:^(NSURLResponse *response, NSData *responseData, NSError *error) {
+                 if (error) {
+                     failureBlock(error);
+                     
+                 }else{
+                     NSError *jsonError;
+                     NSDictionary *aDict = [NSJSONSerialization JSONObjectWithData:responseData
+                                                                           options:NSJSONReadingAllowFragments
+                                                                             error:&jsonError];
+                     if (jsonError) {
+                         failureBlock(jsonError);
+                     }else{
+                         MyFavourite *favourites = [MyFavourite modelObjectWithDictionary:aDict];
+                         
+                         if (info != nil) {
+                             NSMutableArray *collections = [[NSMutableArray alloc] initWithArray:info.collection];
+                             [collections addObjectsFromArray:favourites.collection];
+                             info.collection = collections;
+                             info.nextHref = favourites.nextHref;
+                             successBlock(info);
+                         }else{
+                             successBlock(favourites);
+                         }
+                     }
+                 }
+             }];
+}
+
+- (void)streamCollection:(Collection *)collectionInfo
+                 success:(RequestSuccess)successBlock
+                 failure:(RequestFailure)failureBlock{
+    NSArray *paths = NSSearchPathForDirectoriesInDomains
+    (NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths objectAtIndex:0];
+    
+    //make a file name to write the data to using the documents directory:
+    NSString *fileName = [NSString stringWithFormat:@"%@/%@.snd",
+                          documentsDirectory, collectionInfo.uri.lastPathComponent];
+    if ([[NSFileManager defaultManager] fileExistsAtPath:fileName isDirectory:nil]) {
+        NSURL *url = [NSURL URLWithString:fileName];
+        successBlock(url);
+    }else{
+        [SCRequest performMethod:SCRequestMethodGET
+                      onResource:[NSURL URLWithString:collectionInfo.streamUrl]
+                 usingParameters:nil
+                     withAccount:[SCSoundCloud account]
+          sendingProgressHandler:nil
+                 responseHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
+                     if (!error) {
+                         [data writeToFile:fileName atomically:YES];
+                         NSURL *url = [NSURL URLWithString:fileName];
+                         successBlock(url);
+                     }else{
+                         failureBlock(error);
+                     }
+                 }];
+        
+    }
 }
 
 @end

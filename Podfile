@@ -3,7 +3,11 @@ source 'https://github.com/CocoaPods/Specs'
 platform :ios, '7.0'
 
 # Add Application pods here
-pod 'ABMSoundCloudAPI', :git => 'https://github.com/darkcl/ABMSoundCloudAPI.git'
+pod 'AFNetworking'
+
+pod 'CocoaSoundCloudAPI'
+pod 'CocoaSoundCloudUI'
+
 pod 'ReactiveCocoa'
 pod 'GCDWebServer/WebUploader'
 pod 'OrigamiEngine'

@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0E064CE51BF2FBD9002D2244 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0E064CE41BF2FBD9002D2244 /* AVFoundation.framework */; };
+		0E064CED1BF2FC34002D2244 /* Collection.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E064CE71BF2FC34002D2244 /* Collection.m */; };
+		0E064CEE1BF2FC34002D2244 /* MyFavourite.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E064CEA1BF2FC34002D2244 /* MyFavourite.m */; };
+		0E064CEF1BF2FC34002D2244 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E064CEC1BF2FC34002D2244 /* User.m */; };
 		0E44F8671BEB4DD400F8571D /* WHWebrequestManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E44F8661BEB4DD400F8571D /* WHWebrequestManager.m */; };
 		0E44F86B1BEB4FB700F8571D /* WHDashBoardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E44F8691BEB4FB700F8571D /* WHDashBoardViewController.m */; };
 		0E44F8701BEB550B00F8571D /* WHFavouriteTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E44F86F1BEB550B00F8571D /* WHFavouriteTableViewController.m */; };
@@ -35,6 +39,14 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0E064CE41BF2FBD9002D2244 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		0E064CE61BF2FC34002D2244 /* Collection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Collection.h; sourceTree = "<group>"; };
+		0E064CE71BF2FC34002D2244 /* Collection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Collection.m; sourceTree = "<group>"; };
+		0E064CE81BF2FC34002D2244 /* DataModels.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataModels.h; sourceTree = "<group>"; };
+		0E064CE91BF2FC34002D2244 /* MyFavourite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyFavourite.h; sourceTree = "<group>"; };
+		0E064CEA1BF2FC34002D2244 /* MyFavourite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyFavourite.m; sourceTree = "<group>"; };
+		0E064CEB1BF2FC34002D2244 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
+		0E064CEC1BF2FC34002D2244 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
 		0E44F8651BEB4DD400F8571D /* WHWebrequestManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WHWebrequestManager.h; sourceTree = "<group>"; };
 		0E44F8661BEB4DD400F8571D /* WHWebrequestManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WHWebrequestManager.m; sourceTree = "<group>"; };
 		0E44F8681BEB4FB700F8571D /* WHDashBoardViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WHDashBoardViewController.h; sourceTree = "<group>"; };
@@ -74,6 +86,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0E064CE51BF2FBD9002D2244 /* AVFoundation.framework in Frameworks */,
 				C4F64ECA2A55365875E190E6 /* Foundation.framework in Frameworks */,
 				476696573063B162B2B854E9 /* libPods.a in Frameworks */,
 			);
@@ -102,6 +115,24 @@
 			children = (
 			);
 			path = Headers;
+			sourceTree = "<group>";
+		};
+		0E064CF91BF30C4B002D2244 /* Collection */ = {
+			isa = PBXGroup;
+			children = (
+				0E064CE61BF2FC34002D2244 /* Collection.h */,
+				0E064CE71BF2FC34002D2244 /* Collection.m */,
+			);
+			name = Collection;
+			sourceTree = "<group>";
+		};
+		0E064CFA1BF30C51002D2244 /* My Favourite */ = {
+			isa = PBXGroup;
+			children = (
+				0E064CE91BF2FC34002D2244 /* MyFavourite.h */,
+				0E064CEA1BF2FC34002D2244 /* MyFavourite.m */,
+			);
+			name = "My Favourite";
 			sourceTree = "<group>";
 		};
 		0E44F86D1BEB4FBB00F8571D /* Dash Board */ = {
@@ -251,6 +282,7 @@
 		B5E749CE200B24C16FE17C03 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				0E064CE41BF2FBD9002D2244 /* AVFoundation.framework */,
 				2F69A4BE35D1B8F4B0E05306 /* iOS */,
 				90882ADB27A7D5FDEDA7B24A /* libPods-unit_tests.a */,
 				F7E617E74F03F0E5992B5CD8 /* libPods.a */,
@@ -308,6 +340,11 @@
 		DC4CFE12F9FE9D539C497C16 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				0E064CF91BF30C4B002D2244 /* Collection */,
+				0E064CE81BF2FC34002D2244 /* DataModels.h */,
+				0E064CFA1BF30C51002D2244 /* My Favourite */,
+				0E064CEB1BF2FC34002D2244 /* User.h */,
+				0E064CEC1BF2FC34002D2244 /* User.m */,
 				0E44F8651BEB4DD400F8571D /* WHWebrequestManager.h */,
 				0E44F8661BEB4DD400F8571D /* WHWebrequestManager.m */,
 			);
@@ -556,11 +593,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				0E44F8701BEB550B00F8571D /* WHFavouriteTableViewController.m in Sources */,
+				0E064CED1BF2FC34002D2244 /* Collection.m in Sources */,
+				0E064CEE1BF2FC34002D2244 /* MyFavourite.m in Sources */,
 				F9272AE40B26984E04F01944 /* WHAppDelegate.m in Sources */,
 				0E44F8751BEB553300F8571D /* WHPlaylistTableViewController.m in Sources */,
 				EA1D28C0C6A5011119F82B73 /* LaunchScreen.xib in Sources */,
 				0E44F86B1BEB4FB700F8571D /* WHDashBoardViewController.m in Sources */,
 				0E44F8791BEB557600F8571D /* WHLocalSongsTableViewController.m in Sources */,
+				0E064CEF1BF2FC34002D2244 /* User.m in Sources */,
 				1A44E872A0401F9F6EC5084C /* main.m in Sources */,
 				0E44F8671BEB4DD400F8571D /* WHWebrequestManager.m in Sources */,
 				0E7DA1731BE9BB60006551C4 /* WHRootViewController.m in Sources */,

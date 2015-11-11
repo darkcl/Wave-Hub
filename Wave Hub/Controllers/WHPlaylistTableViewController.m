@@ -24,15 +24,14 @@
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
     self.title = @"Playlist";
-    [self setStatusBarStyle:UIStatusBarStyleContrast];
-    
-    [[[WHWebrequestManager sharedManager] soundCloudPort]
-     requestPlaylistsWithSuccess:^(NSArray *playlists) {
-         NSLog(@"%@", playlists);
-     }
-     failure:^(NSError *error) {
-         NSLog(@"%@", error);
-     }];
+//    [self setStatusBarStyle:UIStatusBarStyleLightContent];
+    [[WHWebrequestManager sharedManager] fetchMyPlaylistWithInfo:nil
+                                                         success:^(id responseObject) {
+                                                             
+                                                         }
+                                                         failure:^(NSError *error) {
+                                                             
+                                                         }];
 }
 
 - (void)didReceiveMemoryWarning {

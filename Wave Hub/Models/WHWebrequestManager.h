@@ -8,10 +8,31 @@
 
 #import <Foundation/Foundation.h>
 
-@interface WHWebrequestManager : NSObject
+typedef void(^RequestSuccess)(id responseObject);
+typedef void(^RequestFailure)(NSError *error);
+
+@class AFHTTPRequestOperationManager;
+
+@interface WHWebrequestManager : NSObject{
+    AFHTTPRequestOperationManager *apiManager;
+}
 
 + (instancetype)sharedManager;
 
-@property (nonatomic, readonly) SoundCloudPort *soundCloudPort;
+- (void)loginToSoundCloud:(RequestSuccess)successBlock
+                  failure:(RequestFailure)failureBlock
+       withViewController:(UIViewController *)viewController;
+
+- (void)fetchMyPlaylistWithInfo:(id)info
+                         success:(RequestSuccess)successBlock
+                         failure:(RequestFailure)failureBlock;
+
+- (void)fetchMyFavouriteWithInfo:(MyFavourite *)info
+                         success:(RequestSuccess)successBlock
+                         failure:(RequestFailure)failureBlock;
+
+- (void)streamCollection:(Collection *)collectionInfo
+                 success:(RequestSuccess)successBlock
+                 failure:(RequestFailure)failureBlock;
 
 @end

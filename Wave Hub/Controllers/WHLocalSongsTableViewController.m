@@ -24,7 +24,7 @@
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
     self.title = @"Local Songs";
-    [self setStatusBarStyle:UIStatusBarStyleContrast];
+//    [self setStatusBarStyle:UIStatusBarStyleLightContent];
 }
 
 - (void)didReceiveMemoryWarning {
