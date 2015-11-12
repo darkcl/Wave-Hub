@@ -8,9 +8,18 @@
 
 #import <Foundation/Foundation.h>
 
+#import <AVFoundation/AVFoundation.h>
+#import <AudioToolbox/AudioToolbox.h>
+#import <MediaPlayer/MediaPlayer.h>
+#import <MediaToolbox/MediaToolbox.h>
 #import <OrigamiEngine/ORGMEngine.h>
 #import <OrigamiEngine/CueSheet.h>
 #import "CueSheet+WaveHubAddition.h"
+
+typedef NS_ENUM(NSInteger, WHSoundManagerType) {
+    WHSoundManagerTypeCue,
+    WHSoundManagerTypeM3u
+};
 
 @interface WHSoundManager : NSObject <ORGMEngineDelegate>{
     ORGMEngine *player;
@@ -19,9 +28,11 @@
     
     NSURL *expectedNextUrl;
     
+    WHSoundManagerType currentType;
+    
     //cue
     NSInteger currentCueIdx;
-    CueSheet *currentCueSheet;
+    NSURL *currentCueSheetUrl;
     
 }
 

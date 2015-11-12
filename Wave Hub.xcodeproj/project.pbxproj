@@ -24,6 +24,7 @@
 		1A44E872A0401F9F6EC5084C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 7535691D532C79453A972784 /* main.m */; };
 		476696573063B162B2B854E9 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F7E617E74F03F0E5992B5CD8 /* libPods.a */; };
 		6C5DC8333D90F8BAC26108B1 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 450213D723237E9D8191F6EF /* Images.xcassets */; };
+		7475A5FE1BF4F9B600100498 /* MediaToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7475A5FD1BF4F9B600100498 /* MediaToolbox.framework */; };
 		74F6F47EBD6BFC73460670B1 /* libPods-unit_tests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 90882ADB27A7D5FDEDA7B24A /* libPods-unit_tests.a */; };
 		C4F64ECA2A55365875E190E6 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B0FF2CBA0859ED2691E65FF5 /* Foundation.framework */; };
 		EA1D28C0C6A5011119F82B73 /* LaunchScreen.xib in Sources */ = {isa = PBXBuildFile; fileRef = E85B4BE7428A28FDA5A26607 /* LaunchScreen.xib */; };
@@ -75,6 +76,7 @@
 		450213D723237E9D8191F6EF /* Images.xcassets */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		4A4358BE8B68B8B9325F3AAC /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		6C0AE585EC62527A7EF19A9D /* UnitTests-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "UnitTests-Info.plist"; sourceTree = "<group>"; };
+		7475A5FD1BF4F9B600100498 /* MediaToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaToolbox.framework; path = System/Library/Frameworks/MediaToolbox.framework; sourceTree = SDKROOT; };
 		7535691D532C79453A972784 /* main.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		781D2B8E9A1F36A0D4E8AF0E /* WHAppDelegate.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = WHAppDelegate.h; sourceTree = "<group>"; };
 		90882ADB27A7D5FDEDA7B24A /* libPods-unit_tests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-unit_tests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -96,6 +98,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7475A5FE1BF4F9B600100498 /* MediaToolbox.framework in Frameworks */,
 				0E064CE51BF2FBD9002D2244 /* AVFoundation.framework in Frameworks */,
 				C4F64ECA2A55365875E190E6 /* Foundation.framework in Frameworks */,
 				476696573063B162B2B854E9 /* libPods.a in Frameworks */,
@@ -136,13 +139,17 @@
 			name = Collection;
 			sourceTree = "<group>";
 		};
-		0E064CFA1BF30C51002D2244 /* My Favourite */ = {
+		0E064CFA1BF30C51002D2244 /* SoundCloud */ = {
 			isa = PBXGroup;
 			children = (
-				0E064CE91BF2FC34002D2244 /* MyFavourite.h */,
+				0E064CEB1BF2FC34002D2244 /* User.h */,
+				0E064CEC1BF2FC34002D2244 /* User.m */,
 				0E064CEA1BF2FC34002D2244 /* MyFavourite.m */,
+				0E064CE81BF2FC34002D2244 /* DataModels.h */,
+				0E064CF91BF30C4B002D2244 /* Collection */,
+				0E064CE91BF2FC34002D2244 /* MyFavourite.h */,
 			);
-			name = "My Favourite";
+			name = SoundCloud;
 			sourceTree = "<group>";
 		};
 		0E44F86D1BEB4FBB00F8571D /* Dash Board */ = {
@@ -292,6 +299,7 @@
 		B5E749CE200B24C16FE17C03 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				7475A5FD1BF4F9B600100498 /* MediaToolbox.framework */,
 				0E064CE41BF2FBD9002D2244 /* AVFoundation.framework */,
 				2F69A4BE35D1B8F4B0E05306 /* iOS */,
 				90882ADB27A7D5FDEDA7B24A /* libPods-unit_tests.a */,
@@ -355,11 +363,7 @@
 		DC4CFE12F9FE9D539C497C16 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				0E064CF91BF30C4B002D2244 /* Collection */,
-				0E064CE81BF2FC34002D2244 /* DataModels.h */,
-				0E064CFA1BF30C51002D2244 /* My Favourite */,
-				0E064CEB1BF2FC34002D2244 /* User.h */,
-				0E064CEC1BF2FC34002D2244 /* User.m */,
+				0E064CFA1BF30C51002D2244 /* SoundCloud */,
 				0E44F8651BEB4DD400F8571D /* WHWebrequestManager.h */,
 				0E44F8661BEB4DD400F8571D /* WHWebrequestManager.m */,
 				0E2B7E771BF445D2001B7A25 /* WHSoundManager.h */,
@@ -389,7 +393,6 @@
 				971D9433527D20DBD6F18282 /* Frameworks */,
 				65571681941D7DCA5E683F1C /* Resources */,
 				62A3FB3E862076F729307C4D /* Copy Pods Resources */,
-				F0F20413BE122A42FEFD20A4 /* Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -412,7 +415,6 @@
 				7B8A4A9553B8436D3FE2A7B4 /* Warn for TODO and FIXME comments */,
 				6D2EE5C3B0D33F7B2F4DCD0B /* Set version number */,
 				9015F0E1B5639AB45F439F93 /* Copy Pods Resources */,
-				74BACF6A11231DBEAB398027 /* Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -511,21 +513,6 @@
 			shellPath = /bin/sh;
 			shellScript = "git=$(sh /etc/profile; which git)\ngit_release_version=$(\"$git\" describe --tags --always --abbrev=0)\nnumber_of_commits=$(\"$git\" rev-list master | wc -l | tr -d ' ')\ntarget_plist=\"$TARGET_BUILD_DIR/$INFOPLIST_PATH\"\ndsym_plist=\"$DWARF_DSYM_FOLDER_PATH/$DWARF_DSYM_FILE_NAME/Contents/Info.plist\"\n\nfor plist in \"$target_plist\" \"$dsym_plist\"; do\n  if [ -f \"$plist\" ]; then\n    /usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $number_of_commits\" \"$plist\"\n    /usr/libexec/PlistBuddy -c \"Set :CFBundleShortVersionString ${git_release_version#*v}\" \"$plist\"\n  fi\ndone\n";
 		};
-		74BACF6A11231DBEAB398027 /* Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		7B8A4A9553B8436D3FE2A7B4 /* Warn for TODO and FIXME comments */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -585,21 +572,6 @@
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
-		F0F20413BE122A42FEFD20A4 /* Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-unit_tests/Pods-unit_tests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -652,6 +624,7 @@
 				CLANG_WARN_IMPLICIT_SIGN_CONVERSION = NO;
 				CLANG_WARN_INT_CONVERSION = NO;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
 				DSTROOT = /tmp/xcodeproj.dst;
 				ENABLE_BITCODE = NO;
@@ -672,6 +645,7 @@
 					"$(inherited)",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "ab123658-98cd-4ac9-8240-6638d65fcf9b";
 				PUBLIC_HEADERS_FOLDER_PATH = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
@@ -829,6 +803,7 @@
 				CLANG_WARN_IMPLICIT_SIGN_CONVERSION = NO;
 				CLANG_WARN_INT_CONVERSION = NO;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DSTROOT = /tmp/xcodeproj.dst;
 				ENABLE_BITCODE = NO;
@@ -847,6 +822,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "ab123658-98cd-4ac9-8240-6638d65fcf9b";
 				PUBLIC_HEADERS_FOLDER_PATH = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 			};
