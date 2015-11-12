@@ -64,9 +64,11 @@ PODS:
   - OHHTTPStubs/NSURLSession (4.5.1):
     - OHHTTPStubs/Core
   - OHHTTPStubs/OHPathHelpers (4.5.1)
-  - OrigamiEngine (1.0.14):
-    - OrigamiEngine/Core (= 1.0.14)
   - OrigamiEngine/Core (1.0.14)
+  - OrigamiEngine/Flac (1.0.14):
+    - OrigamiEngine/Core
+  - OrigamiEngine/Opus (1.0.14):
+    - OrigamiEngine/Core
   - ReactiveCocoa (2.5):
     - ReactiveCocoa/UI (= 2.5)
   - ReactiveCocoa/Core (2.5):
@@ -87,7 +89,8 @@ DEPENDENCIES:
   - GCDWebServer/WebUploader
   - OCMock
   - OHHTTPStubs
-  - OrigamiEngine
+  - OrigamiEngine/Flac
+  - OrigamiEngine/Opus
   - ReactiveCocoa
   - Specta
 

@@ -8,6 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-@interface WHLocalSongsTableViewController : UITableViewController
+@interface WHLocalSongsTableViewController : UITableViewController{
+    NSArray *cueFiles;
+    
+    NSArray *files;
+}
 
 @end

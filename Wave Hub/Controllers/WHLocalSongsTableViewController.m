@@ -24,7 +24,12 @@
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
     self.title = @"Local Songs";
-//    [self setStatusBarStyle:UIStatusBarStyleLightContent];
+    
+    [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"Cell"];
+    
+    cueFiles = [[WHSoundManager sharedManager] cueFilesInAppDocument];
+    
+    [self.tableView reloadData];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -35,24 +40,33 @@
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-#warning Incomplete implementation, return the number of sections
-    return 0;
+    return (int)cueFiles.count;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-#warning Incomplete implementation, return the number of rows
-    return 0;
+    CueSheet *aCueSheet = cueFiles[section];
+    return (int)aCueSheet.tracks.count;
 }
 
-/*
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
-    
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
+    if (!cell) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"Cell"];
+    }
     // Configure the cell...
-    
+    CueSheet *aCueSheet = cueFiles[indexPath.section];
+    CueSheetTrack *aTrack = aCueSheet.tracks[indexPath.row];
+    cell.textLabel.text = aTrack.title;
     return cell;
 }
-*/
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    CueSheet *aCueSheet = cueFiles[indexPath.section];
+    CueSheetTrack *aTrack = aCueSheet.tracks[indexPath.row];
+//    NSString *toTrack = [aCueSheet.cueUrl.absoluteString stringByAppendingString:[NSString stringWithFormat:@"#%@",aTrack.track]];
+    [[WHSoundManager sharedManager] playCue:aCueSheet withTrack:aTrack forceStart:YES];
+}
 
 /*
 // Override to support conditional editing of the table view.

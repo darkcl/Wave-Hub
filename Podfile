@@ -10,13 +10,13 @@ pod 'CocoaSoundCloudUI'
 
 pod 'ReactiveCocoa'
 pod 'GCDWebServer/WebUploader'
-pod 'OrigamiEngine'
+pod 'OrigamiEngine/Flac'
+pod 'OrigamiEngine/Opus'
 pod 'DZNEmptyDataSet'
 
 pod 'FontAwesomeKit', '~> 2.1.0'
 
 pod 'ChameleonFramework'
-
 
 target :unit_tests, :exclusive => true do
   link_with 'UnitTests'

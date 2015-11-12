@@ -11,6 +11,9 @@
 		0E064CED1BF2FC34002D2244 /* Collection.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E064CE71BF2FC34002D2244 /* Collection.m */; };
 		0E064CEE1BF2FC34002D2244 /* MyFavourite.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E064CEA1BF2FC34002D2244 /* MyFavourite.m */; };
 		0E064CEF1BF2FC34002D2244 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E064CEC1BF2FC34002D2244 /* User.m */; };
+		0E296DAE1BF4A1F900ED3147 /* CueSheet+WaveHubAddition.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E296DAD1BF4A1F900ED3147 /* CueSheet+WaveHubAddition.m */; };
+		0E2B7E791BF445D2001B7A25 /* WHSoundManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E2B7E781BF445D2001B7A25 /* WHSoundManager.m */; };
+		0E2B7E7C1BF475BC001B7A25 /* WHApplication.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E2B7E7B1BF475BC001B7A25 /* WHApplication.m */; };
 		0E44F8671BEB4DD400F8571D /* WHWebrequestManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E44F8661BEB4DD400F8571D /* WHWebrequestManager.m */; };
 		0E44F86B1BEB4FB700F8571D /* WHDashBoardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E44F8691BEB4FB700F8571D /* WHDashBoardViewController.m */; };
 		0E44F8701BEB550B00F8571D /* WHFavouriteTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E44F86F1BEB550B00F8571D /* WHFavouriteTableViewController.m */; };
@@ -47,6 +50,13 @@
 		0E064CEA1BF2FC34002D2244 /* MyFavourite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyFavourite.m; sourceTree = "<group>"; };
 		0E064CEB1BF2FC34002D2244 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
 		0E064CEC1BF2FC34002D2244 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
+		0E296DAC1BF4A1F900ED3147 /* CueSheet+WaveHubAddition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CueSheet+WaveHubAddition.h"; sourceTree = "<group>"; };
+		0E296DAD1BF4A1F900ED3147 /* CueSheet+WaveHubAddition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CueSheet+WaveHubAddition.m"; sourceTree = "<group>"; };
+		0E296DAF1BF4A4C600ED3147 /* Notifications.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Notifications.h; sourceTree = "<group>"; };
+		0E2B7E771BF445D2001B7A25 /* WHSoundManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WHSoundManager.h; sourceTree = "<group>"; };
+		0E2B7E781BF445D2001B7A25 /* WHSoundManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WHSoundManager.m; sourceTree = "<group>"; };
+		0E2B7E7A1BF475BC001B7A25 /* WHApplication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WHApplication.h; sourceTree = "<group>"; };
+		0E2B7E7B1BF475BC001B7A25 /* WHApplication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WHApplication.m; sourceTree = "<group>"; };
 		0E44F8651BEB4DD400F8571D /* WHWebrequestManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WHWebrequestManager.h; sourceTree = "<group>"; };
 		0E44F8661BEB4DD400F8571D /* WHWebrequestManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WHWebrequestManager.m; sourceTree = "<group>"; };
 		0E44F8681BEB4FB700F8571D /* WHDashBoardViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WHDashBoardViewController.h; sourceTree = "<group>"; };
@@ -293,6 +303,8 @@
 		B7FDA5198C65651C1AECF5BA /* Categories */ = {
 			isa = PBXGroup;
 			children = (
+				0E296DAC1BF4A1F900ED3147 /* CueSheet+WaveHubAddition.h */,
+				0E296DAD1BF4A1F900ED3147 /* CueSheet+WaveHubAddition.m */,
 			);
 			path = Categories;
 			sourceTree = "<group>";
@@ -304,6 +316,9 @@
 				0E7DA1751BE9BB65006551C4 /* Root View Controller */,
 				781D2B8E9A1F36A0D4E8AF0E /* WHAppDelegate.h */,
 				241B6531260B64A07C64DCF3 /* WHAppDelegate.m */,
+				0E296DAF1BF4A4C600ED3147 /* Notifications.h */,
+				0E2B7E7A1BF475BC001B7A25 /* WHApplication.h */,
+				0E2B7E7B1BF475BC001B7A25 /* WHApplication.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -347,6 +362,8 @@
 				0E064CEC1BF2FC34002D2244 /* User.m */,
 				0E44F8651BEB4DD400F8571D /* WHWebrequestManager.h */,
 				0E44F8661BEB4DD400F8571D /* WHWebrequestManager.m */,
+				0E2B7E771BF445D2001B7A25 /* WHSoundManager.h */,
+				0E2B7E781BF445D2001B7A25 /* WHSoundManager.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -418,6 +435,11 @@
 				TargetAttributes = {
 					FBB4F1253763E2CDB498808A = {
 						DevelopmentTeam = M56A72A6G5;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -595,13 +617,16 @@
 				0E44F8701BEB550B00F8571D /* WHFavouriteTableViewController.m in Sources */,
 				0E064CED1BF2FC34002D2244 /* Collection.m in Sources */,
 				0E064CEE1BF2FC34002D2244 /* MyFavourite.m in Sources */,
+				0E296DAE1BF4A1F900ED3147 /* CueSheet+WaveHubAddition.m in Sources */,
 				F9272AE40B26984E04F01944 /* WHAppDelegate.m in Sources */,
 				0E44F8751BEB553300F8571D /* WHPlaylistTableViewController.m in Sources */,
 				EA1D28C0C6A5011119F82B73 /* LaunchScreen.xib in Sources */,
 				0E44F86B1BEB4FB700F8571D /* WHDashBoardViewController.m in Sources */,
 				0E44F8791BEB557600F8571D /* WHLocalSongsTableViewController.m in Sources */,
 				0E064CEF1BF2FC34002D2244 /* User.m in Sources */,
+				0E2B7E791BF445D2001B7A25 /* WHSoundManager.m in Sources */,
 				1A44E872A0401F9F6EC5084C /* main.m in Sources */,
+				0E2B7E7C1BF475BC001B7A25 /* WHApplication.m in Sources */,
 				0E44F8671BEB4DD400F8571D /* WHWebrequestManager.m in Sources */,
 				0E7DA1731BE9BB60006551C4 /* WHRootViewController.m in Sources */,
 			);
@@ -623,12 +648,17 @@
 			baseConfigurationReference = 4A4358BE8B68B8B9325F3AAC /* Pods.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_WARN_CONSTANT_CONVERSION = NO;
+				CLANG_WARN_IMPLICIT_SIGN_CONVERSION = NO;
+				CLANG_WARN_INT_CONVERSION = NO;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
 				DSTROOT = /tmp/xcodeproj.dst;
+				ENABLE_BITCODE = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Wave Hub/Resources/Other-Sources/Wave Hub-Prefix.pch";
 				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = NO;
 				INFOPLIST_FILE = "Wave Hub/Resources/Other-Sources/Info.plist";
 				INSTALL_PATH = "$(BUILT_PRODUCTS_DIR)";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
@@ -795,9 +825,13 @@
 			baseConfigurationReference = C72FFDCC6550CA5F84D4B088 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_WARN_CONSTANT_CONVERSION = NO;
+				CLANG_WARN_IMPLICIT_SIGN_CONVERSION = NO;
+				CLANG_WARN_INT_CONVERSION = NO;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DSTROOT = /tmp/xcodeproj.dst;
+				ENABLE_BITCODE = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -807,6 +841,7 @@
 					"$(inherited)",
 				);
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = NO;
 				INFOPLIST_FILE = "Wave Hub/Resources/Other-Sources/Info.plist";
 				INSTALL_PATH = "$(BUILT_PRODUCTS_DIR)";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;

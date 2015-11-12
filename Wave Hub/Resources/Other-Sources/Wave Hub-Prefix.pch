@@ -18,4 +18,5 @@
 
 #import "WHAppDelegate.h"
 #import "WHWebrequestManager.h"
+#import "WHSoundManager.h"
 #endif

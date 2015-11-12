@@ -9,10 +9,11 @@
 @import UIKit;
 
 #import "WHAppDelegate.h"
+#import "WHApplication.h"
 
 int main(int argc, char *argv[])
 {
     @autoreleasepool {
-        return UIApplicationMain(argc, argv, nil, NSStringFromClass([WHAppDelegate class]));
+        return UIApplicationMain(argc, argv, NSStringFromClass([WHApplication class]), NSStringFromClass([WHAppDelegate class]));
     }
 }
