@@ -68,6 +68,16 @@
     [[WHSoundManager sharedManager] playCue:aCueSheet withTrack:aTrack forceStart:YES];
 }
 
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
+    CueSheet *aCueSheet = cueFiles[section];
+    if (aCueSheet.tracks.count > 0) {
+        CueSheetTrack *aTrack = aCueSheet.tracks[0];
+        return aTrack.album;
+    }else{
+        return nil;
+    }
+}
+
 /*
 // Override to support conditional editing of the table view.
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {

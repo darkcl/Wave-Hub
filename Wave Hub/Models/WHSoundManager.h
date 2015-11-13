@@ -16,6 +16,13 @@
 #import <OrigamiEngine/CueSheet.h>
 #import "CueSheet+WaveHubAddition.h"
 
+typedef NS_ENUM(NSInteger, WHSoundManagerPlayType) {
+    WHSoundManagerPlayTypeOnce,
+    WHSoundManagerPlayTypeLoop,
+    WHSoundManagerPlayTypeLoopOnce,
+    WHSoundManagerPlayTypeRandom
+};
+
 typedef NS_ENUM(NSInteger, WHSoundManagerType) {
     WHSoundManagerTypeCue,
     WHSoundManagerTypeM3u

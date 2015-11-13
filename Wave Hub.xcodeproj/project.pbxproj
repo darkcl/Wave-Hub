@@ -11,6 +11,9 @@
 		0E064CED1BF2FC34002D2244 /* Collection.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E064CE71BF2FC34002D2244 /* Collection.m */; };
 		0E064CEE1BF2FC34002D2244 /* MyFavourite.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E064CEA1BF2FC34002D2244 /* MyFavourite.m */; };
 		0E064CEF1BF2FC34002D2244 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E064CEC1BF2FC34002D2244 /* User.m */; };
+		0E2914931BF58306004AA529 /* NSData+WaveHubAddition.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E2914921BF58306004AA529 /* NSData+WaveHubAddition.m */; };
+		0E2914961BF58387004AA529 /* WHDatabaseManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E2914951BF58387004AA529 /* WHDatabaseManager.m */; };
+		0E29149D1BF58599004AA529 /* WHCueObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E29149C1BF58599004AA529 /* WHCueObject.m */; };
 		0E296DAE1BF4A1F900ED3147 /* CueSheet+WaveHubAddition.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E296DAD1BF4A1F900ED3147 /* CueSheet+WaveHubAddition.m */; };
 		0E2B7E791BF445D2001B7A25 /* WHSoundManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E2B7E781BF445D2001B7A25 /* WHSoundManager.m */; };
 		0E2B7E7C1BF475BC001B7A25 /* WHApplication.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E2B7E7B1BF475BC001B7A25 /* WHApplication.m */; };
@@ -51,6 +54,12 @@
 		0E064CEA1BF2FC34002D2244 /* MyFavourite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyFavourite.m; sourceTree = "<group>"; };
 		0E064CEB1BF2FC34002D2244 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
 		0E064CEC1BF2FC34002D2244 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
+		0E2914911BF58306004AA529 /* NSData+WaveHubAddition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+WaveHubAddition.h"; sourceTree = "<group>"; };
+		0E2914921BF58306004AA529 /* NSData+WaveHubAddition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+WaveHubAddition.m"; sourceTree = "<group>"; };
+		0E2914941BF58387004AA529 /* WHDatabaseManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WHDatabaseManager.h; sourceTree = "<group>"; };
+		0E2914951BF58387004AA529 /* WHDatabaseManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WHDatabaseManager.m; sourceTree = "<group>"; };
+		0E29149B1BF58599004AA529 /* WHCueObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WHCueObject.h; sourceTree = "<group>"; };
+		0E29149C1BF58599004AA529 /* WHCueObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WHCueObject.m; sourceTree = "<group>"; };
 		0E296DAC1BF4A1F900ED3147 /* CueSheet+WaveHubAddition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CueSheet+WaveHubAddition.h"; sourceTree = "<group>"; };
 		0E296DAD1BF4A1F900ED3147 /* CueSheet+WaveHubAddition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CueSheet+WaveHubAddition.m"; sourceTree = "<group>"; };
 		0E296DAF1BF4A4C600ED3147 /* Notifications.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Notifications.h; sourceTree = "<group>"; };
@@ -150,6 +159,15 @@
 				0E064CE91BF2FC34002D2244 /* MyFavourite.h */,
 			);
 			name = SoundCloud;
+			sourceTree = "<group>";
+		};
+		0E29149A1BF58584004AA529 /* Cue Object */ = {
+			isa = PBXGroup;
+			children = (
+				0E29149B1BF58599004AA529 /* WHCueObject.h */,
+				0E29149C1BF58599004AA529 /* WHCueObject.m */,
+			);
+			name = "Cue Object";
 			sourceTree = "<group>";
 		};
 		0E44F86D1BEB4FBB00F8571D /* Dash Board */ = {
@@ -313,6 +331,8 @@
 			children = (
 				0E296DAC1BF4A1F900ED3147 /* CueSheet+WaveHubAddition.h */,
 				0E296DAD1BF4A1F900ED3147 /* CueSheet+WaveHubAddition.m */,
+				0E2914911BF58306004AA529 /* NSData+WaveHubAddition.h */,
+				0E2914921BF58306004AA529 /* NSData+WaveHubAddition.m */,
 			);
 			path = Categories;
 			sourceTree = "<group>";
@@ -363,11 +383,14 @@
 		DC4CFE12F9FE9D539C497C16 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				0E29149A1BF58584004AA529 /* Cue Object */,
 				0E064CFA1BF30C51002D2244 /* SoundCloud */,
 				0E44F8651BEB4DD400F8571D /* WHWebrequestManager.h */,
 				0E44F8661BEB4DD400F8571D /* WHWebrequestManager.m */,
 				0E2B7E771BF445D2001B7A25 /* WHSoundManager.h */,
 				0E2B7E781BF445D2001B7A25 /* WHSoundManager.m */,
+				0E2914941BF58387004AA529 /* WHDatabaseManager.h */,
+				0E2914951BF58387004AA529 /* WHDatabaseManager.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -393,6 +416,7 @@
 				971D9433527D20DBD6F18282 /* Frameworks */,
 				65571681941D7DCA5E683F1C /* Resources */,
 				62A3FB3E862076F729307C4D /* Copy Pods Resources */,
+				C9977306DD1570A87BAFB7E7 /* Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -415,6 +439,7 @@
 				7B8A4A9553B8436D3FE2A7B4 /* Warn for TODO and FIXME comments */,
 				6D2EE5C3B0D33F7B2F4DCD0B /* Set version number */,
 				9015F0E1B5639AB45F439F93 /* Copy Pods Resources */,
+				9253E1CE0EBD3D694D7D6A09 /* Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -557,6 +582,21 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		9253E1CE0EBD3D694D7D6A09 /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		C14174F4056246AA0F39D663 /* Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -570,6 +610,21 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		C9977306DD1570A87BAFB7E7 /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-unit_tests/Pods-unit_tests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -589,12 +644,15 @@
 				0E44F8701BEB550B00F8571D /* WHFavouriteTableViewController.m in Sources */,
 				0E064CED1BF2FC34002D2244 /* Collection.m in Sources */,
 				0E064CEE1BF2FC34002D2244 /* MyFavourite.m in Sources */,
+				0E29149D1BF58599004AA529 /* WHCueObject.m in Sources */,
 				0E296DAE1BF4A1F900ED3147 /* CueSheet+WaveHubAddition.m in Sources */,
 				F9272AE40B26984E04F01944 /* WHAppDelegate.m in Sources */,
 				0E44F8751BEB553300F8571D /* WHPlaylistTableViewController.m in Sources */,
 				EA1D28C0C6A5011119F82B73 /* LaunchScreen.xib in Sources */,
+				0E2914931BF58306004AA529 /* NSData+WaveHubAddition.m in Sources */,
 				0E44F86B1BEB4FB700F8571D /* WHDashBoardViewController.m in Sources */,
 				0E44F8791BEB557600F8571D /* WHLocalSongsTableViewController.m in Sources */,
+				0E2914961BF58387004AA529 /* WHDatabaseManager.m in Sources */,
 				0E064CEF1BF2FC34002D2244 /* User.m in Sources */,
 				0E2B7E791BF445D2001B7A25 /* WHSoundManager.m in Sources */,
 				1A44E872A0401F9F6EC5084C /* main.m in Sources */,
@@ -645,7 +703,7 @@
 					"$(inherited)",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "ab123658-98cd-4ac9-8240-6638d65fcf9b";
+				PROVISIONING_PROFILE = "";
 				PUBLIC_HEADERS_FOLDER_PATH = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
@@ -822,7 +880,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "ab123658-98cd-4ac9-8240-6638d65fcf9b";
+				PROVISIONING_PROFILE = "";
 				PUBLIC_HEADERS_FOLDER_PATH = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 			};

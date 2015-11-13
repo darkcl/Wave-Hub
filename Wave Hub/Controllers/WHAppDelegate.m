@@ -39,7 +39,7 @@
     FAKFontAwesome *playlistIcon = [FAKFontAwesome musicIconWithSize:25];
     playlistNav.tabBarItem.image = [playlistIcon imageWithSize:CGSizeMake(40.0, 40.0)];
     
-    WHLocalSongsTableViewController *localVC = [[WHLocalSongsTableViewController alloc] init];
+    WHLocalSongsTableViewController *localVC = [[WHLocalSongsTableViewController alloc] initWithStyle:UITableViewStyleGrouped];
     UINavigationController *localSongNav = [[UINavigationController alloc] initWithRootViewController:localVC];
     localSongNav.hidesNavigationBarHairline = NO;
     

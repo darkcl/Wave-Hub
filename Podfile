@@ -18,6 +18,10 @@ pod 'FontAwesomeKit', '~> 2.1.0'
 
 pod 'ChameleonFramework'
 
+pod 'YapDatabase'
+
+pod 'Mantle'
+
 target :unit_tests, :exclusive => true do
   link_with 'UnitTests'
   pod 'Specta'

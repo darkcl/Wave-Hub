@@ -186,7 +186,7 @@ static const NSString *remoteControlOtherButtonTapped = @"other pressed";
             [[MPNowPlayingInfoCenter defaultCenter] setNowPlayingInfo:@{MPMediaItemPropertyTitle:metadata[@"title"],
                                                                         MPMediaItemPropertyArtist:metadata[@"artist"],
                                                                         MPMediaItemPropertyMediaType: @(MPMediaTypeMusic),
-                                                                        MPMediaItemPropertyPlay backDuration: @([engine trackTime]),
+                                                                        MPMediaItemPropertyPlaybackDuration: @([engine trackTime]),
                                                                         MPNowPlayingInfoPropertyPlaybackRate: @1}];
         }
             break;
