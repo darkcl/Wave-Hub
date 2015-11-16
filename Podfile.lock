@@ -1,23 +1,23 @@
 PODS:
-  - AFNetworking (2.6.2):
-    - AFNetworking/NSURLConnection (= 2.6.2)
-    - AFNetworking/NSURLSession (= 2.6.2)
-    - AFNetworking/Reachability (= 2.6.2)
-    - AFNetworking/Security (= 2.6.2)
-    - AFNetworking/Serialization (= 2.6.2)
-    - AFNetworking/UIKit (= 2.6.2)
-  - AFNetworking/NSURLConnection (2.6.2):
+  - AFNetworking (2.6.3):
+    - AFNetworking/NSURLConnection (= 2.6.3)
+    - AFNetworking/NSURLSession (= 2.6.3)
+    - AFNetworking/Reachability (= 2.6.3)
+    - AFNetworking/Security (= 2.6.3)
+    - AFNetworking/Serialization (= 2.6.3)
+    - AFNetworking/UIKit (= 2.6.3)
+  - AFNetworking/NSURLConnection (2.6.3):
     - AFNetworking/Reachability
     - AFNetworking/Security
     - AFNetworking/Serialization
-  - AFNetworking/NSURLSession (2.6.2):
+  - AFNetworking/NSURLSession (2.6.3):
     - AFNetworking/Reachability
     - AFNetworking/Security
     - AFNetworking/Serialization
-  - AFNetworking/Reachability (2.6.2)
-  - AFNetworking/Security (2.6.2)
-  - AFNetworking/Serialization (2.6.2)
-  - AFNetworking/UIKit (2.6.2):
+  - AFNetworking/Reachability (2.6.3)
+  - AFNetworking/Security (2.6.3)
+  - AFNetworking/Serialization (2.6.3)
+  - AFNetworking/UIKit (2.6.3):
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
   - ChameleonFramework (2.0.4):
@@ -37,7 +37,7 @@ PODS:
     - CocoaSoundCloudAPI (~> 1.0.2)
     - OHAttributedLabel
   - DZNEmptyDataSet (1.7.2)
-  - Expecta (1.0.3)
+  - Expecta (1.0.5)
   - FLKAutoLayout (0.2.1)
   - FontAwesomeKit (2.1.8):
     - FontAwesomeKit/Core (= 2.1.8)
@@ -63,19 +63,21 @@ PODS:
   - NXOAuth2Client (1.2.2)
   - OCMock (3.2)
   - OHAttributedLabel (3.5.5)
-  - OHHTTPStubs (4.5.1):
-    - OHHTTPStubs/Default (= 4.5.1)
-  - OHHTTPStubs/Core (4.5.1)
-  - OHHTTPStubs/Default (4.5.1):
+  - OHHTTPStubs (4.6.0):
+    - OHHTTPStubs/Default (= 4.6.0)
+  - OHHTTPStubs/Core (4.6.0)
+  - OHHTTPStubs/Default (4.6.0):
     - OHHTTPStubs/Core
     - OHHTTPStubs/JSON
     - OHHTTPStubs/NSURLSession
     - OHHTTPStubs/OHPathHelpers
-  - OHHTTPStubs/JSON (4.5.1):
+  - OHHTTPStubs/JSON (4.6.0):
     - OHHTTPStubs/Core
-  - OHHTTPStubs/NSURLSession (4.5.1):
+  - OHHTTPStubs/NSURLSession (4.6.0):
     - OHHTTPStubs/Core
-  - OHHTTPStubs/OHPathHelpers (4.5.1)
+  - OHHTTPStubs/OHPathHelpers (4.6.0)
+  - OrigamiEngine (1.0.14):
+    - OrigamiEngine/Core (= 1.0.14)
   - OrigamiEngine/Core (1.0.14)
   - OrigamiEngine/Flac (1.0.14):
     - OrigamiEngine/Core
@@ -88,10 +90,10 @@ PODS:
   - ReactiveCocoa/no-arc (2.5)
   - ReactiveCocoa/UI (2.5):
     - ReactiveCocoa/Core
-  - Specta (1.0.4)
-  - YapDatabase (2.7.5):
-    - YapDatabase/standard (= 2.7.5)
-  - YapDatabase/standard (2.7.5):
+  - Specta (1.0.5)
+  - YapDatabase (2.7.6):
+    - YapDatabase/standard (= 2.7.6)
+  - YapDatabase/standard (2.7.6):
     - CocoaLumberjack (~> 2)
 
 DEPENDENCIES:
@@ -107,20 +109,30 @@ DEPENDENCIES:
   - Mantle
   - OCMock
   - OHHTTPStubs
-  - OrigamiEngine/Flac
-  - OrigamiEngine/Opus
+  - OrigamiEngine (from `https://github.com/darkcl/OrigamiEngine.git`)
+  - OrigamiEngine/Flac (from `https://github.com/darkcl/OrigamiEngine.git`)
+  - OrigamiEngine/Opus (from `https://github.com/darkcl/OrigamiEngine.git`)
   - ReactiveCocoa
   - Specta
   - YapDatabase
 
+EXTERNAL SOURCES:
+  OrigamiEngine:
+    :git: https://github.com/darkcl/OrigamiEngine.git
+
+CHECKOUT OPTIONS:
+  OrigamiEngine:
+    :commit: 1633d5a53bf18493696ce9a78477d5119fcc4059
+    :git: https://github.com/darkcl/OrigamiEngine.git
+
 SPEC CHECKSUMS:
-  AFNetworking: 7f317038a9710cabfa43ec56396b307b45df72ab
+  AFNetworking: cb8d14a848e831097108418f5d49217339d4eb60
   ChameleonFramework: 5abe69b1f2a6cc79c3c435fcd9d3d855748225ee
   CocoaLumberjack: 17fe8581f84914d5d7e6360f7c70022b173c3ae0
   CocoaSoundCloudAPI: bef452c90f3a3af6de41a620d7d156d716d68f79
   CocoaSoundCloudUI: f5aed254f432bc68a5a3570b74cdd6d18ce7b037
   DZNEmptyDataSet: 0ec00bfc230d7450997b60c127afdd0b9f24f3b6
-  Expecta: 9d1bff6c8b0eeee73a166a2ee898892478927a15
+  Expecta: e1c022fcd33910b6be89c291d2775b3fe27a89fe
   FLKAutoLayout: 9db6b30c2008d230da608e62c607b11c23b942e6
   FontAwesomeKit: 64759fb28b5d2e74a1bd81553d7c11ca10e32179
   GCDWebServer: 76a9540371d5f12f850b32ec7f555dd2d266e543
@@ -128,10 +140,10 @@ SPEC CHECKSUMS:
   NXOAuth2Client: 492f961d549c411b344cfae861de0dc63b176edc
   OCMock: 28def049ef47f996b515a8eeea958be7ccab2dbb
   OHAttributedLabel: 9b2eb99323dee6b3a81ef3bc8e98b084117bca2d
-  OHHTTPStubs: f9ed5d0574877f6008261de9c2728cc1662a6566
-  OrigamiEngine: 74b097326260597f1498790795cc2cdd604c199a
+  OHHTTPStubs: cb1aefbbeb4de4e741644455d4b945538e5248a2
+  OrigamiEngine: b8208cbd9142d6194807a5f5bc0c6ffd363e0374
   ReactiveCocoa: e2db045570aa97c695e7aa97c2bcab222ae51f4a
-  Specta: 69bb134672aae190a1379ff91df07dad8dd1f869
-  YapDatabase: dd98c77360272028472c4dee07794857d8691647
+  Specta: ac94d110b865115fe60ff2c6d7281053c6f8e8a2
+  YapDatabase: 00e5a5d1b5dba1bd540ef644576233b5612e6122
 
 COCOAPODS: 0.39.0

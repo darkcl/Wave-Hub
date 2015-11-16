@@ -14,8 +14,9 @@ pod 'CocoaSoundCloudUI'
 pod 'GCDWebServer/WebUploader'
 
 # Sound
-pod 'OrigamiEngine/Flac'
-pod 'OrigamiEngine/Opus'
+pod 'OrigamiEngine', :git => 'https://github.com/darkcl/OrigamiEngine.git'
+pod 'OrigamiEngine/Flac', :git => 'https://github.com/darkcl/OrigamiEngine.git'
+pod 'OrigamiEngine/Opus', :git => 'https://github.com/darkcl/OrigamiEngine.git'
 
 # UI
 pod 'DZNEmptyDataSet'
