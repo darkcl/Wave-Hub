@@ -38,6 +38,7 @@ PODS:
     - OHAttributedLabel
   - DZNEmptyDataSet (1.7.2)
   - Expecta (1.0.3)
+  - FLKAutoLayout (0.2.1)
   - FontAwesomeKit (2.1.8):
     - FontAwesomeKit/Core (= 2.1.8)
     - FontAwesomeKit/FontAwesome (= 2.1.8)
@@ -100,6 +101,7 @@ DEPENDENCIES:
   - CocoaSoundCloudUI
   - DZNEmptyDataSet
   - Expecta
+  - FLKAutoLayout
   - FontAwesomeKit (~> 2.1.0)
   - GCDWebServer/WebUploader
   - Mantle
@@ -119,6 +121,7 @@ SPEC CHECKSUMS:
   CocoaSoundCloudUI: f5aed254f432bc68a5a3570b74cdd6d18ce7b037
   DZNEmptyDataSet: 0ec00bfc230d7450997b60c127afdd0b9f24f3b6
   Expecta: 9d1bff6c8b0eeee73a166a2ee898892478927a15
+  FLKAutoLayout: 9db6b30c2008d230da608e62c607b11c23b942e6
   FontAwesomeKit: 64759fb28b5d2e74a1bd81553d7c11ca10e32179
   GCDWebServer: 76a9540371d5f12f850b32ec7f555dd2d266e543
   Mantle: 1912395033f601de5adc8ee91e48f46e4c7051ad

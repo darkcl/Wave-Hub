@@ -2,25 +2,33 @@ source 'https://github.com/CocoaPods/Specs'
 
 platform :ios, '7.0'
 
-# Add Application pods here
-pod 'AFNetworking'
+# ignore all warnings from all pods
+inhibit_all_warnings!
 
+# Add Application pods here
+
+# Networking
+pod 'AFNetworking'
 pod 'CocoaSoundCloudAPI'
 pod 'CocoaSoundCloudUI'
-
-pod 'ReactiveCocoa'
 pod 'GCDWebServer/WebUploader'
+
+# Sound
 pod 'OrigamiEngine/Flac'
 pod 'OrigamiEngine/Opus'
+
+# UI
 pod 'DZNEmptyDataSet'
-
 pod 'FontAwesomeKit', '~> 2.1.0'
-
 pod 'ChameleonFramework'
+pod 'FLKAutoLayout'
 
+# Database
 pod 'YapDatabase'
-
 pod 'Mantle'
+
+# General
+pod 'ReactiveCocoa'
 
 target :unit_tests, :exclusive => true do
   link_with 'UnitTests'

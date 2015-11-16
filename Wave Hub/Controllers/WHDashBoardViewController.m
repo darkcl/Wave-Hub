@@ -2,7 +2,7 @@
 //  WHDashBoardViewController.m
 //  Wave Hub
 //
-//  Created by Yeung Yiu Hung on 5/11/15.
+//  Created by Yeung Yiu Hung on 16/11/15.
 //  Copyright © 2015 Memory Leaks. All rights reserved.
 //
 
@@ -17,7 +17,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-//    [Chameleon setGlobalThemeUsingPrimaryColor:[UIColor colorWithHexString:@"#ff7700"] withContentStyle:UIContentStyleContrast];
     
 }
 

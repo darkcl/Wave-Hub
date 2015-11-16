@@ -25,10 +25,13 @@
     
     self.title = @"Local Songs";
     
+    self.edgesForExtendedLayout = UIRectEdgeBottom;
+    self.extendedLayoutIncludesOpaqueBars = YES;
+    self.automaticallyAdjustsScrollViewInsets = NO;
+    
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"Cell"];
-    
     cueFiles = [[WHSoundManager sharedManager] cueFilesInAppDocument];
-    
+    [self.containerViewController showPlayerView];
     [self.tableView reloadData];
 }
 

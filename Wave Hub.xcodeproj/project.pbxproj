@@ -13,12 +13,15 @@
 		0E064CEF1BF2FC34002D2244 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E064CEC1BF2FC34002D2244 /* User.m */; };
 		0E2914931BF58306004AA529 /* NSData+WaveHubAddition.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E2914921BF58306004AA529 /* NSData+WaveHubAddition.m */; };
 		0E2914961BF58387004AA529 /* WHDatabaseManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E2914951BF58387004AA529 /* WHDatabaseManager.m */; };
-		0E29149D1BF58599004AA529 /* WHCueObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E29149C1BF58599004AA529 /* WHCueObject.m */; };
+		0E2914A01BF96F3D004AA529 /* WHTrackModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E29149F1BF96F3D004AA529 /* WHTrackModel.m */; };
+		0E2914AD1BF97924004AA529 /* WHDashBoardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E2914AB1BF97924004AA529 /* WHDashBoardViewController.m */; };
+		0E2914B21BF97DEB004AA529 /* WHContainerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E2914B01BF97DEB004AA529 /* WHContainerViewController.m */; };
+		0E2914B31BF97DEB004AA529 /* WHContainerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0E2914B11BF97DEB004AA529 /* WHContainerViewController.xib */; };
+		0E2914B71BF98339004AA529 /* UIViewController+WaveHubAddition.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E2914B61BF98339004AA529 /* UIViewController+WaveHubAddition.m */; };
 		0E296DAE1BF4A1F900ED3147 /* CueSheet+WaveHubAddition.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E296DAD1BF4A1F900ED3147 /* CueSheet+WaveHubAddition.m */; };
 		0E2B7E791BF445D2001B7A25 /* WHSoundManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E2B7E781BF445D2001B7A25 /* WHSoundManager.m */; };
 		0E2B7E7C1BF475BC001B7A25 /* WHApplication.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E2B7E7B1BF475BC001B7A25 /* WHApplication.m */; };
 		0E44F8671BEB4DD400F8571D /* WHWebrequestManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E44F8661BEB4DD400F8571D /* WHWebrequestManager.m */; };
-		0E44F86B1BEB4FB700F8571D /* WHDashBoardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E44F8691BEB4FB700F8571D /* WHDashBoardViewController.m */; };
 		0E44F8701BEB550B00F8571D /* WHFavouriteTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E44F86F1BEB550B00F8571D /* WHFavouriteTableViewController.m */; };
 		0E44F8751BEB553300F8571D /* WHPlaylistTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E44F8741BEB553300F8571D /* WHPlaylistTableViewController.m */; };
 		0E44F8791BEB557600F8571D /* WHLocalSongsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E44F8781BEB557600F8571D /* WHLocalSongsTableViewController.m */; };
@@ -58,8 +61,15 @@
 		0E2914921BF58306004AA529 /* NSData+WaveHubAddition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+WaveHubAddition.m"; sourceTree = "<group>"; };
 		0E2914941BF58387004AA529 /* WHDatabaseManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WHDatabaseManager.h; sourceTree = "<group>"; };
 		0E2914951BF58387004AA529 /* WHDatabaseManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WHDatabaseManager.m; sourceTree = "<group>"; };
-		0E29149B1BF58599004AA529 /* WHCueObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WHCueObject.h; sourceTree = "<group>"; };
-		0E29149C1BF58599004AA529 /* WHCueObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WHCueObject.m; sourceTree = "<group>"; };
+		0E29149E1BF96F3D004AA529 /* WHTrackModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WHTrackModel.h; sourceTree = "<group>"; };
+		0E29149F1BF96F3D004AA529 /* WHTrackModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WHTrackModel.m; sourceTree = "<group>"; };
+		0E2914AA1BF97924004AA529 /* WHDashBoardViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WHDashBoardViewController.h; sourceTree = "<group>"; };
+		0E2914AB1BF97924004AA529 /* WHDashBoardViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WHDashBoardViewController.m; sourceTree = "<group>"; };
+		0E2914AF1BF97DEB004AA529 /* WHContainerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WHContainerViewController.h; sourceTree = "<group>"; };
+		0E2914B01BF97DEB004AA529 /* WHContainerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WHContainerViewController.m; sourceTree = "<group>"; };
+		0E2914B11BF97DEB004AA529 /* WHContainerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WHContainerViewController.xib; sourceTree = "<group>"; };
+		0E2914B51BF98339004AA529 /* UIViewController+WaveHubAddition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+WaveHubAddition.h"; sourceTree = "<group>"; };
+		0E2914B61BF98339004AA529 /* UIViewController+WaveHubAddition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+WaveHubAddition.m"; sourceTree = "<group>"; };
 		0E296DAC1BF4A1F900ED3147 /* CueSheet+WaveHubAddition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CueSheet+WaveHubAddition.h"; sourceTree = "<group>"; };
 		0E296DAD1BF4A1F900ED3147 /* CueSheet+WaveHubAddition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CueSheet+WaveHubAddition.m"; sourceTree = "<group>"; };
 		0E296DAF1BF4A4C600ED3147 /* Notifications.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Notifications.h; sourceTree = "<group>"; };
@@ -69,8 +79,6 @@
 		0E2B7E7B1BF475BC001B7A25 /* WHApplication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WHApplication.m; sourceTree = "<group>"; };
 		0E44F8651BEB4DD400F8571D /* WHWebrequestManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WHWebrequestManager.h; sourceTree = "<group>"; };
 		0E44F8661BEB4DD400F8571D /* WHWebrequestManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WHWebrequestManager.m; sourceTree = "<group>"; };
-		0E44F8681BEB4FB700F8571D /* WHDashBoardViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WHDashBoardViewController.h; sourceTree = "<group>"; };
-		0E44F8691BEB4FB700F8571D /* WHDashBoardViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WHDashBoardViewController.m; sourceTree = "<group>"; };
 		0E44F86E1BEB550B00F8571D /* WHFavouriteTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WHFavouriteTableViewController.h; sourceTree = "<group>"; };
 		0E44F86F1BEB550B00F8571D /* WHFavouriteTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WHFavouriteTableViewController.m; sourceTree = "<group>"; };
 		0E44F8731BEB553300F8571D /* WHPlaylistTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WHPlaylistTableViewController.h; sourceTree = "<group>"; };
@@ -161,13 +169,14 @@
 			name = SoundCloud;
 			sourceTree = "<group>";
 		};
-		0E29149A1BF58584004AA529 /* Cue Object */ = {
+		0E2914B41BF97DEF004AA529 /* Container */ = {
 			isa = PBXGroup;
 			children = (
-				0E29149B1BF58599004AA529 /* WHCueObject.h */,
-				0E29149C1BF58599004AA529 /* WHCueObject.m */,
+				0E2914AF1BF97DEB004AA529 /* WHContainerViewController.h */,
+				0E2914B01BF97DEB004AA529 /* WHContainerViewController.m */,
+				0E2914B11BF97DEB004AA529 /* WHContainerViewController.xib */,
 			);
-			name = "Cue Object";
+			name = Container;
 			sourceTree = "<group>";
 		};
 		0E44F86D1BEB4FBB00F8571D /* Dash Board */ = {
@@ -176,8 +185,8 @@
 				0E44F8761BEB555A00F8571D /* Local Songs */,
 				0E44F8721BEB552000F8571D /* Playlist */,
 				0E44F8711BEB550F00F8571D /* Favourite */,
-				0E44F8681BEB4FB700F8571D /* WHDashBoardViewController.h */,
-				0E44F8691BEB4FB700F8571D /* WHDashBoardViewController.m */,
+				0E2914AA1BF97924004AA529 /* WHDashBoardViewController.h */,
+				0E2914AB1BF97924004AA529 /* WHDashBoardViewController.m */,
 			);
 			name = "Dash Board";
 			sourceTree = "<group>";
@@ -333,6 +342,8 @@
 				0E296DAD1BF4A1F900ED3147 /* CueSheet+WaveHubAddition.m */,
 				0E2914911BF58306004AA529 /* NSData+WaveHubAddition.h */,
 				0E2914921BF58306004AA529 /* NSData+WaveHubAddition.m */,
+				0E2914B51BF98339004AA529 /* UIViewController+WaveHubAddition.h */,
+				0E2914B61BF98339004AA529 /* UIViewController+WaveHubAddition.m */,
 			);
 			path = Categories;
 			sourceTree = "<group>";
@@ -340,6 +351,7 @@
 		C0378A827E14424F6D9580F4 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				0E2914B41BF97DEF004AA529 /* Container */,
 				0E44F86D1BEB4FBB00F8571D /* Dash Board */,
 				0E7DA1751BE9BB65006551C4 /* Root View Controller */,
 				781D2B8E9A1F36A0D4E8AF0E /* WHAppDelegate.h */,
@@ -383,7 +395,6 @@
 		DC4CFE12F9FE9D539C497C16 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				0E29149A1BF58584004AA529 /* Cue Object */,
 				0E064CFA1BF30C51002D2244 /* SoundCloud */,
 				0E44F8651BEB4DD400F8571D /* WHWebrequestManager.h */,
 				0E44F8661BEB4DD400F8571D /* WHWebrequestManager.m */,
@@ -391,6 +402,8 @@
 				0E2B7E781BF445D2001B7A25 /* WHSoundManager.m */,
 				0E2914941BF58387004AA529 /* WHDatabaseManager.h */,
 				0E2914951BF58387004AA529 /* WHDatabaseManager.m */,
+				0E29149E1BF96F3D004AA529 /* WHTrackModel.h */,
+				0E29149F1BF96F3D004AA529 /* WHTrackModel.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -496,6 +509,7 @@
 				6C5DC8333D90F8BAC26108B1 /* Images.xcassets in Resources */,
 				F8A560A340ED7920227E1490 /* Settings.bundle in Resources */,
 				0E7DA1741BE9BB60006551C4 /* WHRootViewController.xib in Resources */,
+				0E2914B31BF97DEB004AA529 /* WHContainerViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -643,19 +657,21 @@
 			files = (
 				0E44F8701BEB550B00F8571D /* WHFavouriteTableViewController.m in Sources */,
 				0E064CED1BF2FC34002D2244 /* Collection.m in Sources */,
+				0E2914B21BF97DEB004AA529 /* WHContainerViewController.m in Sources */,
+				0E2914B71BF98339004AA529 /* UIViewController+WaveHubAddition.m in Sources */,
 				0E064CEE1BF2FC34002D2244 /* MyFavourite.m in Sources */,
-				0E29149D1BF58599004AA529 /* WHCueObject.m in Sources */,
 				0E296DAE1BF4A1F900ED3147 /* CueSheet+WaveHubAddition.m in Sources */,
 				F9272AE40B26984E04F01944 /* WHAppDelegate.m in Sources */,
 				0E44F8751BEB553300F8571D /* WHPlaylistTableViewController.m in Sources */,
 				EA1D28C0C6A5011119F82B73 /* LaunchScreen.xib in Sources */,
 				0E2914931BF58306004AA529 /* NSData+WaveHubAddition.m in Sources */,
-				0E44F86B1BEB4FB700F8571D /* WHDashBoardViewController.m in Sources */,
 				0E44F8791BEB557600F8571D /* WHLocalSongsTableViewController.m in Sources */,
 				0E2914961BF58387004AA529 /* WHDatabaseManager.m in Sources */,
 				0E064CEF1BF2FC34002D2244 /* User.m in Sources */,
+				0E2914A01BF96F3D004AA529 /* WHTrackModel.m in Sources */,
 				0E2B7E791BF445D2001B7A25 /* WHSoundManager.m in Sources */,
 				1A44E872A0401F9F6EC5084C /* main.m in Sources */,
+				0E2914AD1BF97924004AA529 /* WHDashBoardViewController.m in Sources */,
 				0E2B7E7C1BF475BC001B7A25 /* WHApplication.m in Sources */,
 				0E44F8671BEB4DD400F8571D /* WHWebrequestManager.m in Sources */,
 				0E7DA1731BE9BB60006551C4 /* WHRootViewController.m in Sources */,

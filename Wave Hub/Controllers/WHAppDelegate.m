@@ -12,6 +12,7 @@
 #import "WHFavouriteTableViewController.h"
 #import "WHPlaylistTableViewController.h"
 #import "WHLocalSongsTableViewController.h"
+#import "WHContainerViewController.h"
 
 #import <FontAwesomeKit/FontAwesomeKit.h>
 
@@ -23,6 +24,8 @@
     
     [Chameleon setGlobalThemeUsingPrimaryColor:[UIColor colorWithHexString:@"#ff7700"] withContentStyle:UIContentStyleContrast];
     WHDashBoardViewController *rootVC = [[WHDashBoardViewController alloc] init];
+    [rootVC.tabBar setTranslucent:YES];
+    
     WHFavouriteTableViewController *favouriteVC = [[WHFavouriteTableViewController alloc] init];
     UINavigationController *favNav = [[UINavigationController alloc] initWithRootViewController:favouriteVC];
     favNav.hidesNavigationBarHairline = NO;
@@ -46,7 +49,22 @@
     localVC.title = @"Local Songs";
     FAKFoundationIcons *phoneIcon = [FAKFoundationIcons usbIconWithSize:25];
     localSongNav.tabBarItem.image = [phoneIcon imageWithSize:CGSizeMake(40.0, 40.0)];
-    rootVC.viewControllers = @[favNav, playlistNav, localSongNav];
+    
+    WHContainerViewController *favVC = [[WHContainerViewController alloc] initWithContentViewController:favNav];
+    favVC.title = @"Favourite";
+    favVC.tabBarItem.image = [starIcon imageWithSize:CGSizeMake(40.0, 40.0)];
+    
+    WHContainerViewController *platlistVC = [[WHContainerViewController alloc] initWithContentViewController:playlistNav];
+    platlistVC.title = @"Playlist";
+    platlistVC.tabBarItem.image = [playlistIcon imageWithSize:CGSizeMake(40.0, 40.0)];
+    
+    WHContainerViewController *localSongVC = [[WHContainerViewController alloc] initWithContentViewController:localSongNav];
+    localSongVC.title = @"Local Songs";
+    localSongVC.tabBarItem.image = [phoneIcon imageWithSize:CGSizeMake(40.0, 40.0)];
+    
+    rootVC.viewControllers = @[favVC,
+                               platlistVC,
+                               localSongVC];
     
     [self.window setRootViewController:rootVC];
     [self.window makeKeyAndVisible];
