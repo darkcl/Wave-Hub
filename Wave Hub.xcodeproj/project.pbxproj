@@ -31,6 +31,7 @@
 		476696573063B162B2B854E9 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F7E617E74F03F0E5992B5CD8 /* libPods.a */; };
 		6C5DC8333D90F8BAC26108B1 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 450213D723237E9D8191F6EF /* Images.xcassets */; };
 		7475A5FE1BF4F9B600100498 /* MediaToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7475A5FD1BF4F9B600100498 /* MediaToolbox.framework */; };
+		74C3875A1BFE05DC005356C2 /* WHConstant.m in Sources */ = {isa = PBXBuildFile; fileRef = 74C387591BFE05DC005356C2 /* WHConstant.m */; };
 		74F6F47EBD6BFC73460670B1 /* libPods-unit_tests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 90882ADB27A7D5FDEDA7B24A /* libPods-unit_tests.a */; };
 		C4F64ECA2A55365875E190E6 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B0FF2CBA0859ED2691E65FF5 /* Foundation.framework */; };
 		EA1D28C0C6A5011119F82B73 /* LaunchScreen.xib in Sources */ = {isa = PBXBuildFile; fileRef = E85B4BE7428A28FDA5A26607 /* LaunchScreen.xib */; };
@@ -72,7 +73,6 @@
 		0E2914B61BF98339004AA529 /* UIViewController+WaveHubAddition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+WaveHubAddition.m"; sourceTree = "<group>"; };
 		0E296DAC1BF4A1F900ED3147 /* CueSheet+WaveHubAddition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CueSheet+WaveHubAddition.h"; sourceTree = "<group>"; };
 		0E296DAD1BF4A1F900ED3147 /* CueSheet+WaveHubAddition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CueSheet+WaveHubAddition.m"; sourceTree = "<group>"; };
-		0E296DAF1BF4A4C600ED3147 /* Notifications.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Notifications.h; sourceTree = "<group>"; };
 		0E2B7E771BF445D2001B7A25 /* WHSoundManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WHSoundManager.h; sourceTree = "<group>"; };
 		0E2B7E781BF445D2001B7A25 /* WHSoundManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WHSoundManager.m; sourceTree = "<group>"; };
 		0E2B7E7A1BF475BC001B7A25 /* WHApplication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WHApplication.h; sourceTree = "<group>"; };
@@ -94,6 +94,8 @@
 		4A4358BE8B68B8B9325F3AAC /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		6C0AE585EC62527A7EF19A9D /* UnitTests-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "UnitTests-Info.plist"; sourceTree = "<group>"; };
 		7475A5FD1BF4F9B600100498 /* MediaToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaToolbox.framework; path = System/Library/Frameworks/MediaToolbox.framework; sourceTree = SDKROOT; };
+		74C387581BFE05DC005356C2 /* WHConstant.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WHConstant.h; sourceTree = "<group>"; };
+		74C387591BFE05DC005356C2 /* WHConstant.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WHConstant.m; sourceTree = "<group>"; };
 		7535691D532C79453A972784 /* main.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		781D2B8E9A1F36A0D4E8AF0E /* WHAppDelegate.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = WHAppDelegate.h; sourceTree = "<group>"; };
 		90882ADB27A7D5FDEDA7B24A /* libPods-unit_tests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-unit_tests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -269,6 +271,8 @@
 				90FCF8C4B6CA595E3FD6BFD3 /* Info.plist */,
 				DFDA417E07FC436481C222DE /* Wave Hub-Prefix.pch */,
 				7535691D532C79453A972784 /* main.m */,
+				74C387581BFE05DC005356C2 /* WHConstant.h */,
+				74C387591BFE05DC005356C2 /* WHConstant.m */,
 			);
 			path = "Other-Sources";
 			sourceTree = "<group>";
@@ -356,7 +360,6 @@
 				0E7DA1751BE9BB65006551C4 /* Root View Controller */,
 				781D2B8E9A1F36A0D4E8AF0E /* WHAppDelegate.h */,
 				241B6531260B64A07C64DCF3 /* WHAppDelegate.m */,
-				0E296DAF1BF4A4C600ED3147 /* Notifications.h */,
 				0E2B7E7A1BF475BC001B7A25 /* WHApplication.h */,
 				0E2B7E7B1BF475BC001B7A25 /* WHApplication.m */,
 			);
@@ -673,6 +676,7 @@
 				1A44E872A0401F9F6EC5084C /* main.m in Sources */,
 				0E2914AD1BF97924004AA529 /* WHDashBoardViewController.m in Sources */,
 				0E2B7E7C1BF475BC001B7A25 /* WHApplication.m in Sources */,
+				74C3875A1BFE05DC005356C2 /* WHConstant.m in Sources */,
 				0E44F8671BEB4DD400F8571D /* WHWebrequestManager.m in Sources */,
 				0E7DA1731BE9BB60006551C4 /* WHRootViewController.m in Sources */,
 			);
@@ -708,7 +712,7 @@
 				GCC_WARN_64_TO_32_BIT_CONVERSION = NO;
 				INFOPLIST_FILE = "Wave Hub/Resources/Other-Sources/Info.plist";
 				INSTALL_PATH = "$(BUILT_PRODUCTS_DIR)";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_CFLAGS = (
 					"-DNS_BLOCK_ASSERTIONS=1",
@@ -893,7 +897,7 @@
 				GCC_WARN_64_TO_32_BIT_CONVERSION = NO;
 				INFOPLIST_FILE = "Wave Hub/Resources/Other-Sources/Info.plist";
 				INSTALL_PATH = "$(BUILT_PRODUCTS_DIR)";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
