@@ -8,6 +8,7 @@
 
 #import "WHContainerViewController.h"
 #import "UIView+FLKAutoLayout.h"
+#import <ReactiveCocoa/ReactiveCocoa.h>
 
 CGFloat const kPlayerViewHeight = 50.0f;
 
@@ -70,6 +71,23 @@ CGFloat const kPlayerViewHeight = 50.0f;
                          
                      }];
 }
+
+- (IBAction)playerChangeMode:(id)sender {
+    
+}
+
+- (IBAction)playerForward:(id)sender {
+    
+}
+
+- (IBAction)playerBackward:(id)sender {
+    
+}
+
+- (IBAction)playerTogglePlayPause:(id)sender {
+}
+
+
 
 /*
 #pragma mark - Navigation

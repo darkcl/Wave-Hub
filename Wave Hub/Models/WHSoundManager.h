@@ -36,7 +36,7 @@ typedef NS_ENUM(NSInteger, WHSoundManagerType) {
     NSURL *expectedNextUrl;
     
     WHSoundManagerType currentType;
-    
+    WHSoundManagerPlayType loopingMode;
     //cue
     NSInteger currentCueIdx;
     NSURL *currentCueSheetUrl;
@@ -49,5 +49,13 @@ typedef NS_ENUM(NSInteger, WHSoundManagerType) {
 - (void)playCue:(CueSheet *)cueSheet withTrack:(CueSheetTrack *)track forceStart:(BOOL)forceStart;
 
 - (NSArray *)cueFilesInAppDocument;
+
+- (void)playerChangeMode:(WHSoundManagerPlayType)playerMode;
+- (void)playerForward;
+- (void)playerBackward;
+- (void)playerPause;
+- (void)playerPlay;
+- (void)playerStop;
+- (void)playerSeekTime:(double)time;
 
 @end

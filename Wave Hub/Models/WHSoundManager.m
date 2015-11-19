@@ -64,13 +64,73 @@ static const NSString *remoteControlOtherButtonTapped = @"other pressed";
 
 #pragma mark - Player Logic
 
+- (void)playerForward{
+    if (currentType == WHSoundManagerTypeCue) {
+        CueSheet *currentCueSheet = [[CueSheet alloc] initWithURL:currentCueSheetUrl];
+        currentCueSheet.cueUrl = currentCueSheetUrl;
+        CueSheetTrack *track;
+        if (currentCueIdx == (NSInteger)currentCueSheet.tracks.count - 1) {
+            track = currentCueSheet.tracks[0];
+            
+            currentCueIdx = 0;
+        }else{
+            track = currentCueSheet.tracks[currentCueIdx + 1];
+            
+            currentCueIdx += 1;
+        }
+        [self playCue:currentCueSheet
+            withTrack:track
+           forceStart:YES];
+    }
+}
+
+- (void)playerBackward{
+    if (currentType == WHSoundManagerTypeCue) {
+        CueSheet *currentCueSheet = [[CueSheet alloc] initWithURL:currentCueSheetUrl];
+        currentCueSheet.cueUrl = currentCueSheetUrl;
+        CueSheetTrack *track;
+        if (currentCueIdx == 0) {
+            track = currentCueSheet.tracks[(NSInteger)currentCueSheet.tracks.count - 1];
+            
+            currentCueIdx = (NSInteger)currentCueSheet.tracks.count - 1;
+        }else{
+            track = currentCueSheet.tracks[currentCueIdx - 1];
+            
+            currentCueIdx -= 1;
+        }
+        [self playCue:currentCueSheet
+            withTrack:track
+           forceStart:YES];
+    }
+}
+
+- (void)playerPause{
+    [player pause];
+}
+
+- (void)playerPlay{
+    if ([player currentState] == ORGMEngineStatePaused) {
+        [player resume];
+    }
+}
+
+- (void)playerStop{
+    [player stop];
+}
+
+- (void)playerChangeMode:(WHSoundManagerPlayType)playerMode{
+    loopingMode = playerMode;
+}
+
+- (void)playerSeekTime:(double)time{
+    [player seekToTime:time];
+}
+
 - (void)playUrl:(NSString *)url forceStart:(BOOL)forceStart{
     NSLog(@"Play %@", url);
     
     if (forceStart) {
         [player playUrl:[NSURL URLWithString:url]];
-        
-        
     }else{
         if (player.currentState != ORGMEngineStatePlaying) {
             [player playUrl:[NSURL URLWithString:url]];
@@ -95,57 +155,23 @@ static const NSString *remoteControlOtherButtonTapped = @"other pressed";
 #pragma mark - Remote Control Callback
 
 - (void)remoteControlPlayPressed:(id)sender{
-    if ([player currentState] == ORGMEngineStatePaused) {
-        [player resume];
-    }
+    [self playerPlay];
 }
 
 - (void)remoteControlPausePressed:(id)sender{
-    [player pause];
+    [self playerPause];
 }
 
 - (void)remoteControlStopPressed:(id)sender{
-    [player stop];
+    [self playerStop];
 }
 
 - (void)remoteControlForwardPressed:(id)sender{
-    if (currentType == WHSoundManagerTypeCue) {
-        CueSheet *currentCueSheet = [[CueSheet alloc] initWithURL:currentCueSheetUrl];
-        currentCueSheet.cueUrl = currentCueSheetUrl;
-        CueSheetTrack *track;
-        if (currentCueIdx == (NSInteger)currentCueSheet.tracks.count - 1) {
-            track = currentCueSheet.tracks[0];
-            
-            currentCueIdx = 0;
-        }else{
-            track = currentCueSheet.tracks[currentCueIdx + 1];
-            
-            currentCueIdx += 1;
-        }
-        [self playCue:currentCueSheet
-            withTrack:track
-           forceStart:YES];
-    }
+    [self playerForward];
 }
 
 - (void)remoteControlBackwardPressed:(id)sender{
-    if (currentType == WHSoundManagerTypeCue) {
-        CueSheet *currentCueSheet = [[CueSheet alloc] initWithURL:currentCueSheetUrl];
-        currentCueSheet.cueUrl = currentCueSheetUrl;
-        CueSheetTrack *track;
-        if (currentCueIdx == 0) {
-            track = currentCueSheet.tracks[(NSInteger)currentCueSheet.tracks.count - 1];
-            
-            currentCueIdx = (NSInteger)currentCueSheet.tracks.count - 1;
-        }else{
-            track = currentCueSheet.tracks[currentCueIdx - 1];
-            
-            currentCueIdx -= 1;
-        }
-        [self playCue:currentCueSheet
-            withTrack:track
-           forceStart:YES];
-    }
+    [self playerBackward];
 }
 
 - (void)remoteControlOtherPressed:(id)sender{

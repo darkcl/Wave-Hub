@@ -14,6 +14,7 @@ pod 'CocoaSoundCloudUI'
 pod 'GCDWebServer/WebUploader'
 
 # Sound
+pod 'OrigamiEngine'
 pod 'OrigamiEngine/Flac'
 pod 'OrigamiEngine/Opus'
 

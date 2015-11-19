@@ -19,4 +19,9 @@ typedef NS_ENUM(NSInteger, WHTrackType) {
 @property WHTrackType trackType;
 @property (nonatomic, strong) NSString *md5hash;
 
+@property (nonatomic, strong) NSString *trackTitle;
+@property (nonatomic, strong) NSString *albumTitle;
+@property (nonatomic, strong) NSString *author;
+@property (nonatomic, strong) UIImage *albumCoverImage;
+
 @end
