@@ -116,6 +116,15 @@ DEPENDENCIES:
   - Specta
   - YapDatabase
 
+EXTERNAL SOURCES:
+  OrigamiEngine:
+    :git: https://github.com/darkcl/OrigamiEngine.git
+
+CHECKOUT OPTIONS:
+  OrigamiEngine:
+    :commit: 1633d5a53bf18493696ce9a78477d5119fcc4059
+    :git: https://github.com/darkcl/OrigamiEngine.git
+
 SPEC CHECKSUMS:
   AFNetworking: cb8d14a848e831097108418f5d49217339d4eb60
   ChameleonFramework: 5abe69b1f2a6cc79c3c435fcd9d3d855748225ee
