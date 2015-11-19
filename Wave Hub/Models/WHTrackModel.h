@@ -13,7 +13,7 @@ typedef NS_ENUM(NSInteger, WHTrackType) {
     WHTrackTypeSoundCloud
 };
 
-@interface WHTrackModel : NSObject
+@interface WHTrackModel : NSObject <NSCoding>
 
 @property (nonatomic, strong) NSURL *trackUrl;
 @property WHTrackType trackType;

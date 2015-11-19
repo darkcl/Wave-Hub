@@ -7,7 +7,20 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <YapDatabase/YapDatabase.h>
 
-@interface WHDatabaseManager : NSObject
+typedef void(^DatabaseReturn)(id result);
+
+@interface WHDatabaseManager : NSObject{
+    YapDatabase *db;
+}
+
++ (instancetype)sharedManager;
+
+- (void)insertSongs:(NSArray *)songs;
+- (void)readSongs:(DatabaseReturn)successBlock;
+
+- (void)creatNewPlaylistWithName:(NSString *)playlistName songs:(NSArray *)songs;
+- (void)readPlaylists:(DatabaseReturn)successBlock;
 
 @end

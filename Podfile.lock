@@ -109,9 +109,9 @@ DEPENDENCIES:
   - Mantle
   - OCMock
   - OHHTTPStubs
-  - OrigamiEngine
-  - OrigamiEngine/Flac
-  - OrigamiEngine/Opus
+  - OrigamiEngine (from `https://github.com/darkcl/OrigamiEngine.git`)
+  - OrigamiEngine/Flac (from `https://github.com/darkcl/OrigamiEngine.git`)
+  - OrigamiEngine/Opus (from `https://github.com/darkcl/OrigamiEngine.git`)
   - ReactiveCocoa
   - Specta
   - YapDatabase
@@ -141,7 +141,7 @@ SPEC CHECKSUMS:
   OCMock: 28def049ef47f996b515a8eeea958be7ccab2dbb
   OHAttributedLabel: 9b2eb99323dee6b3a81ef3bc8e98b084117bca2d
   OHHTTPStubs: cb1aefbbeb4de4e741644455d4b945538e5248a2
-  OrigamiEngine: 74b097326260597f1498790795cc2cdd604c199a
+  OrigamiEngine: b8208cbd9142d6194807a5f5bc0c6ffd363e0374
   ReactiveCocoa: e2db045570aa97c695e7aa97c2bcab222ae51f4a
   Specta: ac94d110b865115fe60ff2c6d7281053c6f8e8a2
   YapDatabase: 00e5a5d1b5dba1bd540ef644576233b5612e6122
