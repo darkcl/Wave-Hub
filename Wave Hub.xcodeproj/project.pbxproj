@@ -477,7 +477,6 @@
 				ORGANIZATIONNAME = "Memory Leaks";
 				TargetAttributes = {
 					FBB4F1253763E2CDB498808A = {
-						DevelopmentTeam = M56A72A6G5;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 1;
