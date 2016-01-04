@@ -95,7 +95,7 @@ static NSString * const kBaseURL = @"https://api.soundcloud.com";
                          failureBlock(jsonError);
                      }else{
                          NSString *debugString = [[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding];
-                         NSLog(@"%@", debugString);
+//                         NSLog(@"%@", debugString);
                          
                          successBlock(aDict);
                      }
@@ -165,7 +165,7 @@ static NSString * const kBaseURL = @"https://api.soundcloud.com";
     NSString *documentsDirectory = [paths objectAtIndex:0];
     
     //make a file name to write the data to using the documents directory:
-    NSString *fileName = [NSString stringWithFormat:@"%@/%@.snd",
+    NSString *fileName = [NSString stringWithFormat:@"%@/%@.wav",
                           documentsDirectory, collectionInfo.uri.lastPathComponent];
     if ([[NSFileManager defaultManager] fileExistsAtPath:fileName isDirectory:nil]) {
         NSURL *url = [NSURL URLWithString:fileName];

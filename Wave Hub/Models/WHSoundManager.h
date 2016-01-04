@@ -25,7 +25,8 @@ typedef NS_ENUM(NSInteger, WHSoundManagerPlayType) {
 
 typedef NS_ENUM(NSInteger, WHSoundManagerType) {
     WHSoundManagerTypeCue,
-    WHSoundManagerTypeM3u
+    WHSoundManagerTypeM3u,
+    WHSoundManagerTypeSoundCloud
 };
 
 @interface WHSoundManager : NSObject <ORGMEngineDelegate>{
@@ -37,9 +38,14 @@ typedef NS_ENUM(NSInteger, WHSoundManagerType) {
     
     WHSoundManagerType currentType;
     WHSoundManagerPlayType loopingMode;
+    
     //cue
     NSInteger currentCueIdx;
     NSURL *currentCueSheetUrl;
+    
+    //SoundCloud Favourite
+    MyFavourite *favourite;
+    int currentFavouriteIdx;
     
 }
 
@@ -47,6 +53,7 @@ typedef NS_ENUM(NSInteger, WHSoundManagerType) {
 
 - (void)playUrl:(NSString *)url forceStart:(BOOL)forceStart;
 - (void)playCue:(CueSheet *)cueSheet withTrack:(CueSheetTrack *)track forceStart:(BOOL)forceStart;
+- (void)playMyFavourite:(MyFavourite *)favourite withIndex:(int)idx forceStart:(BOOL)forceStart;
 
 - (NSArray *)cueFilesInAppDocument;
 

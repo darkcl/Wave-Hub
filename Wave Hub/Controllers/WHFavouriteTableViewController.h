@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface WHFavouriteTableViewController : UITableViewController
+@interface WHFavouriteTableViewController : UITableViewController{
+    MyFavourite *favourite;
+}
 
 @end

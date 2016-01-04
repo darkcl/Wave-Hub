@@ -29,6 +29,15 @@
     
     self.title = @"Favourites";
 //    [self setStatusBarStyle:UIStatusBarStyleLightContent];
+    [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"Cell"];
+    [[WHWebrequestManager sharedManager] fetchMyFavouriteWithInfo:nil
+                                                          success:^(MyFavourite *responseObject) {
+                                                              self->favourite = responseObject;
+                                                              [self.tableView reloadData];
+                                                          }
+                                                          failure:^(NSError *error) {
+                                                              
+                                                          }];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -39,24 +48,47 @@
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-#warning Incomplete implementation, return the number of sections
-    return 0;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-#warning Incomplete implementation, return the number of rows
-    return 0;
+    if (favourite.nextHref != nil) {
+        return favourite.collection.count + 1;
+    }else{
+        return favourite.collection.count;
+    }
 }
 
-/*
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
-    
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
+    if (!cell) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"Cell"];
+    }
     // Configure the cell...
-    
+    if (indexPath.row == (int)favourite.collection.count) {
+        cell.textLabel.text = @"Loading";
+    }else{
+        cell.textLabel.text = [favourite.collection[indexPath.row] title];
+    }
     return cell;
 }
-*/
+
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath{
+    if (indexPath.row == (int)favourite.collection.count && favourite.nextHref != nil) {
+        [[WHWebrequestManager sharedManager] fetchMyFavouriteWithInfo:favourite
+                                                            success:^(MyFavourite *responseObject) {
+                                                                [self.tableView reloadData];
+                                                            }
+                                                            failure:^(NSError *error) {
+                                                                
+                                                            }];
+    }
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    [[WHSoundManager sharedManager] playMyFavourite:favourite withIndex:indexPath.row forceStart:YES];
+}
 
 /*
 // Override to support conditional editing of the table view.

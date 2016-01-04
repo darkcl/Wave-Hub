@@ -80,6 +80,10 @@
         [self playCue:currentCueSheet
             withTrack:track
            forceStart:YES];
+    }else if(currentType == WHSoundManagerTypeSoundCloud) {
+        [self playMyFavourite:favourite
+                    withIndex:currentFavouriteIdx + 1
+                   forceStart:YES];
     }
 }
 
@@ -100,6 +104,10 @@
         [self playCue:currentCueSheet
             withTrack:track
            forceStart:YES];
+    }else if(currentType == WHSoundManagerTypeSoundCloud) {
+        [self playMyFavourite:favourite
+                    withIndex:currentFavouriteIdx - 1
+                   forceStart:YES];
     }
 }
 
@@ -150,6 +158,46 @@
     currentCueIdx = [cueSheet.tracks indexOfObject:track];
     currentCueSheetUrl = cueSheet.cueUrl;
 }
+
+- (void)playMyFavourite:(MyFavourite *)favouriteInfo
+              withIndex:(int)idx
+             forceStart:(BOOL)forceStart{
+    currentType = WHSoundManagerTypeSoundCloud;
+    
+    favourite = favouriteInfo;
+    
+    
+    if ((int)favourite.collection.count == idx) {
+        idx = 0;
+    }
+    
+    if (idx < 0) {
+        idx = 0;
+    }
+    currentFavouriteIdx = idx;
+    int nextIdx = idx + 1;
+    
+    if (nextIdx == (int)favourite.collection.count) {
+        expectedNextUrl = nil;
+    }else{
+        Collection *info = favourite.collection[nextIdx];
+        NSArray *paths = NSSearchPathForDirectoriesInDomains
+        (NSDocumentDirectory, NSUserDomainMask, YES);
+        NSString *documentsDirectory = [paths objectAtIndex:0];
+        expectedNextUrl = [NSURL URLWithString:[NSString stringWithFormat:@"file:/%@/%@.wav",
+                              documentsDirectory, info.uri.lastPathComponent]];
+    }
+    
+    [[WHWebrequestManager sharedManager] streamCollection:favourite.collection[idx]
+                                                  success:^(NSURL *responseObject) {
+                                                      [self playUrl:[NSString stringWithFormat:@"file://%@",responseObject.absoluteString] forceStart:forceStart];
+                                                  }
+                                                  failure:^(NSError *error) {
+                                                      NSLog(@"%@", error);
+                                                  }];
+    
+}
+
 
 #pragma mark - AVAudioSession
 
@@ -219,34 +267,55 @@
 //    }else{
 //        return nil;
 //    }
-    CueSheet *currentCueSheet = [[CueSheet alloc] initWithURL:currentCueSheetUrl];
-    currentCueSheet.cueUrl = currentCueSheetUrl;
-    CueSheetTrack *track;
-    if (currentCueIdx == (NSInteger)currentCueSheet.tracks.count - 1) {
-        track = currentCueSheet.tracks[0];
+    if (currentType == WHSoundManagerTypeCue) {
+        CueSheet *currentCueSheet = [[CueSheet alloc] initWithURL:currentCueSheetUrl];
+        currentCueSheet.cueUrl = currentCueSheetUrl;
+        CueSheetTrack *track;
+        if (currentCueIdx == (NSInteger)currentCueSheet.tracks.count - 1) {
+            track = currentCueSheet.tracks[0];
+            
+            currentCueIdx = 0;
+        }else{
+            track = currentCueSheet.tracks[currentCueIdx + 1];
+            
+            currentCueIdx += 1;
+        }
+        expectedNextUrl = [NSURL URLWithString:[currentCueSheet.cueUrl.absoluteString stringByAppendingString:[NSString stringWithFormat:@"#%@",track.track]]];
         
-        currentCueIdx = 0;
+        NSLog(@"Play Next: %@", expectedNextUrl.absoluteString);
+        return expectedNextUrl;
+    }else if (currentType == WHSoundManagerTypeSoundCloud){
+        if (![[NSFileManager defaultManager] fileExistsAtPath:expectedNextUrl.absoluteString]) {
+            [self playMyFavourite:favourite withIndex:currentFavouriteIdx + 1 forceStart:YES];
+            return nil;
+        }else{
+            return expectedNextUrl;
+        }
     }else{
-        track = currentCueSheet.tracks[currentCueIdx + 1];
-        
-        currentCueIdx += 1;
+        return nil;
     }
-    expectedNextUrl = [NSURL URLWithString:[currentCueSheet.cueUrl.absoluteString stringByAppendingString:[NSString stringWithFormat:@"#%@",track.track]]];
-    
-    NSLog(@"Play Next: %@", expectedNextUrl.absoluteString);
-    return expectedNextUrl;
 }
 
 - (void)engine:(ORGMEngine *)engine didChangeState:(ORGMEngineState)state{
     switch (state) {
         case ORGMEngineStatePlaying:{
-            NSLog(@"Meta Data: %@", [engine metadata]);
-            NSDictionary *metadata = [engine metadata];
-            [[MPNowPlayingInfoCenter defaultCenter] setNowPlayingInfo:@{MPMediaItemPropertyTitle:metadata[@"title"],
-                                                                        MPMediaItemPropertyArtist:metadata[@"artist"],
-                                                                        MPMediaItemPropertyMediaType: @(MPMediaTypeMusic),
-                                                                        MPMediaItemPropertyPlaybackDuration: @([engine trackTime]),
-                                                                        MPNowPlayingInfoPropertyPlaybackRate: @1}];
+            if (currentType == WHSoundManagerTypeCue) {
+                NSLog(@"Meta Data: %@", [engine metadata]);
+                NSDictionary *metadata = [engine metadata];
+                [[MPNowPlayingInfoCenter defaultCenter] setNowPlayingInfo:@{MPMediaItemPropertyTitle:metadata[@"title"],
+                                                                            MPMediaItemPropertyArtist:metadata[@"artist"],
+                                                                            MPMediaItemPropertyMediaType: @(MPMediaTypeMusic),
+                                                                            MPMediaItemPropertyPlaybackDuration: @([engine trackTime]),
+                                                                            MPNowPlayingInfoPropertyPlaybackRate: @1}];
+            }else if (currentType == WHSoundManagerTypeSoundCloud) {
+                Collection *info = favourite.collection[currentFavouriteIdx];
+                [[MPNowPlayingInfoCenter defaultCenter] setNowPlayingInfo:@{MPMediaItemPropertyTitle:info.title,
+                                                                            MPMediaItemPropertyArtist:info.user.username,
+                                                                            MPMediaItemPropertyMediaType: @(MPMediaTypeMusic),
+                                                                            MPMediaItemPropertyPlaybackDuration: @([engine trackTime]),
+                                                                            MPNowPlayingInfoPropertyPlaybackRate: @1}];
+            }
+            
         }
             break;
         case ORGMEngineStatePaused:
