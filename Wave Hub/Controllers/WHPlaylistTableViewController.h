@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface WHPlaylistTableViewController : UITableViewController
+@interface WHPlaylistTableViewController : UITableViewController{
+    NSDictionary *playlistInfo;
+}
 
 @end

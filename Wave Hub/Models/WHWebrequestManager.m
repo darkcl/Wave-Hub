@@ -94,8 +94,6 @@ static NSString * const kBaseURL = @"https://api.soundcloud.com";
                      if (jsonError) {
                          failureBlock(jsonError);
                      }else{
-                         NSString *debugString = [[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding];
-//                         NSLog(@"%@", debugString);
                          
                          successBlock(aDict);
                      }

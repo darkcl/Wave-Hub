@@ -34,7 +34,7 @@
     FAKFontAwesome *starIcon = [FAKFontAwesome starIconWithSize:25];
     favNav.tabBarItem.image = [starIcon imageWithSize:CGSizeMake(40.0, 40.0)];
     
-    WHPlaylistTableViewController *playlistVC = [[WHPlaylistTableViewController alloc] init];
+    WHPlaylistTableViewController *playlistVC = [[WHPlaylistTableViewController alloc] initWithStyle:UITableViewStyleGrouped];
     UINavigationController *playlistNav = [[UINavigationController alloc] initWithRootViewController:playlistVC];
     playlistNav.hidesNavigationBarHairline = NO;
     

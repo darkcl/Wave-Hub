@@ -28,12 +28,14 @@
     self.extendedLayoutIncludesOpaqueBars = YES;
     self.title = @"Playlist";
 //    [self setStatusBarStyle:UIStatusBarStyleLightContent];
+    [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"Cell"];
     [[WHWebrequestManager sharedManager] fetchMyPlaylistWithInfo:nil
-                                                         success:^(id responseObject) {
-                                                             
+                                                         success:^(NSDictionary *responseObject) {
+                                                             self->playlistInfo = responseObject;
+                                                             [self.tableView reloadData];
                                                          }
                                                          failure:^(NSError *error) {
-                                                             
+                                                             NSLog(@"%@", error);
                                                          }];
 }
 
@@ -45,15 +47,30 @@
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-#warning Incomplete implementation, return the number of sections
-    return 0;
+    return [playlistInfo[@"collection"] count];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-#warning Incomplete implementation, return the number of rows
-    return 0;
+    NSDictionary *playlist = [playlistInfo[@"collection"] objectAtIndex:section];
+    return [playlist[@"tracks"] count];
 }
 
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
+    if (!cell) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"Cell"];
+    }
+    // Configure the cell...
+    NSDictionary *playlist = [playlistInfo[@"collection"] objectAtIndex:indexPath.section];
+    
+    cell.textLabel.text = [playlist[@"tracks"] objectAtIndex:indexPath.row][@"title"];
+    
+    return cell;
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
+    return [playlistInfo[@"collection"] objectAtIndex:section][@"title"];
+}
 /*
  - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
  UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
