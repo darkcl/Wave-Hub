@@ -7,9 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "WHFavouriteDelegate.h"
 @interface WHFavouriteTableViewController : UITableViewController{
     MyFavourite *favourite;
 }
+
+@property (assign) id<WHFavouriteDelegate> delegate;
 
 @end

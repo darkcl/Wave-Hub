@@ -16,6 +16,8 @@
 #import <OrigamiEngine/CueSheet.h>
 #import "CueSheet+WaveHubAddition.h"
 
+#import "WHFavouriteDelegate.h"
+
 typedef NS_ENUM(NSInteger, WHSoundManagerPlayType) {
     WHSoundManagerPlayTypeOnce,
     WHSoundManagerPlayTypeLoop,
@@ -29,7 +31,7 @@ typedef NS_ENUM(NSInteger, WHSoundManagerType) {
     WHSoundManagerTypeSoundCloud
 };
 
-@interface WHSoundManager : NSObject <ORGMEngineDelegate>{
+@interface WHSoundManager : NSObject <ORGMEngineDelegate, WHFavouriteDelegate, AVAudioPlayerDelegate>{
     ORGMEngine *player;
     
     NSMutableArray *queue;
@@ -44,6 +46,7 @@ typedef NS_ENUM(NSInteger, WHSoundManagerType) {
     NSURL *currentCueSheetUrl;
     
     //SoundCloud Favourite
+    AVAudioPlayer *audioPlayer;
     MyFavourite *favourite;
     int currentFavouriteIdx;
     

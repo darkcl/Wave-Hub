@@ -30,6 +30,9 @@
     self.title = @"Favourites";
 //    [self setStatusBarStyle:UIStatusBarStyleLightContent];
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"Cell"];
+    
+    _delegate = [WHSoundManager sharedManager];
+    
     [[WHWebrequestManager sharedManager] fetchMyFavouriteWithInfo:nil
                                                           success:^(MyFavourite *responseObject) {
                                                               self->favourite = responseObject;
@@ -79,6 +82,10 @@
         [[WHWebrequestManager sharedManager] fetchMyFavouriteWithInfo:favourite
                                                             success:^(MyFavourite *responseObject) {
                                                                 [self.tableView reloadData];
+                                                                
+                                                                if (self->_delegate && [self->_delegate respondsToSelector:@selector(didUpdateFavourite:)]) {
+                                                                    [self->_delegate didUpdateFavourite:self->favourite];
+                                                                }
                                                             }
                                                             failure:^(NSError *error) {
                                                                 

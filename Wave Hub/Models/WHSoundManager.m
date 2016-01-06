@@ -24,7 +24,7 @@
     if (self = [super init]) {
         player = [[ORGMEngine alloc] init];
         player.delegate = self;
-        
+        currentFavouriteIdx = 0;
         queue = [[NSMutableArray alloc] init];
         
         [AVAudioSession sharedInstance];
@@ -112,17 +112,28 @@
 }
 
 - (void)playerPause{
-    [player pause];
+    if (currentType == WHSoundManagerTypeSoundCloud) {
+        [audioPlayer pause];
+    }else{
+        [player pause];
+    }
+    
 }
 
 - (void)playerPlay{
-    if ([player currentState] == ORGMEngineStatePaused) {
+    if (currentType == WHSoundManagerTypeSoundCloud) {
+        [audioPlayer play];
+    }else{
         [player resume];
     }
 }
 
 - (void)playerStop{
-    [player stop];
+    if (currentType == WHSoundManagerTypeSoundCloud) {
+        [audioPlayer stop];
+    }else{
+        [player stop];
+    }
 }
 
 - (void)playerChangeMode:(WHSoundManagerPlayType)playerMode{
@@ -130,7 +141,11 @@
 }
 
 - (void)playerSeekTime:(double)time{
-    [player seekToTime:time];
+    if (currentType == WHSoundManagerTypeSoundCloud) {
+        [audioPlayer playAtTime:time];
+    }else{
+        [player seekToTime:time];
+    }
 }
 
 - (void)playUrl:(NSString *)url forceStart:(BOOL)forceStart{
@@ -150,6 +165,11 @@
 - (void)playCue:(CueSheet *)cueSheet
       withTrack:(CueSheetTrack *)track
      forceStart:(BOOL)forceStart{
+    
+    if ([audioPlayer isPlaying]) {
+        [audioPlayer stop];
+    }
+    
     currentType = WHSoundManagerTypeCue;
     
     NSString *toTrack = [cueSheet.cueUrl.absoluteString stringByAppendingString:[NSString stringWithFormat:@"#%@",track.track]];
@@ -166,31 +186,48 @@
     
     favourite = favouriteInfo;
     
-    
-    if ((int)favourite.collection.count == idx) {
-        idx = 0;
+    int resultIdx = idx;
+    if ((int)favourite.collection.count == resultIdx) {
+        resultIdx = 0;
     }
     
-    if (idx < 0) {
-        idx = 0;
+    if (resultIdx < 0) {
+        resultIdx = 0;
     }
-    currentFavouriteIdx = idx;
-    int nextIdx = idx + 1;
-    
-    if (nextIdx == (int)favourite.collection.count) {
-        expectedNextUrl = nil;
-    }else{
-        Collection *info = favourite.collection[nextIdx];
-        NSArray *paths = NSSearchPathForDirectoriesInDomains
-        (NSDocumentDirectory, NSUserDomainMask, YES);
-        NSString *documentsDirectory = [paths objectAtIndex:0];
-        expectedNextUrl = [NSURL URLWithString:[NSString stringWithFormat:@"file:/%@/%@.wav",
-                              documentsDirectory, info.uri.lastPathComponent]];
+    currentFavouriteIdx = resultIdx;
+//    int nextIdx = resultIdx + 1;
+//    
+//    if (nextIdx == (int)favourite.collection.count) {
+//        expectedNextUrl = nil;
+//    }else{
+//        Collection *info = favourite.collection[nextIdx];
+//        NSArray *paths = NSSearchPathForDirectoriesInDomains
+//        (NSDocumentDirectory, NSUserDomainMask, YES);
+//        NSString *documentsDirectory = [paths objectAtIndex:0];
+//        expectedNextUrl = [NSURL URLWithString:[NSString stringWithFormat:@"file:/%@/%@.wav",
+//                              documentsDirectory, info.uri.lastPathComponent]];
+//    }
+    if (player.currentState == ORGMEngineStatePlaying){
+        [player stop];
     }
     
-    [[WHWebrequestManager sharedManager] streamCollection:favourite.collection[idx]
+    [[WHWebrequestManager sharedManager] streamCollection:favourite.collection[currentFavouriteIdx]
                                                   success:^(NSURL *responseObject) {
-                                                      [self playUrl:[NSString stringWithFormat:@"file://%@",responseObject.absoluteString] forceStart:forceStart];
+                                                      NSError *playerError;
+                                                      self->audioPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:responseObject
+                                                                                                           error:&playerError];
+                                                      self->audioPlayer.delegate = self;
+                                                      if (playerError) {
+                                                          NSLog(@"%@", playerError);
+                                                      }else{
+                                                          [self->audioPlayer play];
+                                                          Collection *info = self->favourite.collection[self->currentFavouriteIdx];
+                                                          [[MPNowPlayingInfoCenter defaultCenter] setNowPlayingInfo:@{MPMediaItemPropertyTitle:info.title,
+                                                                                                                      MPMediaItemPropertyArtist:info.user.username,
+                                                                                                                      MPMediaItemPropertyMediaType: @(MPMediaTypeMusic),
+                                                                                                                      MPMediaItemPropertyPlaybackDuration: @([self->audioPlayer duration]),
+                                                                                                                      MPNowPlayingInfoPropertyPlaybackRate: @1}];
+                                                      }
                                                   }
                                                   failure:^(NSError *error) {
                                                       NSLog(@"%@", error);
@@ -200,6 +237,12 @@
 
 
 #pragma mark - AVAudioSession
+
+- (void)audioPlayerDidFinishPlaying:(AVAudioPlayer *)player successfully:(BOOL)flag{
+    if (currentType == WHSoundManagerTypeSoundCloud) {
+        [self playerForward];
+    }
+}
 
 - (void)audioRouteChangeListenerCallback:(NSNotification *)notification{
     NSDictionary *interuptionDict = notification.userInfo;
@@ -285,12 +328,7 @@
         NSLog(@"Play Next: %@", expectedNextUrl.absoluteString);
         return expectedNextUrl;
     }else if (currentType == WHSoundManagerTypeSoundCloud){
-        if (![[NSFileManager defaultManager] fileExistsAtPath:expectedNextUrl.absoluteString]) {
-            [self playMyFavourite:favourite withIndex:currentFavouriteIdx + 1 forceStart:YES];
-            return nil;
-        }else{
-            return expectedNextUrl;
-        }
+        return nil;
     }else{
         return nil;
     }
@@ -307,13 +345,6 @@
                                                                             MPMediaItemPropertyMediaType: @(MPMediaTypeMusic),
                                                                             MPMediaItemPropertyPlaybackDuration: @([engine trackTime]),
                                                                             MPNowPlayingInfoPropertyPlaybackRate: @1}];
-            }else if (currentType == WHSoundManagerTypeSoundCloud) {
-                Collection *info = favourite.collection[currentFavouriteIdx];
-                [[MPNowPlayingInfoCenter defaultCenter] setNowPlayingInfo:@{MPMediaItemPropertyTitle:info.title,
-                                                                            MPMediaItemPropertyArtist:info.user.username,
-                                                                            MPMediaItemPropertyMediaType: @(MPMediaTypeMusic),
-                                                                            MPMediaItemPropertyPlaybackDuration: @([engine trackTime]),
-                                                                            MPNowPlayingInfoPropertyPlaybackRate: @1}];
             }
             
         }
@@ -321,7 +352,12 @@
         case ORGMEngineStatePaused:
             
             break;
-        case ORGMEngineStateStopped:
+        case ORGMEngineStateStopped:{
+            NSLog(@"Player stopped");
+            if (currentType == WHSoundManagerTypeSoundCloud) {
+                [self playerForward];
+            }
+        }
             
             break;
         case ORGMEngineStateError:{
@@ -332,6 +368,10 @@
         default:
             break;
     }
+}
+
+-(void)didUpdateFavourite:(MyFavourite *)info{
+    favourite = info;
 }
 
 @end
