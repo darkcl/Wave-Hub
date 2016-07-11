@@ -6,37 +6,30 @@ platform :ios, '7.0'
 inhibit_all_warnings!
 
 # Add Application pods here
+target 'Wave Hub' do
+    # Networking
+    pod 'AFNetworking'
+    pod 'CocoaSoundCloudAPI'
+    pod 'CocoaSoundCloudUI'
+    pod 'GCDWebServer/WebUploader'
 
-# Networking
-pod 'AFNetworking'
-pod 'CocoaSoundCloudAPI'
-pod 'CocoaSoundCloudUI'
-pod 'GCDWebServer/WebUploader'
+    # Sound
+    pod 'OrigamiEngine', :git => 'https://github.com/darkcl/OrigamiEngine.git'
+    pod 'OrigamiEngine/Flac', :git => 'https://github.com/darkcl/OrigamiEngine.git'
+    pod 'OrigamiEngine/Opus', :git => 'https://github.com/darkcl/OrigamiEngine.git'
 
-# Sound
-pod 'OrigamiEngine', :git => 'https://github.com/darkcl/OrigamiEngine.git'
-pod 'OrigamiEngine/Flac', :git => 'https://github.com/darkcl/OrigamiEngine.git'
-pod 'OrigamiEngine/Opus', :git => 'https://github.com/darkcl/OrigamiEngine.git'
+    # UI
+    pod 'DZNEmptyDataSet'
+    pod 'FontAwesomeKit', '~> 2.1.0'
+    pod 'ChameleonFramework'
+    pod 'FLKAutoLayout'
 
-# UI
-pod 'DZNEmptyDataSet'
-pod 'FontAwesomeKit', '~> 2.1.0'
-pod 'ChameleonFramework'
-pod 'FLKAutoLayout'
+    # Database
+    pod 'YapDatabase'
+    pod 'Mantle'
 
-# Database
-pod 'YapDatabase'
-pod 'Mantle'
-
-# General
-pod 'ReactiveCocoa'
-
-target :unit_tests, :exclusive => true do
-  link_with 'UnitTests'
-  pod 'Specta'
-  pod 'Expecta'
-  pod 'OCMock'
-  pod 'OHHTTPStubs'
+    # General
+    pod 'ReactiveCocoa'
 end
 
 

@@ -29,11 +29,10 @@
 		0E7DA1741BE9BB60006551C4 /* WHRootViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0E7DA1721BE9BB60006551C4 /* WHRootViewController.xib */; };
 		0EC527FE1C3A236500EC87C1 /* WHPlaylistModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EC527FD1C3A236500EC87C1 /* WHPlaylistModel.m */; };
 		1A44E872A0401F9F6EC5084C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 7535691D532C79453A972784 /* main.m */; };
-		476696573063B162B2B854E9 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F7E617E74F03F0E5992B5CD8 /* libPods.a */; };
+		65C3F28773060083D77F553A /* libPods-Wave Hub.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 98C096AABE9A5972C45957C9 /* libPods-Wave Hub.a */; };
 		6C5DC8333D90F8BAC26108B1 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 450213D723237E9D8191F6EF /* Images.xcassets */; };
 		7475A5FE1BF4F9B600100498 /* MediaToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7475A5FD1BF4F9B600100498 /* MediaToolbox.framework */; };
 		74C3875A1BFE05DC005356C2 /* WHConstant.m in Sources */ = {isa = PBXBuildFile; fileRef = 74C387591BFE05DC005356C2 /* WHConstant.m */; };
-		74F6F47EBD6BFC73460670B1 /* libPods-unit_tests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 90882ADB27A7D5FDEDA7B24A /* libPods-unit_tests.a */; };
 		C4F64ECA2A55365875E190E6 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B0FF2CBA0859ED2691E65FF5 /* Foundation.framework */; };
 		EA1D28C0C6A5011119F82B73 /* LaunchScreen.xib in Sources */ = {isa = PBXBuildFile; fileRef = E85B4BE7428A28FDA5A26607 /* LaunchScreen.xib */; };
 		F8A560A340ED7920227E1490 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = DEC77C216DD81033353F5511 /* Settings.bundle */; };
@@ -93,26 +92,23 @@
 		0EC527FD1C3A236500EC87C1 /* WHPlaylistModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WHPlaylistModel.m; sourceTree = "<group>"; };
 		0EF549251C3B692D00A111E1 /* WHFavouriteDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WHFavouriteDelegate.h; sourceTree = "<group>"; };
 		241B6531260B64A07C64DCF3 /* WHAppDelegate.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = WHAppDelegate.m; sourceTree = "<group>"; };
-		332F5D8192372502D2F48D04 /* Pods-unit_tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-unit_tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-unit_tests/Pods-unit_tests.release.xcconfig"; sourceTree = "<group>"; };
 		450213D723237E9D8191F6EF /* Images.xcassets */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		4A4358BE8B68B8B9325F3AAC /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		48D54F111D4774526C3EF083 /* Pods-Wave Hub.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Wave Hub.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Wave Hub/Pods-Wave Hub.debug.xcconfig"; sourceTree = "<group>"; };
 		6C0AE585EC62527A7EF19A9D /* UnitTests-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "UnitTests-Info.plist"; sourceTree = "<group>"; };
 		7475A5FD1BF4F9B600100498 /* MediaToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaToolbox.framework; path = System/Library/Frameworks/MediaToolbox.framework; sourceTree = SDKROOT; };
 		74C387581BFE05DC005356C2 /* WHConstant.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WHConstant.h; sourceTree = "<group>"; };
 		74C387591BFE05DC005356C2 /* WHConstant.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WHConstant.m; sourceTree = "<group>"; };
 		7535691D532C79453A972784 /* main.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		781D2B8E9A1F36A0D4E8AF0E /* WHAppDelegate.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = WHAppDelegate.h; sourceTree = "<group>"; };
-		90882ADB27A7D5FDEDA7B24A /* libPods-unit_tests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-unit_tests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		882868ECE8B2451BAF02C497 /* Pods-Wave Hub.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Wave Hub.release.xcconfig"; path = "Pods/Target Support Files/Pods-Wave Hub/Pods-Wave Hub.release.xcconfig"; sourceTree = "<group>"; };
 		90FCF8C4B6CA595E3FD6BFD3 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		98C096AABE9A5972C45957C9 /* libPods-Wave Hub.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Wave Hub.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B0FF2CBA0859ED2691E65FF5 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS7.1.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
 		B7ACDBAC3CF1439A84F9FD9C /* UnitTests-Prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "UnitTests-Prefix.pch"; sourceTree = "<group>"; };
-		C72FFDCC6550CA5F84D4B088 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		D267D2C6B176DB4BDE7EC0FE /* Wave Hub.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Wave Hub.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DEC77C216DD81033353F5511 /* Settings.bundle */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		DFDA417E07FC436481C222DE /* Wave Hub-Prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Wave Hub-Prefix.pch"; sourceTree = "<group>"; };
 		E85B4BE7428A28FDA5A26607 /* LaunchScreen.xib */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file.xib; path = LaunchScreen.xib; sourceTree = "<group>"; };
-		EDC6480DC94CD8D08DCA8BEF /* Pods-unit_tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-unit_tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-unit_tests/Pods-unit_tests.debug.xcconfig"; sourceTree = "<group>"; };
-		F7E617E74F03F0E5992B5CD8 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		FDAC66FBF22076C1587DD750 /* UnitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UnitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -124,7 +120,7 @@
 				7475A5FE1BF4F9B600100498 /* MediaToolbox.framework in Frameworks */,
 				0E064CE51BF2FBD9002D2244 /* AVFoundation.framework in Frameworks */,
 				C4F64ECA2A55365875E190E6 /* Foundation.framework in Frameworks */,
-				476696573063B162B2B854E9 /* libPods.a in Frameworks */,
+				65C3F28773060083D77F553A /* libPods-Wave Hub.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -132,7 +128,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				74F6F47EBD6BFC73460670B1 /* libPods-unit_tests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -298,17 +293,6 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
-		3EC1E66E83B7E050BC4ECB4C /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				332F5D8192372502D2F48D04 /* Pods-unit_tests.release.xcconfig */,
-				EDC6480DC94CD8D08DCA8BEF /* Pods-unit_tests.debug.xcconfig */,
-				4A4358BE8B68B8B9325F3AAC /* Pods.release.xcconfig */,
-				C72FFDCC6550CA5F84D4B088 /* Pods.debug.xcconfig */,
-			);
-			name = Pods;
-			sourceTree = "<group>";
-		};
 		4E082CAC323912BD15C3CBAC /* Nibs */ = {
 			isa = PBXGroup;
 			children = (
@@ -338,8 +322,7 @@
 				7475A5FD1BF4F9B600100498 /* MediaToolbox.framework */,
 				0E064CE41BF2FBD9002D2244 /* AVFoundation.framework */,
 				2F69A4BE35D1B8F4B0E05306 /* iOS */,
-				90882ADB27A7D5FDEDA7B24A /* libPods-unit_tests.a */,
-				F7E617E74F03F0E5992B5CD8 /* libPods.a */,
+				98C096AABE9A5972C45957C9 /* libPods-Wave Hub.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -393,7 +376,7 @@
 				1BCF981D92FCA82BCD5896BA /* UnitTests */,
 				B5E749CE200B24C16FE17C03 /* Frameworks */,
 				E1FC21A07FC6FDB153FEE9E8 /* Products */,
-				3EC1E66E83B7E050BC4ECB4C /* Pods */,
+				DCAA3C5E034CAF0C05F9F886 /* Pods */,
 			);
 			indentWidth = 4;
 			sourceTree = "<group>";
@@ -418,6 +401,15 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
+		DCAA3C5E034CAF0C05F9F886 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				882868ECE8B2451BAF02C497 /* Pods-Wave Hub.release.xcconfig */,
+				48D54F111D4774526C3EF083 /* Pods-Wave Hub.debug.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		E1FC21A07FC6FDB153FEE9E8 /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -434,12 +426,9 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 0AB5B0E0D476E8B8F0878156 /* Build configuration list for PBXNativeTarget "UnitTests" */;
 			buildPhases = (
-				C14174F4056246AA0F39D663 /* Check Pods Manifest.lock */,
 				CF6B9BDB724465640A2BB907 /* Sources */,
 				971D9433527D20DBD6F18282 /* Frameworks */,
 				65571681941D7DCA5E683F1C /* Resources */,
-				62A3FB3E862076F729307C4D /* Copy Pods Resources */,
-				7E934620EECEEB6809E8A1CA /* Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -455,14 +444,14 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 6F62ED2E12575E77861332A2 /* Build configuration list for PBXNativeTarget "Wave Hub" */;
 			buildPhases = (
-				84A3618B8BA1B4BF7265D8E3 /* Check Pods Manifest.lock */,
+				66B12356BCA96F610A254D72 /* 📦 Check Pods Manifest.lock */,
 				FD47D93BE1E2AFDAEEB3E9CE /* Sources */,
 				432AED63A1AAA6026CD5B656 /* Frameworks */,
 				287A64EB97E6BCD7530E8830 /* Resources */,
 				7B8A4A9553B8436D3FE2A7B4 /* Warn for TODO and FIXME comments */,
 				6D2EE5C3B0D33F7B2F4DCD0B /* Set version number */,
-				9015F0E1B5639AB45F439F93 /* Copy Pods Resources */,
-				245DAD76AF2FEDD3CED1273F /* Embed Pods Frameworks */,
+				A2159F7FD79EC156ACB94D30 /* 📦 Embed Pods Frameworks */,
+				C6B89D1E85E2E966FA3D0B60 /* 📦 Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -480,7 +469,7 @@
 			isa = PBXProject;
 			attributes = {
 				CLASSPREFIX = WH;
-				LastUpgradeCheck = 0510;
+				LastUpgradeCheck = 0800;
 				ORGANIZATIONNAME = "Memory Leaks";
 				TargetAttributes = {
 					FBB4F1253763E2CDB498808A = {
@@ -533,34 +522,19 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		245DAD76AF2FEDD3CED1273F /* Embed Pods Frameworks */ = {
+		66B12356BCA96F610A254D72 /* 📦 Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Embed Pods Frameworks";
+			name = "📦 Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		62A3FB3E862076F729307C4D /* Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-unit_tests/Pods-unit_tests-resources.sh\"\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		6D2EE5C3B0D33F7B2F4DCD0B /* Set version number */ = {
@@ -591,64 +565,34 @@
 			shellPath = /bin/sh;
 			shellScript = "KEYWORDS=\"TODO:|FIXME:|\\?\\?\\?:|\\!\\!\\!:\"\nFILE_EXTENSIONS=\"swift|h|m|mm|c|cpp\"\nfind -E \"${SRCROOT}\" -ipath \"${SRCROOT}/pods\" -prune -o \\( -regex \".*\\.($FILE_EXTENSIONS)$\" \\) -print0 | xargs -0 egrep --with-filename --line-number --only-matching \"($KEYWORDS).*\\$\" | perl -p -e \"s/($KEYWORDS)/ warning: \\$1/\"\n";
 		};
-		7E934620EECEEB6809E8A1CA /* Embed Pods Frameworks */ = {
+		A2159F7FD79EC156ACB94D30 /* 📦 Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Embed Pods Frameworks";
+			name = "📦 Embed Pods Frameworks";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-unit_tests/Pods-unit_tests-frameworks.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Wave Hub/Pods-Wave Hub-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		84A3618B8BA1B4BF7265D8E3 /* Check Pods Manifest.lock */ = {
+		C6B89D1E85E2E966FA3D0B60 /* 📦 Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Check Pods Manifest.lock";
+			name = "📦 Copy Pods Resources";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
-		};
-		9015F0E1B5639AB45F439F93 /* Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		C14174F4056246AA0F39D663 /* Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Check Pods Manifest.lock";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Wave Hub/Pods-Wave Hub-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -703,7 +647,7 @@
 /* Begin XCBuildConfiguration section */
 		104889AE533E30BDAF1F473A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 4A4358BE8B68B8B9325F3AAC /* Pods.release.xcconfig */;
+			baseConfigurationReference = 882868ECE8B2451BAF02C497 /* Pods-Wave Hub.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_WARN_CONSTANT_CONVERSION = NO;
@@ -730,6 +674,7 @@
 					"-DNS_BLOCK_ASSERTIONS=1",
 					"$(inherited)",
 				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.memoryleaks.Wave-Hub";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PUBLIC_HEADERS_FOLDER_PATH = "$(TARGET_NAME)";
@@ -758,10 +703,14 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES;
 				CLANG_WARN_SUSPICIOUS_IMPLICIT_CONVERSION = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_DEPRECATED_FUNCTIONS = YES;
 				GCC_WARN_ABOUT_MISSING_FIELD_INITIALIZERS = YES;
@@ -788,7 +737,6 @@
 		};
 		3F4619F7277B984DA549AA16 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = EDC6480DC94CD8D08DCA8BEF /* Pods-unit_tests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Wave Hub.app/Wave Hub";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -798,6 +746,7 @@
 				);
 				GCC_PREFIX_HEADER = "UnitTests/Resources/UnitTests-Prefix.pch";
 				INFOPLIST_FILE = "UnitTests/Resources/UnitTests-Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.memoryleaks.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
@@ -808,7 +757,6 @@
 		};
 		9E103C60E587B69DC61B9D5F /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 332F5D8192372502D2F48D04 /* Pods-unit_tests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Wave Hub.app/Wave Hub";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -818,6 +766,7 @@
 				);
 				GCC_PREFIX_HEADER = "UnitTests/Resources/UnitTests-Prefix.pch";
 				INFOPLIST_FILE = "UnitTests/Resources/UnitTests-Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.memoryleaks.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
@@ -846,10 +795,15 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES;
 				CLANG_WARN_SUSPICIOUS_IMPLICIT_CONVERSION = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
@@ -882,7 +836,7 @@
 		};
 		ECFE72449707485D792C1E82 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = C72FFDCC6550CA5F84D4B088 /* Pods.debug.xcconfig */;
+			baseConfigurationReference = 48D54F111D4774526C3EF083 /* Pods-Wave Hub.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_WARN_CONSTANT_CONVERSION = NO;
@@ -907,6 +861,7 @@
 				INSTALL_PATH = "$(BUILT_PRODUCTS_DIR)";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.memoryleaks.Wave-Hub";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PUBLIC_HEADERS_FOLDER_PATH = "$(TARGET_NAME)";

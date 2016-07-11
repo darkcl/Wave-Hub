@@ -37,7 +37,6 @@ PODS:
     - CocoaSoundCloudAPI (~> 1.0.2)
     - OHAttributedLabel
   - DZNEmptyDataSet (1.7.2)
-  - Expecta (1.0.5)
   - FLKAutoLayout (0.2.1)
   - FontAwesomeKit (2.1.8):
     - FontAwesomeKit/Core (= 2.1.8)
@@ -61,21 +60,7 @@ PODS:
     - Mantle/extobjc (= 2.0.5)
   - Mantle/extobjc (2.0.5)
   - NXOAuth2Client (1.2.2)
-  - OCMock (3.2)
   - OHAttributedLabel (3.5.5)
-  - OHHTTPStubs (4.6.0):
-    - OHHTTPStubs/Default (= 4.6.0)
-  - OHHTTPStubs/Core (4.6.0)
-  - OHHTTPStubs/Default (4.6.0):
-    - OHHTTPStubs/Core
-    - OHHTTPStubs/JSON
-    - OHHTTPStubs/NSURLSession
-    - OHHTTPStubs/OHPathHelpers
-  - OHHTTPStubs/JSON (4.6.0):
-    - OHHTTPStubs/Core
-  - OHHTTPStubs/NSURLSession (4.6.0):
-    - OHHTTPStubs/Core
-  - OHHTTPStubs/OHPathHelpers (4.6.0)
   - OrigamiEngine (1.0.14):
     - OrigamiEngine/Core (= 1.0.14)
   - OrigamiEngine/Core (1.0.14)
@@ -90,7 +75,6 @@ PODS:
   - ReactiveCocoa/no-arc (2.5)
   - ReactiveCocoa/UI (2.5):
     - ReactiveCocoa/Core
-  - Specta (1.0.5)
   - YapDatabase (2.7.6):
     - YapDatabase/standard (= 2.7.6)
   - YapDatabase/standard (2.7.6):
@@ -102,18 +86,14 @@ DEPENDENCIES:
   - CocoaSoundCloudAPI
   - CocoaSoundCloudUI
   - DZNEmptyDataSet
-  - Expecta
   - FLKAutoLayout
   - FontAwesomeKit (~> 2.1.0)
   - GCDWebServer/WebUploader
   - Mantle
-  - OCMock
-  - OHHTTPStubs
   - OrigamiEngine (from `https://github.com/darkcl/OrigamiEngine.git`)
   - OrigamiEngine/Flac (from `https://github.com/darkcl/OrigamiEngine.git`)
   - OrigamiEngine/Opus (from `https://github.com/darkcl/OrigamiEngine.git`)
   - ReactiveCocoa
-  - Specta
   - YapDatabase
 
 EXTERNAL SOURCES:
@@ -132,18 +112,16 @@ SPEC CHECKSUMS:
   CocoaSoundCloudAPI: bef452c90f3a3af6de41a620d7d156d716d68f79
   CocoaSoundCloudUI: f5aed254f432bc68a5a3570b74cdd6d18ce7b037
   DZNEmptyDataSet: 0ec00bfc230d7450997b60c127afdd0b9f24f3b6
-  Expecta: e1c022fcd33910b6be89c291d2775b3fe27a89fe
   FLKAutoLayout: 9db6b30c2008d230da608e62c607b11c23b942e6
   FontAwesomeKit: 64759fb28b5d2e74a1bd81553d7c11ca10e32179
   GCDWebServer: 76a9540371d5f12f850b32ec7f555dd2d266e543
   Mantle: 1912395033f601de5adc8ee91e48f46e4c7051ad
   NXOAuth2Client: 492f961d549c411b344cfae861de0dc63b176edc
-  OCMock: 28def049ef47f996b515a8eeea958be7ccab2dbb
   OHAttributedLabel: 9b2eb99323dee6b3a81ef3bc8e98b084117bca2d
-  OHHTTPStubs: cb1aefbbeb4de4e741644455d4b945538e5248a2
   OrigamiEngine: b8208cbd9142d6194807a5f5bc0c6ffd363e0374
   ReactiveCocoa: e2db045570aa97c695e7aa97c2bcab222ae51f4a
-  Specta: ac94d110b865115fe60ff2c6d7281053c6f8e8a2
   YapDatabase: 00e5a5d1b5dba1bd540ef644576233b5612e6122
 
-COCOAPODS: 0.39.0
+PODFILE CHECKSUM: b6ce204dbef0606a1a15a76dfc351fc8d4416b83
+
+COCOAPODS: 1.0.0
