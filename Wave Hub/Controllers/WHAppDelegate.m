@@ -81,6 +81,8 @@
     [[AVAudioSession sharedInstance] setActive: YES error: nil];
     
     [[UIApplication sharedApplication] beginReceivingRemoteControlEvents];
+    
+    [[UIApplication sharedApplication] registerUserNotificationSettings:[UIUserNotificationSettings settingsForTypes:UIUserNotificationTypeAlert categories:nil]];
     return YES;
 }
 

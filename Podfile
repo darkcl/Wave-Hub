@@ -1,6 +1,6 @@
 source 'https://github.com/CocoaPods/Specs'
 
-platform :ios, '7.0'
+platform :ios, '8.0'
 
 # ignore all warnings from all pods
 inhibit_all_warnings!
@@ -12,7 +12,8 @@ target 'Wave Hub' do
     pod 'CocoaSoundCloudAPI'
     pod 'CocoaSoundCloudUI'
     pod 'GCDWebServer/WebUploader'
-
+    pod 'NPAudioStream', :git => 'https://github.com/NoonPacific/NPAudioStream.git'
+    
     # Sound
     pod 'OrigamiEngine', :git => 'https://github.com/darkcl/OrigamiEngine.git'
     pod 'OrigamiEngine/Flac', :git => 'https://github.com/darkcl/OrigamiEngine.git'
@@ -23,6 +24,8 @@ target 'Wave Hub' do
     pod 'FontAwesomeKit', '~> 2.1.0'
     pod 'ChameleonFramework'
     pod 'FLKAutoLayout'
+    pod 'SVProgressHUD'
+    pod 'MNTPullToReact', '~> 1.0'
 
     # Database
     pod 'YapDatabase'
@@ -30,6 +33,8 @@ target 'Wave Hub' do
 
     # General
     pod 'ReactiveCocoa'
+    pod 'JRNLocalNotificationCenter'
+    
 end
 
 
@@ -44,6 +49,12 @@ post_install do | installer |
   if File.file?(pods_acknowledgements_path)
     puts 'Copying acknowledgements to Settings.bundle'
     FileUtils.cp_r(pods_acknowledgements_path, "#{settings_bundle_path}/Acknowledgements.plist", :remove_destination => true)
+  end
+  
+  installer.pods_project.targets.each do |target|
+      target.build_configurations.each do |config|
+          config.build_settings['ENABLE_BITCODE'] = 'NO'
+      end
   end
 end
 

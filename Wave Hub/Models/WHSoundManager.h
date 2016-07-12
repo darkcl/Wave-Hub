@@ -18,6 +18,8 @@
 
 #import "WHFavouriteDelegate.h"
 
+#import <NPAudioStream/NPAudioStream.h>
+
 typedef NS_ENUM(NSInteger, WHSoundManagerPlayType) {
     WHSoundManagerPlayTypeOnce,
     WHSoundManagerPlayTypeLoop,
@@ -31,7 +33,7 @@ typedef NS_ENUM(NSInteger, WHSoundManagerType) {
     WHSoundManagerTypeSoundCloud
 };
 
-@interface WHSoundManager : NSObject <ORGMEngineDelegate, WHFavouriteDelegate, AVAudioPlayerDelegate>{
+@interface WHSoundManager : NSObject <ORGMEngineDelegate, WHFavouriteDelegate, AVAudioPlayerDelegate, NPAudioStreamDataSource, NPAudioStreamDelegate>{
     ORGMEngine *player;
     
     NSMutableArray *queue;
@@ -46,7 +48,11 @@ typedef NS_ENUM(NSInteger, WHSoundManagerType) {
     NSURL *currentCueSheetUrl;
     
     //SoundCloud Favourite
-    AVAudioPlayer *audioPlayer;
+    // will delete
+//    AVAudioPlayer *audioPlayer;
+    
+    NPAudioStream *soundcloudStreamer;
+    
     MyFavourite *favourite;
     int currentFavouriteIdx;
     

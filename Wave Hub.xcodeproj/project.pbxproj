@@ -29,7 +29,6 @@
 		0E7DA1741BE9BB60006551C4 /* WHRootViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0E7DA1721BE9BB60006551C4 /* WHRootViewController.xib */; };
 		0EC527FE1C3A236500EC87C1 /* WHPlaylistModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EC527FD1C3A236500EC87C1 /* WHPlaylistModel.m */; };
 		1A44E872A0401F9F6EC5084C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 7535691D532C79453A972784 /* main.m */; };
-		65C3F28773060083D77F553A /* libPods-Wave Hub.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 98C096AABE9A5972C45957C9 /* libPods-Wave Hub.a */; };
 		6C5DC8333D90F8BAC26108B1 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 450213D723237E9D8191F6EF /* Images.xcassets */; };
 		7475A5FE1BF4F9B600100498 /* MediaToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7475A5FD1BF4F9B600100498 /* MediaToolbox.framework */; };
 		74C3875A1BFE05DC005356C2 /* WHConstant.m in Sources */ = {isa = PBXBuildFile; fileRef = 74C387591BFE05DC005356C2 /* WHConstant.m */; };
@@ -37,6 +36,7 @@
 		EA1D28C0C6A5011119F82B73 /* LaunchScreen.xib in Sources */ = {isa = PBXBuildFile; fileRef = E85B4BE7428A28FDA5A26607 /* LaunchScreen.xib */; };
 		F8A560A340ED7920227E1490 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = DEC77C216DD81033353F5511 /* Settings.bundle */; };
 		F9272AE40B26984E04F01944 /* WHAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 241B6531260B64A07C64DCF3 /* WHAppDelegate.m */; };
+		FE77E4182A70D6332786919E /* libPods-Wave Hub.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A2423513AE8E3888A810A5F /* libPods-Wave Hub.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -91,6 +91,7 @@
 		0EC527FC1C3A236500EC87C1 /* WHPlaylistModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WHPlaylistModel.h; sourceTree = "<group>"; };
 		0EC527FD1C3A236500EC87C1 /* WHPlaylistModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WHPlaylistModel.m; sourceTree = "<group>"; };
 		0EF549251C3B692D00A111E1 /* WHFavouriteDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WHFavouriteDelegate.h; sourceTree = "<group>"; };
+		1A2423513AE8E3888A810A5F /* libPods-Wave Hub.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Wave Hub.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		241B6531260B64A07C64DCF3 /* WHAppDelegate.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = WHAppDelegate.m; sourceTree = "<group>"; };
 		450213D723237E9D8191F6EF /* Images.xcassets */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		48D54F111D4774526C3EF083 /* Pods-Wave Hub.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Wave Hub.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Wave Hub/Pods-Wave Hub.debug.xcconfig"; sourceTree = "<group>"; };
@@ -102,7 +103,6 @@
 		781D2B8E9A1F36A0D4E8AF0E /* WHAppDelegate.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = WHAppDelegate.h; sourceTree = "<group>"; };
 		882868ECE8B2451BAF02C497 /* Pods-Wave Hub.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Wave Hub.release.xcconfig"; path = "Pods/Target Support Files/Pods-Wave Hub/Pods-Wave Hub.release.xcconfig"; sourceTree = "<group>"; };
 		90FCF8C4B6CA595E3FD6BFD3 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		98C096AABE9A5972C45957C9 /* libPods-Wave Hub.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Wave Hub.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B0FF2CBA0859ED2691E65FF5 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS7.1.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
 		B7ACDBAC3CF1439A84F9FD9C /* UnitTests-Prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "UnitTests-Prefix.pch"; sourceTree = "<group>"; };
 		D267D2C6B176DB4BDE7EC0FE /* Wave Hub.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Wave Hub.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -120,7 +120,7 @@
 				7475A5FE1BF4F9B600100498 /* MediaToolbox.framework in Frameworks */,
 				0E064CE51BF2FBD9002D2244 /* AVFoundation.framework in Frameworks */,
 				C4F64ECA2A55365875E190E6 /* Foundation.framework in Frameworks */,
-				65C3F28773060083D77F553A /* libPods-Wave Hub.a in Frameworks */,
+				FE77E4182A70D6332786919E /* libPods-Wave Hub.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -178,6 +178,7 @@
 				0E2914B11BF97DEB004AA529 /* WHContainerViewController.xib */,
 			);
 			name = Container;
+			path = ../Controllers;
 			sourceTree = "<group>";
 		};
 		0E44F86D1BEB4FBB00F8571D /* Dash Board */ = {
@@ -190,6 +191,7 @@
 				0E2914AB1BF97924004AA529 /* WHDashBoardViewController.m */,
 			);
 			name = "Dash Board";
+			path = ../Controllers;
 			sourceTree = "<group>";
 		};
 		0E44F8711BEB550F00F8571D /* Favourite */ = {
@@ -227,6 +229,7 @@
 				0E7DA1721BE9BB60006551C4 /* WHRootViewController.xib */,
 			);
 			name = "Root View Controller";
+			path = ../Controllers;
 			sourceTree = "<group>";
 		};
 		155F34F450AAEF294FE1B03B /* Resources */ = {
@@ -253,6 +256,9 @@
 		1E8CBC8F7C3F90E64799FC7B /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				0E2914B41BF97DEF004AA529 /* Container */,
+				0E44F86D1BEB4FBB00F8571D /* Dash Board */,
+				0E7DA1751BE9BB65006551C4 /* Root View Controller */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -322,7 +328,7 @@
 				7475A5FD1BF4F9B600100498 /* MediaToolbox.framework */,
 				0E064CE41BF2FBD9002D2244 /* AVFoundation.framework */,
 				2F69A4BE35D1B8F4B0E05306 /* iOS */,
-				98C096AABE9A5972C45957C9 /* libPods-Wave Hub.a */,
+				1A2423513AE8E3888A810A5F /* libPods-Wave Hub.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -343,9 +349,6 @@
 		C0378A827E14424F6D9580F4 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				0E2914B41BF97DEF004AA529 /* Container */,
-				0E44F86D1BEB4FBB00F8571D /* Dash Board */,
-				0E7DA1751BE9BB65006551C4 /* Root View Controller */,
 				781D2B8E9A1F36A0D4E8AF0E /* WHAppDelegate.h */,
 				241B6531260B64A07C64DCF3 /* WHAppDelegate.m */,
 				0E2B7E7A1BF475BC001B7A25 /* WHApplication.h */,
@@ -476,6 +479,9 @@
 						DevelopmentTeam = M56A72A6G5;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+							com.apple.Push = {
 								enabled = 1;
 							};
 						};
@@ -674,7 +680,7 @@
 					"-DNS_BLOCK_ASSERTIONS=1",
 					"$(inherited)",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.memoryleaks.Wave-Hub";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.darkcl.Wave-Hub";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PUBLIC_HEADERS_FOLDER_PATH = "$(TARGET_NAME)";
@@ -861,7 +867,7 @@
 				INSTALL_PATH = "$(BUILT_PRODUCTS_DIR)";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.memoryleaks.Wave-Hub";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.darkcl.Wave-Hub";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PUBLIC_HEADERS_FOLDER_PATH = "$(TARGET_NAME)";

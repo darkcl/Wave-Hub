@@ -8,8 +8,11 @@
 
 #import <UIKit/UIKit.h>
 #import "WHFavouriteDelegate.h"
+#import <NPAudioStream/NPAudioStream.h>
+
 @interface WHFavouriteTableViewController : UITableViewController{
     MyFavourite *favourite;
+    NPAudioStream *streamer;
 }
 
 @property (assign) id<WHFavouriteDelegate> delegate;

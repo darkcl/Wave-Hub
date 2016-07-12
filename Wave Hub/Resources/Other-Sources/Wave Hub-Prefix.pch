@@ -11,6 +11,8 @@
 #import <AVFoundation/AVFoundation.h>
 #import <AudioToolbox/AudioToolbox.h>
 
+#import <SVProgressHUD/SVProgressHUD.h>
+
 #import "WHConstant.h"
 #import "DataModels.h"
 

@@ -7,6 +7,7 @@
 //
 #import <AFNetworking/AFNetworking.h>
 #import "WHWebrequestManager.h"
+#import <JRNLocalNotificationCenter/JRNLocalNotificationCenter.h>
 
 static NSString * const kBaseURL = @"https://api.soundcloud.com";
 
@@ -169,18 +170,36 @@ static NSString * const kBaseURL = @"https://api.soundcloud.com";
         NSURL *url = [NSURL URLWithString:fileName];
         successBlock(url);
     }else{
+        [SVProgressHUD show];
+        [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
+        NSLog(@"Start Loading");
+        
+        UILocalNotification* localNotification = [[UILocalNotification alloc] init];
+        localNotification.fireDate = [NSDate dateWithTimeIntervalSinceNow:60];
+        localNotification.alertBody = [NSString stringWithFormat:@"Start Loading for song: %@", collectionInfo.title];
+        localNotification.timeZone = [NSTimeZone defaultTimeZone];
+        [[UIApplication sharedApplication] presentLocalNotificationNow:localNotification];
+        
         [SCRequest performMethod:SCRequestMethodGET
                       onResource:[NSURL URLWithString:collectionInfo.streamUrl]
                  usingParameters:nil
                      withAccount:[SCSoundCloud account]
           sendingProgressHandler:nil
                  responseHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
+                     [SVProgressHUD dismiss];
+                     NSLog(@"End Loading");
+                     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
                      if (!error) {
                          [data writeToFile:fileName atomically:YES];
                          NSURL *url = [NSURL URLWithString:fileName];
                          successBlock(url);
                      }else{
                          failureBlock(error);
+                         UILocalNotification* localNotification2 = [[UILocalNotification alloc] init];
+                         localNotification2.fireDate = [NSDate dateWithTimeIntervalSinceNow:60];
+                         localNotification2.alertBody = [NSString stringWithFormat:@"Error Loading for song: %@", collectionInfo.title];
+                         localNotification2.timeZone = [NSTimeZone defaultTimeZone];
+                         [[UIApplication sharedApplication] presentLocalNotificationNow:localNotification2];
                      }
                  }];
         
