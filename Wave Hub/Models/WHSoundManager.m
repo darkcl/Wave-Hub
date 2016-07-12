@@ -30,6 +30,7 @@
         soundcloudStreamer = [[NPAudioStream alloc] init];
         soundcloudStreamer.delegate = self;
         soundcloudStreamer.dataSource = self;
+        soundcloudStreamer.repeatMode = NPAudioStreamRepeatModeOne;
         
         [AVAudioSession sharedInstance];
         
@@ -390,6 +391,33 @@
                                                                 MPMediaItemPropertyMediaType: @(MPMediaTypeMusic),
                                                                 MPMediaItemPropertyPlaybackDuration: @(time),
                                                                 MPNowPlayingInfoPropertyPlaybackRate: @1}];
+}
+
+- (void)didCompleteAudioStream:(NPAudioStream *)audioStream{
+    __block int idx = favourite.collection.count;
+    
+    [[WHWebrequestManager sharedManager] fetchMyFavouriteWithInfo:favourite
+                                                          success:^(MyFavourite *responseObject) {
+                                                              self->currentFavouriteIdx = idx;
+                                                              
+                                                              self->favourite = responseObject;
+                                                              
+                                                              if (self->player.currentState == ORGMEngineStatePlaying){
+                                                                  [self->player stop];
+                                                              }
+                                                              
+                                                              NSMutableArray *urls = [[NSMutableArray alloc] init];
+                                                              for (Collection *info in responseObject.collection) {
+                                                                  [urls addObject:[NSURL URLWithString:[NSString stringWithFormat:@"%@?client_id=47724625bbc02bbc335e84f2ed87c001", info.streamUrl]]];
+                                                              }
+                                                              
+                                                              [self->soundcloudStreamer setUrls:urls];
+                                                              [self->soundcloudStreamer selectIndexForPlayback:idx];
+                                                              
+                                                          }
+                                                          failure:^(NSError *error) {
+                                                              [self->soundcloudStreamer selectIndexForPlayback:0];
+                                                          }];
 }
 
 @end
