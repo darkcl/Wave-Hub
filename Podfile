@@ -26,6 +26,7 @@ target 'Wave Hub' do
     pod 'FLKAutoLayout'
     pod 'SVProgressHUD'
     pod 'MNTPullToReact', '~> 1.0'
+    pod 'MJRefresh'
 
     # Database
     pod 'YapDatabase'

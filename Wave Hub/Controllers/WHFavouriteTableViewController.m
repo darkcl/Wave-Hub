@@ -8,6 +8,8 @@
 
 #import "WHFavouriteTableViewController.h"
 
+#import <MJRefresh/MJRefresh.h>
+
 @interface WHFavouriteTableViewController ()
 
 @end
@@ -32,15 +34,35 @@
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"Cell"];
     
     _delegate = [WHSoundManager sharedManager];
+    MJRefreshStateHeader *header = [MJRefreshStateHeader headerWithRefreshingBlock:^{
+        //Call this Block When enter the refresh status automatically
+        [[WHWebrequestManager sharedManager] fetchMyFavouriteWithInfo:nil
+                                                              success:^(MyFavourite *responseObject) {
+                                                                  self->favourite = responseObject;
+                                                                  [self.tableView reloadData];
+                                                                  [self.tableView.mj_header endRefreshing];
+                                                              }
+                                                              failure:^(NSError *error) {
+                                                                  
+                                                              }];
+    }];
+    // Set title
+    [header setTitle:@"Pull down to refresh" forState:MJRefreshStateIdle];
+    [header setTitle:@"Release to refresh" forState:MJRefreshStatePulling];
+    [header setTitle:@"Loading ..." forState:MJRefreshStateRefreshing];
     
-    [[WHWebrequestManager sharedManager] fetchMyFavouriteWithInfo:nil
-                                                          success:^(MyFavourite *responseObject) {
-                                                              self->favourite = responseObject;
-                                                              [self.tableView reloadData];
-                                                          }
-                                                          failure:^(NSError *error) {
-                                                              
-                                                          }];
+    // Set font
+    header.stateLabel.font = [UIFont systemFontOfSize:15];
+    
+    // Set textColor
+    header.stateLabel.textColor = [UIColor redColor];
+    header.lastUpdatedTimeLabel.hidden = YES;
+    
+    self.tableView.mj_header = header;
+    
+    [self.tableView.mj_header beginRefreshing];
+    
+    
 }
 
 - (void)didReceiveMemoryWarning {

@@ -30,6 +30,8 @@
 		0EC527FE1C3A236500EC87C1 /* WHPlaylistModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EC527FD1C3A236500EC87C1 /* WHPlaylistModel.m */; };
 		1A44E872A0401F9F6EC5084C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 7535691D532C79453A972784 /* main.m */; };
 		6C5DC8333D90F8BAC26108B1 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 450213D723237E9D8191F6EF /* Images.xcassets */; };
+		742B73501D3560C800837D74 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 742B734E1D3560C800837D74 /* RootViewController.m */; };
+		742B73511D3560C800837D74 /* RootViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 742B734F1D3560C800837D74 /* RootViewController.xib */; };
 		7475A5FE1BF4F9B600100498 /* MediaToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7475A5FD1BF4F9B600100498 /* MediaToolbox.framework */; };
 		74C3875A1BFE05DC005356C2 /* WHConstant.m in Sources */ = {isa = PBXBuildFile; fileRef = 74C387591BFE05DC005356C2 /* WHConstant.m */; };
 		C4F64ECA2A55365875E190E6 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B0FF2CBA0859ED2691E65FF5 /* Foundation.framework */; };
@@ -96,6 +98,9 @@
 		450213D723237E9D8191F6EF /* Images.xcassets */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		48D54F111D4774526C3EF083 /* Pods-Wave Hub.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Wave Hub.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Wave Hub/Pods-Wave Hub.debug.xcconfig"; sourceTree = "<group>"; };
 		6C0AE585EC62527A7EF19A9D /* UnitTests-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "UnitTests-Info.plist"; sourceTree = "<group>"; };
+		742B734D1D3560C800837D74 /* RootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
+		742B734E1D3560C800837D74 /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
+		742B734F1D3560C800837D74 /* RootViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RootViewController.xib; sourceTree = "<group>"; };
 		7475A5FD1BF4F9B600100498 /* MediaToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaToolbox.framework; path = System/Library/Frameworks/MediaToolbox.framework; sourceTree = SDKROOT; };
 		74C387581BFE05DC005356C2 /* WHConstant.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WHConstant.h; sourceTree = "<group>"; };
 		74C387591BFE05DC005356C2 /* WHConstant.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WHConstant.m; sourceTree = "<group>"; };
@@ -178,19 +183,20 @@
 				0E2914B11BF97DEB004AA529 /* WHContainerViewController.xib */,
 			);
 			name = Container;
-			path = ../Controllers;
 			sourceTree = "<group>";
 		};
-		0E44F86D1BEB4FBB00F8571D /* Dash Board */ = {
+		0E44F86D1BEB4FBB00F8571D /* Will Delete */ = {
 			isa = PBXGroup;
 			children = (
+				0E7DA1751BE9BB65006551C4 /* Root View Controller */,
+				0E2914B41BF97DEF004AA529 /* Container */,
 				0E44F8761BEB555A00F8571D /* Local Songs */,
 				0E44F8721BEB552000F8571D /* Playlist */,
 				0E44F8711BEB550F00F8571D /* Favourite */,
 				0E2914AA1BF97924004AA529 /* WHDashBoardViewController.h */,
 				0E2914AB1BF97924004AA529 /* WHDashBoardViewController.m */,
 			);
-			name = "Dash Board";
+			name = "Will Delete";
 			path = ../Controllers;
 			sourceTree = "<group>";
 		};
@@ -229,7 +235,6 @@
 				0E7DA1721BE9BB60006551C4 /* WHRootViewController.xib */,
 			);
 			name = "Root View Controller";
-			path = ../Controllers;
 			sourceTree = "<group>";
 		};
 		155F34F450AAEF294FE1B03B /* Resources */ = {
@@ -256,9 +261,10 @@
 		1E8CBC8F7C3F90E64799FC7B /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				0E2914B41BF97DEF004AA529 /* Container */,
-				0E44F86D1BEB4FBB00F8571D /* Dash Board */,
-				0E7DA1751BE9BB65006551C4 /* Root View Controller */,
+				0E44F86D1BEB4FBB00F8571D /* Will Delete */,
+				742B734D1D3560C800837D74 /* RootViewController.h */,
+				742B734E1D3560C800837D74 /* RootViewController.m */,
+				742B734F1D3560C800837D74 /* RootViewController.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -471,7 +477,7 @@
 		3839A74F2E8E934D53C31C96 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				CLASSPREFIX = WH;
+				CLASSPREFIX = "";
 				LastUpgradeCheck = 0800;
 				ORGANIZATIONNAME = "Memory Leaks";
 				TargetAttributes = {
@@ -513,6 +519,7 @@
 			files = (
 				6C5DC8333D90F8BAC26108B1 /* Images.xcassets in Resources */,
 				F8A560A340ED7920227E1490 /* Settings.bundle in Resources */,
+				742B73511D3560C800837D74 /* RootViewController.xib in Resources */,
 				0E7DA1741BE9BB60006551C4 /* WHRootViewController.xib in Resources */,
 				0E2914B31BF97DEB004AA529 /* WHContainerViewController.xib in Resources */,
 			);
@@ -617,6 +624,7 @@
 			files = (
 				0E44F8701BEB550B00F8571D /* WHFavouriteTableViewController.m in Sources */,
 				0E064CED1BF2FC34002D2244 /* Collection.m in Sources */,
+				742B73501D3560C800837D74 /* RootViewController.m in Sources */,
 				0E2914B21BF97DEB004AA529 /* WHContainerViewController.m in Sources */,
 				0E2914B71BF98339004AA529 /* UIViewController+WaveHubAddition.m in Sources */,
 				0E064CEE1BF2FC34002D2244 /* MyFavourite.m in Sources */,
