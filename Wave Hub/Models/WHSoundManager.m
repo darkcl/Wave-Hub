@@ -30,7 +30,7 @@
         soundcloudStreamer = [[NPAudioStream alloc] init];
         soundcloudStreamer.delegate = self;
         soundcloudStreamer.dataSource = self;
-        soundcloudStreamer.repeatMode = NPAudioStreamRepeatModeOne;
+//        soundcloudStreamer.repeatMode = NPAudioStreamRepeatModeOne;
         
         [AVAudioSession sharedInstance];
         
