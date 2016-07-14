@@ -8,9 +8,18 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol MusicTableViewCellDelegate <NSObject>
+
+- (void)didTogglePlayPause:(Collection *)info;
+
+@end
+
 @interface MusicTableViewCell : UITableViewCell{
     NSString *tempUrl;
+    Collection *trackInfo;
 }
+
+@property (weak, nonatomic) IBOutlet UIButton *togglePlayPauseButton;
 
 @property (weak, nonatomic) IBOutlet UIImageView *coverImageView;
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
@@ -20,5 +29,11 @@
 
 - (void)startLoadingCover:(NSString *)url;
 - (void)cancelLoadingCover;
+
+- (void)setInfo:(Collection *)info;
+
+- (IBAction)togglePlayPauseButtonPressed:(id)sender;
+
+@property (assign) id<MusicTableViewCellDelegate>cellDelegate;
 
 @end

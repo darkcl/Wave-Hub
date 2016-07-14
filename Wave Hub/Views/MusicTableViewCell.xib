@@ -30,13 +30,24 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ZLo-JJ-etW">
                                 <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                             </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NYF-WW-Rc4">
+                                <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                <color key="backgroundColor" white="0.33333333333333331" alpha="0.57844827586206893" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <action selector="togglePlayPauseButtonPressed:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="DtB-tE-Skl"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="NYF-WW-Rc4" firstAttribute="leading" secondItem="Uvv-oG-Zmw" secondAttribute="leading" id="7Pp-bY-nEM"/>
+                            <constraint firstAttribute="trailing" secondItem="NYF-WW-Rc4" secondAttribute="trailing" id="IsG-N2-6Nn"/>
                             <constraint firstItem="ZLo-JJ-etW" firstAttribute="top" secondItem="Uvv-oG-Zmw" secondAttribute="top" id="LGM-1F-UfY"/>
                             <constraint firstAttribute="trailing" secondItem="ZLo-JJ-etW" secondAttribute="trailing" id="R77-zc-b3q"/>
                             <constraint firstAttribute="width" constant="50" id="SFR-x0-4BA"/>
                             <constraint firstItem="ZLo-JJ-etW" firstAttribute="leading" secondItem="Uvv-oG-Zmw" secondAttribute="leading" id="VEF-gX-e04"/>
+                            <constraint firstAttribute="bottom" secondItem="NYF-WW-Rc4" secondAttribute="bottom" id="Yen-dE-6f4"/>
+                            <constraint firstItem="NYF-WW-Rc4" firstAttribute="top" secondItem="Uvv-oG-Zmw" secondAttribute="top" id="Yxf-mV-4hV"/>
                             <constraint firstAttribute="height" constant="50" id="d2K-XY-iz5"/>
                             <constraint firstAttribute="bottom" secondItem="ZLo-JJ-etW" secondAttribute="bottom" id="h0q-l6-8jK"/>
                         </constraints>
@@ -91,6 +102,7 @@
                 <outlet property="durationLabel" destination="T5v-k1-0iY" id="jnp-79-mxU"/>
                 <outlet property="progressView" destination="49x-9Q-fLh" id="iwp-BY-l6a"/>
                 <outlet property="titleLabel" destination="eOq-Cc-RqW" id="zaP-53-f6X"/>
+                <outlet property="togglePlayPauseButton" destination="NYF-WW-Rc4" id="1f6-Ij-IlT"/>
             </connections>
             <point key="canvasLocation" x="357" y="348"/>
         </tableViewCell>

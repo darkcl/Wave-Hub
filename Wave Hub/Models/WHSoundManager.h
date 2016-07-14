@@ -69,6 +69,8 @@ typedef NS_ENUM(NSInteger, WHSoundManagerType) {
 @property NSInteger playingIdx;
 @property float playingProgress;
 
+- (BOOL)isPlaying;
+
 + (WHSoundManager *)sharedManager;
 
 - (void)playUrl:(NSString *)url forceStart:(BOOL)forceStart;

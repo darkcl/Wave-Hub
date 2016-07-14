@@ -14,6 +14,8 @@
 #import "NSLayoutConstraint+Multiplier.h"
 #import <MTKObserving.h>
 
+#import <FontAwesomeKit/FAKFontAwesome.h>
+
 @interface RootViewController ()
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
@@ -26,7 +28,8 @@
     
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
-    
+    currentPlayingIndex = -1;
+    currentPlayingProgress = -1;
     [_tableView registerNib:[UINib nibWithNibName:@"MusicTableViewCell" bundle:nil] forCellReuseIdentifier:@"MusicTableViewCell"];
     
     self.edgesForExtendedLayout = UIRectEdgeBottom;
@@ -60,13 +63,13 @@
     // Set title
     [header setTitle:@"Pull down to refresh" forState:MJRefreshStateIdle];
     [header setTitle:@"Release to refresh" forState:MJRefreshStatePulling];
-    [header setTitle:@"Loading ..." forState:MJRefreshStateRefreshing];
+    [header setTitle:@"Loading" forState:MJRefreshStateRefreshing];
     
     // Set font
-    header.stateLabel.font = [UIFont systemFontOfSize:15];
+    header.stateLabel.font = [UIFont fontWithName:@"Montserrat-Regular" size:15];
     
     // Set textColor
-    header.stateLabel.textColor = [UIColor redColor];
+    header.stateLabel.textColor = [UIColor lightGrayColor];
     header.lastUpdatedTimeLabel.hidden = YES;
     
     self.tableView.mj_header = header;
@@ -116,6 +119,20 @@
 
 #pragma mark - Table view data source
 
+- (void)didTogglePlayPause:(Collection *)info{
+    NSInteger playIndex = [favourite.collection indexOfObject:info];
+    
+    if ([[WHSoundManager sharedManager] isPlaying]) {
+        if (playIndex == currentPlayingIndex) {
+            [[WHSoundManager sharedManager] playerPause];
+        }else{
+            [[WHSoundManager sharedManager] playMyFavourite:favourite withIndex:playIndex forceStart:YES];
+        }
+    }else{
+        [[WHSoundManager sharedManager] playMyFavourite:favourite withIndex:playIndex forceStart:YES];
+    }
+}
+
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;
 }
@@ -140,17 +157,28 @@
     }
     // Configure the cell...
     Collection *info = favourite.collection[indexPath.row];
+    [cell setInfo:info];
+    
     cell.titleLabel.text = info.title;
     cell.authorLabel.text = info.user.username ? info.user.username : @"";
     cell.durationLabel.text = [self timeFormatted:(int)info.duration];
+    
+    cell.progressView.hidden = YES;
     if (indexPath.row == currentPlayingIndex) {
         cell.progressView.hidden = NO;
         cell.progressView.progress = currentPlayingProgress;
+        
+        FAKFontAwesome *buttonIcon = ([[WHSoundManager sharedManager] isPlaying])? [FAKFontAwesome pauseIconWithSize:17] : [FAKFontAwesome playIconWithSize:17];
+        [buttonIcon addAttribute:NSForegroundColorAttributeName value:[UIColor whiteColor]];
+        [cell.togglePlayPauseButton setAttributedTitle:buttonIcon.attributedString forState:UIControlStateNormal];
     }else{
         cell.progressView.hidden = YES;
+        FAKFontAwesome *buttonIcon =  [FAKFontAwesome playIconWithSize:17];
+        [buttonIcon addAttribute:NSForegroundColorAttributeName value:[UIColor whiteColor]];
+        [cell.togglePlayPauseButton setAttributedTitle:buttonIcon.attributedString forState:UIControlStateNormal];
     }
     
-    
+    cell.cellDelegate = self;
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;
 }
@@ -167,7 +195,7 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    [[WHSoundManager sharedManager] playMyFavourite:favourite withIndex:indexPath.row forceStart:YES];
+    NSLog(@"Show Detail View");
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{

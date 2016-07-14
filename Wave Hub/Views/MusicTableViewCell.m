@@ -42,4 +42,14 @@
     }
 }
 
+- (void)setInfo:(Collection *)info{
+    trackInfo = info;
+}
+
+- (IBAction)togglePlayPauseButtonPressed:(id)sender {
+    if (_cellDelegate && [_cellDelegate respondsToSelector:@selector(didTogglePlayPause:)]) {
+        [_cellDelegate didTogglePlayPause:trackInfo];
+    }
+}
+
 @end

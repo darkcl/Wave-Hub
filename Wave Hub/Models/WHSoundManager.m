@@ -68,6 +68,10 @@
 
 #pragma mark - Player Logic
 
+- (BOOL)isPlaying{
+    return (player.currentState == ORGMEngineStatePlaying) || (soundcloudStreamer.status == NPAudioStreamStatusPlaying);
+}
+
 - (void)playerForward{
     if (currentType == WHSoundManagerTypeCue) {
         CueSheet *currentCueSheet = [[CueSheet alloc] initWithURL:currentCueSheetUrl];
