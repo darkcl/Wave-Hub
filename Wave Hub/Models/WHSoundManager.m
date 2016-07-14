@@ -286,10 +286,16 @@
 
 - (void)remoteControlPausePressed:(id)sender{
     [self playerPause];
+    if (_delegate && [_delegate respondsToSelector:@selector(soundDidStop)]) {
+        [_delegate soundDidStop];
+    }
 }
 
 - (void)remoteControlStopPressed:(id)sender{
     [self playerStop];
+    if (_delegate && [_delegate respondsToSelector:@selector(soundDidStop)]) {
+        [_delegate soundDidStop];
+    }
 }
 
 - (void)remoteControlForwardPressed:(id)sender{
@@ -382,9 +388,22 @@
     return YES;
 }
 
+- (void)audioStream:(NPAudioStream *)audioStream didUpdateTrackCurrentTime:(CMTime)currentTime{
+    if (_delegate && [_delegate respondsToSelector:@selector(didUpdatePlayingProgress:)]) {
+        [_delegate didUpdatePlayingProgress:(float)(CMTimeGetSeconds(currentTime) / CMTimeGetSeconds(audioStream.duration))];
+    }
+    
+    _playingProgress = (float)(audioStream.duration.value / currentTime.value);
+}
+
 - (void)audioStream:(NPAudioStream *)audioStream didBeginPlaybackForTrackAtIndex:(NSInteger)index{
     Collection *info = favourite.collection[index];
     double time = (info.duration / 1000);
+    _playingProgress = index;
+    
+    if (_delegate && [_delegate respondsToSelector:@selector(didUpdatePlayingIndex:)]) {
+        [_delegate didUpdatePlayingIndex:index];
+    }
     
     [[MPNowPlayingInfoCenter defaultCenter] setNowPlayingInfo:@{MPMediaItemPropertyTitle:info.title,
                                                                 MPMediaItemPropertyArtist:info.user.username,
@@ -394,30 +413,33 @@
 }
 
 - (void)didCompleteAudioStream:(NPAudioStream *)audioStream{
-    __block int idx = favourite.collection.count;
-    
-    [[WHWebrequestManager sharedManager] fetchMyFavouriteWithInfo:favourite
-                                                          success:^(MyFavourite *responseObject) {
-                                                              self->currentFavouriteIdx = idx;
-                                                              
-                                                              self->favourite = responseObject;
-                                                              
-                                                              if (self->player.currentState == ORGMEngineStatePlaying){
-                                                                  [self->player stop];
-                                                              }
-                                                              
-                                                              NSMutableArray *urls = [[NSMutableArray alloc] init];
-                                                              for (Collection *info in responseObject.collection) {
-                                                                  [urls addObject:[NSURL URLWithString:[NSString stringWithFormat:@"%@?client_id=47724625bbc02bbc335e84f2ed87c001", info.streamUrl]]];
-                                                              }
-                                                              
-                                                              [self->soundcloudStreamer setUrls:urls];
-                                                              [self->soundcloudStreamer selectIndexForPlayback:idx];
-                                                              
-                                                          }
-                                                          failure:^(NSError *error) {
-                                                              [self->soundcloudStreamer selectIndexForPlayback:0];
-                                                          }];
+    if (_delegate && [_delegate respondsToSelector:@selector(soundDidStop)]) {
+        [_delegate soundDidStop];
+    }
+//    __block int idx = favourite.collection.count;
+//    
+//    [[WHWebrequestManager sharedManager] fetchMyFavouriteWithInfo:favourite
+//                                                          success:^(MyFavourite *responseObject) {
+//                                                              self->currentFavouriteIdx = idx;
+//                                                              
+//                                                              self->favourite = responseObject;
+//                                                              
+//                                                              if (self->player.currentState == ORGMEngineStatePlaying){
+//                                                                  [self->player stop];
+//                                                              }
+//                                                              
+//                                                              NSMutableArray *urls = [[NSMutableArray alloc] init];
+//                                                              for (Collection *info in responseObject.collection) {
+//                                                                  [urls addObject:[NSURL URLWithString:[NSString stringWithFormat:@"%@?client_id=47724625bbc02bbc335e84f2ed87c001", info.streamUrl]]];
+//                                                              }
+//                                                              
+//                                                              [self->soundcloudStreamer setUrls:urls];
+//                                                              [self->soundcloudStreamer selectIndexForPlayback:idx];
+//                                                              
+//                                                          }
+//                                                          failure:^(NSError *error) {
+//                                                              [self->soundcloudStreamer selectIndexForPlayback:0];
+//                                                          }];
 }
 
 @end

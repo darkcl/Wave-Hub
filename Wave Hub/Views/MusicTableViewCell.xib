@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
+        <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <mutableArray key="Montserrat-Regular.ttf">
+            <string>Montserrat-Regular</string>
+            <string>Montserrat-Regular</string>
+            <string>Montserrat-Regular</string>
+        </mutableArray>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="MusicTableViewCell" rowHeight="87" id="KGk-i7-Jjw" customClass="MusicTableViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="80"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="79.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Uvv-oG-Zmw">
+                        <rect key="frame" x="15" y="14" width="50" height="50"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ZLo-JJ-etW">
+                                <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="ZLo-JJ-etW" firstAttribute="top" secondItem="Uvv-oG-Zmw" secondAttribute="top" id="LGM-1F-UfY"/>
+                            <constraint firstAttribute="trailing" secondItem="ZLo-JJ-etW" secondAttribute="trailing" id="R77-zc-b3q"/>
+                            <constraint firstAttribute="width" constant="50" id="SFR-x0-4BA"/>
+                            <constraint firstItem="ZLo-JJ-etW" firstAttribute="leading" secondItem="Uvv-oG-Zmw" secondAttribute="leading" id="VEF-gX-e04"/>
+                            <constraint firstAttribute="height" constant="50" id="d2K-XY-iz5"/>
+                            <constraint firstAttribute="bottom" secondItem="ZLo-JJ-etW" secondAttribute="bottom" id="h0q-l6-8jK"/>
+                        </constraints>
+                    </view>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gtn-YT-Mni">
+                        <rect key="frame" x="73" y="25" width="154" height="15"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="154" id="65p-CM-TmH"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="12"/>
+                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eOq-Cc-RqW">
+                        <rect key="frame" x="73" y="40" width="200" height="17.5"/>
+                        <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="14"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="T5v-k1-0iY">
+                        <rect key="frame" x="279" y="25" width="33" height="15"/>
+                        <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="12"/>
+                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="49x-9Q-fLh">
+                        <rect key="frame" x="0.0" y="77" width="320" height="2"/>
+                        <color key="progressTintColor" red="0.8862745098" green="0.24313725489999999" blue="0.40784313729999999" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="trackTintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </progressView>
+                </subviews>
+                <color key="backgroundColor" red="0.96862745098039216" green="0.96862745098039216" blue="0.96862745098039216" alpha="0.0" colorSpace="calibratedRGB"/>
+                <constraints>
+                    <constraint firstItem="eOq-Cc-RqW" firstAttribute="leading" secondItem="Uvv-oG-Zmw" secondAttribute="trailing" constant="8" id="0st-Sr-dpw"/>
+                    <constraint firstItem="T5v-k1-0iY" firstAttribute="centerY" secondItem="gtn-YT-Mni" secondAttribute="centerY" id="49T-iW-5EL"/>
+                    <constraint firstItem="gtn-YT-Mni" firstAttribute="firstBaseline" secondItem="Uvv-oG-Zmw" secondAttribute="centerY" constant="-3" id="C4g-1S-XEi"/>
+                    <constraint firstItem="T5v-k1-0iY" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" id="F4H-9M-nPV"/>
+                    <constraint firstAttribute="trailing" secondItem="49x-9Q-fLh" secondAttribute="trailing" id="Frq-F4-IoS"/>
+                    <constraint firstItem="Uvv-oG-Zmw" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="15" id="Zcd-og-HNS"/>
+                    <constraint firstItem="Uvv-oG-Zmw" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="gFG-Ax-nQq"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="eOq-Cc-RqW" secondAttribute="trailing" constant="39" id="hmG-D0-Rkz"/>
+                    <constraint firstItem="49x-9Q-fLh" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="lOR-Gl-pRX"/>
+                    <constraint firstAttribute="bottom" secondItem="49x-9Q-fLh" secondAttribute="bottom" id="mIZ-pa-OKc"/>
+                    <constraint firstItem="gtn-YT-Mni" firstAttribute="leading" secondItem="Uvv-oG-Zmw" secondAttribute="trailing" constant="8" id="of8-AG-II2"/>
+                    <constraint firstItem="eOq-Cc-RqW" firstAttribute="top" secondItem="gtn-YT-Mni" secondAttribute="bottom" id="uUx-1L-xSe"/>
+                </constraints>
+            </tableViewCellContentView>
+            <color key="backgroundColor" red="0.96862745098039216" green="0.96862745098039216" blue="0.96862745098039216" alpha="0.0" colorSpace="calibratedRGB"/>
+            <connections>
+                <outlet property="authorLabel" destination="gtn-YT-Mni" id="Z8K-gK-zrp"/>
+                <outlet property="coverImageView" destination="ZLo-JJ-etW" id="Z8a-D0-bln"/>
+                <outlet property="durationLabel" destination="T5v-k1-0iY" id="jnp-79-mxU"/>
+                <outlet property="progressView" destination="49x-9Q-fLh" id="iwp-BY-l6a"/>
+                <outlet property="titleLabel" destination="eOq-Cc-RqW" id="zaP-53-f6X"/>
+            </connections>
+            <point key="canvasLocation" x="357" y="348"/>
+        </tableViewCell>
+    </objects>
+</document>

@@ -33,6 +33,14 @@ typedef NS_ENUM(NSInteger, WHSoundManagerType) {
     WHSoundManagerTypeSoundCloud
 };
 
+@protocol WHSoundManagerDelegate <NSObject>
+
+- (void)didUpdatePlayingProgress:(float)progress;
+- (void)didUpdatePlayingIndex:(NSInteger)index;
+- (void)soundDidStop;
+
+@end
+
 @interface WHSoundManager : NSObject <ORGMEngineDelegate, WHFavouriteDelegate, AVAudioPlayerDelegate, NPAudioStreamDataSource, NPAudioStreamDelegate>{
     ORGMEngine *player;
     
@@ -58,6 +66,9 @@ typedef NS_ENUM(NSInteger, WHSoundManagerType) {
     
 }
 
+@property NSInteger playingIdx;
+@property float playingProgress;
+
 + (WHSoundManager *)sharedManager;
 
 - (void)playUrl:(NSString *)url forceStart:(BOOL)forceStart;
@@ -73,5 +84,7 @@ typedef NS_ENUM(NSInteger, WHSoundManagerType) {
 - (void)playerPlay;
 - (void)playerStop;
 - (void)playerSeekTime:(double)time;
+
+@property (assign) id<WHSoundManagerDelegate>delegate;
 
 @end

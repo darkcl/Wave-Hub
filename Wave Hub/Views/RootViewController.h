@@ -8,6 +8,14 @@
 
 #import <UIKit/UIKit.h>
 
-@interface RootViewController : UIViewController
+@interface RootViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, WHSoundManagerDelegate> {
+    MyFavourite *favourite;
+    NPAudioStream *streamer;
+    
+    float currentPlayingProgress;
+    NSInteger currentPlayingIndex;
+}
+
+@property (assign) id<WHFavouriteDelegate> delegate;
 
 @end

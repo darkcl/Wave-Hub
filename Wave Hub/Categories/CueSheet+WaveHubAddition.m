@@ -7,7 +7,7 @@
 //
 
 #import "CueSheet+WaveHubAddition.h"
-
+#import <objc/runtime.h>
 NSString const *kCueSheetUrlKey = @"com.memoryleadks.cuesheet.cueurl";
 
 @implementation CueSheet (WaveHubAddition)

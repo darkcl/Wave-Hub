@@ -42,7 +42,7 @@ NSString *const kMyFavouriteCollection = @"collection";
     NSMutableArray *parsedCollection = [NSMutableArray array];
     if ([receivedCollection isKindOfClass:[NSArray class]]) {
         for (NSDictionary *item in (NSArray *)receivedCollection) {
-            if ([item isKindOfClass:[NSDictionary class]]) {
+            if ([item isKindOfClass:[NSDictionary class]] && item[@"stream_url"] != nil) {
                 [parsedCollection addObject:[Collection modelObjectWithDictionary:item]];
             }
        }

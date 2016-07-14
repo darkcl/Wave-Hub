@@ -30,8 +30,13 @@
 		0EC527FE1C3A236500EC87C1 /* WHPlaylistModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EC527FD1C3A236500EC87C1 /* WHPlaylistModel.m */; };
 		1A44E872A0401F9F6EC5084C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 7535691D532C79453A972784 /* main.m */; };
 		6C5DC8333D90F8BAC26108B1 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 450213D723237E9D8191F6EF /* Images.xcassets */; };
+		741055B81D37DC190092BA43 /* Montserrat-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 742B73561D37D3A400837D74 /* Montserrat-Bold.ttf */; };
+		741055B91D37DC1C0092BA43 /* Montserrat-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 742B73571D37D3A400837D74 /* Montserrat-Regular.ttf */; };
+		741055BC1D37F45B0092BA43 /* NSLayoutConstraint+Multiplier.m in Sources */ = {isa = PBXBuildFile; fileRef = 741055BB1D37F45B0092BA43 /* NSLayoutConstraint+Multiplier.m */; };
 		742B73501D3560C800837D74 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 742B734E1D3560C800837D74 /* RootViewController.m */; };
 		742B73511D3560C800837D74 /* RootViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 742B734F1D3560C800837D74 /* RootViewController.xib */; };
+		742B735D1D37D44800837D74 /* MusicTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 742B735B1D37D44800837D74 /* MusicTableViewCell.m */; };
+		742B735E1D37D44800837D74 /* MusicTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 742B735C1D37D44800837D74 /* MusicTableViewCell.xib */; };
 		7475A5FE1BF4F9B600100498 /* MediaToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7475A5FD1BF4F9B600100498 /* MediaToolbox.framework */; };
 		74C3875A1BFE05DC005356C2 /* WHConstant.m in Sources */ = {isa = PBXBuildFile; fileRef = 74C387591BFE05DC005356C2 /* WHConstant.m */; };
 		C4F64ECA2A55365875E190E6 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B0FF2CBA0859ED2691E65FF5 /* Foundation.framework */; };
@@ -62,8 +67,8 @@
 		0E064CEC1BF2FC34002D2244 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
 		0E2914911BF58306004AA529 /* NSData+WaveHubAddition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+WaveHubAddition.h"; sourceTree = "<group>"; };
 		0E2914921BF58306004AA529 /* NSData+WaveHubAddition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+WaveHubAddition.m"; sourceTree = "<group>"; };
-		0E2914941BF58387004AA529 /* WHDatabaseManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WHDatabaseManager.h; sourceTree = "<group>"; };
-		0E2914951BF58387004AA529 /* WHDatabaseManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WHDatabaseManager.m; sourceTree = "<group>"; };
+		0E2914941BF58387004AA529 /* WHDatabaseManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WHDatabaseManager.h; path = ../Models/WHDatabaseManager.h; sourceTree = "<group>"; };
+		0E2914951BF58387004AA529 /* WHDatabaseManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WHDatabaseManager.m; path = ../Models/WHDatabaseManager.m; sourceTree = "<group>"; };
 		0E29149E1BF96F3D004AA529 /* WHTrackModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WHTrackModel.h; sourceTree = "<group>"; };
 		0E29149F1BF96F3D004AA529 /* WHTrackModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WHTrackModel.m; sourceTree = "<group>"; };
 		0E2914AA1BF97924004AA529 /* WHDashBoardViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WHDashBoardViewController.h; sourceTree = "<group>"; };
@@ -75,12 +80,12 @@
 		0E2914B61BF98339004AA529 /* UIViewController+WaveHubAddition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+WaveHubAddition.m"; sourceTree = "<group>"; };
 		0E296DAC1BF4A1F900ED3147 /* CueSheet+WaveHubAddition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CueSheet+WaveHubAddition.h"; sourceTree = "<group>"; };
 		0E296DAD1BF4A1F900ED3147 /* CueSheet+WaveHubAddition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CueSheet+WaveHubAddition.m"; sourceTree = "<group>"; };
-		0E2B7E771BF445D2001B7A25 /* WHSoundManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WHSoundManager.h; sourceTree = "<group>"; };
-		0E2B7E781BF445D2001B7A25 /* WHSoundManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WHSoundManager.m; sourceTree = "<group>"; };
+		0E2B7E771BF445D2001B7A25 /* WHSoundManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WHSoundManager.h; path = ../Models/WHSoundManager.h; sourceTree = "<group>"; };
+		0E2B7E781BF445D2001B7A25 /* WHSoundManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WHSoundManager.m; path = ../Models/WHSoundManager.m; sourceTree = "<group>"; };
 		0E2B7E7A1BF475BC001B7A25 /* WHApplication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WHApplication.h; sourceTree = "<group>"; };
 		0E2B7E7B1BF475BC001B7A25 /* WHApplication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WHApplication.m; sourceTree = "<group>"; };
-		0E44F8651BEB4DD400F8571D /* WHWebrequestManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WHWebrequestManager.h; sourceTree = "<group>"; };
-		0E44F8661BEB4DD400F8571D /* WHWebrequestManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WHWebrequestManager.m; sourceTree = "<group>"; };
+		0E44F8651BEB4DD400F8571D /* WHWebrequestManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WHWebrequestManager.h; path = ../Models/WHWebrequestManager.h; sourceTree = "<group>"; };
+		0E44F8661BEB4DD400F8571D /* WHWebrequestManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WHWebrequestManager.m; path = ../Models/WHWebrequestManager.m; sourceTree = "<group>"; };
 		0E44F86E1BEB550B00F8571D /* WHFavouriteTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WHFavouriteTableViewController.h; sourceTree = "<group>"; };
 		0E44F86F1BEB550B00F8571D /* WHFavouriteTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WHFavouriteTableViewController.m; sourceTree = "<group>"; };
 		0E44F8731BEB553300F8571D /* WHPlaylistTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WHPlaylistTableViewController.h; sourceTree = "<group>"; };
@@ -98,9 +103,16 @@
 		450213D723237E9D8191F6EF /* Images.xcassets */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		48D54F111D4774526C3EF083 /* Pods-Wave Hub.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Wave Hub.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Wave Hub/Pods-Wave Hub.debug.xcconfig"; sourceTree = "<group>"; };
 		6C0AE585EC62527A7EF19A9D /* UnitTests-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "UnitTests-Info.plist"; sourceTree = "<group>"; };
+		741055BA1D37F45B0092BA43 /* NSLayoutConstraint+Multiplier.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSLayoutConstraint+Multiplier.h"; sourceTree = "<group>"; };
+		741055BB1D37F45B0092BA43 /* NSLayoutConstraint+Multiplier.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSLayoutConstraint+Multiplier.m"; sourceTree = "<group>"; };
 		742B734D1D3560C800837D74 /* RootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
 		742B734E1D3560C800837D74 /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
 		742B734F1D3560C800837D74 /* RootViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RootViewController.xib; sourceTree = "<group>"; };
+		742B73561D37D3A400837D74 /* Montserrat-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Bold.ttf"; sourceTree = "<group>"; };
+		742B73571D37D3A400837D74 /* Montserrat-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Regular.ttf"; sourceTree = "<group>"; };
+		742B735A1D37D44800837D74 /* MusicTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MusicTableViewCell.h; sourceTree = "<group>"; };
+		742B735B1D37D44800837D74 /* MusicTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MusicTableViewCell.m; sourceTree = "<group>"; };
+		742B735C1D37D44800837D74 /* MusicTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MusicTableViewCell.xib; sourceTree = "<group>"; };
 		7475A5FD1BF4F9B600100498 /* MediaToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaToolbox.framework; path = System/Library/Frameworks/MediaToolbox.framework; sourceTree = SDKROOT; };
 		74C387581BFE05DC005356C2 /* WHConstant.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WHConstant.h; sourceTree = "<group>"; };
 		74C387591BFE05DC005356C2 /* WHConstant.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WHConstant.m; sourceTree = "<group>"; };
@@ -240,6 +252,8 @@
 		155F34F450AAEF294FE1B03B /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				742B73561D37D3A400837D74 /* Montserrat-Bold.ttf */,
+				742B73571D37D3A400837D74 /* Montserrat-Regular.ttf */,
 				450213D723237E9D8191F6EF /* Images.xcassets */,
 				4E082CAC323912BD15C3CBAC /* Nibs */,
 				2217E65619CBF89409D3E026 /* Other-Sources */,
@@ -262,9 +276,7 @@
 			isa = PBXGroup;
 			children = (
 				0E44F86D1BEB4FBB00F8571D /* Will Delete */,
-				742B734D1D3560C800837D74 /* RootViewController.h */,
-				742B734E1D3560C800837D74 /* RootViewController.m */,
-				742B734F1D3560C800837D74 /* RootViewController.xib */,
+				742B73581D37D41F00837D74 /* Root View */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -313,6 +325,27 @@
 			path = Nibs;
 			sourceTree = "<group>";
 		};
+		742B73581D37D41F00837D74 /* Root View */ = {
+			isa = PBXGroup;
+			children = (
+				742B73591D37D42C00837D74 /* Cell */,
+				742B734D1D3560C800837D74 /* RootViewController.h */,
+				742B734E1D3560C800837D74 /* RootViewController.m */,
+				742B734F1D3560C800837D74 /* RootViewController.xib */,
+			);
+			name = "Root View";
+			sourceTree = "<group>";
+		};
+		742B73591D37D42C00837D74 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				742B735A1D37D44800837D74 /* MusicTableViewCell.h */,
+				742B735B1D37D44800837D74 /* MusicTableViewCell.m */,
+				742B735C1D37D44800837D74 /* MusicTableViewCell.xib */,
+			);
+			name = Cell;
+			sourceTree = "<group>";
+		};
 		9A6A2BBA288A8DC74B668219 /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
@@ -348,6 +381,8 @@
 				0E2914921BF58306004AA529 /* NSData+WaveHubAddition.m */,
 				0E2914B51BF98339004AA529 /* UIViewController+WaveHubAddition.h */,
 				0E2914B61BF98339004AA529 /* UIViewController+WaveHubAddition.m */,
+				741055BA1D37F45B0092BA43 /* NSLayoutConstraint+Multiplier.h */,
+				741055BB1D37F45B0092BA43 /* NSLayoutConstraint+Multiplier.m */,
 			);
 			path = Categories;
 			sourceTree = "<group>";
@@ -355,6 +390,12 @@
 		C0378A827E14424F6D9580F4 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				0E44F8651BEB4DD400F8571D /* WHWebrequestManager.h */,
+				0E44F8661BEB4DD400F8571D /* WHWebrequestManager.m */,
+				0E2B7E771BF445D2001B7A25 /* WHSoundManager.h */,
+				0E2B7E781BF445D2001B7A25 /* WHSoundManager.m */,
+				0E2914941BF58387004AA529 /* WHDatabaseManager.h */,
+				0E2914951BF58387004AA529 /* WHDatabaseManager.m */,
 				781D2B8E9A1F36A0D4E8AF0E /* WHAppDelegate.h */,
 				241B6531260B64A07C64DCF3 /* WHAppDelegate.m */,
 				0E2B7E7A1BF475BC001B7A25 /* WHApplication.h */,
@@ -396,12 +437,6 @@
 			isa = PBXGroup;
 			children = (
 				0E064CFA1BF30C51002D2244 /* SoundCloud */,
-				0E44F8651BEB4DD400F8571D /* WHWebrequestManager.h */,
-				0E44F8661BEB4DD400F8571D /* WHWebrequestManager.m */,
-				0E2B7E771BF445D2001B7A25 /* WHSoundManager.h */,
-				0E2B7E781BF445D2001B7A25 /* WHSoundManager.m */,
-				0E2914941BF58387004AA529 /* WHDatabaseManager.h */,
-				0E2914951BF58387004AA529 /* WHDatabaseManager.m */,
 				0E29149E1BF96F3D004AA529 /* WHTrackModel.h */,
 				0E29149F1BF96F3D004AA529 /* WHTrackModel.m */,
 				0EC527FC1C3A236500EC87C1 /* WHPlaylistModel.h */,
@@ -517,11 +552,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				741055B91D37DC1C0092BA43 /* Montserrat-Regular.ttf in Resources */,
 				6C5DC8333D90F8BAC26108B1 /* Images.xcassets in Resources */,
 				F8A560A340ED7920227E1490 /* Settings.bundle in Resources */,
 				742B73511D3560C800837D74 /* RootViewController.xib in Resources */,
+				742B735E1D37D44800837D74 /* MusicTableViewCell.xib in Resources */,
 				0E7DA1741BE9BB60006551C4 /* WHRootViewController.xib in Resources */,
 				0E2914B31BF97DEB004AA529 /* WHContainerViewController.xib in Resources */,
+				741055B81D37DC190092BA43 /* Montserrat-Bold.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -637,10 +675,12 @@
 				0E44F8791BEB557600F8571D /* WHLocalSongsTableViewController.m in Sources */,
 				0E2914961BF58387004AA529 /* WHDatabaseManager.m in Sources */,
 				0E064CEF1BF2FC34002D2244 /* User.m in Sources */,
+				741055BC1D37F45B0092BA43 /* NSLayoutConstraint+Multiplier.m in Sources */,
 				0E2914A01BF96F3D004AA529 /* WHTrackModel.m in Sources */,
 				0E2B7E791BF445D2001B7A25 /* WHSoundManager.m in Sources */,
 				1A44E872A0401F9F6EC5084C /* main.m in Sources */,
 				0E2914AD1BF97924004AA529 /* WHDashBoardViewController.m in Sources */,
+				742B735D1D37D44800837D74 /* MusicTableViewCell.m in Sources */,
 				0E2B7E7C1BF475BC001B7A25 /* WHApplication.m in Sources */,
 				74C3875A1BFE05DC005356C2 /* WHConstant.m in Sources */,
 				0E44F8671BEB4DD400F8571D /* WHWebrequestManager.m in Sources */,
