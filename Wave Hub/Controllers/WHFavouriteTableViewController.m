@@ -36,9 +36,12 @@
     _delegate = [WHSoundManager sharedManager];
     MJRefreshStateHeader *header = [MJRefreshStateHeader headerWithRefreshingBlock:^{
         //Call this Block When enter the refresh status automatically
-        [[WHWebrequestManager sharedManager] fetchMyFavouriteWithInfo:nil
+        [[WHWebrequestManager sharedManager] fetchAllFavouriteWithInfo:nil
                                                               success:^(MyFavourite *responseObject) {
                                                                   self->favourite = responseObject;
+                                                                  
+                                                                  [[WHDatabaseManager sharedManager] saveMyFavourite:responseObject];
+                                                                  
                                                                   [self.tableView reloadData];
                                                                   [self.tableView.mj_header endRefreshing];
                                                               }
@@ -60,7 +63,14 @@
     
     self.tableView.mj_header = header;
     
-    [self.tableView.mj_header beginRefreshing];
+    [[WHDatabaseManager sharedManager] readMyFavourite:^(id result) {
+        if (result == nil) {
+            [self.tableView.mj_header beginRefreshing];
+        }else{
+            self->favourite = result;
+            [self.tableView reloadData];
+        }
+    }];
     
     
 }

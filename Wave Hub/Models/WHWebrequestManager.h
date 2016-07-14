@@ -35,4 +35,8 @@ typedef void(^RequestFailure)(NSError *error);
                  success:(RequestSuccess)successBlock
                  failure:(RequestFailure)failureBlock;
 
+- (void)fetchAllFavouriteWithInfo:(MyFavourite *)info
+                          success:(RequestSuccess)successBlock
+                          failure:(RequestFailure)failureBlock;
+
 @end

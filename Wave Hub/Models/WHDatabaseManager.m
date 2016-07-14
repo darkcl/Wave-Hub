@@ -60,4 +60,18 @@
 //    YapDatabaseConnection *connection = [db newConnection];
 }
 
+- (void)saveMyFavourite:(MyFavourite *)favourite{
+    YapDatabaseConnection *connection = [db newConnection];
+    [connection readWriteWithBlock:^(YapDatabaseReadWriteTransaction * _Nonnull transaction) {
+        [transaction setObject:favourite forKey:@"favourites" inCollection:@"wave_hub"];
+    }];
+}
+
+- (void)readMyFavourite:(DatabaseReturn)successBlock{
+    YapDatabaseConnection *connection = [db newConnection];
+    [connection readWithBlock:^(YapDatabaseReadTransaction * _Nonnull transaction) {
+        successBlock([transaction objectForKey:@"favourites" inCollection:@"wave_hub"]);
+    }];
+}
+
 @end

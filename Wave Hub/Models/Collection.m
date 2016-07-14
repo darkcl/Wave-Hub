@@ -252,7 +252,9 @@ NSString *const kCollectionSharing = @"sharing";
 - (id)objectOrNilForKey:(id)aKey fromDictionary:(NSDictionary *)dict
 {
     id object = [dict objectForKey:aKey];
-    return [object isEqual:[NSNull null]] ? nil : object;
+    
+    
+    return (object == nil) ? [NSNull null] : object;
 }
 
 
@@ -313,7 +315,6 @@ NSString *const kCollectionSharing = @"sharing";
     self.sharing = [aDecoder decodeObjectForKey:kCollectionSharing];
     return self;
 }
-
 - (void)encodeWithCoder:(NSCoder *)aCoder
 {
 
@@ -327,10 +328,13 @@ NSString *const kCollectionSharing = @"sharing";
     [aCoder encodeDouble:_downloadCount forKey:kCollectionDownloadCount];
     [aCoder encodeObject:_license forKey:kCollectionLicense];
     [aCoder encodeBool:_downloadable forKey:kCollectionDownloadable];
-    [aCoder encodeObject:_purchaseUrl forKey:kCollectionPurchaseUrl];
+    
+    
+    
+//    [aCoder encodeObject:_purchaseUrl forKey:kCollectionPurchaseUrl];
     [aCoder encodeDouble:_duration forKey:kCollectionDuration];
     [aCoder encodeObject:_collectionDescription forKey:kCollectionDescription];
-    [aCoder encodeObject:_purchaseTitle forKey:kCollectionPurchaseTitle];
+//    [aCoder encodeObject:_purchaseTitle forKey:kCollectionPurchaseTitle];
     [aCoder encodeObject:_embeddableBy forKey:kCollectionEmbeddableBy];
     [aCoder encodeObject:_tagList forKey:kCollectionTagList];
     [aCoder encodeObject:_releaseMonth forKey:kCollectionReleaseMonth];
@@ -340,9 +344,9 @@ NSString *const kCollectionSharing = @"sharing";
     [aCoder encodeObject:_streamUrl forKey:kCollectionStreamUrl];
     [aCoder encodeObject:_originalFormat forKey:kCollectionOriginalFormat];
     [aCoder encodeObject:_user forKey:kCollectionUser];
-    [aCoder encodeObject:_bpm forKey:kCollectionBpm];
+//    [aCoder encodeObject:_bpm forKey:kCollectionBpm];
     [aCoder encodeObject:_waveformUrl forKey:kCollectionWaveformUrl];
-    [aCoder encodeObject:_labelName forKey:kCollectionLabelName];
+//    [aCoder encodeObject:_labelName forKey:kCollectionLabelName];
     [aCoder encodeObject:_artworkUrl forKey:kCollectionArtworkUrl];
     [aCoder encodeBool:_streamable forKey:kCollectionStreamable];
     [aCoder encodeObject:_attachmentsUri forKey:kCollectionAttachmentsUri];
@@ -353,10 +357,10 @@ NSString *const kCollectionSharing = @"sharing";
     [aCoder encodeDouble:_playbackCount forKey:kCollectionPlaybackCount];
     [aCoder encodeObject:_kind forKey:kCollectionKind];
     [aCoder encodeDouble:_userId forKey:kCollectionUserId];
-    [aCoder encodeObject:_isrc forKey:kCollectionIsrc];
+//    [aCoder encodeObject:_isrc forKey:kCollectionIsrc];
     [aCoder encodeDouble:_originalContentSize forKey:kCollectionOriginalContentSize];
     [aCoder encodeObject:_downloadUrl forKey:kCollectionDownloadUrl];
-    [aCoder encodeObject:_videoUrl forKey:kCollectionVideoUrl];
+//    [aCoder encodeObject:_videoUrl forKey:kCollectionVideoUrl];
     [aCoder encodeObject:_releaseYear forKey:kCollectionReleaseYear];
     [aCoder encodeObject:_labelId forKey:kCollectionLabelId];
     [aCoder encodeObject:_uri forKey:kCollectionUri];
@@ -378,44 +382,31 @@ NSString *const kCollectionSharing = @"sharing";
         copy.monetizationModel = [self.monetizationModel copyWithZone:zone];
         copy.createdAt = [self.createdAt copyWithZone:zone];
         copy.collectionIdentifier = self.collectionIdentifier;
-        copy.releaseDay = [self.releaseDay copyWithZone:zone];
         copy.genre = [self.genre copyWithZone:zone];
         copy.state = [self.state copyWithZone:zone];
         copy.downloadCount = self.downloadCount;
         copy.license = [self.license copyWithZone:zone];
         copy.downloadable = self.downloadable;
-        copy.purchaseUrl = [self.purchaseUrl copyWithZone:zone];
         copy.duration = self.duration;
         copy.collectionDescription = [self.collectionDescription copyWithZone:zone];
-        copy.purchaseTitle = [self.purchaseTitle copyWithZone:zone];
         copy.embeddableBy = [self.embeddableBy copyWithZone:zone];
         copy.tagList = [self.tagList copyWithZone:zone];
-        copy.releaseMonth = [self.releaseMonth copyWithZone:zone];
         copy.lastModified = [self.lastModified copyWithZone:zone];
         copy.userFavorite = self.userFavorite;
-        copy.trackType = [self.trackType copyWithZone:zone];
         copy.streamUrl = [self.streamUrl copyWithZone:zone];
         copy.originalFormat = [self.originalFormat copyWithZone:zone];
         copy.user = [self.user copyWithZone:zone];
-        copy.bpm = [self.bpm copyWithZone:zone];
         copy.waveformUrl = [self.waveformUrl copyWithZone:zone];
-        copy.labelName = [self.labelName copyWithZone:zone];
         copy.artworkUrl = [self.artworkUrl copyWithZone:zone];
         copy.streamable = self.streamable;
         copy.attachmentsUri = [self.attachmentsUri copyWithZone:zone];
         copy.commentCount = self.commentCount;
         copy.commentable = self.commentable;
-        copy.keySignature = [self.keySignature copyWithZone:zone];
-        copy.releases = [self.releases copyWithZone:zone];
         copy.playbackCount = self.playbackCount;
         copy.kind = [self.kind copyWithZone:zone];
         copy.userId = self.userId;
-        copy.isrc = [self.isrc copyWithZone:zone];
         copy.originalContentSize = self.originalContentSize;
         copy.downloadUrl = [self.downloadUrl copyWithZone:zone];
-        copy.videoUrl = [self.videoUrl copyWithZone:zone];
-        copy.releaseYear = [self.releaseYear copyWithZone:zone];
-        copy.labelId = [self.labelId copyWithZone:zone];
         copy.uri = [self.uri copyWithZone:zone];
         copy.title = [self.title copyWithZone:zone];
         copy.userPlaybackCount = self.userPlaybackCount;

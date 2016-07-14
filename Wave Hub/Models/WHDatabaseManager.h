@@ -9,6 +9,8 @@
 #import <Foundation/Foundation.h>
 #import <YapDatabase/YapDatabase.h>
 
+@class MyFavourite;
+
 typedef void(^DatabaseReturn)(id result);
 
 @interface WHDatabaseManager : NSObject{
@@ -22,5 +24,8 @@ typedef void(^DatabaseReturn)(id result);
 
 - (void)creatNewPlaylistWithName:(NSString *)playlistName songs:(NSArray *)songs;
 - (void)readPlaylists:(DatabaseReturn)successBlock;
+
+- (void)saveMyFavourite:(MyFavourite *)favourite;
+- (void)readMyFavourite:(DatabaseReturn)successBlock;
 
 @end

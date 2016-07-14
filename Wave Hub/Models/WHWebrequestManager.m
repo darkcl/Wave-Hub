@@ -102,6 +102,67 @@ static NSString * const kBaseURL = @"https://api.soundcloud.com";
              }];
 }
 
+- (MyFavourite *)mergeFavourite:(MyFavourite *)obj1
+                    toFavourite:(MyFavourite *)obj2{
+    if (obj1 == nil) {
+        return obj2;
+    }else{
+        NSMutableArray *collections = [[NSMutableArray alloc] initWithArray:obj1.collection];
+        [collections addObjectsFromArray:obj2.collection];
+        
+        MyFavourite *result = [[MyFavourite alloc] init];
+        
+        result.collection = collections;
+        result.nextHref = obj2.nextHref;
+        NSLog(@"Next Href: %@", result.nextHref);
+        return result;
+    }
+}
+
+- (void)fetchAllFavouriteWithInfo:(MyFavourite *)info
+                          success:(RequestSuccess)successBlock
+                             failure:(RequestFailure)failureBlock{
+    NSString *url;
+    if (info != nil) {
+        if (info.nextHref != nil && info.nextHref.length != 0) {
+            url = info.nextHref;
+        }else{
+            successBlock(info);
+            return;
+        }
+    }else{
+        url = @"https://api.soundcloud.com/me/favorites";
+    }
+    
+    [SCRequest performMethod:SCRequestMethodGET
+                  onResource:[NSURL URLWithString:url]
+             usingParameters:@{@"linked_partitioning":@"1"}
+                 withAccount:[SCSoundCloud account]
+      sendingProgressHandler:^(unsigned long long bytesSend, unsigned long long bytesTotal) {
+          
+      }
+             responseHandler:^(NSURLResponse *response, NSData *responseData, NSError *error) {
+                 if (error) {
+                     failureBlock(error);
+                     
+                 }else{
+                     NSError *jsonError;
+                     NSDictionary *aDict = [NSJSONSerialization JSONObjectWithData:responseData
+                                                                           options:NSJSONReadingAllowFragments
+                                                                             error:&jsonError];
+                     if (jsonError) {
+                         failureBlock(jsonError);
+                     }else{
+                         MyFavourite *favourites = [MyFavourite modelObjectWithDictionary:aDict];
+                         MyFavourite *result = [self mergeFavourite:info toFavourite:favourites];
+                         [self fetchAllFavouriteWithInfo:result
+                                                 success:successBlock
+                                                 failure:failureBlock];
+                     }
+                 }
+             }];
+}
+
 - (void)fetchMyFavouriteWithInfo:(MyFavourite *)info
                          success:(RequestSuccess)successBlock
                          failure:(RequestFailure)failureBlock{

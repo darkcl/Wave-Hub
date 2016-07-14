@@ -22,4 +22,6 @@
 #import "WHAppDelegate.h"
 #import "WHWebrequestManager.h"
 #import "WHSoundManager.h"
+#import "WHDatabaseManager.h"
+
 #endif
