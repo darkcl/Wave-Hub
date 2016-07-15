@@ -8,25 +8,14 @@
 
 /* Begin PBXBuildFile section */
 		0E064CE51BF2FBD9002D2244 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0E064CE41BF2FBD9002D2244 /* AVFoundation.framework */; };
-		0E064CED1BF2FC34002D2244 /* Collection.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E064CE71BF2FC34002D2244 /* Collection.m */; };
-		0E064CEE1BF2FC34002D2244 /* MyFavourite.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E064CEA1BF2FC34002D2244 /* MyFavourite.m */; };
-		0E064CEF1BF2FC34002D2244 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E064CEC1BF2FC34002D2244 /* User.m */; };
 		0E2914931BF58306004AA529 /* NSData+WaveHubAddition.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E2914921BF58306004AA529 /* NSData+WaveHubAddition.m */; };
 		0E2914961BF58387004AA529 /* WHDatabaseManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E2914951BF58387004AA529 /* WHDatabaseManager.m */; };
 		0E2914A01BF96F3D004AA529 /* WHTrackModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E29149F1BF96F3D004AA529 /* WHTrackModel.m */; };
-		0E2914AD1BF97924004AA529 /* WHDashBoardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E2914AB1BF97924004AA529 /* WHDashBoardViewController.m */; };
-		0E2914B21BF97DEB004AA529 /* WHContainerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E2914B01BF97DEB004AA529 /* WHContainerViewController.m */; };
-		0E2914B31BF97DEB004AA529 /* WHContainerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0E2914B11BF97DEB004AA529 /* WHContainerViewController.xib */; };
 		0E2914B71BF98339004AA529 /* UIViewController+WaveHubAddition.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E2914B61BF98339004AA529 /* UIViewController+WaveHubAddition.m */; };
 		0E296DAE1BF4A1F900ED3147 /* CueSheet+WaveHubAddition.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E296DAD1BF4A1F900ED3147 /* CueSheet+WaveHubAddition.m */; };
 		0E2B7E791BF445D2001B7A25 /* WHSoundManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E2B7E781BF445D2001B7A25 /* WHSoundManager.m */; };
 		0E2B7E7C1BF475BC001B7A25 /* WHApplication.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E2B7E7B1BF475BC001B7A25 /* WHApplication.m */; };
 		0E44F8671BEB4DD400F8571D /* WHWebrequestManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E44F8661BEB4DD400F8571D /* WHWebrequestManager.m */; };
-		0E44F8701BEB550B00F8571D /* WHFavouriteTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E44F86F1BEB550B00F8571D /* WHFavouriteTableViewController.m */; };
-		0E44F8751BEB553300F8571D /* WHPlaylistTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E44F8741BEB553300F8571D /* WHPlaylistTableViewController.m */; };
-		0E44F8791BEB557600F8571D /* WHLocalSongsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E44F8781BEB557600F8571D /* WHLocalSongsTableViewController.m */; };
-		0E7DA1731BE9BB60006551C4 /* WHRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E7DA1711BE9BB60006551C4 /* WHRootViewController.m */; };
-		0E7DA1741BE9BB60006551C4 /* WHRootViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0E7DA1721BE9BB60006551C4 /* WHRootViewController.xib */; };
 		0EC527FE1C3A236500EC87C1 /* WHPlaylistModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EC527FD1C3A236500EC87C1 /* WHPlaylistModel.m */; };
 		0EEE6B0A1D3886A800068BFE /* MusicDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EEE6B081D3886A800068BFE /* MusicDetailViewController.m */; };
 		0EEE6B0B1D3886A800068BFE /* MusicDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0EEE6B091D3886A800068BFE /* MusicDetailViewController.xib */; };
@@ -60,24 +49,12 @@
 
 /* Begin PBXFileReference section */
 		0E064CE41BF2FBD9002D2244 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
-		0E064CE61BF2FC34002D2244 /* Collection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Collection.h; sourceTree = "<group>"; };
-		0E064CE71BF2FC34002D2244 /* Collection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Collection.m; sourceTree = "<group>"; };
-		0E064CE81BF2FC34002D2244 /* DataModels.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataModels.h; sourceTree = "<group>"; };
-		0E064CE91BF2FC34002D2244 /* MyFavourite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyFavourite.h; sourceTree = "<group>"; };
-		0E064CEA1BF2FC34002D2244 /* MyFavourite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyFavourite.m; sourceTree = "<group>"; };
-		0E064CEB1BF2FC34002D2244 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
-		0E064CEC1BF2FC34002D2244 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
 		0E2914911BF58306004AA529 /* NSData+WaveHubAddition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+WaveHubAddition.h"; sourceTree = "<group>"; };
 		0E2914921BF58306004AA529 /* NSData+WaveHubAddition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+WaveHubAddition.m"; sourceTree = "<group>"; };
 		0E2914941BF58387004AA529 /* WHDatabaseManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WHDatabaseManager.h; path = ../Models/WHDatabaseManager.h; sourceTree = "<group>"; };
 		0E2914951BF58387004AA529 /* WHDatabaseManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WHDatabaseManager.m; path = ../Models/WHDatabaseManager.m; sourceTree = "<group>"; };
 		0E29149E1BF96F3D004AA529 /* WHTrackModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WHTrackModel.h; sourceTree = "<group>"; };
 		0E29149F1BF96F3D004AA529 /* WHTrackModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WHTrackModel.m; sourceTree = "<group>"; };
-		0E2914AA1BF97924004AA529 /* WHDashBoardViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WHDashBoardViewController.h; sourceTree = "<group>"; };
-		0E2914AB1BF97924004AA529 /* WHDashBoardViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WHDashBoardViewController.m; sourceTree = "<group>"; };
-		0E2914AF1BF97DEB004AA529 /* WHContainerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WHContainerViewController.h; sourceTree = "<group>"; };
-		0E2914B01BF97DEB004AA529 /* WHContainerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WHContainerViewController.m; sourceTree = "<group>"; };
-		0E2914B11BF97DEB004AA529 /* WHContainerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WHContainerViewController.xib; sourceTree = "<group>"; };
 		0E2914B51BF98339004AA529 /* UIViewController+WaveHubAddition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+WaveHubAddition.h"; sourceTree = "<group>"; };
 		0E2914B61BF98339004AA529 /* UIViewController+WaveHubAddition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+WaveHubAddition.m"; sourceTree = "<group>"; };
 		0E296DAC1BF4A1F900ED3147 /* CueSheet+WaveHubAddition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CueSheet+WaveHubAddition.h"; sourceTree = "<group>"; };
@@ -88,15 +65,6 @@
 		0E2B7E7B1BF475BC001B7A25 /* WHApplication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WHApplication.m; sourceTree = "<group>"; };
 		0E44F8651BEB4DD400F8571D /* WHWebrequestManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WHWebrequestManager.h; path = ../Models/WHWebrequestManager.h; sourceTree = "<group>"; };
 		0E44F8661BEB4DD400F8571D /* WHWebrequestManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WHWebrequestManager.m; path = ../Models/WHWebrequestManager.m; sourceTree = "<group>"; };
-		0E44F86E1BEB550B00F8571D /* WHFavouriteTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WHFavouriteTableViewController.h; sourceTree = "<group>"; };
-		0E44F86F1BEB550B00F8571D /* WHFavouriteTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WHFavouriteTableViewController.m; sourceTree = "<group>"; };
-		0E44F8731BEB553300F8571D /* WHPlaylistTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WHPlaylistTableViewController.h; sourceTree = "<group>"; };
-		0E44F8741BEB553300F8571D /* WHPlaylistTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WHPlaylistTableViewController.m; sourceTree = "<group>"; };
-		0E44F8771BEB557600F8571D /* WHLocalSongsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WHLocalSongsTableViewController.h; sourceTree = "<group>"; };
-		0E44F8781BEB557600F8571D /* WHLocalSongsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WHLocalSongsTableViewController.m; sourceTree = "<group>"; };
-		0E7DA1701BE9BB60006551C4 /* WHRootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WHRootViewController.h; sourceTree = "<group>"; };
-		0E7DA1711BE9BB60006551C4 /* WHRootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WHRootViewController.m; sourceTree = "<group>"; };
-		0E7DA1721BE9BB60006551C4 /* WHRootViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WHRootViewController.xib; sourceTree = "<group>"; };
 		0EC527FC1C3A236500EC87C1 /* WHPlaylistModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WHPlaylistModel.h; sourceTree = "<group>"; };
 		0EC527FD1C3A236500EC87C1 /* WHPlaylistModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WHPlaylistModel.m; sourceTree = "<group>"; };
 		0EEE6B071D3886A800068BFE /* MusicDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MusicDetailViewController.h; sourceTree = "<group>"; };
@@ -170,90 +138,6 @@
 			path = Headers;
 			sourceTree = "<group>";
 		};
-		0E064CF91BF30C4B002D2244 /* Collection */ = {
-			isa = PBXGroup;
-			children = (
-				0E064CE61BF2FC34002D2244 /* Collection.h */,
-				0E064CE71BF2FC34002D2244 /* Collection.m */,
-			);
-			name = Collection;
-			sourceTree = "<group>";
-		};
-		0E064CFA1BF30C51002D2244 /* SoundCloud */ = {
-			isa = PBXGroup;
-			children = (
-				0E064CEB1BF2FC34002D2244 /* User.h */,
-				0E064CEC1BF2FC34002D2244 /* User.m */,
-				0E064CEA1BF2FC34002D2244 /* MyFavourite.m */,
-				0E064CE81BF2FC34002D2244 /* DataModels.h */,
-				0E064CF91BF30C4B002D2244 /* Collection */,
-				0E064CE91BF2FC34002D2244 /* MyFavourite.h */,
-			);
-			name = SoundCloud;
-			sourceTree = "<group>";
-		};
-		0E2914B41BF97DEF004AA529 /* Container */ = {
-			isa = PBXGroup;
-			children = (
-				0E2914AF1BF97DEB004AA529 /* WHContainerViewController.h */,
-				0E2914B01BF97DEB004AA529 /* WHContainerViewController.m */,
-				0E2914B11BF97DEB004AA529 /* WHContainerViewController.xib */,
-			);
-			name = Container;
-			sourceTree = "<group>";
-		};
-		0E44F86D1BEB4FBB00F8571D /* Will Delete */ = {
-			isa = PBXGroup;
-			children = (
-				0E7DA1751BE9BB65006551C4 /* Root View Controller */,
-				0E2914B41BF97DEF004AA529 /* Container */,
-				0E44F8761BEB555A00F8571D /* Local Songs */,
-				0E44F8721BEB552000F8571D /* Playlist */,
-				0E44F8711BEB550F00F8571D /* Favourite */,
-				0E2914AA1BF97924004AA529 /* WHDashBoardViewController.h */,
-				0E2914AB1BF97924004AA529 /* WHDashBoardViewController.m */,
-			);
-			name = "Will Delete";
-			path = ../Controllers;
-			sourceTree = "<group>";
-		};
-		0E44F8711BEB550F00F8571D /* Favourite */ = {
-			isa = PBXGroup;
-			children = (
-				0E44F86E1BEB550B00F8571D /* WHFavouriteTableViewController.h */,
-				0E44F86F1BEB550B00F8571D /* WHFavouriteTableViewController.m */,
-			);
-			name = Favourite;
-			sourceTree = "<group>";
-		};
-		0E44F8721BEB552000F8571D /* Playlist */ = {
-			isa = PBXGroup;
-			children = (
-				0E44F8731BEB553300F8571D /* WHPlaylistTableViewController.h */,
-				0E44F8741BEB553300F8571D /* WHPlaylistTableViewController.m */,
-			);
-			name = Playlist;
-			sourceTree = "<group>";
-		};
-		0E44F8761BEB555A00F8571D /* Local Songs */ = {
-			isa = PBXGroup;
-			children = (
-				0E44F8771BEB557600F8571D /* WHLocalSongsTableViewController.h */,
-				0E44F8781BEB557600F8571D /* WHLocalSongsTableViewController.m */,
-			);
-			name = "Local Songs";
-			sourceTree = "<group>";
-		};
-		0E7DA1751BE9BB65006551C4 /* Root View Controller */ = {
-			isa = PBXGroup;
-			children = (
-				0E7DA1701BE9BB60006551C4 /* WHRootViewController.h */,
-				0E7DA1711BE9BB60006551C4 /* WHRootViewController.m */,
-				0E7DA1721BE9BB60006551C4 /* WHRootViewController.xib */,
-			);
-			name = "Root View Controller";
-			sourceTree = "<group>";
-		};
 		0EEE6B0C1D3886AC00068BFE /* Music Detail */ = {
 			isa = PBXGroup;
 			children = (
@@ -290,7 +174,6 @@
 		1E8CBC8F7C3F90E64799FC7B /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				0E44F86D1BEB4FBB00F8571D /* Will Delete */,
 				742B73581D37D41F00837D74 /* Root View */,
 				0EEE6B0C1D3886AC00068BFE /* Music Detail */,
 			);
@@ -452,7 +335,6 @@
 		DC4CFE12F9FE9D539C497C16 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				0E064CFA1BF30C51002D2244 /* SoundCloud */,
 				0E29149E1BF96F3D004AA529 /* WHTrackModel.h */,
 				0E29149F1BF96F3D004AA529 /* WHTrackModel.m */,
 				0EC527FC1C3A236500EC87C1 /* WHPlaylistModel.h */,
@@ -574,8 +456,6 @@
 				742B73511D3560C800837D74 /* RootViewController.xib in Resources */,
 				742B735E1D37D44800837D74 /* MusicTableViewCell.xib in Resources */,
 				0EEE6B0B1D3886A800068BFE /* MusicDetailViewController.xib in Resources */,
-				0E7DA1741BE9BB60006551C4 /* WHRootViewController.xib in Resources */,
-				0E2914B31BF97DEB004AA529 /* WHContainerViewController.xib in Resources */,
 				741055B81D37DC190092BA43 /* Montserrat-Bold.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -677,32 +557,23 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0E44F8701BEB550B00F8571D /* WHFavouriteTableViewController.m in Sources */,
-				0E064CED1BF2FC34002D2244 /* Collection.m in Sources */,
 				742B73501D3560C800837D74 /* RootViewController.m in Sources */,
-				0E2914B21BF97DEB004AA529 /* WHContainerViewController.m in Sources */,
 				0E2914B71BF98339004AA529 /* UIViewController+WaveHubAddition.m in Sources */,
-				0E064CEE1BF2FC34002D2244 /* MyFavourite.m in Sources */,
 				0E296DAE1BF4A1F900ED3147 /* CueSheet+WaveHubAddition.m in Sources */,
 				F9272AE40B26984E04F01944 /* WHAppDelegate.m in Sources */,
-				0E44F8751BEB553300F8571D /* WHPlaylistTableViewController.m in Sources */,
 				EA1D28C0C6A5011119F82B73 /* LaunchScreen.xib in Sources */,
 				0E2914931BF58306004AA529 /* NSData+WaveHubAddition.m in Sources */,
 				0EC527FE1C3A236500EC87C1 /* WHPlaylistModel.m in Sources */,
 				0EEE6B0A1D3886A800068BFE /* MusicDetailViewController.m in Sources */,
-				0E44F8791BEB557600F8571D /* WHLocalSongsTableViewController.m in Sources */,
 				0E2914961BF58387004AA529 /* WHDatabaseManager.m in Sources */,
-				0E064CEF1BF2FC34002D2244 /* User.m in Sources */,
 				741055BC1D37F45B0092BA43 /* NSLayoutConstraint+Multiplier.m in Sources */,
 				0E2914A01BF96F3D004AA529 /* WHTrackModel.m in Sources */,
 				0E2B7E791BF445D2001B7A25 /* WHSoundManager.m in Sources */,
 				1A44E872A0401F9F6EC5084C /* main.m in Sources */,
-				0E2914AD1BF97924004AA529 /* WHDashBoardViewController.m in Sources */,
 				742B735D1D37D44800837D74 /* MusicTableViewCell.m in Sources */,
 				0E2B7E7C1BF475BC001B7A25 /* WHApplication.m in Sources */,
 				74C3875A1BFE05DC005356C2 /* WHConstant.m in Sources */,
 				0E44F8671BEB4DD400F8571D /* WHWebrequestManager.m in Sources */,
-				0E7DA1731BE9BB60006551C4 /* WHRootViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

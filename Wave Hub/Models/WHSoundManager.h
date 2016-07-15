@@ -61,7 +61,7 @@ typedef NS_ENUM(NSInteger, WHSoundManagerType) {
     
     NPAudioStream *soundcloudStreamer;
     
-    MyFavourite *favourite;
+    NSArray <WHTrackModel *> *favourite;
     int currentFavouriteIdx;
     
 }
@@ -75,7 +75,7 @@ typedef NS_ENUM(NSInteger, WHSoundManagerType) {
 
 - (void)playUrl:(NSString *)url forceStart:(BOOL)forceStart;
 - (void)playCue:(CueSheet *)cueSheet withTrack:(CueSheetTrack *)track forceStart:(BOOL)forceStart;
-- (void)playMyFavourite:(MyFavourite *)favourite withIndex:(int)idx forceStart:(BOOL)forceStart;
+- (void)playMyFavourite:(NSArray <WHTrackModel *> *)favouriteInfo withIndex:(int)idx forceStart:(BOOL)forceStart;
 
 - (NSArray *)cueFilesInAppDocument;
 

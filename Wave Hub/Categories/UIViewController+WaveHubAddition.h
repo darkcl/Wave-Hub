@@ -8,10 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-#import "WHContainerViewController.h"
 
 @interface UIViewController (WaveHubAddition)
-
-@property(nonatomic,readonly,retain) WHContainerViewController *containerViewController;
 
 @end

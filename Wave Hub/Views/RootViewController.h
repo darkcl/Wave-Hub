@@ -10,7 +10,7 @@
 #import "MusicTableViewCell.h"
 
 @interface RootViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, WHSoundManagerDelegate, MusicTableViewCellDelegate, YSLTransitionAnimatorDataSource> {
-    MyFavourite *favourite;
+    NSArray <WHTrackModel *> *favourite;
     NPAudioStream *streamer;
     
     float currentPlayingProgress;

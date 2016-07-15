@@ -22,6 +22,13 @@ typedef NS_ENUM(NSInteger, WHTrackType) {
 @property (nonatomic, strong) NSString *trackTitle;
 @property (nonatomic, strong) NSString *albumTitle;
 @property (nonatomic, strong) NSString *author;
+@property (nonatomic, strong) NSString *albumCoverUrl;
+
 @property (nonatomic, strong) UIImage *albumCoverImage;
+@property float duration;
+
+@property (nonatomic, strong) NSDictionary *responseDict;
+
+- (id)initWithInfo:(NSDictionary *)dict;
 
 @end

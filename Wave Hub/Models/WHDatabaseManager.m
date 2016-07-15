@@ -67,10 +67,20 @@
     }];
 }
 
-- (void)readMyFavourite:(DatabaseReturn)successBlock{
+- (void)saveTrackFromFavouriteArray:(NSArray <WHTrackModel *> *)favourites{
+    YapDatabaseConnection *connection = [db newConnection];
+    [connection readWriteWithBlock:^(YapDatabaseReadWriteTransaction * _Nonnull transaction) {
+       
+        
+        [transaction setObject:favourites forKey:@"favourites_track" inCollection:@"wave_hub"];
+    }];
+}
+
+
+- (void)readTrackFromFavourite:(DatabaseReturn)successBlock{
     YapDatabaseConnection *connection = [db newConnection];
     [connection readWithBlock:^(YapDatabaseReadTransaction * _Nonnull transaction) {
-        successBlock([transaction objectForKey:@"favourites" inCollection:@"wave_hub"]);
+        successBlock([transaction objectForKey:@"favourites_track" inCollection:@"wave_hub"]);
     }];
 }
 

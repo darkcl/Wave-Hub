@@ -23,13 +23,10 @@
 
 @implementation MusicDetailViewController
 
-- (id)initWithMusicName:(NSString *)name
-             authorName:(NSString *)authorName
-        withCollections:(NSArray *)collections{
+- (id)initWithTrackInfo:(WHTrackModel *)info{
     if (self = [super initWithNibName:@"MusicDetailViewController" bundle:nil]) {
-        musicName = name;
-        author = authorName;
-        currentPlayingCollection = collections;
+        musicName = info.trackTitle;
+        author = info.author;
     }
     return self;
 }
@@ -121,30 +118,16 @@
 }
 
 - (void)didUpdatePlayingIndex:(NSInteger)index{
-    Collection *info = currentPlayingCollection[index];
-    
-    _musicTitleLabel.text = info.title;
-    _authorLabel.text = info.user.username;
-    
-    if (![info.artworkUrl isKindOfClass:[NSNull class]]) {
-        [[DLImageLoader sharedInstance] imageFromUrl:[info.artworkUrl stringByReplacingOccurrencesOfString:@"-large" withString:@"-t500x500"]
-                                           completed:^(NSError *error, UIImage *image) {
-                                               if (!error) {
-                                                    self.musicCoverImageView.image = image;
-                                               }
-                                           }];
-    }
     
 }
+
 - (IBAction)togglePlayPausePressed:(id)sender {
     if ([[WHSoundManager sharedManager] isPlaying]) {
         [[WHSoundManager sharedManager] playerPause];
     }else{
         
         if ([[WHSoundManager sharedManager] playingIdx] == -1) {
-            MyFavourite *favourite = [[MyFavourite alloc] init];
-            favourite.collection = currentPlayingCollection;
-            [[WHSoundManager sharedManager] playMyFavourite:favourite withIndex:_currentIndex forceStart:YES];
+            
         }else{
             [[WHSoundManager sharedManager] playerPlay];
         }
@@ -161,27 +144,8 @@
     [[WHSoundManager sharedManager] playerBackward];
 }
 
-//- (void)viewDidAppear:(BOOL)animated
-//{
-//    [super viewDidAppear:animated];
-//    CGFloat statusHeight = [[UIApplication sharedApplication] statusBarFrame].size.height;
-//    CGFloat navigationHeight = self.navigationController.navigationBar.frame.size.height;
-//    [self ysl_addTransitionDelegate:self];
-//    [self ysl_popTransitionAnimationWithCurrentScrollView:nil
-//                                    cancelAnimationPointY:self.musicCoverImageView.frame.size.height - (statusHeight + navigationHeight)
-//                                        animationDuration:0.3
-//                                  isInteractiveTransition:YES];
-//}
-
 - (void)viewDidLayoutSubviews{
     [super viewDidLayoutSubviews];
-//    CGFloat statusHeight = [[UIApplication sharedApplication] statusBarFrame].size.height;
-//    CGFloat navigationHeight = self.navigationController.navigationBar.frame.size.height;
-//    [self ysl_addTransitionDelegate:self];
-//    [self ysl_popTransitionAnimationWithCurrentScrollView:nil
-//                                    cancelAnimationPointY:self.musicCoverImageView.frame.size.height - (statusHeight + navigationHeight)
-//                                        animationDuration:0.3
-//                                  isInteractiveTransition:NO];
 }
 
 

@@ -10,13 +10,13 @@
 
 @protocol MusicTableViewCellDelegate <NSObject>
 
-- (void)didTogglePlayPause:(Collection *)info;
+- (void)didTogglePlayPause:(WHTrackModel *)info;
 
 @end
 
 @interface MusicTableViewCell : UITableViewCell{
     NSString *tempUrl;
-    Collection *trackInfo;
+    WHTrackModel *trackInfo;
 }
 @property (strong, nonatomic) IBOutlet UIView *containerView;
 
@@ -31,7 +31,7 @@
 - (void)startLoadingCover:(NSString *)url;
 - (void)cancelLoadingCover;
 
-- (void)setInfo:(Collection *)info;
+- (void)setInfo:(WHTrackModel *)info;
 
 - (IBAction)togglePlayPauseButtonPressed:(id)sender;
 

@@ -192,37 +192,13 @@
     currentCueSheetUrl = cueSheet.cueUrl;
 }
 
-- (void)playMyFavourite:(MyFavourite *)favouriteInfo withIndex:(int)idx forceStart:(BOOL)forceStart{
+- (void)playMyFavourite:(NSArray <WHTrackModel *> *)favouriteInfo withIndex:(int)idx forceStart:(BOOL)forceStart{
     
     currentType = WHSoundManagerTypeSoundCloud;
     
     favourite = favouriteInfo;
     
     int resultIdx = idx;
-    if ((int)favourite.collection.count == resultIdx) {
-        [[WHWebrequestManager sharedManager] fetchMyFavouriteWithInfo:favourite
-                                                              success:^(MyFavourite *responseObject) {
-                                                                  self->favourite = responseObject;
-                                                                  self->currentFavouriteIdx = resultIdx;
-                                                                  if (self->player.currentState == ORGMEngineStatePlaying){
-                                                                      [self->player stop];
-                                                                  }
-                                                                  
-                                                                  NSMutableArray *urls = [[NSMutableArray alloc] init];
-                                                                  for (Collection *info in responseObject.collection) {
-                                                                      [urls addObject:[NSURL URLWithString:[NSString stringWithFormat:@"%@?client_id=47724625bbc02bbc335e84f2ed87c001", info.streamUrl]]];
-                                                                  }
-                                                                  
-                                                                  [self->soundcloudStreamer setUrls:urls];
-                                                                  [self->soundcloudStreamer selectIndexForPlayback:resultIdx];
-                                                                  
-                                                              }
-                                                              failure:^(NSError *error) {
-                                                                  self->currentFavouriteIdx = 0;
-                                                              }];
-        
-        return;
-    }
     
     if (resultIdx < 0) {
         resultIdx = 0;
@@ -233,9 +209,9 @@
     }
     
     NSMutableArray *urls = [[NSMutableArray alloc] init];
-    for (Collection *info in favourite.collection) {
-        if (info.streamUrl != nil && ![info.streamUrl isKindOfClass:[NSNull class]]) {
-            [urls addObject:[NSURL URLWithString:[NSString stringWithFormat:@"%@?client_id=47724625bbc02bbc335e84f2ed87c001", info.streamUrl]]];
+    for (WHTrackModel *info in favourite) {
+        if (info.trackUrl != nil && ![info.trackUrl isKindOfClass:[NSNull class]]) {
+            [urls addObject:[NSURL URLWithString:[NSString stringWithFormat:@"%@?client_id=47724625bbc02bbc335e84f2ed87c001", info.trackUrl]]];
         }
     }
     
@@ -411,7 +387,7 @@
 }
 
 - (void)audioStream:(NPAudioStream *)audioStream didBeginPlaybackForTrackAtIndex:(NSInteger)index{
-    Collection *info = favourite.collection[index];
+    WHTrackModel *info = favourite[index];
     double time = (info.duration / 1000);
     _playingProgress = index;
     
@@ -419,8 +395,8 @@
         [_delegate didUpdatePlayingIndex:index];
     }
     _playingIdx = index;
-    [[MPNowPlayingInfoCenter defaultCenter] setNowPlayingInfo:@{MPMediaItemPropertyTitle:info.title,
-                                                                MPMediaItemPropertyArtist:info.user.username,
+    [[MPNowPlayingInfoCenter defaultCenter] setNowPlayingInfo:@{MPMediaItemPropertyTitle:info.trackTitle,
+                                                                MPMediaItemPropertyArtist:info.author,
                                                                 MPMediaItemPropertyMediaType: @(MPMediaTypeMusic),
                                                                 MPMediaItemPropertyPlaybackDuration: @(time),
                                                                 MPNowPlayingInfoPropertyPlaybackRate: @1}];

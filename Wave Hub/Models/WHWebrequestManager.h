@@ -27,15 +27,7 @@ typedef void(^RequestFailure)(NSError *error);
                          success:(RequestSuccess)successBlock
                          failure:(RequestFailure)failureBlock;
 
-- (void)fetchMyFavouriteWithInfo:(MyFavourite *)info
-                         success:(RequestSuccess)successBlock
-                         failure:(RequestFailure)failureBlock;
-
-- (void)streamCollection:(Collection *)collectionInfo
-                 success:(RequestSuccess)successBlock
-                 failure:(RequestFailure)failureBlock;
-
-- (void)fetchAllFavouriteWithInfo:(MyFavourite *)info
+- (void)fetchAllFavouriteWithInfo:(NSDictionary *)info
                           success:(RequestSuccess)successBlock
                           failure:(RequestFailure)failureBlock;
 

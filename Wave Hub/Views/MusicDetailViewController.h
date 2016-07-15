@@ -14,13 +14,9 @@
     NSString *author;
     NSString *musicName;
     
-    NSArray *currentPlayingCollection;
+    WHTrackModel *currentTrack;
 }
 
-@property NSInteger currentIndex;
-
-- (id)initWithMusicName:(NSString *)name
-             authorName:(NSString *)authorName
-        withCollections:(NSArray *)collections;
+- (id)initWithTrackInfo:(WHTrackModel *)info;
 
 @end

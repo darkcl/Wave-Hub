@@ -25,7 +25,11 @@ typedef void(^DatabaseReturn)(id result);
 - (void)creatNewPlaylistWithName:(NSString *)playlistName songs:(NSArray *)songs;
 - (void)readPlaylists:(DatabaseReturn)successBlock;
 
-- (void)saveMyFavourite:(MyFavourite *)favourite;
-- (void)readMyFavourite:(DatabaseReturn)successBlock;
+//- (void)saveMyFavourite:(MyFavourite *)favourite;
+//- (void)readMyFavourite:(DatabaseReturn)successBlock;
+
+- (void)saveTrackFromFavouriteArray:(NSArray <WHTrackModel *> *)favourites;
+
+- (void)readTrackFromFavourite:(DatabaseReturn)successBlock;
 
 @end

@@ -45,7 +45,7 @@
     }
 }
 
-- (void)setInfo:(Collection *)info{
+- (void)setInfo:(WHTrackModel *)info{
     trackInfo = info;
 }
 

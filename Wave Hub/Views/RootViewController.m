@@ -49,10 +49,14 @@
     MJRefreshStateHeader *header = [MJRefreshStateHeader headerWithRefreshingBlock:^{
         //Call this Block When enter the refresh status automatically
         [[WHWebrequestManager sharedManager] fetchAllFavouriteWithInfo:nil
-                                                               success:^(MyFavourite *responseObject) {
-                                                                   self->favourite = responseObject;
+                                                               success:^(NSArray *responseObject) {
                                                                    
-                                                                   [[WHDatabaseManager sharedManager] saveMyFavourite:responseObject];
+                                                                   [[WHDatabaseManager sharedManager] saveTrackFromFavouriteArray:responseObject];
+                                                                   
+                                                                   [[WHDatabaseManager sharedManager] readTrackFromFavourite:^(id result) {
+                                                                       self->favourite = result;
+                                                                       [self.tableView reloadData];
+                                                                   }];
                                                                    
                                                                    [self.tableView reloadData];
                                                                    [self.tableView.mj_header endRefreshing];
@@ -75,7 +79,7 @@
     
     self.tableView.mj_header = header;
     
-    [[WHDatabaseManager sharedManager] readMyFavourite:^(id result) {
+    [[WHDatabaseManager sharedManager] readTrackFromFavourite:^(id result) {
         if (result == nil) {
             [self.tableView.mj_header beginRefreshing];
         }else{
@@ -146,8 +150,8 @@
 
 #pragma mark - Table view data source
 
-- (void)didTogglePlayPause:(Collection *)info{
-    NSInteger playIndex = [favourite.collection indexOfObject:info];
+- (void)didTogglePlayPause:(WHTrackModel *)info{
+    NSInteger playIndex = [favourite indexOfObject:info];
     
     if ([[WHSoundManager sharedManager] isPlaying]) {
         if (playIndex == currentPlayingIndex) {
@@ -165,7 +169,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return favourite.collection.count;
+    return favourite.count;
 }
 
 - (NSString *)timeFormatted:(int)totalMillSeconds{
@@ -183,11 +187,11 @@
         cell = [[MusicTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"MusicTableViewCell"];
     }
     // Configure the cell...
-    Collection *info = favourite.collection[indexPath.row];
+    WHTrackModel *info = favourite[indexPath.row];
     [cell setInfo:info];
     
-    cell.titleLabel.text = info.title;
-    cell.authorLabel.text = info.user.username ? info.user.username : @"";
+    cell.titleLabel.text = info.trackTitle;
+    cell.authorLabel.text = info.author ? info.author : @"";
     cell.durationLabel.text = [self timeFormatted:(int)info.duration];
     
     cell.progressView.hidden = YES;
@@ -212,8 +216,8 @@
 
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath{
     MusicTableViewCell *musicCell = (MusicTableViewCell *)cell;
-    Collection *info = favourite.collection[indexPath.row];
-    [musicCell startLoadingCover:info.artworkUrl];
+    WHTrackModel *info = favourite[indexPath.row];
+    [musicCell startLoadingCover:info.albumCoverUrl];
 }
 
 - (void)tableView:(UITableView *)tableView didEndDisplayingCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -223,9 +227,8 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     NSLog(@"Show Detail View");
-    Collection *info = favourite.collection[indexPath.row];
-    MusicDetailViewController *detailVC = [[MusicDetailViewController alloc] initWithMusicName:info.title authorName:info.user.username withCollections:favourite.collection];
-    detailVC.currentIndex = indexPath.row;
+    WHTrackModel *info = favourite[indexPath.row];
+    MusicDetailViewController *detailVC = [[MusicDetailViewController alloc] initWithTrackInfo:info];
     [self.navigationController pushViewController:detailVC animated:YES];
 }
 
