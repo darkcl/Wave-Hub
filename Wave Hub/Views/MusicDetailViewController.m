@@ -119,13 +119,18 @@
 - (void)didUpdatePlayingTrack:(WHTrackModel *)info{
     _authorLabel.text = info.author;
     _musicTitleLabel.text = info.trackTitle;
-    NSString *tempUrl = [info.albumCoverUrl stringByReplacingOccurrencesOfString:@"-large" withString:@"-t500x500"];
-    [[DLImageLoader sharedInstance] imageFromUrl:tempUrl
-                                       completed:^(NSError *error, UIImage *image) {
-                                           if (!error) {
-                                               self.musicCoverImageView.image = image;
-                                           }
-                                       }];
+    self.musicCoverImageView.image = nil;
+    if (info.albumCoverUrl != nil || ![info.albumCoverUrl isKindOfClass:[NSNull class]]) {
+        NSString *tempUrl = [info.albumCoverUrl stringByReplacingOccurrencesOfString:@"-large" withString:@"-t500x500"];
+        [[DLImageLoader sharedInstance] imageFromUrl:tempUrl
+                                           completed:^(NSError *error, UIImage *image) {
+                                               if (!error) {
+                                                   self.musicCoverImageView.image = image;
+                                               }
+                                           }];
+    }
+    
+    
     currentTrack = info;
 }
 

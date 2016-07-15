@@ -99,6 +99,13 @@
            forceStart:YES];
     }else if(currentType == WHSoundManagerTypeSoundCloud) {
         [soundcloudStreamer skipNext];
+        int resultIdx = currentFavouriteIdx++;
+        
+        if (resultIdx == (int)favourite.count) {
+            resultIdx = currentFavouriteIdx;
+        }
+        
+        currentFavouriteIdx = resultIdx;
     }
 }
 
@@ -121,6 +128,14 @@
            forceStart:YES];
     }else if(currentType == WHSoundManagerTypeSoundCloud) {
         [soundcloudStreamer skipPrevious];
+        int resultIdx = currentFavouriteIdx--;
+        
+        if (resultIdx < 0) {
+            resultIdx = 0;
+        }
+        
+        currentFavouriteIdx = resultIdx;
+        
     }
 }
 
@@ -385,7 +400,7 @@
 }
 
 - (void)audioStream:(NPAudioStream *)audioStream didUpdateTrackCurrentTime:(CMTime)currentTime{
-    if (_delegate && [_delegate respondsToSelector:@selector(didUpdatePlayingProgress:)]) {
+    if (_delegate && [_delegate respondsToSelector:@selector(didUpdatePlayingProgress:)] && audioStream.status == NPAudioStreamStatusPlaying) {
         [_delegate didUpdatePlayingProgress:(float)(CMTimeGetSeconds(currentTime) / CMTimeGetSeconds(audioStream.duration))];
     }
     
@@ -395,7 +410,7 @@
 - (void)audioStream:(NPAudioStream *)audioStream didBeginPlaybackForTrackAtIndex:(NSInteger)index{
     WHTrackModel *info = favourite[index];
     double time = (info.duration / 1000);
-    _playingProgress = index;
+    currentFavouriteIdx = index;
     
     if (_delegate && [_delegate respondsToSelector:@selector(didUpdatePlayingTrack:)]) {
         [_delegate didUpdatePlayingTrack:favourite[index]];
