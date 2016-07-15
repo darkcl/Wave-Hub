@@ -340,7 +340,7 @@ NSString *const kCollectionSharing = @"sharing";
     [aCoder encodeObject:_releaseMonth forKey:kCollectionReleaseMonth];
     [aCoder encodeObject:_lastModified forKey:kCollectionLastModified];
     [aCoder encodeBool:_userFavorite forKey:kCollectionUserFavorite];
-    [aCoder encodeObject:_trackType forKey:kCollectionTrackType];
+//    [aCoder encodeObject:_trackType forKey:kCollectionTrackType];
     [aCoder encodeObject:_streamUrl forKey:kCollectionStreamUrl];
     [aCoder encodeObject:_originalFormat forKey:kCollectionOriginalFormat];
     [aCoder encodeObject:_user forKey:kCollectionUser];

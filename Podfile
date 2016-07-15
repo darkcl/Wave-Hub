@@ -12,6 +12,7 @@ target 'Wave Hub' do
     pod 'CocoaSoundCloudAPI'
     pod 'CocoaSoundCloudUI'
     pod 'GCDWebServer/WebUploader'
+    pod 'DLImageLoader'
     pod 'NPAudioStream', :git => 'https://github.com/NoonPacific/NPAudioStream.git'
     
     # Sound
@@ -27,6 +28,7 @@ target 'Wave Hub' do
     pod 'SVProgressHUD'
     pod 'MNTPullToReact', '~> 1.0'
     pod 'MJRefresh'
+    
 
     # Database
     pod 'YapDatabase'
@@ -34,6 +36,7 @@ target 'Wave Hub' do
 
     # General
     pod 'ReactiveCocoa'
+    pod 'Block-KVO', :git => 'https://github.com/Tricertops/Block-KVO.git'
     pod 'JRNLocalNotificationCenter'
     
 end

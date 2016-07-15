@@ -7,7 +7,7 @@
 #ifdef __OBJC__
     @import UIKit;
     @import Foundation;
-#import <ChameleonFramework/Chameleon.h>
+//#import <ChameleonFramework/Chameleon.h>
 #import <AVFoundation/AVFoundation.h>
 #import <AudioToolbox/AudioToolbox.h>
 

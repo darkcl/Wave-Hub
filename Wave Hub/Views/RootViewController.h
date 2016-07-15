@@ -7,7 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MusicTableViewCell.h"
+@interface RootViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, WHSoundManagerDelegate, MusicTableViewCellDelegate> {
+    MyFavourite *favourite;
+    NPAudioStream *streamer;
+    
+    float currentPlayingProgress;
+    NSInteger currentPlayingIndex;
+}
 
-@interface RootViewController : UIViewController
+@property (assign) id<WHFavouriteDelegate> delegate;
 
 @end

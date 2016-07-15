@@ -20,6 +20,7 @@ PODS:
   - AFNetworking/UIKit (2.6.3):
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
+  - Block-KVO (2.2.3)
   - ChameleonFramework (2.0.4):
     - ChameleonFramework/Default (= 2.0.4)
   - ChameleonFramework/Default (2.0.4)
@@ -36,6 +37,7 @@ PODS:
   - CocoaSoundCloudUI (1.0.9):
     - CocoaSoundCloudAPI (~> 1.0.2)
     - OHAttributedLabel
+  - DLImageLoader (2.2.0)
   - DZNEmptyDataSet (1.7.2)
   - FLKAutoLayout (0.2.1)
   - FontAwesomeKit (2.1.8):
@@ -87,9 +89,11 @@ PODS:
 
 DEPENDENCIES:
   - AFNetworking
+  - Block-KVO (from `https://github.com/Tricertops/Block-KVO.git`)
   - ChameleonFramework
   - CocoaSoundCloudAPI
   - CocoaSoundCloudUI
+  - DLImageLoader
   - DZNEmptyDataSet
   - FLKAutoLayout
   - FontAwesomeKit (~> 2.1.0)
@@ -107,12 +111,17 @@ DEPENDENCIES:
   - YapDatabase
 
 EXTERNAL SOURCES:
+  Block-KVO:
+    :git: https://github.com/Tricertops/Block-KVO.git
   NPAudioStream:
     :git: https://github.com/NoonPacific/NPAudioStream.git
   OrigamiEngine:
     :git: https://github.com/darkcl/OrigamiEngine.git
 
 CHECKOUT OPTIONS:
+  Block-KVO:
+    :commit: b74bb98bf84a8a66f1ff81e31647c1778195f89f
+    :git: https://github.com/Tricertops/Block-KVO.git
   NPAudioStream:
     :commit: 01628d52d3a9c91fae2b2f77ce22cf391ec46e94
     :git: https://github.com/NoonPacific/NPAudioStream.git
@@ -122,10 +131,12 @@ CHECKOUT OPTIONS:
 
 SPEC CHECKSUMS:
   AFNetworking: cb8d14a848e831097108418f5d49217339d4eb60
+  Block-KVO: 20d6d9b266d669326fafde3659be7ed33dd425b5
   ChameleonFramework: 5abe69b1f2a6cc79c3c435fcd9d3d855748225ee
   CocoaLumberjack: 17fe8581f84914d5d7e6360f7c70022b173c3ae0
   CocoaSoundCloudAPI: bef452c90f3a3af6de41a620d7d156d716d68f79
   CocoaSoundCloudUI: f5aed254f432bc68a5a3570b74cdd6d18ce7b037
+  DLImageLoader: a1b96c95744a8d0ebd9a39d7194774b0c4f59b03
   DZNEmptyDataSet: 0ec00bfc230d7450997b60c127afdd0b9f24f3b6
   FLKAutoLayout: 9db6b30c2008d230da608e62c607b11c23b942e6
   FontAwesomeKit: 64759fb28b5d2e74a1bd81553d7c11ca10e32179
@@ -142,6 +153,6 @@ SPEC CHECKSUMS:
   SVProgressHUD: b0830714205bea1317ea1a2ebc71e5633af334d4
   YapDatabase: 00e5a5d1b5dba1bd540ef644576233b5612e6122
 
-PODFILE CHECKSUM: b4ce59baac71af5f35b40f15c13624143e1d42b3
+PODFILE CHECKSUM: d8212bf352a3b24c403ad16a9507c37f85e78360
 
 COCOAPODS: 1.0.0
