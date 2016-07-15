@@ -17,6 +17,4 @@
     NSInteger currentPlayingIndex;
 }
 
-@property (assign) id<WHFavouriteDelegate> delegate;
-
 @end

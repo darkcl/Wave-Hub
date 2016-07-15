@@ -41,7 +41,7 @@
         _albumCoverImage = [decoder decodeObjectForKey:@"albumCoverImage"];
         _trackType = [decoder decodeIntForKey:@"trackType"];
         _duration = [decoder decodeFloatForKey:@"duration"];
-        
+        _responseDict = [decoder decodeObjectForKey:@"responseDict"];
     }
     return self;
 }
@@ -56,6 +56,7 @@
     [encoder encodeObject:_author forKey:@"author"];
     [encoder encodeObject:_albumCoverUrl forKey:@"albumCoverUrl"];
     [encoder encodeObject:_albumCoverImage forKey:@"albumCoverImage"];
+    [encoder encodeObject:_responseDict forKey:@"responseDict"];
 }
 
 @end

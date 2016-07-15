@@ -27,6 +27,7 @@
     if (self = [super initWithNibName:@"MusicDetailViewController" bundle:nil]) {
         musicName = info.trackTitle;
         author = info.author;
+        currentTrack = info;
     }
     return self;
 }
@@ -97,8 +98,6 @@
     anim.duration = 0.2;
     [self.musicCoverImageView.layer addAnimation:anim forKey:@"shadowOpacity"];
     self.musicCoverImageView.layer.shadowOpacity = 0.3f;
-    
-    
 }
 
 - (void)soundDidStop{
@@ -112,25 +111,40 @@
 - (void)didUpdatePlayingProgress:(float)progress{
     [_playingProgress setProgress:progress animated:YES];
     
-    FAKFontAwesome *playPauseIcon =  ([[WHSoundManager sharedManager] isPlaying]) ? [FAKFontAwesome pauseIconWithSize:20] :[FAKFontAwesome playIconWithSize:20];
+    FAKFontAwesome *playPauseIcon =  ([[WHSoundManager sharedManager] isPlaying] && [[[WHSoundManager sharedManager] playingTrack].responseDict isEqual:currentTrack.responseDict]) ? [FAKFontAwesome pauseIconWithSize:20] :[FAKFontAwesome playIconWithSize:20];
     [playPauseIcon addAttribute:NSForegroundColorAttributeName value:[UIColor blackColor]];
     [self.togglePlayPauseButton setAttributedTitle:playPauseIcon.attributedString forState:UIControlStateNormal];
 }
 
-- (void)didUpdatePlayingIndex:(NSInteger)index{
-    
+- (void)didUpdatePlayingTrack:(WHTrackModel *)info{
+    _authorLabel.text = info.author;
+    _musicTitleLabel.text = info.trackTitle;
+    NSString *tempUrl = [info.albumCoverUrl stringByReplacingOccurrencesOfString:@"-large" withString:@"-t500x500"];
+    [[DLImageLoader sharedInstance] imageFromUrl:tempUrl
+                                       completed:^(NSError *error, UIImage *image) {
+                                           if (!error) {
+                                               self.musicCoverImageView.image = image;
+                                           }
+                                       }];
+    currentTrack = info;
 }
 
 - (IBAction)togglePlayPausePressed:(id)sender {
-    if ([[WHSoundManager sharedManager] isPlaying]) {
+    if ([[WHSoundManager sharedManager] isPlaying] && [[[WHSoundManager sharedManager] playingTrack].responseDict isEqual:currentTrack.responseDict]) {
         [[WHSoundManager sharedManager] playerPause];
     }else{
-        
-        if ([[WHSoundManager sharedManager] playingIdx] == -1) {
+        [[WHDatabaseManager sharedManager] readTrackFromFavourite:^(NSArray <WHTrackModel *> *result) {
+            NSInteger index = [result indexOfObject:self->currentTrack];
+            NSInteger idx = 0;
+            for (WHTrackModel *info in result) {
+                if ([info.responseDict isEqual:self->currentTrack.responseDict]) {
+                    index = idx;
+                }
+                idx++;
+            }
             
-        }else{
-            [[WHSoundManager sharedManager] playerPlay];
-        }
+            [[WHSoundManager sharedManager] playMyFavourite:result withIndex:index forceStart:YES];
+        }];
     }
     
     

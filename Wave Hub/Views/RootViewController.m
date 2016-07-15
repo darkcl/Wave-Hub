@@ -44,8 +44,7 @@
     self.title = @"Favourites";
     //    [self setStatusBarStyle:UIStatusBarStyleLightContent];
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"Cell"];
-    
-    _delegate = [WHSoundManager sharedManager];
+
     MJRefreshStateHeader *header = [MJRefreshStateHeader headerWithRefreshingBlock:^{
         //Call this Block When enter the refresh status automatically
         [[WHWebrequestManager sharedManager] fetchAllFavouriteWithInfo:nil
@@ -119,8 +118,8 @@
     [_tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:currentPlayingIndex inSection:0]] withRowAnimation:UITableViewRowAnimationNone];
 }
 
-- (void)didUpdatePlayingIndex:(NSInteger)index{
-    currentPlayingIndex = index;
+- (void)didUpdatePlayingTrack:(WHTrackModel *)info{
+    currentPlayingIndex = [favourite indexOfObject:info];
     [_tableView reloadData];
     
 }

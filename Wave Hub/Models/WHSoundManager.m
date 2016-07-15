@@ -368,8 +368,14 @@
     }
 }
 
--(void)didUpdateFavourite:(MyFavourite *)info{
-    favourite = info;
+- (WHTrackModel *)playingTrack{
+    if (player.currentState == ORGMEngineStatePlaying) {
+        return nil;
+    }else if(soundcloudStreamer.status == NPAudioStreamStatusPlaying){
+        return favourite[currentFavouriteIdx];
+    }else{
+        return nil;
+    }
 }
 
 
@@ -391,8 +397,8 @@
     double time = (info.duration / 1000);
     _playingProgress = index;
     
-    if (_delegate && [_delegate respondsToSelector:@selector(didUpdatePlayingIndex:)]) {
-        [_delegate didUpdatePlayingIndex:index];
+    if (_delegate && [_delegate respondsToSelector:@selector(didUpdatePlayingTrack:)]) {
+        [_delegate didUpdatePlayingTrack:favourite[index]];
     }
     _playingIdx = index;
     [[MPNowPlayingInfoCenter defaultCenter] setNowPlayingInfo:@{MPMediaItemPropertyTitle:info.trackTitle,

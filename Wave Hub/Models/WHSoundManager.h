@@ -16,8 +16,6 @@
 #import <OrigamiEngine/CueSheet.h>
 #import "CueSheet+WaveHubAddition.h"
 
-#import "WHFavouriteDelegate.h"
-
 #import <NPAudioStream/NPAudioStream.h>
 
 typedef NS_ENUM(NSInteger, WHSoundManagerPlayType) {
@@ -36,12 +34,12 @@ typedef NS_ENUM(NSInteger, WHSoundManagerType) {
 @protocol WHSoundManagerDelegate <NSObject>
 
 - (void)didUpdatePlayingProgress:(float)progress;
-- (void)didUpdatePlayingIndex:(NSInteger)index;
+- (void)didUpdatePlayingTrack:(WHTrackModel *)info;
 - (void)soundDidStop;
 
 @end
 
-@interface WHSoundManager : NSObject <ORGMEngineDelegate, WHFavouriteDelegate, AVAudioPlayerDelegate, NPAudioStreamDataSource, NPAudioStreamDelegate>{
+@interface WHSoundManager : NSObject <ORGMEngineDelegate, AVAudioPlayerDelegate, NPAudioStreamDataSource, NPAudioStreamDelegate>{
     ORGMEngine *player;
     
     NSMutableArray *queue;
@@ -67,6 +65,9 @@ typedef NS_ENUM(NSInteger, WHSoundManagerType) {
 }
 
 @property NSInteger playingIdx;
+
+- (WHTrackModel *)playingTrack;
+
 @property float playingProgress;
 
 - (BOOL)isPlaying;
