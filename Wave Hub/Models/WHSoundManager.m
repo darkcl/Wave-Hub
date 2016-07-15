@@ -222,7 +222,9 @@
     
     NSMutableArray *urls = [[NSMutableArray alloc] init];
     for (Collection *info in favourite.collection) {
-        [urls addObject:[NSURL URLWithString:[NSString stringWithFormat:@"%@?client_id=47724625bbc02bbc335e84f2ed87c001", info.streamUrl]]];
+        if (info.streamUrl != nil && ![info.streamUrl isKindOfClass:[NSNull class]]) {
+            [urls addObject:[NSURL URLWithString:[NSString stringWithFormat:@"%@?client_id=47724625bbc02bbc335e84f2ed87c001", info.streamUrl]]];
+        }
     }
     
     [self->soundcloudStreamer setUrls:urls];
