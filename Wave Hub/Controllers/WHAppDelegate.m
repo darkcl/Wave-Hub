@@ -62,6 +62,10 @@
 //                               platlistVC,
 //                               localSongVC];
     
+    [[UINavigationBar appearance] setBackgroundImage:[[UIImage alloc] init] forBarMetrics:UIBarMetricsDefault];
+    
+    [[UINavigationBar appearance] setShadowImage:[[UIImage alloc] init]];
+    
     RootViewController *rootVC = [[RootViewController alloc] initWithNibName:@"RootViewController" bundle:nil];
     UINavigationController *rootNav = [[UINavigationController alloc] initWithRootViewController:rootVC];
     

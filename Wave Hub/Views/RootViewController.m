@@ -16,9 +16,10 @@
 
 #import <FontAwesomeKit/FAKFontAwesome.h>
 
+#import "MusicDetailViewController.h"
+
 @interface RootViewController ()
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
-
 @end
 
 @implementation RootViewController
@@ -92,7 +93,15 @@
     self.navigationItem.titleView = aLabel;
     
     
+    
+}
+
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    
+    currentPlayingIndex = [[WHSoundManager sharedManager] playingIdx];
     [[WHSoundManager sharedManager] setDelegate:self];
+    [self.tableView reloadData];
 }
 
 - (void)soundDidStop{
@@ -112,9 +121,27 @@
     
 }
 
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    CGFloat statusHeight = [[UIApplication sharedApplication] statusBarFrame].size.height;
+    CGFloat navigationHeight = self.navigationController.navigationBar.frame.size.height;
+    
+    [self ysl_addTransitionDelegate:self];
+    [self ysl_pushTransitionAnimationWithToViewControllerImagePointY:statusHeight + navigationHeight + 26 
+                                                   animationDuration:0.3];
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    [self ysl_removeTransitionDelegate];
+    [[WHSoundManager sharedManager] setDelegate:nil];
 }
 
 #pragma mark - Table view data source
@@ -196,10 +223,26 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     NSLog(@"Show Detail View");
+    Collection *info = favourite.collection[indexPath.row];
+    MusicDetailViewController *detailVC = [[MusicDetailViewController alloc] initWithMusicName:info.title authorName:info.user.username withCollections:favourite.collection];
+    detailVC.currentIndex = indexPath.row;
+    [self.navigationController pushViewController:detailVC animated:YES];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     return 80.0;
+}
+
+#pragma mark -- YSLTransitionAnimatorDataSource
+- (UIImageView *)pushTransitionImageView
+{
+    MusicTableViewCell *cell = (MusicTableViewCell *)[self.tableView cellForRowAtIndexPath:self.tableView.indexPathForSelectedRow];
+    return cell.coverImageView;
+}
+
+- (UIImageView *)popTransitionImageView
+{
+    return nil;
 }
 
 @end

@@ -18,6 +18,7 @@
     NSString *tempUrl;
     Collection *trackInfo;
 }
+@property (strong, nonatomic) IBOutlet UIView *containerView;
 
 @property (weak, nonatomic) IBOutlet UIButton *togglePlayPauseButton;
 

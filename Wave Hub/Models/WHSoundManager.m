@@ -7,6 +7,8 @@
 //
 
 #import "WHSoundManager.h"
+#import <NPQueuePlayer.h>
+#import <AVFoundation/AVFoundation.h>
 
 @implementation WHSoundManager
 
@@ -28,6 +30,12 @@
         queue = [[NSMutableArray alloc] init];
         
         soundcloudStreamer = [[NPAudioStream alloc] init];
+        _playingIdx = -1;
+        _playingProgress = -1;
+        
+        AVAudioPlayer *aPlayer = (AVAudioPlayer *)soundcloudStreamer.player;
+        [aPlayer setMeteringEnabled:YES];
+        
         soundcloudStreamer.delegate = self;
         soundcloudStreamer.dataSource = self;
 //        soundcloudStreamer.repeatMode = NPAudioStreamRepeatModeOne;
@@ -410,7 +418,7 @@
     if (_delegate && [_delegate respondsToSelector:@selector(didUpdatePlayingIndex:)]) {
         [_delegate didUpdatePlayingIndex:index];
     }
-    
+    _playingIdx = index;
     [[MPNowPlayingInfoCenter defaultCenter] setNowPlayingInfo:@{MPMediaItemPropertyTitle:info.title,
                                                                 MPMediaItemPropertyArtist:info.user.username,
                                                                 MPMediaItemPropertyMediaType: @(MPMediaTypeMusic),

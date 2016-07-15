@@ -28,6 +28,8 @@
 		0E7DA1731BE9BB60006551C4 /* WHRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E7DA1711BE9BB60006551C4 /* WHRootViewController.m */; };
 		0E7DA1741BE9BB60006551C4 /* WHRootViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0E7DA1721BE9BB60006551C4 /* WHRootViewController.xib */; };
 		0EC527FE1C3A236500EC87C1 /* WHPlaylistModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EC527FD1C3A236500EC87C1 /* WHPlaylistModel.m */; };
+		0EEE6B0A1D3886A800068BFE /* MusicDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EEE6B081D3886A800068BFE /* MusicDetailViewController.m */; };
+		0EEE6B0B1D3886A800068BFE /* MusicDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0EEE6B091D3886A800068BFE /* MusicDetailViewController.xib */; };
 		1A44E872A0401F9F6EC5084C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 7535691D532C79453A972784 /* main.m */; };
 		6C5DC8333D90F8BAC26108B1 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 450213D723237E9D8191F6EF /* Images.xcassets */; };
 		741055B81D37DC190092BA43 /* Montserrat-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 742B73561D37D3A400837D74 /* Montserrat-Bold.ttf */; };
@@ -97,6 +99,9 @@
 		0E7DA1721BE9BB60006551C4 /* WHRootViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WHRootViewController.xib; sourceTree = "<group>"; };
 		0EC527FC1C3A236500EC87C1 /* WHPlaylistModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WHPlaylistModel.h; sourceTree = "<group>"; };
 		0EC527FD1C3A236500EC87C1 /* WHPlaylistModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WHPlaylistModel.m; sourceTree = "<group>"; };
+		0EEE6B071D3886A800068BFE /* MusicDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MusicDetailViewController.h; sourceTree = "<group>"; };
+		0EEE6B081D3886A800068BFE /* MusicDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MusicDetailViewController.m; sourceTree = "<group>"; };
+		0EEE6B091D3886A800068BFE /* MusicDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MusicDetailViewController.xib; sourceTree = "<group>"; };
 		0EF549251C3B692D00A111E1 /* WHFavouriteDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WHFavouriteDelegate.h; sourceTree = "<group>"; };
 		1A2423513AE8E3888A810A5F /* libPods-Wave Hub.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Wave Hub.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		241B6531260B64A07C64DCF3 /* WHAppDelegate.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = WHAppDelegate.m; sourceTree = "<group>"; };
@@ -249,6 +254,16 @@
 			name = "Root View Controller";
 			sourceTree = "<group>";
 		};
+		0EEE6B0C1D3886AC00068BFE /* Music Detail */ = {
+			isa = PBXGroup;
+			children = (
+				0EEE6B071D3886A800068BFE /* MusicDetailViewController.h */,
+				0EEE6B081D3886A800068BFE /* MusicDetailViewController.m */,
+				0EEE6B091D3886A800068BFE /* MusicDetailViewController.xib */,
+			);
+			name = "Music Detail";
+			sourceTree = "<group>";
+		};
 		155F34F450AAEF294FE1B03B /* Resources */ = {
 			isa = PBXGroup;
 			children = (
@@ -277,6 +292,7 @@
 			children = (
 				0E44F86D1BEB4FBB00F8571D /* Will Delete */,
 				742B73581D37D41F00837D74 /* Root View */,
+				0EEE6B0C1D3886AC00068BFE /* Music Detail */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -557,6 +573,7 @@
 				F8A560A340ED7920227E1490 /* Settings.bundle in Resources */,
 				742B73511D3560C800837D74 /* RootViewController.xib in Resources */,
 				742B735E1D37D44800837D74 /* MusicTableViewCell.xib in Resources */,
+				0EEE6B0B1D3886A800068BFE /* MusicDetailViewController.xib in Resources */,
 				0E7DA1741BE9BB60006551C4 /* WHRootViewController.xib in Resources */,
 				0E2914B31BF97DEB004AA529 /* WHContainerViewController.xib in Resources */,
 				741055B81D37DC190092BA43 /* Montserrat-Bold.ttf in Resources */,
@@ -672,6 +689,7 @@
 				EA1D28C0C6A5011119F82B73 /* LaunchScreen.xib in Sources */,
 				0E2914931BF58306004AA529 /* NSData+WaveHubAddition.m in Sources */,
 				0EC527FE1C3A236500EC87C1 /* WHPlaylistModel.m in Sources */,
+				0EEE6B0A1D3886A800068BFE /* MusicDetailViewController.m in Sources */,
 				0E44F8791BEB557600F8571D /* WHLocalSongsTableViewController.m in Sources */,
 				0E2914961BF58387004AA529 /* WHDatabaseManager.m in Sources */,
 				0E064CEF1BF2FC34002D2244 /* User.m in Sources */,

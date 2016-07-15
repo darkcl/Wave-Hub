@@ -10,7 +10,7 @@
 //#import <ChameleonFramework/Chameleon.h>
 #import <AVFoundation/AVFoundation.h>
 #import <AudioToolbox/AudioToolbox.h>
-
+#import <SCSiriWaveformView/SCSiriWaveformView.h>
 #import <SVProgressHUD/SVProgressHUD.h>
 
 #import "WHConstant.h"
@@ -24,4 +24,6 @@
 #import "WHSoundManager.h"
 #import "WHDatabaseManager.h"
 
+#import <YSLTransitionAnimator/YSLTransitionAnimator.h>
+#import <YSLTransitionAnimator/UIViewController+YSLTransition.h>
 #endif

@@ -26,11 +26,14 @@
 //    _coverImageView.alpha = 0.0;
     
     if (url != nil && ![url isKindOfClass:[NSNull class]]) {
-        tempUrl = url;
-        [[DLImageLoader sharedInstance] imageFromUrl:url
+        tempUrl = [url stringByReplacingOccurrencesOfString:@"-large" withString:@"-t500x500"];
+        [[DLImageLoader sharedInstance] imageFromUrl:tempUrl
                                            completed:^(NSError *error, UIImage *image) {
                                                if (!error) {
-                                                   self.coverImageView.image = image;
+                                                   NSString *loadingUrl = [url stringByReplacingOccurrencesOfString:@"-large" withString:@"-t500x500"];
+                                                   if ([loadingUrl isEqualToString:self->tempUrl]) {
+                                                       self.coverImageView.image = image;
+                                                   }
                                                }
                                            }];
     }

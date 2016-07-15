@@ -81,11 +81,13 @@ PODS:
   - ReactiveCocoa/no-arc (2.5)
   - ReactiveCocoa/UI (2.5):
     - ReactiveCocoa/Core
+  - SCSiriWaveformView (1.0.3)
   - SVProgressHUD (2.0.3)
   - YapDatabase (2.7.6):
     - YapDatabase/standard (= 2.7.6)
   - YapDatabase/standard (2.7.6):
     - CocoaLumberjack (~> 2)
+  - YSLTransitionAnimator (0.0.2)
 
 DEPENDENCIES:
   - AFNetworking
@@ -102,32 +104,39 @@ DEPENDENCIES:
   - Mantle
   - MJRefresh
   - MNTPullToReact (~> 1.0)
-  - NPAudioStream (from `https://github.com/NoonPacific/NPAudioStream.git`)
+  - NPAudioStream (from `https://github.com/darkcl/NPAudioStream.git`)
   - OrigamiEngine (from `https://github.com/darkcl/OrigamiEngine.git`)
   - OrigamiEngine/Flac (from `https://github.com/darkcl/OrigamiEngine.git`)
   - OrigamiEngine/Opus (from `https://github.com/darkcl/OrigamiEngine.git`)
   - ReactiveCocoa
+  - SCSiriWaveformView (from `https://github.com/darkcl/SCSiriWaveformView.git`)
   - SVProgressHUD
   - YapDatabase
+  - YSLTransitionAnimator
 
 EXTERNAL SOURCES:
   Block-KVO:
     :git: https://github.com/Tricertops/Block-KVO.git
   NPAudioStream:
-    :git: https://github.com/NoonPacific/NPAudioStream.git
+    :git: https://github.com/darkcl/NPAudioStream.git
   OrigamiEngine:
     :git: https://github.com/darkcl/OrigamiEngine.git
+  SCSiriWaveformView:
+    :git: https://github.com/darkcl/SCSiriWaveformView.git
 
 CHECKOUT OPTIONS:
   Block-KVO:
     :commit: b74bb98bf84a8a66f1ff81e31647c1778195f89f
     :git: https://github.com/Tricertops/Block-KVO.git
   NPAudioStream:
-    :commit: 01628d52d3a9c91fae2b2f77ce22cf391ec46e94
-    :git: https://github.com/NoonPacific/NPAudioStream.git
+    :commit: f8219854284bf3926e423d624c1ef3e6d295ac3f
+    :git: https://github.com/darkcl/NPAudioStream.git
   OrigamiEngine:
     :commit: 1633d5a53bf18493696ce9a78477d5119fcc4059
     :git: https://github.com/darkcl/OrigamiEngine.git
+  SCSiriWaveformView:
+    :commit: e35f61a0aec8f6f3881e0f322923b127098e9d6b
+    :git: https://github.com/darkcl/SCSiriWaveformView.git
 
 SPEC CHECKSUMS:
   AFNetworking: cb8d14a848e831097108418f5d49217339d4eb60
@@ -150,9 +159,11 @@ SPEC CHECKSUMS:
   OHAttributedLabel: 9b2eb99323dee6b3a81ef3bc8e98b084117bca2d
   OrigamiEngine: b8208cbd9142d6194807a5f5bc0c6ffd363e0374
   ReactiveCocoa: e2db045570aa97c695e7aa97c2bcab222ae51f4a
+  SCSiriWaveformView: b8b2756af42addcd31900c3945f24edafefb5395
   SVProgressHUD: b0830714205bea1317ea1a2ebc71e5633af334d4
   YapDatabase: 00e5a5d1b5dba1bd540ef644576233b5612e6122
+  YSLTransitionAnimator: e5f0a2f253ea72b00a06c594c448e6b992f5630f
 
-PODFILE CHECKSUM: d8212bf352a3b24c403ad16a9507c37f85e78360
+PODFILE CHECKSUM: 1f48d9efa2bd3e9ebd3eac7c2f927ce4efe47130
 
 COCOAPODS: 1.0.0

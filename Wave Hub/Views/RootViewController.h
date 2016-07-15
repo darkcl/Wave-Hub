@@ -8,7 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import "MusicTableViewCell.h"
-@interface RootViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, WHSoundManagerDelegate, MusicTableViewCellDelegate> {
+
+@interface RootViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, WHSoundManagerDelegate, MusicTableViewCellDelegate, YSLTransitionAnimatorDataSource> {
     MyFavourite *favourite;
     NPAudioStream *streamer;
     

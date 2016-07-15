@@ -13,7 +13,7 @@ target 'Wave Hub' do
     pod 'CocoaSoundCloudUI'
     pod 'GCDWebServer/WebUploader'
     pod 'DLImageLoader'
-    pod 'NPAudioStream', :git => 'https://github.com/NoonPacific/NPAudioStream.git'
+    pod 'NPAudioStream', :git => 'https://github.com/darkcl/NPAudioStream.git'
     
     # Sound
     pod 'OrigamiEngine', :git => 'https://github.com/darkcl/OrigamiEngine.git'
@@ -28,7 +28,8 @@ target 'Wave Hub' do
     pod 'SVProgressHUD'
     pod 'MNTPullToReact', '~> 1.0'
     pod 'MJRefresh'
-    
+    pod 'YSLTransitionAnimator'
+    pod 'SCSiriWaveformView', :git => 'https://github.com/darkcl/SCSiriWaveformView.git'
 
     # Database
     pod 'YapDatabase'
