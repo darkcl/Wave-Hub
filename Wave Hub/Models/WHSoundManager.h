@@ -39,6 +39,12 @@ typedef NS_ENUM(NSInteger, WHSoundManagerType) {
 
 @end
 
+@protocol WHSoundManagerDatasource <NSObject>
+
+- (NSArray <WHTrackModel *> *)currentPlayingTracks;
+
+@end
+
 @interface WHSoundManager : NSObject <ORGMEngineDelegate, AVAudioPlayerDelegate, NPAudioStreamDataSource, NPAudioStreamDelegate>{
     ORGMEngine *player;
     
@@ -54,12 +60,10 @@ typedef NS_ENUM(NSInteger, WHSoundManagerType) {
     NSURL *currentCueSheetUrl;
     
     //SoundCloud Favourite
-    // will delete
-//    AVAudioPlayer *audioPlayer;
     
     NPAudioStream *soundcloudStreamer;
     
-    NSArray <WHTrackModel *> *favourite;
+    NSArray <WHTrackModel *> *currentTracks;
     int currentFavouriteIdx;
     
 }
@@ -70,9 +74,14 @@ typedef NS_ENUM(NSInteger, WHSoundManagerType) {
 
 @property float playingProgress;
 
+- (void)reloadTracksData;
+
 - (BOOL)isPlaying;
 
 + (WHSoundManager *)sharedManager;
+
+- (void)playTrack:(WHTrackModel *)aTrack
+       forceStart:(BOOL)forceStart;
 
 - (void)playUrl:(NSString *)url forceStart:(BOOL)forceStart;
 - (void)playCue:(CueSheet *)cueSheet withTrack:(CueSheetTrack *)track forceStart:(BOOL)forceStart;
@@ -89,5 +98,7 @@ typedef NS_ENUM(NSInteger, WHSoundManagerType) {
 - (void)playerSeekTime:(double)time;
 
 @property (assign) id<WHSoundManagerDelegate>delegate;
+@property (assign) id<WHSoundManagerDatasource>dataSource;
+
 
 @end

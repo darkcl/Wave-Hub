@@ -29,6 +29,7 @@ target 'Wave Hub' do
     pod 'MNTPullToReact', '~> 1.0'
     pod 'MJRefresh'
     pod 'YSLTransitionAnimator'
+    pod 'RMPZoomTransitionAnimator'
     pod 'SCSiriWaveformView', :git => 'https://github.com/darkcl/SCSiriWaveformView.git'
 
     # Database

@@ -81,6 +81,7 @@ PODS:
   - ReactiveCocoa/no-arc (2.5)
   - ReactiveCocoa/UI (2.5):
     - ReactiveCocoa/Core
+  - RMPZoomTransitionAnimator (1.0.2)
   - SCSiriWaveformView (1.0.3)
   - SVProgressHUD (2.0.3)
   - YapDatabase (2.7.6):
@@ -109,6 +110,7 @@ DEPENDENCIES:
   - OrigamiEngine/Flac (from `https://github.com/darkcl/OrigamiEngine.git`)
   - OrigamiEngine/Opus (from `https://github.com/darkcl/OrigamiEngine.git`)
   - ReactiveCocoa
+  - RMPZoomTransitionAnimator
   - SCSiriWaveformView (from `https://github.com/darkcl/SCSiriWaveformView.git`)
   - SVProgressHUD
   - YapDatabase
@@ -159,11 +161,12 @@ SPEC CHECKSUMS:
   OHAttributedLabel: 9b2eb99323dee6b3a81ef3bc8e98b084117bca2d
   OrigamiEngine: b8208cbd9142d6194807a5f5bc0c6ffd363e0374
   ReactiveCocoa: e2db045570aa97c695e7aa97c2bcab222ae51f4a
+  RMPZoomTransitionAnimator: fa1a0726e8e227069d9d63d30ef403aa12323960
   SCSiriWaveformView: b8b2756af42addcd31900c3945f24edafefb5395
   SVProgressHUD: b0830714205bea1317ea1a2ebc71e5633af334d4
   YapDatabase: 00e5a5d1b5dba1bd540ef644576233b5612e6122
   YSLTransitionAnimator: e5f0a2f253ea72b00a06c594c448e6b992f5630f
 
-PODFILE CHECKSUM: 1f48d9efa2bd3e9ebd3eac7c2f927ce4efe47130
+PODFILE CHECKSUM: a72dbd9d92633c027eb090acf426fed6cfcb648f
 
 COCOAPODS: 1.0.0

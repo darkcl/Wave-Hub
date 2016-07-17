@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "MusicTableViewCell.h"
 
-@interface RootViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, WHSoundManagerDelegate, MusicTableViewCellDelegate, YSLTransitionAnimatorDataSource> {
+@interface RootViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, WHSoundManagerDelegate, WHSoundManagerDatasource, MusicTableViewCellDelegate, YSLTransitionAnimatorDataSource> {
     NSArray <WHTrackModel *> *favourite;
     NPAudioStream *streamer;
     

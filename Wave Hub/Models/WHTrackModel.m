@@ -59,4 +59,8 @@
     [encoder encodeObject:_responseDict forKey:@"responseDict"];
 }
 
+- (NSString *)description{
+    return [NSString stringWithFormat:@"%@", self.responseDict];
+}
+
 @end

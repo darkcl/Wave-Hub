@@ -8,7 +8,7 @@
 
 #import "MusicTableViewCell.h"
 #import <DLImageLoader/DLImageLoader.h>
-
+#import "UIImage+WaveHubAddition.h"
 @implementation MusicTableViewCell
 
 - (void)awakeFromNib {
@@ -40,6 +40,7 @@
 }
 
 - (void)cancelLoadingCover{
+    self.coverImageView.image = [UIImage musicPlaceHolder];
     if (!tempUrl) {
         [[DLImageLoader sharedInstance] cancelOperation:tempUrl];
     }

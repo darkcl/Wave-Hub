@@ -26,4 +26,6 @@
 
 #import <YSLTransitionAnimator/YSLTransitionAnimator.h>
 #import <YSLTransitionAnimator/UIViewController+YSLTransition.h>
+#import <RMPZoomTransitionAnimator/RMPZoomTransitionAnimator.h>
+
 #endif

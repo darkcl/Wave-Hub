@@ -9,6 +9,7 @@
 #import "WHSoundManager.h"
 #import <NPQueuePlayer.h>
 #import <AVFoundation/AVFoundation.h>
+#import "WHTrackModel.h"
 
 @implementation WHSoundManager
 
@@ -74,6 +75,12 @@
     return result;
 }
 
+- (void)reloadTracksData{
+    if (_dataSource && [_dataSource respondsToSelector:@selector(currentPlayingTracks)]) {
+        currentTracks = [_dataSource currentPlayingTracks];
+    }
+}
+
 #pragma mark - Player Logic
 
 - (BOOL)isPlaying{
@@ -101,7 +108,7 @@
         [soundcloudStreamer skipNext];
         int resultIdx = currentFavouriteIdx++;
         
-        if (resultIdx == (int)favourite.count) {
+        if (resultIdx == (int)currentTracks.count) {
             resultIdx = currentFavouriteIdx;
         }
         
@@ -140,6 +147,10 @@
 }
 
 - (void)playerPause{
+    if (_delegate && [_delegate respondsToSelector:@selector(soundDidStop)]) {
+        [_delegate soundDidStop];
+    }
+    
     if (currentType == WHSoundManagerTypeSoundCloud) {
         [soundcloudStreamer pause];
     }else{
@@ -149,9 +160,17 @@
 }
 
 - (void)playerPlay{
+    
     if (currentType == WHSoundManagerTypeSoundCloud) {
+        if (_delegate && [_delegate respondsToSelector:@selector(didUpdatePlayingTrack:)]) {
+            [_delegate didUpdatePlayingTrack:currentTracks[currentFavouriteIdx]];
+        }
+        
+        
         [soundcloudStreamer play];
     }else{
+        
+        
         [player resume];
     }
 }
@@ -207,11 +226,41 @@
     currentCueSheetUrl = cueSheet.cueUrl;
 }
 
+- (void)playTrack:(WHTrackModel *)aTrack
+       forceStart:(BOOL)forceStart{
+    if (_dataSource && [_dataSource respondsToSelector:@selector(currentPlayingTracks)]) {
+        currentTracks = [_dataSource currentPlayingTracks];
+        currentType = WHSoundManagerTypeSoundCloud;
+        int resultIdx = [currentTracks indexOfObject:aTrack];
+        
+        if (resultIdx < 0) {
+            resultIdx = 0;
+        }
+        currentFavouriteIdx = resultIdx;
+        if (player.currentState == ORGMEngineStatePlaying){
+            [player stop];
+        }
+        
+        NSMutableArray *urls = [[NSMutableArray alloc] init];
+        for (WHTrackModel *info in currentTracks) {
+            if (info.trackUrl != nil && ![info.trackUrl isKindOfClass:[NSNull class]]) {
+                [urls addObject:[NSURL URLWithString:[NSString stringWithFormat:@"%@?client_id=47724625bbc02bbc335e84f2ed87c001", info.trackUrl]]];
+            }
+        }
+        
+        [self->soundcloudStreamer setUrls:urls];
+        [self->soundcloudStreamer selectIndexForPlayback:resultIdx];
+        
+    }else{
+        NSLog(@"Required to implement dataSource protocol");
+    }
+}
+
 - (void)playMyFavourite:(NSArray <WHTrackModel *> *)favouriteInfo withIndex:(int)idx forceStart:(BOOL)forceStart{
     
     currentType = WHSoundManagerTypeSoundCloud;
     
-    favourite = favouriteInfo;
+    currentTracks = favouriteInfo;
     
     int resultIdx = idx;
     
@@ -224,7 +273,7 @@
     }
     
     NSMutableArray *urls = [[NSMutableArray alloc] init];
-    for (WHTrackModel *info in favourite) {
+    for (WHTrackModel *info in currentTracks) {
         if (info.trackUrl != nil && ![info.trackUrl isKindOfClass:[NSNull class]]) {
             [urls addObject:[NSURL URLWithString:[NSString stringWithFormat:@"%@?client_id=47724625bbc02bbc335e84f2ed87c001", info.trackUrl]]];
         }
@@ -387,7 +436,7 @@
     if (player.currentState == ORGMEngineStatePlaying) {
         return nil;
     }else if(soundcloudStreamer.status == NPAudioStreamStatusPlaying){
-        return favourite[currentFavouriteIdx];
+        return currentTracks[currentFavouriteIdx];
     }else{
         return nil;
     }
@@ -408,12 +457,12 @@
 }
 
 - (void)audioStream:(NPAudioStream *)audioStream didBeginPlaybackForTrackAtIndex:(NSInteger)index{
-    WHTrackModel *info = favourite[index];
+    WHTrackModel *info = currentTracks[index];
     double time = (info.duration / 1000);
     currentFavouriteIdx = index;
     
     if (_delegate && [_delegate respondsToSelector:@selector(didUpdatePlayingTrack:)]) {
-        [_delegate didUpdatePlayingTrack:favourite[index]];
+        [_delegate didUpdatePlayingTrack:currentTracks[index]];
     }
     _playingIdx = index;
     [[MPNowPlayingInfoCenter defaultCenter] setNowPlayingInfo:@{MPMediaItemPropertyTitle:info.trackTitle,

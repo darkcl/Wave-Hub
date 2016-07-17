@@ -58,6 +58,8 @@
                                                                    }];
                                                                    
                                                                    [self.tableView reloadData];
+                                                                   [[WHSoundManager sharedManager] reloadTracksData];
+                                                                   
                                                                    [self.tableView.mj_header endRefreshing];
                                                                }
                                                                failure:^(NSError *error) {
@@ -84,6 +86,8 @@
         }else{
             self->favourite = result;
             [self.tableView reloadData];
+            
+            [[WHSoundManager sharedManager] reloadTracksData];
         }
     }];
     
@@ -94,9 +98,10 @@
     aLabel.backgroundColor = [UIColor clearColor];
     aLabel.textAlignment = NSTextAlignmentCenter;
     self.navigationItem.titleView = aLabel;
-    
-    
-    
+}
+
+- (NSArray <WHTrackModel *> *)currentPlayingTracks{
+    return favourite;
 }
 
 - (void)viewWillAppear:(BOOL)animated{
@@ -104,7 +109,11 @@
     
     currentPlayingIndex = [[WHSoundManager sharedManager] playingIdx];
     [[WHSoundManager sharedManager] setDelegate:self];
+    [[WHSoundManager sharedManager] setDataSource:self];
     [self.tableView reloadData];
+    
+    self.navigationController.navigationBar.barTintColor =[UIColor whiteColor];
+    self.navigationController.navigationBar.translucent = NO;
 }
 
 - (void)soundDidStop{
@@ -156,10 +165,10 @@
         if (playIndex == currentPlayingIndex) {
             [[WHSoundManager sharedManager] playerPause];
         }else{
-            [[WHSoundManager sharedManager] playMyFavourite:favourite withIndex:playIndex forceStart:YES];
+            [[WHSoundManager sharedManager] playTrack:info forceStart:YES];
         }
     }else{
-        [[WHSoundManager sharedManager] playMyFavourite:favourite withIndex:playIndex forceStart:YES];
+        [[WHSoundManager sharedManager] playTrack:info forceStart:YES];
     }
 }
 
