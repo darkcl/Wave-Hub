@@ -7,11 +7,14 @@
 //
 
 #import "MusicDetailViewController.h"
+#import "UserProfileViewController.h"
 
 #import "UIImage+WaveHubAddition.h"
 #import <FontAwesomeKit/FAKFontAwesome.h>
 #import <DLImageLoader/DLImageLoader.h>
 
+#import "WHAppDelegate.h"
+#import "WHSoundCloudUser.h"
 @interface MusicDetailViewController ()
 @property (strong, nonatomic) IBOutlet UIButton *prevButton;
 @property (strong, nonatomic) IBOutlet UIButton *togglePlayPauseButton;
@@ -113,14 +116,14 @@
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
-    [self ysl_removeTransitionDelegate];
+//    [self ysl_removeTransitionDelegate];
     
     [[WHSoundManager sharedManager] setDelegate:nil];
 }
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    
+    self.navigationController.delegate = self;
     [[WHSoundManager sharedManager] setDelegate:self];
 }
 
@@ -199,6 +202,24 @@
     self.viewMoreLabel.text = [NSString stringWithFormat:@"View more from %@", [[currentTrack.responseDict objectForKey:@"user"] objectForKey:@"username"]];
 }
 - (IBAction)viewMoreButtonPressed:(id)sender {
+    [SVProgressHUD show];
+    
+    [[WHWebrequestManager sharedManager] fetchUserInfoWithUserId:currentTrack.responseDict[@"user"][@"id"]
+                                                         success:^(id responseObject) {
+                                                             [SVProgressHUD dismiss];
+                                                             
+                                                             UserProfileViewController *detailVC = [[UserProfileViewController alloc] initWithUser:[[WHSoundCloudUser alloc] initWithUserInfo:responseObject]];
+                                                             UINavigationController *navVC = [[UINavigationController alloc] initWithRootViewController:detailVC];
+                                                             navVC.modalPresentationStyle = UIModalPresentationOverCurrentContext;
+                                                             navVC.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+                                                             self.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+                                                             [self presentViewController:navVC animated:YES completion:nil];
+                                                         }
+                                                         failure:^(NSError *error) {
+                                                             [SVProgressHUD dismiss];
+                                                         }];
+    
+    
 }
 
 - (IBAction)togglePlayPausePressed:(id)sender {

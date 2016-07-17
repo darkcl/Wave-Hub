@@ -23,4 +23,15 @@
  */
 @interface WHSoundCloudUser : NSObject
 
+- (id)initWithUserInfo:(NSDictionary *)dict;
+
+@property (nonatomic, strong) NSString *userName;
+@property (nonatomic, strong) NSString *avatarUrl;
+@property NSInteger followingsCount;
+@property NSInteger followersCount;
+@property NSInteger tracksCount;
+@property NSInteger playlistsCount;
+
+@property (nonatomic, strong) NSDictionary *responseDict;
+
 @end

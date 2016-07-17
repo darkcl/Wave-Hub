@@ -8,6 +8,14 @@
 
 #import <UIKit/UIKit.h>
 
-@interface UserProfileViewController : UIViewController
+@class WHSoundCloudUser, WHTrackModel;
+
+@interface UserProfileViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, WHSoundManagerDelegate, WHSoundManagerDatasource> {
+    WHSoundCloudUser *userInfo;
+    
+    NSArray <WHTrackModel *> *userTracks;
+}
+
+- (id)initWithUser:(WHSoundCloudUser *)aUser;
 
 @end

@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface MusicDetailViewController : UIViewController<YSLTransitionAnimatorDataSource, WHSoundManagerDelegate> {
+@interface MusicDetailViewController : UIViewController<YSLTransitionAnimatorDataSource, WHSoundManagerDelegate, UIViewControllerTransitioningDelegate> {
     UIImageView *transitionImageView;
     
     NSString *author;

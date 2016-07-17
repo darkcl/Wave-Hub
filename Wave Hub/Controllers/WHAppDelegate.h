@@ -6,7 +6,7 @@
 //  Copyright (c) 2015 Memory Leaks. All rights reserved.
 //
 
-@interface WHAppDelegate : UIResponder <UIApplicationDelegate>
+@interface WHAppDelegate : UIResponder <UIApplicationDelegate, UINavigationControllerDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
 

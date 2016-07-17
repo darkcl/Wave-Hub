@@ -31,4 +31,8 @@ typedef void(^RequestFailure)(NSError *error);
                           success:(RequestSuccess)successBlock
                           failure:(RequestFailure)failureBlock;
 
+- (void)fetchUserInfoWithUserId:(NSString *)userId
+                        success:(RequestSuccess)successBlock
+                        failure:(RequestFailure)failureBlock;
+
 @end

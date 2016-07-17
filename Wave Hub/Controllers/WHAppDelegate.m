@@ -70,6 +70,7 @@
     UINavigationController *rootNav = [[UINavigationController alloc] initWithRootViewController:rootVC];
     
     rootNav.navigationBar.barTintColor =[UIColor whiteColor];
+    rootNav.delegate = self;
     [rootNav.navigationBar setTranslucent:NO];
     
     [self.window setRootViewController:rootNav];
@@ -91,6 +92,26 @@
     
     [[UIApplication sharedApplication] registerUserNotificationSettings:[UIUserNotificationSettings settingsForTypes:UIUserNotificationTypeAlert categories:nil]];
     return YES;
+}
+
+#pragma mark - <UINavigationControllerDelegate>
+
+- (id <UIViewControllerAnimatedTransitioning>)navigationController:(UINavigationController *)navigationController
+                                   animationControllerForOperation:(UINavigationControllerOperation)operation
+                                                fromViewController:(UIViewController *)fromVC
+                                                  toViewController:(UIViewController *)toVC
+{
+    id <RMPZoomTransitionAnimating, RMPZoomTransitionDelegate> sourceTransition = (id<RMPZoomTransitionAnimating, RMPZoomTransitionDelegate>)fromVC;
+    id <RMPZoomTransitionAnimating, RMPZoomTransitionDelegate> destinationTransition = (id<RMPZoomTransitionAnimating, RMPZoomTransitionDelegate>)toVC;
+    if ([sourceTransition conformsToProtocol:@protocol(RMPZoomTransitionAnimating)] &&
+        [destinationTransition conformsToProtocol:@protocol(RMPZoomTransitionAnimating)]) {
+        RMPZoomTransitionAnimator *animator = [[RMPZoomTransitionAnimator alloc] init];
+        animator.goingForward = (operation == UINavigationControllerOperationPush);
+        animator.sourceTransition = sourceTransition;
+        animator.destinationTransition = destinationTransition;
+        return animator;
+    }
+    return nil;
 }
 
 @end

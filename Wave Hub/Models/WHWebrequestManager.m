@@ -277,4 +277,35 @@ static NSString * const kBaseURL = @"https://api.soundcloud.com";
 //    }
 //}
 
+- (void)fetchUserInfoWithUserId:(NSString *)userId
+                        success:(RequestSuccess)successBlock
+                        failure:(RequestFailure)failureBlock{
+    NSString *url = [NSString stringWithFormat:@"https://api.soundcloud.com/users/%@",userId];
+    
+    [SCRequest performMethod:SCRequestMethodGET
+                  onResource:[NSURL URLWithString:url]
+             usingParameters:nil
+                 withAccount:[SCSoundCloud account]
+      sendingProgressHandler:^(unsigned long long bytesSend, unsigned long long bytesTotal) {
+          
+      }
+             responseHandler:^(NSURLResponse *response, NSData *responseData, NSError *error) {
+                 if (error) {
+                     failureBlock(error);
+                     
+                 }else{
+                     NSError *jsonError;
+                     NSDictionary *aDict = [NSJSONSerialization JSONObjectWithData:responseData
+                                                                           options:NSJSONReadingAllowFragments
+                                                                             error:&jsonError];
+                     if (jsonError) {
+                         failureBlock(jsonError);
+                     }else{
+                         
+                         successBlock(aDict);
+                     }
+                 }
+             }];
+}
+
 @end
