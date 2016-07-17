@@ -17,7 +17,7 @@
         _responseDict = dict;
         _userName = dict[@"username"];
         _avatarUrl = dict[@"avatar_url"];
-        
+        _userId = dict[@"id"];
         _followersCount = [dict[@"followers_count"] integerValue];
         _followingsCount = [dict[@"followings_count"] integerValue];
         _tracksCount = [dict[@"track_count"] integerValue];

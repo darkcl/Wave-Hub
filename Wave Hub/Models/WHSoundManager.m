@@ -81,6 +81,14 @@
     }
 }
 
+- (void)setDataSource:(id<WHSoundManagerDatasource>)dataSource{
+    if (_dataSource != dataSource) {
+        _playingIdx = -1;
+        
+    }
+    _dataSource = dataSource;
+}
+
 #pragma mark - Player Logic
 
 - (BOOL)isPlaying{

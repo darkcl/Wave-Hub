@@ -35,4 +35,9 @@ typedef void(^RequestFailure)(NSError *error);
                         success:(RequestSuccess)successBlock
                         failure:(RequestFailure)failureBlock;
 
+- (void)fetchTracksForUserId:(NSString *)userId
+                        info:(NSDictionary *)info
+                     success:(RequestSuccess)successBlock
+                     failure:(RequestFailure)failureBlock;
+
 @end

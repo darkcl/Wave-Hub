@@ -122,6 +122,59 @@ static NSString * const kBaseURL = @"https://api.soundcloud.com";
     }
 }
 
+- (void)fetchTracksForUserId:(NSString *)userId
+                        info:(NSDictionary *)info
+                          success:(RequestSuccess)successBlock
+                          failure:(RequestFailure)failureBlock{
+    NSString *url = info[@"next_href"];
+    if (info != nil) {
+        if (url != nil && url.length != 0) {
+            url = info[@"next_href"];
+        }else{
+            NSMutableArray *result = [[NSMutableArray alloc] init];
+            
+            for (NSDictionary *trackInfo in info[@"collection"]) {
+                WHTrackModel *aTrack = [[WHTrackModel alloc] initWithInfo:trackInfo];
+                aTrack.trackType = WHTrackTypeSoundCloud;
+                [result addObject:aTrack];
+            }
+            
+            successBlock(result);
+            return;
+        }
+    }else{
+        url = [NSString stringWithFormat:@"https://api.soundcloud.com/users/%@/tracks", userId];
+    }
+    
+    [SCRequest performMethod:SCRequestMethodGET
+                  onResource:[NSURL URLWithString:url]
+             usingParameters:@{@"linked_partitioning":@"1"}
+                 withAccount:[SCSoundCloud account]
+      sendingProgressHandler:^(unsigned long long bytesSend, unsigned long long bytesTotal) {
+          
+      }
+             responseHandler:^(NSURLResponse *response, NSData *responseData, NSError *error) {
+                 if (error) {
+                     failureBlock(error);
+                     
+                 }else{
+                     NSError *jsonError;
+                     NSDictionary *aDict = [NSJSONSerialization JSONObjectWithData:responseData
+                                                                           options:NSJSONReadingAllowFragments
+                                                                             error:&jsonError];
+                     if (jsonError) {
+                         failureBlock(jsonError);
+                     }else{
+                         NSDictionary *result = [self mergeFavourite:info toFavourite:aDict];
+                         [self fetchTracksForUserId:userId
+                                               info:result
+                                            success:successBlock
+                                            failure:failureBlock];
+                     }
+                 }
+             }];
+}
+
 - (void)fetchAllFavouriteWithInfo:(NSDictionary *)info
                           success:(RequestSuccess)successBlock
                              failure:(RequestFailure)failureBlock{

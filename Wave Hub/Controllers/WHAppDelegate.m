@@ -62,14 +62,14 @@
 //                               platlistVC,
 //                               localSongVC];
     
-    [[UINavigationBar appearance] setBackgroundImage:[[UIImage alloc] init] forBarMetrics:UIBarMetricsDefault];
     
-    [[UINavigationBar appearance] setShadowImage:[[UIImage alloc] init]];
     
     RootViewController *rootVC = [[RootViewController alloc] initWithNibName:@"RootViewController" bundle:nil];
     UINavigationController *rootNav = [[UINavigationController alloc] initWithRootViewController:rootVC];
+    [rootNav.navigationBar setBackgroundImage:[[UIImage alloc] init] forBarMetrics:UIBarMetricsDefault];
+    [rootNav.navigationBar setShadowImage:[[UIImage alloc] init]];
+    rootNav.navigationBar.barTintColor = [UIColor whiteColor];
     
-    rootNav.navigationBar.barTintColor =[UIColor whiteColor];
     rootNav.delegate = self;
     [rootNav.navigationBar setTranslucent:NO];
     

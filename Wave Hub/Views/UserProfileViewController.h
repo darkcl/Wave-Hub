@@ -7,13 +7,16 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "MusicTableViewCell.h"
 @class WHSoundCloudUser, WHTrackModel;
 
-@interface UserProfileViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, WHSoundManagerDelegate, WHSoundManagerDatasource> {
+@interface UserProfileViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, WHSoundManagerDelegate, WHSoundManagerDatasource, MusicTableViewCellDelegate> {
     WHSoundCloudUser *userInfo;
     
     NSArray <WHTrackModel *> *userTracks;
+    
+    float currentPlayingProgress;
+    NSInteger currentPlayingIndex;
 }
 
 - (id)initWithUser:(WHSoundCloudUser *)aUser;

@@ -25,6 +25,7 @@
 
 - (id)initWithUserInfo:(NSDictionary *)dict;
 
+@property (nonatomic, strong) NSString *userId;
 @property (nonatomic, strong) NSString *userName;
 @property (nonatomic, strong) NSString *avatarUrl;
 @property NSInteger followingsCount;

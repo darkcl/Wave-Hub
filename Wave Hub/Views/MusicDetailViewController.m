@@ -210,6 +210,11 @@
                                                              
                                                              UserProfileViewController *detailVC = [[UserProfileViewController alloc] initWithUser:[[WHSoundCloudUser alloc] initWithUserInfo:responseObject]];
                                                              UINavigationController *navVC = [[UINavigationController alloc] initWithRootViewController:detailVC];
+                                                             
+                                                             [navVC.navigationBar setBackgroundImage:[[UIImage alloc] init] forBarMetrics:UIBarMetricsDefault];
+                                                             [navVC.navigationBar setShadowImage:[[UIImage alloc] init]];
+                                                             navVC.navigationBar.barTintColor = [UIColor clearColor];
+                                                             
                                                              navVC.modalPresentationStyle = UIModalPresentationOverCurrentContext;
                                                              navVC.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
                                                              self.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;

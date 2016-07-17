@@ -17,6 +17,7 @@
             <string>Montserrat-Regular</string>
             <string>Montserrat-Regular</string>
             <string>Montserrat-Regular</string>
+            <string>Montserrat-Regular</string>
         </mutableArray>
     </customFonts>
     <objects>
@@ -24,10 +25,12 @@
             <connections>
                 <outlet property="backgroundImage" destination="X4M-t2-MRW" id="A3y-XR-zch"/>
                 <outlet property="descLabel" destination="wV5-F2-z4s" id="Ih1-VK-29y"/>
+                <outlet property="fakeNavBarView" destination="H3E-Bb-qJt" id="yxE-vL-5cr"/>
                 <outlet property="numOfFollowinsLabel" destination="AMg-Cx-nFh" id="uMx-xi-5u4"/>
                 <outlet property="numOfLikesLabel" destination="vqf-pk-Zaa" id="SK6-RW-M0B"/>
                 <outlet property="numOfPlaylistLabel" destination="O1F-Z0-Xju" id="fDo-Wx-sSv"/>
                 <outlet property="tableView" destination="8Gg-1z-iag" id="89Y-eY-RkO"/>
+                <outlet property="titleLabel" destination="poA-dS-GyK" id="iPJ-O0-wez"/>
                 <outlet property="userImageView" destination="6dx-4X-sRk" id="xe5-vc-gnJ"/>
                 <outlet property="userNameLabel" destination="x64-7Y-d2t" id="U5D-W3-MTU"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -217,6 +220,26 @@
                         <outlet property="delegate" destination="-1" id="BGP-EK-4Cg"/>
                     </connections>
                 </tableView>
+                <view alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="H3E-Bb-qJt">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="64"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Yeung Yiu Hung" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="poA-dS-GyK">
+                            <rect key="frame" x="15" y="33" width="290" height="21"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="21" id="lrx-ha-0x3"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="17"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="64" id="EjL-Nq-qQg"/>
+                        <constraint firstAttribute="trailing" secondItem="poA-dS-GyK" secondAttribute="trailing" constant="15" id="Owl-gp-Bpu"/>
+                        <constraint firstItem="poA-dS-GyK" firstAttribute="leading" secondItem="H3E-Bb-qJt" secondAttribute="leading" constant="15" id="pd9-SD-0xb"/>
+                        <constraint firstAttribute="bottom" secondItem="poA-dS-GyK" secondAttribute="bottom" constant="10" id="vea-Yw-XbB"/>
+                    </constraints>
+                </view>
             </subviews>
             <color key="backgroundColor" red="0.08235294118" green="0.16078431369999999" blue="0.3921568627" alpha="0.46117995690000002" colorSpace="calibratedRGB"/>
             <constraints>
@@ -228,13 +251,16 @@
                 <constraint firstItem="nLe-g6-Fp3" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="SPc-Y1-le5"/>
                 <constraint firstItem="nLe-g6-Fp3" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="Wr9-Dg-zyG"/>
                 <constraint firstAttribute="bottom" secondItem="nLe-g6-Fp3" secondAttribute="bottom" id="g44-uk-i6L"/>
+                <constraint firstAttribute="trailing" secondItem="H3E-Bb-qJt" secondAttribute="trailing" id="nIQ-fh-HX4"/>
+                <constraint firstItem="H3E-Bb-qJt" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="oOB-cm-EJz"/>
                 <constraint firstItem="X4M-t2-MRW" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="s15-3N-TCb"/>
                 <constraint firstAttribute="bottom" secondItem="X4M-t2-MRW" secondAttribute="bottom" id="sCf-Hn-E2Z"/>
                 <constraint firstItem="8Gg-1z-iag" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="sX8-2G-sSD"/>
                 <constraint firstAttribute="trailing" secondItem="X4M-t2-MRW" secondAttribute="trailing" id="vUi-kt-Lwy"/>
+                <constraint firstItem="H3E-Bb-qJt" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="zHl-r6-qID"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <point key="canvasLocation" x="421" y="579"/>
+            <point key="canvasLocation" x="428" y="584"/>
         </view>
     </objects>
 </document>

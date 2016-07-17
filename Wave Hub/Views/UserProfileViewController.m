@@ -12,7 +12,7 @@
 #import <FontAwesomeKit/FAKFontAwesome.h>
 #import <DLImageLoader/DLImageLoader.h>
 
-#import "MusicTableViewCell.h"
+
 
 @interface UserProfileViewController ()
 @property (weak, nonatomic) IBOutlet UIImageView *userImageView;
@@ -23,6 +23,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *numOfFollowinsLabel;
 @property (weak, nonatomic) IBOutlet UILabel *numOfPlaylistLabel;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (weak, nonatomic) IBOutlet UIView *fakeNavBarView;
+@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 
 @end
 
@@ -31,6 +33,9 @@
 - (id)initWithUser:(WHSoundCloudUser *)aUser{
     if (self = [super initWithNibName:@"UserProfileViewController" bundle:nil]) {
         userInfo = aUser;
+        
+        currentPlayingProgress = -1;
+        currentPlayingIndex = -1;
     }
     return self;
 }
@@ -62,7 +67,15 @@
                                                }
                                            }];
     }
-    
+    [[WHWebrequestManager sharedManager] fetchTracksForUserId:userInfo.userId
+                                                         info:nil
+                                                      success:^(NSArray <WHTrackModel *> *responseObject) {
+                                                          self->userTracks =  responseObject;
+                                                          [self.tableView reloadData];
+                                                      }
+                                                      failure:^(NSError *error) {
+                                                          
+                                                      }];
     [_tableView registerNib:[UINib nibWithNibName:@"MusicTableViewCell" bundle:nil] forCellReuseIdentifier:@"MusicTableViewCell"];
 }
 
@@ -72,6 +85,9 @@
 }
 - (void)dismiss:(id)sender {
     [self dismissViewControllerAnimated:YES completion:nil];
+    
+    [[WHSoundManager sharedManager] setDataSource:nil];
+    [[WHSoundManager sharedManager] setDelegate:nil];
 }
 
 /*
@@ -86,15 +102,20 @@
 
 #pragma mark - WHSoundManagerDelegate
 
+- (void)soundDidStop{
+    currentPlayingProgress = -1.0;
+    currentPlayingIndex = -1;
+    [_tableView reloadData];
+}
+
 - (void)didUpdatePlayingProgress:(float)progress{
-    
+    currentPlayingProgress = progress;
+    [_tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:currentPlayingIndex inSection:0]] withRowAnimation:UITableViewRowAnimationNone];
 }
 
 - (void)didUpdatePlayingTrack:(WHTrackModel *)info{
-    
-}
-
-- (void)soundDidStop{
+    currentPlayingIndex = [userTracks indexOfObject:info];
+    [_tableView reloadData];
     
 }
 
@@ -115,13 +136,21 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     // Return the number of rows in the section.
-    return 100;
+    return userTracks.count;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     return 80.0;
 }
 
+- (NSString *)timeFormatted:(int)totalMillSeconds{
+    
+    int totalSeconds = totalMillSeconds/ 1000;
+    int seconds = totalSeconds % 60;
+    int minutes = (totalSeconds / 60) % 60;
+    
+    return [NSString stringWithFormat:@"%02d:%02d", minutes, seconds];
+}
 
 // Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -134,7 +163,30 @@
     }
     
     // Configure the cell...
+    WHTrackModel *info = userTracks[indexPath.row];
+    [cell setInfo:info];
     
+    cell.titleLabel.text = info.trackTitle;
+    cell.authorLabel.text = info.author ? info.author : @"";
+    cell.durationLabel.text = [self timeFormatted:(int)info.duration];
+    
+    cell.progressView.hidden = YES;
+    if (indexPath.row == currentPlayingIndex) {
+        cell.progressView.hidden = NO;
+        cell.progressView.progress = currentPlayingProgress;
+        
+        FAKFontAwesome *buttonIcon = ([[WHSoundManager sharedManager] isPlaying])? [FAKFontAwesome pauseIconWithSize:17] : [FAKFontAwesome playIconWithSize:17];
+        [buttonIcon addAttribute:NSForegroundColorAttributeName value:[UIColor whiteColor]];
+        [cell.togglePlayPauseButton setAttributedTitle:buttonIcon.attributedString forState:UIControlStateNormal];
+    }else{
+        cell.progressView.hidden = YES;
+        FAKFontAwesome *buttonIcon =  [FAKFontAwesome playIconWithSize:17];
+        [buttonIcon addAttribute:NSForegroundColorAttributeName value:[UIColor whiteColor]];
+        [cell.togglePlayPauseButton setAttributedTitle:buttonIcon.attributedString forState:UIControlStateNormal];
+    }
+    
+    cell.cellDelegate = self;
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;
 }
 
@@ -197,5 +249,41 @@
  return 44.0f;
  }
  */
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView{
+    CGFloat alpha = (scrollView.contentOffset.y - (434 - 224.0 + 17.0f)) / (224.0 + 17.0f);
+    
+    if (alpha > 1.0) {
+        alpha = 1.0;
+    }
+    
+    _fakeNavBarView.alpha = alpha;
+    
+}
+
+#pragma mark - Music Cell Delegate
+
+- (void)didTogglePlayPause:(WHTrackModel *)info{
+    if ([[WHSoundManager sharedManager] dataSource] != self) {
+        [[WHSoundManager sharedManager] setDelegate:self];
+        [[WHSoundManager sharedManager] setDataSource:self];
+        [[WHSoundManager sharedManager] playerStop];
+        
+        [[WHSoundManager sharedManager] reloadTracksData];
+    }
+    
+    
+    NSInteger playIndex = [userTracks indexOfObject:info];
+    
+    if ([[WHSoundManager sharedManager] isPlaying]) {
+        if (playIndex == currentPlayingIndex) {
+            [[WHSoundManager sharedManager] playerPause];
+        }else{
+            [[WHSoundManager sharedManager] playTrack:info forceStart:YES];
+        }
+    }else{
+        [[WHSoundManager sharedManager] playTrack:info forceStart:YES];
+    }
+}
 
 @end
