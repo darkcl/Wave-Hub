@@ -19,6 +19,7 @@ target 'Wave Hub' do
     pod 'OrigamiEngine', :git => 'https://github.com/darkcl/OrigamiEngine.git'
     pod 'OrigamiEngine/Flac', :git => 'https://github.com/darkcl/OrigamiEngine.git'
     pod 'OrigamiEngine/Opus', :git => 'https://github.com/darkcl/OrigamiEngine.git'
+    pod 'FreeStreamer'
 
     # UI
     pod 'DZNEmptyDataSet'
