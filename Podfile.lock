@@ -55,6 +55,8 @@ PODS:
     - FontAwesomeKit/Core
   - FontAwesomeKit/Zocial (2.1.8):
     - FontAwesomeKit/Core
+  - FreeStreamer (3.5.8):
+    - Reachability (~> 3.0)
   - GCDWebServer/Core (3.2.7)
   - GCDWebServer/WebUploader (3.2.7):
     - GCDWebServer/Core
@@ -74,6 +76,7 @@ PODS:
     - OrigamiEngine/Core
   - OrigamiEngine/Opus (1.0.14):
     - OrigamiEngine/Core
+  - Reachability (3.2)
   - ReactiveCocoa (2.5):
     - ReactiveCocoa/UI (= 2.5)
   - ReactiveCocoa/Core (2.5):
@@ -100,6 +103,7 @@ DEPENDENCIES:
   - DZNEmptyDataSet
   - FLKAutoLayout
   - FontAwesomeKit (~> 2.1.0)
+  - FreeStreamer
   - GCDWebServer/WebUploader
   - JRNLocalNotificationCenter
   - Mantle
@@ -151,6 +155,7 @@ SPEC CHECKSUMS:
   DZNEmptyDataSet: 0ec00bfc230d7450997b60c127afdd0b9f24f3b6
   FLKAutoLayout: 9db6b30c2008d230da608e62c607b11c23b942e6
   FontAwesomeKit: 64759fb28b5d2e74a1bd81553d7c11ca10e32179
+  FreeStreamer: 61471ef4a1934c67de7ec152adb91ca8fff8318f
   GCDWebServer: 76a9540371d5f12f850b32ec7f555dd2d266e543
   JRNLocalNotificationCenter: 1cf072a5e742a84a234b6f316e4bb2a6f64a1c3f
   Mantle: 1912395033f601de5adc8ee91e48f46e4c7051ad
@@ -160,6 +165,7 @@ SPEC CHECKSUMS:
   NXOAuth2Client: 492f961d549c411b344cfae861de0dc63b176edc
   OHAttributedLabel: 9b2eb99323dee6b3a81ef3bc8e98b084117bca2d
   OrigamiEngine: b8208cbd9142d6194807a5f5bc0c6ffd363e0374
+  Reachability: 33e18b67625424e47b6cde6d202dce689ad7af96
   ReactiveCocoa: e2db045570aa97c695e7aa97c2bcab222ae51f4a
   RMPZoomTransitionAnimator: fa1a0726e8e227069d9d63d30ef403aa12323960
   SCSiriWaveformView: b8b2756af42addcd31900c3945f24edafefb5395
@@ -167,6 +173,6 @@ SPEC CHECKSUMS:
   YapDatabase: 00e5a5d1b5dba1bd540ef644576233b5612e6122
   YSLTransitionAnimator: e5f0a2f253ea72b00a06c594c448e6b992f5630f
 
-PODFILE CHECKSUM: a72dbd9d92633c027eb090acf426fed6cfcb648f
+PODFILE CHECKSUM: 3937ff34c81a7bab2fb6bec5bf89f648f481d3f1
 
 COCOAPODS: 1.0.0

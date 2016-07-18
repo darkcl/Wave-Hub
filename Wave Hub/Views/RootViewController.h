@@ -11,7 +11,6 @@
 
 @interface RootViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, WHSoundManagerDelegate, WHSoundManagerDatasource, MusicTableViewCellDelegate, YSLTransitionAnimatorDataSource> {
     NSArray <WHTrackModel *> *favourite;
-    NPAudioStream *streamer;
     
     float currentPlayingProgress;
     NSInteger currentPlayingIndex;

@@ -175,7 +175,7 @@
         cell.progressView.hidden = NO;
         cell.progressView.progress = currentPlayingProgress;
         
-        FAKFontAwesome *buttonIcon = ([[WHSoundManager sharedManager] isPlaying])? [FAKFontAwesome pauseIconWithSize:17] : [FAKFontAwesome playIconWithSize:17];
+        FAKFontAwesome *buttonIcon = ([[[WHSoundManager sharedManager] playingTrack] isPlaying])? [FAKFontAwesome pauseIconWithSize:17] : [FAKFontAwesome playIconWithSize:17];
         [buttonIcon addAttribute:NSForegroundColorAttributeName value:[UIColor whiteColor]];
         [cell.togglePlayPauseButton setAttributedTitle:buttonIcon.attributedString forState:UIControlStateNormal];
     }else{
@@ -275,7 +275,7 @@
     
     NSInteger playIndex = [userTracks indexOfObject:info];
     
-    if ([[WHSoundManager sharedManager] isPlaying]) {
+    if ([[[WHSoundManager sharedManager] playingTrack] isPlaying]) {
         if (playIndex == currentPlayingIndex) {
             [[WHSoundManager sharedManager] playerPause];
         }else{

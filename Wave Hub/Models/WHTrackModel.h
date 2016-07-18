@@ -13,6 +13,10 @@ typedef NS_ENUM(NSInteger, WHTrackType) {
     WHTrackTypeSoundCloud
 };
 
+typedef void(^WHTrackCompletion)(void);
+typedef void(^WHTrackProgress)(float progress);
+typedef void(^WHTrackError)(NSError *error);
+
 @interface WHTrackModel : NSObject <NSCoding>
 
 @property (nonatomic, strong) NSURL *trackUrl;
@@ -28,6 +32,21 @@ typedef NS_ENUM(NSInteger, WHTrackType) {
 @property float duration;
 
 @property (nonatomic, strong) NSDictionary *responseDict;
+
+// Will Not save in db
+@property NSInteger displayIndex;
+@property (nonatomic, strong) WHTrackModel *prevTrack;
+@property (nonatomic, strong) WHTrackModel *nextTrack;
+
+- (void)playTrackWithCompletion:(WHTrackCompletion)completionBlock
+                       progress:(WHTrackProgress)progressBlock
+                        failure:(WHTrackError)failureBlock;
+
+- (void)pause;
+- (void)resume;
+- (void)stop;
+
+- (BOOL)isPlaying;
 
 - (id)initWithInfo:(NSDictionary *)dict;
 
