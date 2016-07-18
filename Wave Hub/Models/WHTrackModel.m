@@ -8,6 +8,27 @@
 
 #import "WHTrackModel.h"
 
+#import <NPAudioStream/NPAudioStream.h>
+
+#import <OrigamiEngine/ORGMEngine.h>
+#import <OrigamiEngine/CueSheet.h>
+#import "CueSheet+WaveHubAddition.h"
+
+#import <Block-KVO/MTKObserving.h>
+
+@interface WHTrackModel() <NPAudioStreamDelegate> {
+    WHTrackCompletion complete;
+    WHTrackProgress progress;
+    WHTrackError failure;
+    
+    NSTimer *progressUpdateTimer;
+    NPAudioStream *_streamPlayer;
+}
+
+@property (nonatomic, strong) ORGMEngine *localPlayer;
+
+@end
+
 @implementation WHTrackModel
 
 - (id)init{
@@ -19,7 +40,7 @@
 
 - (id)initWithInfo:(NSDictionary *)dict{
     if (self = [super init]) {
-        _trackUrl = dict[@"stream_url"];
+        _trackUrl = [NSURL URLWithString:[NSString stringWithFormat:@"%@?client_id=47724625bbc02bbc335e84f2ed87c001", dict[@"stream_url"]]];
         _trackTitle = dict[@"title"];
         _albumTitle = @"-";
         _albumCoverUrl = dict[@"artwork_url"];
@@ -61,6 +82,102 @@
 
 - (NSString *)description{
     return [NSString stringWithFormat:@"%@", self.responseDict];
+}
+
+#pragma mark - Player Logic
+
+- (void)playTrackWithCompletion:(WHTrackCompletion)completionBlock
+                       progress:(WHTrackProgress)progressBlock
+                        failure:(WHTrackError)failureBlock{
+    complete = completionBlock;
+    progress = progressBlock;
+    failure = failureBlock;
+    
+    if (_trackType != WHTrackTypeLocal) {
+        [self playOnlineSound];
+    }else{
+        [self playLocalSound];
+    }
+}
+
+- (void)stop{
+    if (_trackType != WHTrackTypeLocal) {
+        [_streamPlayer pause];
+    }else{
+        // TODO: Local file handling
+    }
+}
+
+- (void)pause{
+    if (_trackType != WHTrackTypeLocal) {
+        [_streamPlayer pause];
+    }else{
+        // TODO: Local file handling
+    }
+}
+
+- (void)resume{
+    if (_trackType != WHTrackTypeLocal) {
+        [_streamPlayer pause];
+    }else{
+        // TODO: Local file handling
+    }
+}
+
+- (void)playOnlineSound{
+    _streamPlayer = [[NPAudioStream alloc] init];
+    
+    [_streamPlayer setUrls:@[_trackUrl]];
+    
+    _streamPlayer.repeatMode = NPAudioStreamRepeatModeOff;
+    _streamPlayer.delegate = self;
+    [_streamPlayer selectIndexForPlayback:0];
+}
+
+- (void)playLocalSound{
+    
+}
+
+- (BOOL)isPlaying{
+    if (_trackType != WHTrackTypeLocal) {
+        return (_streamPlayer.status == NPAudioStreamStatusPlaying);
+    }else{
+        return NO;
+    }
+}
+
+
+
+#pragma mark - Streaming Delegate
+
+- (void)didCompleteAudioStream:(NPAudioStream *)audioStream{
+    double time = (self.duration / 1000);
+    [[MPNowPlayingInfoCenter defaultCenter] setNowPlayingInfo:@{MPMediaItemPropertyTitle:self.trackTitle,
+                                                                MPMediaItemPropertyArtist:self.author,
+                                                                MPMediaItemPropertyMediaType: @(MPMediaTypeMusic),
+                                                                MPMediaItemPropertyPlaybackDuration: @(time),
+                                                                MPNowPlayingInfoPropertyPlaybackRate: @0}];
+    if (complete != nil) {
+        complete();
+    }
+}
+
+- (void)audioStream:(NPAudioStream *)audioStream
+didUpdateTrackCurrentTime:(CMTime)currentTime{
+    float playingProgress = (float)(CMTimeGetSeconds(currentTime) / CMTimeGetSeconds(audioStream.duration));
+    
+    if (progress != nil) {
+        progress(playingProgress);
+    }
+}
+
+- (void)audioStream:(NPAudioStream *)audioStream didBeginPlaybackForTrackAtIndex:(NSInteger)index{
+    double time = (self.duration / 1000);
+    [[MPNowPlayingInfoCenter defaultCenter] setNowPlayingInfo:@{MPMediaItemPropertyTitle:self.trackTitle,
+                                                                MPMediaItemPropertyArtist:self.author,
+                                                                MPMediaItemPropertyMediaType: @(MPMediaTypeMusic),
+                                                                MPMediaItemPropertyPlaybackDuration: @(time),
+                                                                MPNowPlayingInfoPropertyPlaybackRate: @1}];
 }
 
 @end

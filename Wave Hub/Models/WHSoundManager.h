@@ -45,49 +45,22 @@ typedef NS_ENUM(NSInteger, WHSoundManagerType) {
 
 @end
 
-@interface WHSoundManager : NSObject <ORGMEngineDelegate, AVAudioPlayerDelegate, NPAudioStreamDataSource, NPAudioStreamDelegate>{
-    ORGMEngine *player;
-    
-    NSMutableArray *queue;
-    
-    NSURL *expectedNextUrl;
-    
-    WHSoundManagerType currentType;
-    WHSoundManagerPlayType loopingMode;
-    
-    //cue
-    NSInteger currentCueIdx;
-    NSURL *currentCueSheetUrl;
-    
-    //SoundCloud Favourite
-    
-    NPAudioStream *soundcloudStreamer;
-    
+@interface WHSoundManager : NSObject{
+    //Traks
     NSArray <WHTrackModel *> *currentTracks;
-    int currentFavouriteIdx;
-    
+    WHSoundManagerPlayType playType;
 }
 
-@property NSInteger playingIdx;
+@property (nonatomic, strong) WHTrackModel *playingTrack;
 
-- (WHTrackModel *)playingTrack;
-
-@property float playingProgress;
+- (NSInteger)displayIndexForPlayingTrack:(WHTrackModel *)track;
 
 - (void)reloadTracksData;
-
-- (BOOL)isPlaying;
 
 + (WHSoundManager *)sharedManager;
 
 - (void)playTrack:(WHTrackModel *)aTrack
        forceStart:(BOOL)forceStart;
-
-- (void)playUrl:(NSString *)url forceStart:(BOOL)forceStart;
-- (void)playCue:(CueSheet *)cueSheet withTrack:(CueSheetTrack *)track forceStart:(BOOL)forceStart;
-- (void)playMyFavourite:(NSArray <WHTrackModel *> *)favouriteInfo withIndex:(int)idx forceStart:(BOOL)forceStart;
-
-- (NSArray *)cueFilesInAppDocument;
 
 - (void)playerChangeMode:(WHSoundManagerPlayType)playerMode;
 - (void)playerForward;
@@ -99,6 +72,8 @@ typedef NS_ENUM(NSInteger, WHSoundManagerType) {
 
 @property (assign) id<WHSoundManagerDelegate>delegate;
 @property (assign) id<WHSoundManagerDatasource>dataSource;
+
+- (BOOL)isPlaying;
 
 
 @end

@@ -51,7 +51,8 @@
                                                                success:^(NSArray *responseObject) {
                                                                    
                                                                    [[WHDatabaseManager sharedManager] saveTrackFromFavouriteArray:responseObject];
-                                                                   
+                                                                   self->favourite = responseObject;
+                                                                   [self.tableView reloadData];
                                                                    [[WHDatabaseManager sharedManager] readTrackFromFavourite:^(id result) {
                                                                        self->favourite = result;
                                                                        [self.tableView reloadData];
@@ -107,7 +108,7 @@
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     
-    currentPlayingIndex = [[WHSoundManager sharedManager] playingIdx];
+    currentPlayingIndex = [favourite indexOfObject:[[WHSoundManager sharedManager] playingTrack]];
     [[WHSoundManager sharedManager] setDelegate:self];
     [[WHSoundManager sharedManager] setDataSource:self];
     [self.tableView reloadData];

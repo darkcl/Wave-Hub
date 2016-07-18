@@ -25,24 +25,6 @@
 
 - (id)init{
     if (self = [super init]) {
-        player = [[ORGMEngine alloc] init];
-        player.delegate = self;
-        currentFavouriteIdx = 0;
-        queue = [[NSMutableArray alloc] init];
-        
-        soundcloudStreamer = [[NPAudioStream alloc] init];
-        _playingIdx = -1;
-        _playingProgress = -1;
-        
-        AVAudioPlayer *aPlayer = (AVAudioPlayer *)soundcloudStreamer.player;
-        [aPlayer setMeteringEnabled:YES];
-        
-        soundcloudStreamer.delegate = self;
-        soundcloudStreamer.dataSource = self;
-//        soundcloudStreamer.repeatMode = NPAudioStreamRepeatModeOne;
-        
-        [AVAudioSession sharedInstance];
-        
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(remoteControlPlayPressed:) name:remoteControlPlayButtonTapped object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(remoteControlPausePressed:) name:remoteControlPauseButtonTapped object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(remoteControlStopPressed:) name:remoteControlStopButtonTapped object:nil];
@@ -53,6 +35,7 @@
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(audioRouteChangeListenerCallback:)
                                                      name:AVAudioSessionRouteChangeNotification
                                                    object:nil];
+        playType = WHSoundManagerPlayTypeLoop;
     }
     return self;
 }
@@ -81,232 +64,119 @@
     }
 }
 
-- (void)setDataSource:(id<WHSoundManagerDatasource>)dataSource{
-    if (_dataSource != dataSource) {
-        _playingIdx = -1;
-        
-    }
-    _dataSource = dataSource;
-}
-
 #pragma mark - Player Logic
 
-- (BOOL)isPlaying{
-    return (player.currentState == ORGMEngineStatePlaying) || (soundcloudStreamer.status == NPAudioStreamStatusPlaying);
-}
-
 - (void)playerForward{
-    if (currentType == WHSoundManagerTypeCue) {
-        CueSheet *currentCueSheet = [[CueSheet alloc] initWithURL:currentCueSheetUrl];
-        currentCueSheet.cueUrl = currentCueSheetUrl;
-        CueSheetTrack *track;
-        if (currentCueIdx == (NSInteger)currentCueSheet.tracks.count - 1) {
-            track = currentCueSheet.tracks[0];
-            
-            currentCueIdx = 0;
-        }else{
-            track = currentCueSheet.tracks[currentCueIdx + 1];
-            
-            currentCueIdx += 1;
-        }
-        [self playCue:currentCueSheet
-            withTrack:track
-           forceStart:YES];
-    }else if(currentType == WHSoundManagerTypeSoundCloud) {
-        [soundcloudStreamer skipNext];
-        int resultIdx = currentFavouriteIdx++;
-        
-        if (resultIdx == (int)currentTracks.count) {
-            resultIdx = currentFavouriteIdx;
-        }
-        
-        currentFavouriteIdx = resultIdx;
-    }
+    [_playingTrack stop];
+    _playingTrack = _playingTrack.nextTrack;
+    
+    [self startPlayTrack];
 }
 
 - (void)playerBackward{
-    if (currentType == WHSoundManagerTypeCue) {
-        CueSheet *currentCueSheet = [[CueSheet alloc] initWithURL:currentCueSheetUrl];
-        currentCueSheet.cueUrl = currentCueSheetUrl;
-        CueSheetTrack *track;
-        if (currentCueIdx == 0) {
-            track = currentCueSheet.tracks[(NSInteger)currentCueSheet.tracks.count - 1];
-            
-            currentCueIdx = (NSInteger)currentCueSheet.tracks.count - 1;
-        }else{
-            track = currentCueSheet.tracks[currentCueIdx - 1];
-            
-            currentCueIdx -= 1;
-        }
-        [self playCue:currentCueSheet
-            withTrack:track
-           forceStart:YES];
-    }else if(currentType == WHSoundManagerTypeSoundCloud) {
-        [soundcloudStreamer skipPrevious];
-        int resultIdx = currentFavouriteIdx--;
-        
-        if (resultIdx < 0) {
-            resultIdx = 0;
-        }
-        
-        currentFavouriteIdx = resultIdx;
-        
-    }
+    [_playingTrack stop];
+    
+    _playingTrack = _playingTrack.prevTrack;
+    [self startPlayTrack];
 }
 
 - (void)playerPause{
-    if (_delegate && [_delegate respondsToSelector:@selector(soundDidStop)]) {
-        [_delegate soundDidStop];
-    }
-    
-    if (currentType == WHSoundManagerTypeSoundCloud) {
-        [soundcloudStreamer pause];
-    }else{
-        [player pause];
-    }
-    
+    [_playingTrack pause];
 }
 
 - (void)playerPlay{
-    
-    if (currentType == WHSoundManagerTypeSoundCloud) {
-        if (_delegate && [_delegate respondsToSelector:@selector(didUpdatePlayingTrack:)]) {
-            [_delegate didUpdatePlayingTrack:currentTracks[currentFavouriteIdx]];
-        }
-        
-        
-        [soundcloudStreamer play];
-    }else{
-        
-        
-        [player resume];
-    }
+    [_playingTrack resume];
 }
 
 - (void)playerStop{
-    if (currentType == WHSoundManagerTypeSoundCloud) {
-        [soundcloudStreamer pause];
-    }else{
-        [player stop];
-    }
+    
 }
 
 - (void)playerChangeMode:(WHSoundManagerPlayType)playerMode{
-    loopingMode = playerMode;
+    
 }
 
 - (void)playerSeekTime:(double)time{
-    if (currentType == WHSoundManagerTypeSoundCloud) {
-        [soundcloudStreamer seekToTimeInSeconds:time];
-    }else{
-        [player seekToTime:time];
-    }
+    
 }
 
-- (void)playUrl:(NSString *)url forceStart:(BOOL)forceStart{
-    NSLog(@"Play %@", url);
+- (BOOL)isPlaying{
+    return _playingTrack.isPlaying;
+}
+
+- (void)startPlayTrack{
+    if (self.delegate && [self.delegate respondsToSelector:@selector(didUpdatePlayingTrack:)]) {
+        [self.delegate didUpdatePlayingTrack:_playingTrack];
+    }
     
-    if (forceStart) {
-        [player playUrl:[NSURL URLWithString:url]];
-    }else{
-        if (player.currentState != ORGMEngineStatePlaying) {
-            [player playUrl:[NSURL URLWithString:url]];
-        }else{
-            [queue insertObject:url atIndex:0];
+    [_playingTrack playTrackWithCompletion:^{
+        [self playerForward];
+    } progress:^(float progress) {
+        if (self.delegate && [self.delegate respondsToSelector:@selector(didUpdatePlayingProgress:)]) {
+            [self.delegate didUpdatePlayingProgress:progress];
         }
-    }
-}
-
-- (void)playCue:(CueSheet *)cueSheet
-      withTrack:(CueSheetTrack *)track
-     forceStart:(BOOL)forceStart{
-    
-    if (soundcloudStreamer.status == NPAudioStreamStatusPlaying) {
-        [soundcloudStreamer pause];
-    }
-    
-    currentType = WHSoundManagerTypeCue;
-    
-    NSString *toTrack = [cueSheet.cueUrl.absoluteString stringByAppendingString:[NSString stringWithFormat:@"#%@",track.track]];
-    [self playUrl:toTrack forceStart:YES];
-    
-    currentCueIdx = [cueSheet.tracks indexOfObject:track];
-    currentCueSheetUrl = cueSheet.cueUrl;
+    } failure:^(NSError *error) {
+        NSLog(@"%@", error);
+        
+        [self playerForward];
+    }];
 }
 
 - (void)playTrack:(WHTrackModel *)aTrack
        forceStart:(BOOL)forceStart{
     if (_dataSource && [_dataSource respondsToSelector:@selector(currentPlayingTracks)]) {
+        [_playingTrack stop];
+        
         currentTracks = [_dataSource currentPlayingTracks];
-        currentType = WHSoundManagerTypeSoundCloud;
-        int resultIdx = [currentTracks indexOfObject:aTrack];
+        [self generatePlaylistWithTracks:currentTracks];
         
-        if (resultIdx < 0) {
-            resultIdx = 0;
-        }
-        currentFavouriteIdx = resultIdx;
-        if (player.currentState == ORGMEngineStatePlaying){
-            [player stop];
-        }
+        _playingTrack = aTrack;
         
-        NSMutableArray *urls = [[NSMutableArray alloc] init];
-        for (WHTrackModel *info in currentTracks) {
-            if (info.trackUrl != nil && ![info.trackUrl isKindOfClass:[NSNull class]]) {
-                [urls addObject:[NSURL URLWithString:[NSString stringWithFormat:@"%@?client_id=47724625bbc02bbc335e84f2ed87c001", info.trackUrl]]];
-            }
-        }
-        
-        [self->soundcloudStreamer setUrls:urls];
-        [self->soundcloudStreamer selectIndexForPlayback:resultIdx];
-        
+        [self startPlayTrack];
     }else{
         NSLog(@"Required to implement dataSource protocol");
     }
 }
 
-- (void)playMyFavourite:(NSArray <WHTrackModel *> *)favouriteInfo withIndex:(int)idx forceStart:(BOOL)forceStart{
+- (void)generatePlaylistForLoop:(NSArray <WHTrackModel *> *)tracks{
+    NSInteger idx = 0;
     
-    currentType = WHSoundManagerTypeSoundCloud;
-    
-    currentTracks = favouriteInfo;
-    
-    int resultIdx = idx;
-    
-    if (resultIdx < 0) {
-        resultIdx = 0;
-    }
-    currentFavouriteIdx = resultIdx;
-    if (player.currentState == ORGMEngineStatePlaying){
-        [player stop];
-    }
-    
-    NSMutableArray *urls = [[NSMutableArray alloc] init];
-    for (WHTrackModel *info in currentTracks) {
-        if (info.trackUrl != nil && ![info.trackUrl isKindOfClass:[NSNull class]]) {
-            [urls addObject:[NSURL URLWithString:[NSString stringWithFormat:@"%@?client_id=47724625bbc02bbc335e84f2ed87c001", info.trackUrl]]];
+    for (WHTrackModel *aTrack in tracks) {
+        if (idx != 0 && idx != (int)tracks.count - 1) {
+            aTrack.prevTrack = tracks[idx-1];
+            aTrack.nextTrack = tracks[idx+1];
+        }else if(idx == 0){
+            aTrack.prevTrack = [tracks lastObject];
+            aTrack.nextTrack = tracks[idx+1];
+        }else if(idx == (int)tracks.count - 1){
+            aTrack.prevTrack = tracks[idx-1];
+            aTrack.nextTrack = [tracks lastObject];
         }
+        aTrack.displayIndex = idx;
+        idx++;
     }
-    
-    [self->soundcloudStreamer setUrls:urls];
-    [self->soundcloudStreamer selectIndexForPlayback:resultIdx];
-    
 }
 
-- (void)playMyFavourite2:(MyFavourite *)favouriteInfo
-              withIndex:(int)idx
-             forceStart:(BOOL)forceStart{
-    
-    
+- (void)generatePlaylistWithTracks:(NSArray <WHTrackModel *> *)tracks{
+    switch (playType) {
+        case WHSoundManagerPlayTypeOnce:
+            
+            break;
+        case WHSoundManagerPlayTypeLoop:
+            [self generatePlaylistForLoop:tracks];
+            break;
+        case WHSoundManagerPlayTypeLoopOnce:
+            
+            break;
+        case WHSoundManagerPlayTypeRandom:
+            
+            break;
+        default:
+            break;
+    }
 }
-
 
 #pragma mark - AVAudioSession
-
-- (void)audioPlayerDidFinishPlaying:(AVAudioPlayer *)player successfully:(BOOL)flag{
-    if (currentType == WHSoundManagerTypeSoundCloud) {
-        [self playerForward];
-    }
-}
 
 - (void)audioRouteChangeListenerCallback:(NSNotification *)notification{
     NSDictionary *interuptionDict = notification.userInfo;
@@ -318,18 +188,12 @@
         case AVAudioSessionRouteChangeReasonNewDeviceAvailable:{
             NSLog(@"AVAudioSessionRouteChangeReasonNewDeviceAvailable");
             NSLog(@"Headphone/Line plugged in");
-            if ([player currentState] == ORGMEngineStatePaused) {
-                [player resume];
-            }
         }
             break;
             
         case AVAudioSessionRouteChangeReasonOldDeviceUnavailable:{
             NSLog(@"AVAudioSessionRouteChangeReasonOldDeviceUnavailable");
             NSLog(@"Headphone/Line was pulled. Stopping player....");
-            if ([player currentState] == ORGMEngineStatePlaying) {
-                [player pause];
-            }
         }
             break;
             
@@ -370,144 +234,6 @@
 
 - (void)remoteControlOtherPressed:(id)sender{
     
-}
-
-#pragma mark - ORGMEngineDelegate
-
-- (NSURL *)engineExpectsNextUrl:(ORGMEngine *)engine{
-//    if (queue.count > 0) {
-//        return queue[0];
-//    }else{
-//        return nil;
-//    }
-    if (currentType == WHSoundManagerTypeCue) {
-        CueSheet *currentCueSheet = [[CueSheet alloc] initWithURL:currentCueSheetUrl];
-        currentCueSheet.cueUrl = currentCueSheetUrl;
-        CueSheetTrack *track;
-        if (currentCueIdx == (NSInteger)currentCueSheet.tracks.count - 1) {
-            track = currentCueSheet.tracks[0];
-            
-            currentCueIdx = 0;
-        }else{
-            track = currentCueSheet.tracks[currentCueIdx + 1];
-            
-            currentCueIdx += 1;
-        }
-        expectedNextUrl = [NSURL URLWithString:[currentCueSheet.cueUrl.absoluteString stringByAppendingString:[NSString stringWithFormat:@"#%@",track.track]]];
-        
-        NSLog(@"Play Next: %@", expectedNextUrl.absoluteString);
-        return expectedNextUrl;
-    }else if (currentType == WHSoundManagerTypeSoundCloud){
-        return nil;
-    }else{
-        return nil;
-    }
-}
-
-- (void)engine:(ORGMEngine *)engine didChangeState:(ORGMEngineState)state{
-    switch (state) {
-        case ORGMEngineStatePlaying:{
-            if (currentType == WHSoundManagerTypeCue) {
-                NSLog(@"Meta Data: %@", [engine metadata]);
-                NSDictionary *metadata = [engine metadata];
-                [[MPNowPlayingInfoCenter defaultCenter] setNowPlayingInfo:@{MPMediaItemPropertyTitle:metadata[@"title"],
-                                                                            MPMediaItemPropertyArtist:metadata[@"artist"],
-                                                                            MPMediaItemPropertyMediaType: @(MPMediaTypeMusic),
-                                                                            MPMediaItemPropertyPlaybackDuration: @([engine trackTime]),
-                                                                            MPNowPlayingInfoPropertyPlaybackRate: @1}];
-            }
-            
-        }
-            break;
-        case ORGMEngineStatePaused:
-            
-            break;
-        case ORGMEngineStateStopped:{
-            NSLog(@"Player stopped");
-            if (currentType == WHSoundManagerTypeSoundCloud) {
-                [self playerForward];
-            }
-        }
-            
-            break;
-        case ORGMEngineStateError:{
-            NSLog(@"Error : %@", [[player currentError] localizedDescription]);
-        }
-            
-            break;
-        default:
-            break;
-    }
-}
-
-- (WHTrackModel *)playingTrack{
-    if (player.currentState == ORGMEngineStatePlaying) {
-        return nil;
-    }else if(soundcloudStreamer.status == NPAudioStreamStatusPlaying){
-        return currentTracks[currentFavouriteIdx];
-    }else{
-        return nil;
-    }
-}
-
-
-#pragma mark - SoundCloud Streaming
-- (BOOL)shouldPrebufferNextTrackForAudioStream:(NPAudioStream *)audioStream{
-    return YES;
-}
-
-- (void)audioStream:(NPAudioStream *)audioStream didUpdateTrackCurrentTime:(CMTime)currentTime{
-    if (_delegate && [_delegate respondsToSelector:@selector(didUpdatePlayingProgress:)] && audioStream.status == NPAudioStreamStatusPlaying) {
-        [_delegate didUpdatePlayingProgress:(float)(CMTimeGetSeconds(currentTime) / CMTimeGetSeconds(audioStream.duration))];
-    }
-    
-    _playingProgress = (float)(audioStream.duration.value / currentTime.value);
-}
-
-- (void)audioStream:(NPAudioStream *)audioStream didBeginPlaybackForTrackAtIndex:(NSInteger)index{
-    WHTrackModel *info = currentTracks[index];
-    double time = (info.duration / 1000);
-    currentFavouriteIdx = index;
-    
-    if (_delegate && [_delegate respondsToSelector:@selector(didUpdatePlayingTrack:)]) {
-        [_delegate didUpdatePlayingTrack:currentTracks[index]];
-    }
-    _playingIdx = index;
-    [[MPNowPlayingInfoCenter defaultCenter] setNowPlayingInfo:@{MPMediaItemPropertyTitle:info.trackTitle,
-                                                                MPMediaItemPropertyArtist:info.author,
-                                                                MPMediaItemPropertyMediaType: @(MPMediaTypeMusic),
-                                                                MPMediaItemPropertyPlaybackDuration: @(time),
-                                                                MPNowPlayingInfoPropertyPlaybackRate: @1}];
-}
-
-- (void)didCompleteAudioStream:(NPAudioStream *)audioStream{
-    if (_delegate && [_delegate respondsToSelector:@selector(soundDidStop)]) {
-        [_delegate soundDidStop];
-    }
-//    __block int idx = favourite.collection.count;
-//    
-//    [[WHWebrequestManager sharedManager] fetchMyFavouriteWithInfo:favourite
-//                                                          success:^(MyFavourite *responseObject) {
-//                                                              self->currentFavouriteIdx = idx;
-//                                                              
-//                                                              self->favourite = responseObject;
-//                                                              
-//                                                              if (self->player.currentState == ORGMEngineStatePlaying){
-//                                                                  [self->player stop];
-//                                                              }
-//                                                              
-//                                                              NSMutableArray *urls = [[NSMutableArray alloc] init];
-//                                                              for (Collection *info in responseObject.collection) {
-//                                                                  [urls addObject:[NSURL URLWithString:[NSString stringWithFormat:@"%@?client_id=47724625bbc02bbc335e84f2ed87c001", info.streamUrl]]];
-//                                                              }
-//                                                              
-//                                                              [self->soundcloudStreamer setUrls:urls];
-//                                                              [self->soundcloudStreamer selectIndexForPlayback:idx];
-//                                                              
-//                                                          }
-//                                                          failure:^(NSError *error) {
-//                                                              [self->soundcloudStreamer selectIndexForPlayback:0];
-//                                                          }];
 }
 
 @end
