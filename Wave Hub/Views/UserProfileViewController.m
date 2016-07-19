@@ -33,9 +33,6 @@
 - (id)initWithUser:(WHSoundCloudUser *)aUser{
     if (self = [super initWithNibName:@"UserProfileViewController" bundle:nil]) {
         userInfo = aUser;
-        
-        currentPlayingProgress = -1;
-        currentPlayingIndex = -1;
     }
     return self;
 }
@@ -88,6 +85,12 @@
     
     _userNameLabel.text = userInfo.userName;
     _titleLabel.text = userInfo.userName;
+    
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(didUpdatePlayingTrack:)
+                                                 name:WHSoundTrackDidChangeNotifiction
+                                               object:nil];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -114,20 +117,18 @@
 #pragma mark - WHSoundManagerDelegate
 
 - (void)soundDidStop{
-    currentPlayingProgress = -1.0;
-    currentPlayingIndex = -1;
     [_tableView reloadData];
 }
 
-- (void)didUpdatePlayingProgress:(float)progress{
-    currentPlayingProgress = progress;
-    [_tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:currentPlayingIndex inSection:0]] withRowAnimation:UITableViewRowAnimationNone];
-}
-
-- (void)didUpdatePlayingTrack:(WHTrackModel *)info{
-    currentPlayingIndex = [userTracks indexOfObject:info];
-    [_tableView reloadData];
+- (void)didUpdatePlayingTrack:(NSNotification *)info{
     
+    if ([info.object isKindOfClass:[WHTrackModel class]]) {
+        WHTrackModel *aTrack = (WHTrackModel *)info.object;
+        currentPlayingTrack = aTrack;
+    }else if ([info.object isKindOfClass:[NSNull class]]) {
+        currentPlayingTrack = nil;
+    }
+    [_tableView reloadData];
 }
 
 #pragma mark - WHSoundManagerDatasource
@@ -154,47 +155,18 @@
     return 80.0;
 }
 
-- (NSString *)timeFormatted:(int)totalMillSeconds{
-    
-    int totalSeconds = totalMillSeconds/ 1000;
-    int seconds = totalSeconds % 60;
-    int minutes = (totalSeconds / 60) % 60;
-    
-    return [NSString stringWithFormat:@"%02d:%02d", minutes, seconds];
-}
-
 // Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    static NSString *CellIdentifier = @"MusicTableViewCell";
-    
-    MusicTableViewCell *cell = (MusicTableViewCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    if (cell == nil) {
-        cell = [[MusicTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+    MusicTableViewCell *cell = (MusicTableViewCell *)[tableView dequeueReusableCellWithIdentifier:@"MusicTableViewCell" forIndexPath:indexPath];
+    if (!cell) {
+        cell = [[MusicTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"MusicTableViewCell"];
     }
+    NSInteger currentPlayingIndex = [userTracks indexOfObject:currentPlayingTrack];
     
     // Configure the cell...
     WHTrackModel *info = userTracks[indexPath.row];
-    [cell setInfo:info];
-    
-    cell.titleLabel.text = info.trackTitle;
-    cell.authorLabel.text = info.author ? info.author : @"";
-    cell.durationLabel.text = [self timeFormatted:(int)info.duration];
-    
-    cell.progressView.hidden = YES;
-    if (indexPath.row == currentPlayingIndex) {
-        cell.progressView.hidden = NO;
-        cell.progressView.progress = currentPlayingProgress;
-        
-        FAKFontAwesome *buttonIcon = ([[[WHSoundManager sharedManager] playingTrack] isPlaying])? [FAKFontAwesome pauseIconWithSize:17] : [FAKFontAwesome playIconWithSize:17];
-        [buttonIcon addAttribute:NSForegroundColorAttributeName value:[UIColor whiteColor]];
-        [cell.togglePlayPauseButton setAttributedTitle:buttonIcon.attributedString forState:UIControlStateNormal];
-    }else{
-        cell.progressView.hidden = YES;
-        FAKFontAwesome *buttonIcon =  [FAKFontAwesome playIconWithSize:17];
-        [buttonIcon addAttribute:NSForegroundColorAttributeName value:[UIColor whiteColor]];
-        [cell.togglePlayPauseButton setAttributedTitle:buttonIcon.attributedString forState:UIControlStateNormal];
-    }
+    [cell setInfo:info isCurrentlyPlaying:(currentPlayingIndex == indexPath.row)];
     
     cell.cellDelegate = self;
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
@@ -286,20 +258,16 @@
 #pragma mark - Music Cell Delegate
 
 - (void)didTogglePlayPause:(WHTrackModel *)info{
-//    if ([[WHSoundManager sharedManager] dataSource] != self || [[WHSoundManager sharedManager] dataSource] == nil) {
-//        [[WHSoundManager sharedManager] setDelegate:self];
-//        [[WHSoundManager sharedManager] setDataSource:self];
-//        [[WHSoundManager sharedManager] playerStop];
-//        
-//        [[WHSoundManager sharedManager] reloadTracksData];
-//    }
-    [[WHSoundManager sharedManager] setDelegate:self];
-    [[WHSoundManager sharedManager] setDataSource:self];
+    if ([[WHSoundManager sharedManager] dataSource] != self  || [[WHSoundManager sharedManager] dataSource] == nil) {
+        [[WHSoundManager sharedManager] setDataSource:self];
+        [[WHSoundManager sharedManager] playerStop];
+        
+        [[WHSoundManager sharedManager] reloadTracksData];
+    }
     
-    NSInteger playIndex = [userTracks indexOfObject:info];
     
-    if ([[[WHSoundManager sharedManager] playingTrack] isPlaying]) {
-        if (playIndex == currentPlayingIndex) {
+    if ([[WHSoundManager sharedManager] isPlaying]) {
+        if ([[WHSoundManager sharedManager] playingTrack] == currentPlayingTrack) {
             [[WHSoundManager sharedManager] playerPause];
         }else{
             [[WHSoundManager sharedManager] playTrack:info forceStart:YES];

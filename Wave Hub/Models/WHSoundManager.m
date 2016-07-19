@@ -81,10 +81,12 @@
 }
 
 - (void)playerPause{
+    [[NSNotificationCenter defaultCenter] postNotificationName:WHSoundTrackDidChangeNotifiction object:[NSNull null]];
     [_playingTrack pause];
 }
 
 - (void)playerPlay{
+    [[NSNotificationCenter defaultCenter] postNotificationName:WHSoundTrackDidChangeNotifiction object:_playingTrack];
     [_playingTrack resume];
 }
 
@@ -108,6 +110,7 @@
     if (self.delegate && [self.delegate respondsToSelector:@selector(didUpdatePlayingTrack:)]) {
         [self.delegate didUpdatePlayingTrack:_playingTrack];
     }
+    [[NSNotificationCenter defaultCenter] postNotificationName:WHSoundTrackDidChangeNotifiction object:_playingTrack];
     
     [_playingTrack playTrackWithCompletion:^{
         [self playerForward];
@@ -115,6 +118,8 @@
         if (self.delegate && [self.delegate respondsToSelector:@selector(didUpdatePlayingProgress:)]) {
             [self.delegate didUpdatePlayingProgress:progress];
         }
+        
+        [[NSNotificationCenter defaultCenter] postNotificationName:WHSoundProgressDidChangeNotifiction object:[NSNumber numberWithFloat:progress]];
     } failure:^(NSError *error) {
         NSLog(@"%@", error);
         
@@ -188,12 +193,14 @@
         case AVAudioSessionRouteChangeReasonNewDeviceAvailable:{
             NSLog(@"AVAudioSessionRouteChangeReasonNewDeviceAvailable");
             NSLog(@"Headphone/Line plugged in");
+            [_playingTrack pause];
         }
             break;
             
         case AVAudioSessionRouteChangeReasonOldDeviceUnavailable:{
             NSLog(@"AVAudioSessionRouteChangeReasonOldDeviceUnavailable");
             NSLog(@"Headphone/Line was pulled. Stopping player....");
+            [_playingTrack pause];
         }
             break;
             

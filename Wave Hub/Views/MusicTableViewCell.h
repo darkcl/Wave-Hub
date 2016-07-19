@@ -31,7 +31,7 @@
 - (void)startLoadingCover:(NSString *)url;
 - (void)cancelLoadingCover;
 
-- (void)setInfo:(WHTrackModel *)info;
+- (void)setInfo:(WHTrackModel *)info isCurrentlyPlaying:(BOOL)isCurrentlyPlaying;
 
 - (IBAction)togglePlayPauseButtonPressed:(id)sender;
 

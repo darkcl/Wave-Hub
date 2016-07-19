@@ -163,7 +163,17 @@
     }
 }
 
-
+- (float)progress{
+    if (_trackType != WHTrackTypeLocal) {
+        if (self.isPlaying) {
+            return (float)(CMTimeGetSeconds(_streamPlayer.currentTime) / CMTimeGetSeconds(_streamPlayer.duration));
+        }else{
+            return 0.0f;
+        }
+    }else{
+        return 0.0f;
+    }
+}
 
 #pragma mark - Streaming Delegate
 

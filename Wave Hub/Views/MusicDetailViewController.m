@@ -36,13 +36,18 @@
 
 @implementation MusicDetailViewController
 
-- (id)initWithTrackInfo:(WHTrackModel *)info{
+- (id)initWithTrackInfo:(WHTrackModel *)info withDataSources:(NSArray <WHTrackModel *> *)tracks{
     if (self = [super initWithNibName:@"MusicDetailViewController" bundle:nil]) {
-        musicName = info.trackTitle;
-        author = info.author;
-        currentTrack = info;
+        trackInfo = info;
+        
+        currentTrack = [[WHSoundManager sharedManager] playingTrack];
+        sourceTracks = tracks;
     }
     return self;
+}
+
+- (NSArray <WHTrackModel *> *)currentPlayingTracks{
+    return sourceTracks;
 }
 
 - (void)viewDidLoad {
@@ -61,31 +66,33 @@
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:backButton];
     self.navigationItem.titleView = nil;
     
-    _authorLabel.text = author;
-    _musicTitleLabel.text = musicName;
+    _authorLabel.text = trackInfo.author;
+    _musicTitleLabel.text = trackInfo.trackTitle;
     
     FAKFontAwesome *prevIcon =  [FAKFontAwesome backwardIconWithSize:17];
     [prevIcon addAttribute:NSForegroundColorAttributeName value:[UIColor blackColor]];
     [self.prevButton setAttributedTitle:prevIcon.attributedString forState:UIControlStateNormal];
     
-    FAKFontAwesome *playPauseIcon =  ([[WHSoundManager sharedManager] isPlaying]) ? [FAKFontAwesome pauseIconWithSize:20] :[FAKFontAwesome playIconWithSize:20];
-    [playPauseIcon addAttribute:NSForegroundColorAttributeName value:[UIColor blackColor]];
-    [self.togglePlayPauseButton setAttributedTitle:playPauseIcon.attributedString forState:UIControlStateNormal];
-    
     FAKFontAwesome *forwardIcon =  [FAKFontAwesome forwardIconWithSize:17];
     [forwardIcon addAttribute:NSForegroundColorAttributeName value:[UIColor blackColor]];
     [self.forwardButton setAttributedTitle:forwardIcon.attributedString forState:UIControlStateNormal];
     
-    if (!([[WHSoundManager sharedManager] isPlaying] && [[[WHSoundManager sharedManager] playingTrack].responseDict isEqual:currentTrack.responseDict])){
+    if (trackInfo != currentTrack){
         self.forwardButton.hidden = YES;
         self.prevButton.hidden = YES;
+        FAKFontAwesome *playPauseIcon =  [FAKFontAwesome playIconWithSize:20];
+        [playPauseIcon addAttribute:NSForegroundColorAttributeName value:[UIColor blackColor]];
+        [self.togglePlayPauseButton setAttributedTitle:playPauseIcon.attributedString forState:UIControlStateNormal];
     }else{
         self.forwardButton.hidden = NO;
         self.prevButton.hidden = NO;
+        FAKFontAwesome *playPauseIcon =  ([[WHSoundManager sharedManager] isPlaying]) ? [FAKFontAwesome pauseIconWithSize:20] :[FAKFontAwesome playIconWithSize:20];
+        [playPauseIcon addAttribute:NSForegroundColorAttributeName value:[UIColor blackColor]];
+        [self.togglePlayPauseButton setAttributedTitle:playPauseIcon.attributedString forState:UIControlStateNormal];
     }
     
     //Set up user
-    NSString *userAvatar = [[currentTrack.responseDict objectForKey:@"user"] objectForKey:@"avatar_url"];
+    NSString *userAvatar = [[trackInfo.responseDict objectForKey:@"user"] objectForKey:@"avatar_url"];
     [_loadingIndictorView startAnimating];
     if (userAvatar != nil || ![userAvatar isKindOfClass:[NSNull class]]) {
         NSString *tempUrl = [userAvatar stringByReplacingOccurrencesOfString:@"-large" withString:@"-t500x500"];
@@ -98,7 +105,7 @@
                                            }];
     }
     
-    self.viewMoreLabel.text = [NSString stringWithFormat:@"View more from %@", [[currentTrack.responseDict objectForKey:@"user"] objectForKey:@"username"]];
+    self.viewMoreLabel.text = [NSString stringWithFormat:@"View more from %@", [[trackInfo.responseDict objectForKey:@"user"] objectForKey:@"username"]];
     
     FAKFontAwesome *downloadIcon =  [FAKFontAwesome downloadIconWithSize:25];
     [downloadIcon addAttribute:NSForegroundColorAttributeName value:[UIColor whiteColor]];
@@ -118,13 +125,23 @@
     [super viewWillDisappear:animated];
 //    [self ysl_removeTransitionDelegate];
     
-    [[WHSoundManager sharedManager] setDelegate:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     self.navigationController.delegate = self;
-    [[WHSoundManager sharedManager] setDelegate:self];
+    [[WHSoundManager sharedManager] setDataSource:self];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(didUpdatePlayingTrack:)
+                                                 name:WHSoundTrackDidChangeNotifiction
+                                               object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(didUpdatePlayingProgress:)
+                                                 name:WHSoundProgressDidChangeNotifiction
+                                               object:nil];
 }
 
 - (void)viewDidAppear:(BOOL)animated{
@@ -149,62 +166,78 @@
     [self.togglePlayPauseButton setAttributedTitle:playPauseIcon.attributedString forState:UIControlStateNormal];
 }
 
-- (void)didUpdatePlayingProgress:(float)progress{
-    [_playingProgress setProgress:progress animated:YES];
-    
-    FAKFontAwesome *playPauseIcon =  ([[WHSoundManager sharedManager] isPlaying] && [[[WHSoundManager sharedManager] playingTrack].responseDict isEqual:currentTrack.responseDict]) ? [FAKFontAwesome pauseIconWithSize:20] :[FAKFontAwesome playIconWithSize:20];
-    [playPauseIcon addAttribute:NSForegroundColorAttributeName value:[UIColor blackColor]];
-    [self.togglePlayPauseButton setAttributedTitle:playPauseIcon.attributedString forState:UIControlStateNormal];
-    
-    if (!([[WHSoundManager sharedManager] isPlaying] && [[[WHSoundManager sharedManager] playingTrack].responseDict isEqual:currentTrack.responseDict])){
-        self.forwardButton.hidden = YES;
-        self.prevButton.hidden = YES;
-    }else{
-        self.forwardButton.hidden = NO;
-        self.prevButton.hidden = NO;
+- (void)didUpdatePlayingProgress:(NSNotification *)info{
+    if ([info.object isKindOfClass:[NSNumber class]]) {
+        float progress = [((NSNumber *)info.object) floatValue];
+        
+        [_playingProgress setProgress:progress animated:YES];
     }
 }
 
-- (void)didUpdatePlayingTrack:(WHTrackModel *)info{
-    _authorLabel.text = info.author;
-    _musicTitleLabel.text = info.trackTitle;
-    self.musicCoverImageView.image = nil;
-    if (info.albumCoverUrl != nil && ![info.albumCoverUrl isKindOfClass:[NSNull class]]) {
-        NSString *tempUrl = [info.albumCoverUrl stringByReplacingOccurrencesOfString:@"-large" withString:@"-t500x500"];
-        [[DLImageLoader sharedInstance] imageFromUrl:tempUrl
-                                           completed:^(NSError *error, UIImage *image) {
-                                               if (!error) {
-                                                   self.musicCoverImageView.image = image;
-                                               }
-                                           }];
-    }else{
-        self.musicCoverImageView.image = [UIImage musicPlaceHolder];
-    }
-    currentTrack = info;
-    
-    //Set up user
-    NSString *userAvatar = [[currentTrack.responseDict objectForKey:@"user"] objectForKey:@"avatar_url"];
-    
-    if (userAvatar != nil || ![userAvatar isKindOfClass:[NSNull class]]) {
-        NSString *tempUrl = [userAvatar stringByReplacingOccurrencesOfString:@"-large" withString:@"-t500x500"];
-        [_loadingIndictorView startAnimating];
-        _userImageView.image = nil;
+- (void)didUpdatePlayingTrack:(NSNotification *)track{
+    if ([track.object isKindOfClass:[WHTrackModel class]]) {
+        WHTrackModel *info = (WHTrackModel *)track.object;
+        currentTrack = info;
         
-        [[DLImageLoader sharedInstance] imageFromUrl:tempUrl
-                                           completed:^(NSError *error, UIImage *image) {
-                                               if (!error) {
-                                                   self.userImageView.image = image;
-                                                   [self.loadingIndictorView stopAnimating];
-                                               }
-                                           }];
+        _authorLabel.text = info.author;
+        _musicTitleLabel.text = info.trackTitle;
+        self.musicCoverImageView.image = nil;
+        if (info.albumCoverUrl != nil && ![info.albumCoverUrl isKindOfClass:[NSNull class]]) {
+            NSString *tempUrl = [info.albumCoverUrl stringByReplacingOccurrencesOfString:@"-large" withString:@"-t500x500"];
+            [[DLImageLoader sharedInstance] imageFromUrl:tempUrl
+                                               completed:^(NSError *error, UIImage *image) {
+                                                   if (!error) {
+                                                       self.musicCoverImageView.image = image;
+                                                   }
+                                               }];
+        }else{
+            self.musicCoverImageView.image = [UIImage musicPlaceHolder];
+        }
+        trackInfo = info;
+        
+        //Set up user
+        NSString *userAvatar = [[trackInfo.responseDict objectForKey:@"user"] objectForKey:@"avatar_url"];
+        
+        if (userAvatar != nil || ![userAvatar isKindOfClass:[NSNull class]]) {
+            NSString *tempUrl = [userAvatar stringByReplacingOccurrencesOfString:@"-large" withString:@"-t500x500"];
+            [_loadingIndictorView startAnimating];
+            _userImageView.image = nil;
+            
+            [[DLImageLoader sharedInstance] imageFromUrl:tempUrl
+                                               completed:^(NSError *error, UIImage *image) {
+                                                   if (!error) {
+                                                       self.userImageView.image = image;
+                                                       [self.loadingIndictorView stopAnimating];
+                                                   }
+                                               }];
+        }
+        
+        self.viewMoreLabel.text = [NSString stringWithFormat:@"View more from %@", [[trackInfo.responseDict objectForKey:@"user"] objectForKey:@"username"]];
+        
+        self.forwardButton.hidden = NO;
+        self.prevButton.hidden = NO;
+        FAKFontAwesome *playPauseIcon = [FAKFontAwesome pauseIconWithSize:20];
+        [playPauseIcon addAttribute:NSForegroundColorAttributeName value:[UIColor blackColor]];
+        [self.togglePlayPauseButton setAttributedTitle:playPauseIcon.attributedString forState:UIControlStateNormal];
+        
+    }else if ([track.object isKindOfClass:[NSNull class]]) {
+        // Player stops
+        [_playingProgress setProgress:0.0 animated:NO];
+        
+        [self.prevButton setHidden:YES];
+        [self.forwardButton setHidden:YES];
+        
+        FAKFontAwesome *playPauseIcon = [FAKFontAwesome playIconWithSize:20];
+        [playPauseIcon addAttribute:NSForegroundColorAttributeName value:[UIColor blackColor]];
+        [self.togglePlayPauseButton setAttributedTitle:playPauseIcon.attributedString forState:UIControlStateNormal];
     }
     
-    self.viewMoreLabel.text = [NSString stringWithFormat:@"View more from %@", [[currentTrack.responseDict objectForKey:@"user"] objectForKey:@"username"]];
+    
 }
 - (IBAction)viewMoreButtonPressed:(id)sender {
     [SVProgressHUD show];
     
-    [[WHWebrequestManager sharedManager] fetchUserInfoWithUserId:[currentTrack.responseDict[@"user"][@"id"] stringValue]
+    [[WHWebrequestManager sharedManager] fetchUserInfoWithUserId:[trackInfo.responseDict[@"user"][@"id"] stringValue]
                                                          success:^(id responseObject) {
                                                              [SVProgressHUD dismiss];
                                                              
@@ -228,13 +261,11 @@
 }
 
 - (IBAction)togglePlayPausePressed:(id)sender {
-    if ([[WHSoundManager sharedManager] isPlaying] && [[[WHSoundManager sharedManager] playingTrack].responseDict isEqual:currentTrack.responseDict]) {
+    if ([[WHSoundManager sharedManager] isPlaying] && currentTrack == trackInfo) {
         [[WHSoundManager sharedManager] playerPause];
     }else{
-        [[WHSoundManager sharedManager] playTrack:currentTrack forceStart:YES];
+        [[WHSoundManager sharedManager] playTrack:trackInfo forceStart:YES];
     }
-    
-    
 }
 
 - (IBAction)forwardButtonPressed:(id)sender {

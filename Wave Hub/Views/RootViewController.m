@@ -29,15 +29,12 @@
     
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
-    currentPlayingIndex = -1;
-    currentPlayingProgress = -1;
+    
     [_tableView registerNib:[UINib nibWithNibName:@"MusicTableViewCell" bundle:nil] forCellReuseIdentifier:@"MusicTableViewCell"];
     
     self.edgesForExtendedLayout = UIRectEdgeBottom;
     self.extendedLayoutIncludesOpaqueBars = YES;
     self.automaticallyAdjustsScrollViewInsets = NO;
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     self.edgesForExtendedLayout = UIRectEdgeBottom;
     self.extendedLayoutIncludesOpaqueBars = YES;
     
@@ -52,11 +49,6 @@
                                                                    
                                                                    [[WHDatabaseManager sharedManager] saveTrackFromFavouriteArray:responseObject];
                                                                    self->favourite = responseObject;
-                                                                   [self.tableView reloadData];
-                                                                   [[WHDatabaseManager sharedManager] readTrackFromFavourite:^(id result) {
-                                                                       self->favourite = result;
-                                                                       [self.tableView reloadData];
-                                                                   }];
                                                                    
                                                                    [self.tableView reloadData];
                                                                    [[WHSoundManager sharedManager] reloadTracksData];
@@ -64,7 +56,7 @@
                                                                    [self.tableView.mj_header endRefreshing];
                                                                }
                                                                failure:^(NSError *error) {
-                                                                   
+                                                                   [self.tableView.mj_header endRefreshing];
                                                                }];
     }];
     // Set title
@@ -99,6 +91,11 @@
     aLabel.backgroundColor = [UIColor clearColor];
     aLabel.textAlignment = NSTextAlignmentCenter;
     self.navigationItem.titleView = aLabel;
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(didUpdatePlayingTrack:)
+                                                 name:WHSoundTrackDidChangeNotifiction
+                                               object:nil];
 }
 
 - (NSArray <WHTrackModel *> *)currentPlayingTracks{
@@ -107,36 +104,22 @@
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    
-    currentPlayingIndex = [favourite indexOfObject:[[WHSoundManager sharedManager] playingTrack]];
-    [[WHSoundManager sharedManager] setDelegate:self];
-    
+    [[WHSoundManager sharedManager] setDataSource:self];
     [self.tableView reloadData];
     
     self.navigationController.navigationBar.barTintColor =[UIColor whiteColor];
     self.navigationController.navigationBar.translucent = NO;
 }
 
-- (void)soundDidStop{
-    currentPlayingProgress = -1.0;
-    currentPlayingIndex = -1;
-    [_tableView reloadData];
-}
-
-- (void)didUpdatePlayingProgress:(float)progress{
-    currentPlayingProgress = progress;
-    currentPlayingIndex = [favourite indexOfObject:[[WHSoundManager sharedManager] playingTrack]];
+- (void)didUpdatePlayingTrack:(NSNotification *)info{
     
-    if (currentPlayingIndex != NSNotFound) {
-        [_tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:currentPlayingIndex inSection:0]] withRowAnimation:UITableViewRowAnimationNone];
+    if ([info.object isKindOfClass:[WHTrackModel class]]) {
+        WHTrackModel *aTrack = (WHTrackModel *)info.object;
+        currentPlayingTrack = aTrack;
+    }else if ([info.object isKindOfClass:[NSNull class]]) {
+        currentPlayingTrack = nil;
     }
-    
-}
-
-- (void)didUpdatePlayingTrack:(WHTrackModel *)info{
-    currentPlayingIndex = [favourite indexOfObject:info];
     [_tableView reloadData];
-    
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -165,18 +148,8 @@
 #pragma mark - Table view data source
 
 - (void)didTogglePlayPause:(WHTrackModel *)info{
-    NSInteger playIndex = [favourite indexOfObject:info];
-    if ([[WHSoundManager sharedManager] dataSource] != self  || [[WHSoundManager sharedManager] dataSource] == nil) {
-        [[WHSoundManager sharedManager] setDelegate:self];
-        [[WHSoundManager sharedManager] setDataSource:self];
-        [[WHSoundManager sharedManager] playerStop];
-        
-        [[WHSoundManager sharedManager] reloadTracksData];
-    }
-    
-    
     if ([[WHSoundManager sharedManager] isPlaying]) {
-        if (playIndex == currentPlayingIndex) {
+        if ([[WHSoundManager sharedManager] playingTrack] == info) {
             [[WHSoundManager sharedManager] playerPause];
         }else{
             [[WHSoundManager sharedManager] playTrack:info forceStart:YES];
@@ -208,28 +181,11 @@
     if (!cell) {
         cell = [[MusicTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"MusicTableViewCell"];
     }
+    NSInteger currentPlayingIndex = [favourite indexOfObject:currentPlayingTrack];
+    
     // Configure the cell...
     WHTrackModel *info = favourite[indexPath.row];
-    [cell setInfo:info];
-    
-    cell.titleLabel.text = info.trackTitle;
-    cell.authorLabel.text = info.author ? info.author : @"";
-    cell.durationLabel.text = [self timeFormatted:(int)info.duration];
-    
-    cell.progressView.hidden = YES;
-    if (indexPath.row == currentPlayingIndex) {
-        cell.progressView.hidden = NO;
-        cell.progressView.progress = currentPlayingProgress;
-        
-        FAKFontAwesome *buttonIcon = ([[WHSoundManager sharedManager] isPlaying])? [FAKFontAwesome pauseIconWithSize:17] : [FAKFontAwesome playIconWithSize:17];
-        [buttonIcon addAttribute:NSForegroundColorAttributeName value:[UIColor whiteColor]];
-        [cell.togglePlayPauseButton setAttributedTitle:buttonIcon.attributedString forState:UIControlStateNormal];
-    }else{
-        cell.progressView.hidden = YES;
-        FAKFontAwesome *buttonIcon =  [FAKFontAwesome playIconWithSize:17];
-        [buttonIcon addAttribute:NSForegroundColorAttributeName value:[UIColor whiteColor]];
-        [cell.togglePlayPauseButton setAttributedTitle:buttonIcon.attributedString forState:UIControlStateNormal];
-    }
+    [cell setInfo:info isCurrentlyPlaying:(currentPlayingIndex == indexPath.row)];
     
     cell.cellDelegate = self;
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
@@ -250,7 +206,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     NSLog(@"Show Detail View");
     WHTrackModel *info = favourite[indexPath.row];
-    MusicDetailViewController *detailVC = [[MusicDetailViewController alloc] initWithTrackInfo:info];
+    MusicDetailViewController *detailVC = [[MusicDetailViewController alloc] initWithTrackInfo:info withDataSources:favourite];
     [self.navigationController pushViewController:detailVC animated:YES];
 }
 

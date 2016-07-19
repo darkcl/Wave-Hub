@@ -8,15 +8,15 @@
 
 #import <UIKit/UIKit.h>
 
-@interface MusicDetailViewController : UIViewController<YSLTransitionAnimatorDataSource, WHSoundManagerDelegate, UIViewControllerTransitioningDelegate> {
+@interface MusicDetailViewController : UIViewController<YSLTransitionAnimatorDataSource, UIViewControllerTransitioningDelegate, WHSoundManagerDatasource> {
     UIImageView *transitionImageView;
     
-    NSString *author;
-    NSString *musicName;
-    
+    WHTrackModel *trackInfo;
     WHTrackModel *currentTrack;
+    
+    NSArray <WHTrackModel *> *sourceTracks;
 }
 
-- (id)initWithTrackInfo:(WHTrackModel *)info;
+- (id)initWithTrackInfo:(WHTrackModel *)info withDataSources:(NSArray <WHTrackModel *> *)tracks;
 
 @end
