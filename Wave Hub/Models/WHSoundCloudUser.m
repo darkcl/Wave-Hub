@@ -22,7 +22,7 @@
         _followingsCount = [dict[@"followings_count"] integerValue];
         _tracksCount = [dict[@"track_count"] integerValue];
         _playlistsCount = [dict[@"playlist_count"] integerValue];
-        
+        _favoritesCount = [dict[@"public_favorites_count"] integerValue];
         
     }
     return self;

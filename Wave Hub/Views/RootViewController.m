@@ -110,7 +110,7 @@
     
     currentPlayingIndex = [favourite indexOfObject:[[WHSoundManager sharedManager] playingTrack]];
     [[WHSoundManager sharedManager] setDelegate:self];
-    [[WHSoundManager sharedManager] setDataSource:self];
+    
     [self.tableView reloadData];
     
     self.navigationController.navigationBar.barTintColor =[UIColor whiteColor];
@@ -166,6 +166,14 @@
 
 - (void)didTogglePlayPause:(WHTrackModel *)info{
     NSInteger playIndex = [favourite indexOfObject:info];
+    if ([[WHSoundManager sharedManager] dataSource] != self  || [[WHSoundManager sharedManager] dataSource] == nil) {
+        [[WHSoundManager sharedManager] setDelegate:self];
+        [[WHSoundManager sharedManager] setDataSource:self];
+        [[WHSoundManager sharedManager] playerStop];
+        
+        [[WHSoundManager sharedManager] reloadTracksData];
+    }
+    
     
     if ([[WHSoundManager sharedManager] isPlaying]) {
         if (playIndex == currentPlayingIndex) {

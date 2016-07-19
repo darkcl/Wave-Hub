@@ -77,6 +77,17 @@
                                                           
                                                       }];
     [_tableView registerNib:[UINib nibWithNibName:@"MusicTableViewCell" bundle:nil] forCellReuseIdentifier:@"MusicTableViewCell"];
+    
+    NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
+    [formatter setNumberStyle:NSNumberFormatterDecimalStyle];
+    [formatter setSecondaryGroupingSize:3];
+    
+    _numOfLikesLabel.text = [formatter stringFromNumber:[NSNumber numberWithInteger:userInfo.favoritesCount]];
+    _numOfFollowinsLabel.text = [formatter stringFromNumber:[NSNumber numberWithInteger:userInfo.followingsCount]];
+    _numOfPlaylistLabel.text = [formatter stringFromNumber:[NSNumber numberWithInteger:userInfo.playlistsCount]];
+    
+    _userNameLabel.text = userInfo.userName;
+    _titleLabel.text = userInfo.userName;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -261,17 +272,29 @@
     
 }
 
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath{
+    MusicTableViewCell *musicCell = (MusicTableViewCell *)cell;
+    WHTrackModel *info = userTracks[indexPath.row];
+    [musicCell startLoadingCover:info.albumCoverUrl];
+}
+
+- (void)tableView:(UITableView *)tableView didEndDisplayingCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath{
+    MusicTableViewCell *musicCell = (MusicTableViewCell *)cell;
+    [musicCell cancelLoadingCover];
+}
+
 #pragma mark - Music Cell Delegate
 
 - (void)didTogglePlayPause:(WHTrackModel *)info{
-    if ([[WHSoundManager sharedManager] dataSource] != self) {
-        [[WHSoundManager sharedManager] setDelegate:self];
-        [[WHSoundManager sharedManager] setDataSource:self];
-        [[WHSoundManager sharedManager] playerStop];
-        
-        [[WHSoundManager sharedManager] reloadTracksData];
-    }
-    
+//    if ([[WHSoundManager sharedManager] dataSource] != self || [[WHSoundManager sharedManager] dataSource] == nil) {
+//        [[WHSoundManager sharedManager] setDelegate:self];
+//        [[WHSoundManager sharedManager] setDataSource:self];
+//        [[WHSoundManager sharedManager] playerStop];
+//        
+//        [[WHSoundManager sharedManager] reloadTracksData];
+//    }
+    [[WHSoundManager sharedManager] setDelegate:self];
+    [[WHSoundManager sharedManager] setDataSource:self];
     
     NSInteger playIndex = [userTracks indexOfObject:info];
     

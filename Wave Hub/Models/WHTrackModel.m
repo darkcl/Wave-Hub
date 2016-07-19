@@ -145,7 +145,7 @@
     _streamPlayer = [[NPAudioStream alloc] init];
     
     [_streamPlayer setUrls:@[_trackUrl]];
-    
+    NSLog(@"Play %@", _trackUrl);
     _streamPlayer.repeatMode = NPAudioStreamRepeatModeOff;
     _streamPlayer.delegate = self;
     [_streamPlayer selectIndexForPlayback:0];

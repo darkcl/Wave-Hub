@@ -20,4 +20,8 @@ NSString *remoteControlForwardButtonTapped = @"forward pressed";
 NSString *remoteControlBackwardButtonTapped = @"backward pressed";
 NSString *remoteControlOtherButtonTapped = @"other pressed";
 
+NSString *WHSoundTrackDidChangeNotifiction = @"WHSoundTrackDidChangeNotifiction";
+NSString *WHSoundPlayModeDidChangeNotifiction = @"WHSoundPlayModeDidChangeNotifiction";
+NSString *WHSoundProgressDidChangeNotifiction = @"WHSoundProgressDidChangeNotifiction";
+
 @end

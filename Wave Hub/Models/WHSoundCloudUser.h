@@ -32,6 +32,7 @@
 @property NSInteger followersCount;
 @property NSInteger tracksCount;
 @property NSInteger playlistsCount;
+@property NSInteger favoritesCount;
 
 @property (nonatomic, strong) NSDictionary *responseDict;
 

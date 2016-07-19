@@ -150,7 +150,7 @@
             aTrack.nextTrack = tracks[idx+1];
         }else if(idx == (int)tracks.count - 1){
             aTrack.prevTrack = tracks[idx-1];
-            aTrack.nextTrack = [tracks lastObject];
+            aTrack.nextTrack = [tracks firstObject];
         }
         aTrack.displayIndex = idx;
         idx++;

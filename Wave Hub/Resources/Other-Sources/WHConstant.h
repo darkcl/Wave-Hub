@@ -17,4 +17,10 @@ extern NSString *remoteControlForwardButtonTapped;
 extern NSString *remoteControlBackwardButtonTapped;
 extern NSString *remoteControlOtherButtonTapped;
 
+extern NSString *WHSoundTrackDidChangeNotifiction;
+extern NSString *WHSoundPlayModeDidChangeNotifiction;
+
+extern NSString *WHSoundProgressDidChangeNotifiction;
+
+
 @end
