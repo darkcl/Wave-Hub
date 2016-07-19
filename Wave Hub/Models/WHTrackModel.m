@@ -84,7 +84,24 @@
     return [NSString stringWithFormat:@"%@", self.responseDict];
 }
 
+- (BOOL)isEqual:(id)object{
+    if ([object isKindOfClass:[WHTrackModel class]]) {
+        WHTrackModel *otherTrack = (WHTrackModel *)object;
+        return [_trackUrl isEqual:otherTrack.trackUrl];
+    }else{
+        return NO;
+    }
+}
+
 #pragma mark - Player Logic
+
+- (void)likeEvent:(id)sender{
+    NSLog(@"LIKE");
+}
+
+- (void)dislikeEvent:(id)sender{
+    NSLog(@"DISLIKE");
+}
 
 - (void)playTrackWithCompletion:(WHTrackCompletion)completionBlock
                        progress:(WHTrackProgress)progressBlock

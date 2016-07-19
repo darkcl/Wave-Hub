@@ -333,6 +333,7 @@ static NSString * const kBaseURL = @"https://api.soundcloud.com";
 - (void)fetchUserInfoWithUserId:(NSString *)userId
                         success:(RequestSuccess)successBlock
                         failure:(RequestFailure)failureBlock{
+    
     NSString *url = [NSString stringWithFormat:@"https://api.soundcloud.com/users/%@",userId];
     
     [SCRequest performMethod:SCRequestMethodGET

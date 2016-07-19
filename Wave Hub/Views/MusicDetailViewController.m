@@ -204,7 +204,7 @@
 - (IBAction)viewMoreButtonPressed:(id)sender {
     [SVProgressHUD show];
     
-    [[WHWebrequestManager sharedManager] fetchUserInfoWithUserId:currentTrack.responseDict[@"user"][@"id"]
+    [[WHWebrequestManager sharedManager] fetchUserInfoWithUserId:[currentTrack.responseDict[@"user"][@"id"] stringValue]
                                                          success:^(id responseObject) {
                                                              [SVProgressHUD dismiss];
                                                              

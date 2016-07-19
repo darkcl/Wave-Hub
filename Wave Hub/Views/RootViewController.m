@@ -125,7 +125,12 @@
 
 - (void)didUpdatePlayingProgress:(float)progress{
     currentPlayingProgress = progress;
-    [_tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:currentPlayingIndex inSection:0]] withRowAnimation:UITableViewRowAnimationNone];
+    currentPlayingIndex = [favourite indexOfObject:[[WHSoundManager sharedManager] playingTrack]];
+    
+    if (currentPlayingIndex != NSNotFound) {
+        [_tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:currentPlayingIndex inSection:0]] withRowAnimation:UITableViewRowAnimationNone];
+    }
+    
 }
 
 - (void)didUpdatePlayingTrack:(WHTrackModel *)info{
