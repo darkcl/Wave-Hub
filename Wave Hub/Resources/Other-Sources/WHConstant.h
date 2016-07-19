@@ -6,21 +6,15 @@
 //  Copyright © 2015 Memory Leaks. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#define remoteControlPlayButtonTapped @"play pressed"
+#define remoteControlPauseButtonTapped @"pause pressed"
+#define remoteControlStopButtonTapped @"stop pressed"
+#define remoteControlForwardButtonTapped @"forward pressed"
+#define remoteControlBackwardButtonTapped @"backward pressed"
+#define remoteControlOtherButtonTapped @"other pressed"
 
-@interface WHConstant : NSObject
-
-extern NSString *remoteControlPlayButtonTapped;
-extern NSString *remoteControlPauseButtonTapped;
-extern NSString *remoteControlStopButtonTapped;
-extern NSString *remoteControlForwardButtonTapped;
-extern NSString *remoteControlBackwardButtonTapped;
-extern NSString *remoteControlOtherButtonTapped;
-
-extern NSString *WHSoundTrackDidChangeNotifiction;
-extern NSString *WHSoundPlayModeDidChangeNotifiction;
-
-extern NSString *WHSoundProgressDidChangeNotifiction;
-
-
-@end
+#define WHSoundTrackDidChangeNotifiction @"WHSoundTrackDidChangeNotifiction"
+#define WHSoundPlayModeDidChangeNotifiction @"WHSoundPlayModeDidChangeNotifiction"
+#define WHSoundProgressDidChangeNotifiction @"WHSoundProgressDidChangeNotifiction"
+#define WHSoundPlayerDidLoadMore @"WHSoundPlayerDidLoadMore"
+#define WHSoundCloudResourceMyFavourite @"https://api.soundcloud.com/me/favorites"

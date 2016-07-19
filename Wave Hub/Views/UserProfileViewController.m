@@ -12,7 +12,7 @@
 #import <FontAwesomeKit/FAKFontAwesome.h>
 #import <DLImageLoader/DLImageLoader.h>
 
-
+#import "PlaceholderTableViewCell.h"
 
 @interface UserProfileViewController ()
 @property (weak, nonatomic) IBOutlet UIImageView *userImageView;
@@ -64,16 +64,20 @@
                                                }
                                            }];
     }
-    [[WHWebrequestManager sharedManager] fetchTracksForUserId:userInfo.userId
-                                                         info:nil
-                                                      success:^(NSArray <WHTrackModel *> *responseObject) {
-                                                          self->userTracks =  responseObject;
-                                                          [self.tableView reloadData];
-                                                      }
-                                                      failure:^(NSError *error) {
-                                                          
-                                                      }];
+    
+    //https://api.soundcloud.com/users/%@/tracks
+    
+    [[WHWebrequestManager sharedManager] fetchTracksWithUrl:[NSString stringWithFormat:@"https://api.soundcloud.com/users/%@/tracks", userInfo.userId]
+                                                    success:^(id responseObject) {
+                                                        self->userTracks =  responseObject;
+                                                        [self.tableView reloadData];
+                                                    }
+                                                    failure:^(NSError *error) {
+                                                        
+                                                    }];
+    
     [_tableView registerNib:[UINib nibWithNibName:@"MusicTableViewCell" bundle:nil] forCellReuseIdentifier:@"MusicTableViewCell"];
+    [_tableView registerNib:[UINib nibWithNibName:@"PlaceholderTableViewCell" bundle:nil] forCellReuseIdentifier:@"PlaceholderTableViewCell"];
     
     NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
     [formatter setNumberStyle:NSNumberFormatterDecimalStyle];
@@ -91,6 +95,11 @@
                                              selector:@selector(didUpdatePlayingTrack:)
                                                  name:WHSoundTrackDidChangeNotifiction
                                                object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(didUpdatePlayingTracksArray:)
+                                                 name:WHSoundPlayerDidLoadMore
+                                               object:nil];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -100,8 +109,17 @@
 - (void)dismiss:(id)sender {
     [self dismissViewControllerAnimated:YES completion:nil];
     
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    
     [[WHSoundManager sharedManager] setDataSource:nil];
     [[WHSoundManager sharedManager] setDelegate:nil];
+}
+
+- (void)didUpdatePlayingTracksArray:(NSNotification *)info{
+    if ([info.object isKindOfClass:[NSArray class]]) {
+        userTracks = (NSArray *)info.object;
+        [_tableView reloadData];
+    }
 }
 
 /*
@@ -158,19 +176,31 @@
 // Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    MusicTableViewCell *cell = (MusicTableViewCell *)[tableView dequeueReusableCellWithIdentifier:@"MusicTableViewCell" forIndexPath:indexPath];
-    if (!cell) {
-        cell = [[MusicTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"MusicTableViewCell"];
-    }
+    
     NSInteger currentPlayingIndex = [userTracks indexOfObject:currentPlayingTrack];
     
     // Configure the cell...
     WHTrackModel *info = userTracks[indexPath.row];
-    [cell setInfo:info isCurrentlyPlaying:(currentPlayingIndex == indexPath.row)];
     
-    cell.cellDelegate = self;
-    cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    return cell;
+    if (info.trackType == WHTrackTypePlaceHolder) {
+        PlaceholderTableViewCell *cell = (PlaceholderTableViewCell *)[tableView dequeueReusableCellWithIdentifier:@"PlaceholderTableViewCell" forIndexPath:indexPath];
+        if (!cell) {
+            cell = [[PlaceholderTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"PlaceholderTableViewCell"];
+        }
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        return cell;
+    }else{
+        MusicTableViewCell *cell = (MusicTableViewCell *)[tableView dequeueReusableCellWithIdentifier:@"MusicTableViewCell" forIndexPath:indexPath];
+        if (!cell) {
+            cell = [[MusicTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"MusicTableViewCell"];
+        }
+        [cell setInfo:info isCurrentlyPlaying:(currentPlayingIndex == indexPath.row)];
+        
+        cell.cellDelegate = self;
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        return cell;
+    }
+    
 }
 
 /*
@@ -245,27 +275,44 @@
 }
 
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath{
-    MusicTableViewCell *musicCell = (MusicTableViewCell *)cell;
     WHTrackModel *info = userTracks[indexPath.row];
-    [musicCell startLoadingCover:info.albumCoverUrl];
+    
+    if (info.trackType == WHTrackTypePlaceHolder) {
+//        [[WHWebrequestManager sharedManager] fetchTracksWithUrl:info.nextHref
+//                                                        success:^(NSArray *responseObject) {
+//                                                            NSMutableArray *result = [NSMutableArray arrayWithArray:self->userTracks];
+//                                                            [result removeLastObject];
+//                                                            [result addObjectsFromArray:responseObject];
+//                                                            self->userTracks =  result;
+//                                                            [self.tableView reloadData];
+//                                                            
+//                                                            if ([[WHSoundManager sharedManager] dataSource] == self) {
+//                                                                [[WHSoundManager sharedManager] reloadTracksData];
+//                                                            }
+//                                                        }
+//                                                        failure:^(NSError *error) {
+//                                                            
+//                                                        }];
+    }else{
+        MusicTableViewCell *musicCell = (MusicTableViewCell *)cell;
+        [musicCell startLoadingCover:info.albumCoverUrl];
+    }
+    
 }
 
 - (void)tableView:(UITableView *)tableView didEndDisplayingCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath{
-    MusicTableViewCell *musicCell = (MusicTableViewCell *)cell;
-    [musicCell cancelLoadingCover];
+    
+    WHTrackModel *info = userTracks[indexPath.row];
+    
+    if (info.trackType != WHTrackTypePlaceHolder && [cell isKindOfClass:[MusicTableViewCell class]]) {
+        MusicTableViewCell *musicCell = (MusicTableViewCell *)cell;
+        [musicCell cancelLoadingCover];
+    }
 }
 
 #pragma mark - Music Cell Delegate
 
 - (void)didTogglePlayPause:(WHTrackModel *)info{
-    if ([[WHSoundManager sharedManager] dataSource] != self  || [[WHSoundManager sharedManager] dataSource] == nil) {
-        [[WHSoundManager sharedManager] setDataSource:self];
-        [[WHSoundManager sharedManager] playerStop];
-        
-        [[WHSoundManager sharedManager] reloadTracksData];
-    }
-    
-    
     if ([[WHSoundManager sharedManager] isPlaying]) {
         if ([[WHSoundManager sharedManager] playingTrack] == currentPlayingTrack) {
             [[WHSoundManager sharedManager] playerPause];

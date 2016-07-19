@@ -24,20 +24,36 @@ typedef void(^RequestFailure)(NSError *error);
        withViewController:(UIViewController *)viewController;
 
 - (void)fetchMyPlaylistWithInfo:(id)info
-                         success:(RequestSuccess)successBlock
-                         failure:(RequestFailure)failureBlock;
+                        success:(RequestSuccess)successBlock
+                        failure:(RequestFailure)failureBlock;
 
+
+// Will remove
 - (void)fetchAllFavouriteWithInfo:(NSDictionary *)info
                           success:(RequestSuccess)successBlock
                           failure:(RequestFailure)failureBlock;
 
+// Will remove
 - (void)fetchUserInfoWithUserId:(NSString *)userId
                         success:(RequestSuccess)successBlock
                         failure:(RequestFailure)failureBlock;
 
+// Will remove
 - (void)fetchTracksForUserId:(NSString *)userId
                         info:(NSDictionary *)info
                      success:(RequestSuccess)successBlock
                      failure:(RequestFailure)failureBlock;
+
+#pragma mark - Pagination
+/**
+ *  Fetch My favourites
+ *
+ *  @param url          Resource Url
+ *  @param successBlock Return array of WHTrackModel (current page), if have next page, last object will be a placeholder
+ *  @param failureBlock Error call back
+ */
+- (void)fetchTracksWithUrl:(NSString *)url
+                   success:(RequestSuccess)successBlock
+                   failure:(RequestFailure)failureBlock;
 
 @end

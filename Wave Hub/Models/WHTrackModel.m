@@ -33,7 +33,15 @@
 
 - (id)init{
     if (self = [super init]) {
-        
+        _nextHref = nil;
+    }
+    return self;
+}
+
+- (id)initWithNextHref:(NSString *)url{
+    if (self = [super init]) {
+        _nextHref = url;
+        _trackType = WHTrackTypePlaceHolder;
     }
     return self;
 }

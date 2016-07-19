@@ -251,24 +251,42 @@
 }
 
 - (void)startPlayTrack{
-    if (self.delegate && [self.delegate respondsToSelector:@selector(didUpdatePlayingTrack:)]) {
-        [self.delegate didUpdatePlayingTrack:_playingTrack];
-    }
-    [[NSNotificationCenter defaultCenter] postNotificationName:WHSoundTrackDidChangeNotifiction object:_playingTrack];
-    self.mprcPlay.enabled = YES;
-    [_playingTrack playTrackWithCompletion:^{
-        [self playerForward];
-    } progress:^(float progress) {
-        if (self.delegate && [self.delegate respondsToSelector:@selector(didUpdatePlayingProgress:)]) {
-            [self.delegate didUpdatePlayingProgress:progress];
+    if (_playingTrack.trackType == WHTrackTypePlaceHolder) {
+        [[WHWebrequestManager sharedManager] fetchTracksWithUrl:_playingTrack.nextHref
+                                                        success:^(NSArray *responseObject) {
+                                                            NSMutableArray *result = [NSMutableArray arrayWithArray:self->currentTracks];
+                                                            [result removeLastObject];
+                                                            [result addObjectsFromArray:responseObject];
+                                                            self->currentTracks =  result;
+                                                            WHTrackModel *continueOnTrack = [responseObject firstObject];
+                                                            
+                                                            [[NSNotificationCenter defaultCenter] postNotificationName:WHSoundPlayerDidLoadMore object:result];
+                                                            
+                                                            [self playTrack:continueOnTrack forceStart:YES];
+                                                        }
+                                                        failure:^(NSError *error) {
+                                                            
+                                                        }];
+    }else{
+        if (self.delegate && [self.delegate respondsToSelector:@selector(didUpdatePlayingTrack:)]) {
+            [self.delegate didUpdatePlayingTrack:_playingTrack];
         }
-        
-        [[NSNotificationCenter defaultCenter] postNotificationName:WHSoundProgressDidChangeNotifiction object:[NSNumber numberWithFloat:progress]];
-    } failure:^(NSError *error) {
-        NSLog(@"%@", error);
-        
-        [self playerForward];
-    }];
+        [[NSNotificationCenter defaultCenter] postNotificationName:WHSoundTrackDidChangeNotifiction object:_playingTrack];
+        self.mprcPlay.enabled = YES;
+        [_playingTrack playTrackWithCompletion:^{
+            [self playerForward];
+        } progress:^(float progress) {
+            if (self.delegate && [self.delegate respondsToSelector:@selector(didUpdatePlayingProgress:)]) {
+                [self.delegate didUpdatePlayingProgress:progress];
+            }
+            
+            [[NSNotificationCenter defaultCenter] postNotificationName:WHSoundProgressDidChangeNotifiction object:[NSNumber numberWithFloat:progress]];
+        } failure:^(NSError *error) {
+            NSLog(@"%@", error);
+            
+            [self playerForward];
+        }];
+    }
 }
 
 - (void)playTrack:(WHTrackModel *)aTrack

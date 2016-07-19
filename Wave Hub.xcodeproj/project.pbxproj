@@ -28,8 +28,9 @@
 		742B73511D3560C800837D74 /* RootViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 742B734F1D3560C800837D74 /* RootViewController.xib */; };
 		742B735D1D37D44800837D74 /* MusicTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 742B735B1D37D44800837D74 /* MusicTableViewCell.m */; };
 		742B735E1D37D44800837D74 /* MusicTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 742B735C1D37D44800837D74 /* MusicTableViewCell.xib */; };
+		74333DAC1D3E8E7500DDAB29 /* PlaceholderTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 74333DAA1D3E8E7500DDAB29 /* PlaceholderTableViewCell.m */; };
+		74333DAD1D3E8E7500DDAB29 /* PlaceholderTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 74333DAB1D3E8E7500DDAB29 /* PlaceholderTableViewCell.xib */; };
 		7475A5FE1BF4F9B600100498 /* MediaToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7475A5FD1BF4F9B600100498 /* MediaToolbox.framework */; };
-		74C3875A1BFE05DC005356C2 /* WHConstant.m in Sources */ = {isa = PBXBuildFile; fileRef = 74C387591BFE05DC005356C2 /* WHConstant.m */; };
 		74F235A61D3B61D8005E872B /* UIImage+WaveHubAddition.m in Sources */ = {isa = PBXBuildFile; fileRef = 74F235A51D3B61D8005E872B /* UIImage+WaveHubAddition.m */; };
 		74F235A91D3B8329005E872B /* WHSoundCloudUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 74F235A81D3B8329005E872B /* WHSoundCloudUser.m */; };
 		74F235AD1D3B8536005E872B /* UserProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74F235AB1D3B8536005E872B /* UserProfileViewController.m */; };
@@ -90,9 +91,11 @@
 		742B735A1D37D44800837D74 /* MusicTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MusicTableViewCell.h; sourceTree = "<group>"; };
 		742B735B1D37D44800837D74 /* MusicTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MusicTableViewCell.m; sourceTree = "<group>"; };
 		742B735C1D37D44800837D74 /* MusicTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MusicTableViewCell.xib; sourceTree = "<group>"; };
+		74333DA91D3E8E7500DDAB29 /* PlaceholderTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlaceholderTableViewCell.h; sourceTree = "<group>"; };
+		74333DAA1D3E8E7500DDAB29 /* PlaceholderTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaceholderTableViewCell.m; sourceTree = "<group>"; };
+		74333DAB1D3E8E7500DDAB29 /* PlaceholderTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PlaceholderTableViewCell.xib; sourceTree = "<group>"; };
 		7475A5FD1BF4F9B600100498 /* MediaToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaToolbox.framework; path = System/Library/Frameworks/MediaToolbox.framework; sourceTree = SDKROOT; };
-		74C387581BFE05DC005356C2 /* WHConstant.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WHConstant.h; sourceTree = "<group>"; };
-		74C387591BFE05DC005356C2 /* WHConstant.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WHConstant.m; sourceTree = "<group>"; };
+		749A7F301D3E94D800114449 /* WHConstant.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WHConstant.h; sourceTree = "<group>"; };
 		74F235A41D3B61D8005E872B /* UIImage+WaveHubAddition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+WaveHubAddition.h"; sourceTree = "<group>"; };
 		74F235A51D3B61D8005E872B /* UIImage+WaveHubAddition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+WaveHubAddition.m"; sourceTree = "<group>"; };
 		74F235A71D3B8329005E872B /* WHSoundCloudUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WHSoundCloudUser.h; sourceTree = "<group>"; };
@@ -204,9 +207,8 @@
 			children = (
 				90FCF8C4B6CA595E3FD6BFD3 /* Info.plist */,
 				DFDA417E07FC436481C222DE /* Wave Hub-Prefix.pch */,
+				749A7F301D3E94D800114449 /* WHConstant.h */,
 				7535691D532C79453A972784 /* main.m */,
-				74C387581BFE05DC005356C2 /* WHConstant.h */,
-				74C387591BFE05DC005356C2 /* WHConstant.m */,
 			);
 			path = "Other-Sources";
 			sourceTree = "<group>";
@@ -253,6 +255,9 @@
 				742B735A1D37D44800837D74 /* MusicTableViewCell.h */,
 				742B735B1D37D44800837D74 /* MusicTableViewCell.m */,
 				742B735C1D37D44800837D74 /* MusicTableViewCell.xib */,
+				74333DA91D3E8E7500DDAB29 /* PlaceholderTableViewCell.h */,
+				74333DAA1D3E8E7500DDAB29 /* PlaceholderTableViewCell.m */,
+				74333DAB1D3E8E7500DDAB29 /* PlaceholderTableViewCell.xib */,
 			);
 			name = Cell;
 			sourceTree = "<group>";
@@ -482,6 +487,7 @@
 				742B73511D3560C800837D74 /* RootViewController.xib in Resources */,
 				742B735E1D37D44800837D74 /* MusicTableViewCell.xib in Resources */,
 				74F235AE1D3B8536005E872B /* UserProfileViewController.xib in Resources */,
+				74333DAD1D3E8E7500DDAB29 /* PlaceholderTableViewCell.xib in Resources */,
 				0EEE6B0B1D3886A800068BFE /* MusicDetailViewController.xib in Resources */,
 				741055B81D37DC190092BA43 /* Montserrat-Bold.ttf in Resources */,
 			);
@@ -592,6 +598,7 @@
 				74F235AD1D3B8536005E872B /* UserProfileViewController.m in Sources */,
 				EA1D28C0C6A5011119F82B73 /* LaunchScreen.xib in Sources */,
 				0E2914931BF58306004AA529 /* NSData+WaveHubAddition.m in Sources */,
+				74333DAC1D3E8E7500DDAB29 /* PlaceholderTableViewCell.m in Sources */,
 				0EC527FE1C3A236500EC87C1 /* WHPlaylistModel.m in Sources */,
 				0EEE6B0A1D3886A800068BFE /* MusicDetailViewController.m in Sources */,
 				0E2914961BF58387004AA529 /* WHDatabaseManager.m in Sources */,
@@ -602,7 +609,6 @@
 				1A44E872A0401F9F6EC5084C /* main.m in Sources */,
 				742B735D1D37D44800837D74 /* MusicTableViewCell.m in Sources */,
 				0E2B7E7C1BF475BC001B7A25 /* WHApplication.m in Sources */,
-				74C3875A1BFE05DC005356C2 /* WHConstant.m in Sources */,
 				0E44F8671BEB4DD400F8571D /* WHWebrequestManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -623,6 +629,8 @@
 			baseConfigurationReference = 882868ECE8B2451BAF02C497 /* Pods-Wave Hub.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ENABLE_MODULES = NO;
+				CLANG_MODULES_AUTOLINK = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = NO;
 				CLANG_WARN_IMPLICIT_SIGN_CONVERSION = NO;
 				CLANG_WARN_INT_CONVERSION = NO;
@@ -812,6 +820,8 @@
 			baseConfigurationReference = 48D54F111D4774526C3EF083 /* Pods-Wave Hub.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ENABLE_MODULES = NO;
+				CLANG_MODULES_AUTOLINK = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = NO;
 				CLANG_WARN_IMPLICIT_SIGN_CONVERSION = NO;
 				CLANG_WARN_INT_CONVERSION = NO;

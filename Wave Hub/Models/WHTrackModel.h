@@ -10,7 +10,8 @@
 
 typedef NS_ENUM(NSInteger, WHTrackType) {
     WHTrackTypeLocal,
-    WHTrackTypeSoundCloud
+    WHTrackTypeSoundCloud,
+    WHTrackTypePlaceHolder
 };
 
 typedef void(^WHTrackCompletion)(void);
@@ -53,6 +54,8 @@ typedef void(^WHTrackError)(NSError *error);
 - (BOOL)isPlaying;
 
 - (id)initWithInfo:(NSDictionary *)dict;
+
+- (id)initWithNextHref:(NSString *)url;
 
 - (NSDictionary *)currentDisplayInfo;
 

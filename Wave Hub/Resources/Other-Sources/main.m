@@ -6,7 +6,7 @@
 //  Copyright (c) 2015 Memory Leaks. All rights reserved.
 //
 
-@import UIKit;
+#import <UIKit/UIKit.h>
 
 #import "WHAppDelegate.h"
 

@@ -226,6 +226,50 @@ static NSString * const kBaseURL = @"https://api.soundcloud.com";
              }];
 }
 
+- (void)fetchTracksWithUrl:(NSString *)url
+                    success:(RequestSuccess)successBlock
+                    failure:(RequestFailure)failureBlock{
+    NSURL *requestUrl = [NSURL URLWithString:url];
+    
+    [SCRequest performMethod:SCRequestMethodGET
+                  onResource:requestUrl
+             usingParameters:@{@"linked_partitioning":@"1"}
+                 withAccount:[SCSoundCloud account]
+      sendingProgressHandler:^(unsigned long long bytesSend, unsigned long long bytesTotal) {
+          
+      }
+             responseHandler:^(NSURLResponse *response, NSData *responseData, NSError *error) {
+                 if (error) {
+                     failureBlock(error);
+                     
+                 }else{
+                     NSError *jsonError;
+                     NSDictionary *aDict = [NSJSONSerialization JSONObjectWithData:responseData
+                                                                           options:NSJSONReadingAllowFragments
+                                                                             error:&jsonError];
+                     if (jsonError) {
+                         failureBlock(jsonError);
+                     }else{
+                         NSMutableArray *result = [[NSMutableArray alloc] init];
+                         
+                         for (NSDictionary *trackInfo in aDict[@"collection"]) {
+                             WHTrackModel *aTrack = [[WHTrackModel alloc] initWithInfo:trackInfo];
+                             aTrack.trackType = WHTrackTypeSoundCloud;
+                             [result addObject:aTrack];
+                         }
+                         
+                         NSString *nextHref = aDict[@"next_href"];
+                         
+                         if (nextHref != nil) {
+                             [result addObject:[[WHTrackModel alloc] initWithNextHref:nextHref]];
+                         }
+                         
+                         successBlock(result);
+                     }
+                 }
+             }];
+}
+
 //- (void)fetchMyFavouriteWithInfo:(MyFavourite *)info
 //                         success:(RequestSuccess)successBlock
 //                         failure:(RequestFailure)failureBlock{
