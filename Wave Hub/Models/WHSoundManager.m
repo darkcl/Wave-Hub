@@ -11,6 +11,14 @@
 #import <AVFoundation/AVFoundation.h>
 #import "WHTrackModel.h"
 
+@interface WHSoundManager()
+
+@property (nonatomic, strong) MPRemoteCommand * mprcNext, * mprcPlay, * mprcPause, * mprcPrevious;
+
+@property (nonatomic, strong) MPFeedbackCommand * mpfbLike, * mpfbDislike, * mpfbBookMark;
+
+@end
+
 @implementation WHSoundManager
 
 + (instancetype)sharedManager
@@ -25,12 +33,68 @@
 
 - (id)init{
     if (self = [super init]) {
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(remoteControlPlayPressed:) name:remoteControlPlayButtonTapped object:nil];
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(remoteControlPausePressed:) name:remoteControlPauseButtonTapped object:nil];
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(remoteControlStopPressed:) name:remoteControlStopButtonTapped object:nil];
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(remoteControlForwardPressed:) name:remoteControlForwardButtonTapped object:nil];
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(remoteControlBackwardPressed:) name:remoteControlBackwardButtonTapped object:nil];
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(remoteControlOtherPressed:) name:remoteControlOtherButtonTapped object:nil];
+        [[UIApplication sharedApplication] beginReceivingRemoteControlEvents];
+        
+        self.mprcNext = [MPRemoteCommandCenter sharedCommandCenter].nextTrackCommand;
+        [self.mprcNext addTargetWithHandler:^MPRemoteCommandHandlerStatus(MPRemoteCommandEvent *event) {
+            return MPRemoteCommandHandlerStatusSuccess;
+        }];
+        [self.mprcNext setEnabled:YES];
+        [self.mprcNext addTarget:self action:@selector(nextTrackCommand:)];
+        self.mprcPlay = [MPRemoteCommandCenter sharedCommandCenter].playCommand;
+        [self.mprcPlay addTargetWithHandler:^MPRemoteCommandHandlerStatus(MPRemoteCommandEvent *event) {
+            return MPRemoteCommandHandlerStatusSuccess;
+        }];
+        [self.mprcPlay setEnabled:YES];
+        [self.mprcPlay addTarget:self action:@selector(playCommand:)];
+        self.mprcPause = [MPRemoteCommandCenter sharedCommandCenter].pauseCommand;
+        [self.mprcPause addTargetWithHandler:^MPRemoteCommandHandlerStatus(MPRemoteCommandEvent *event) {
+            return MPRemoteCommandHandlerStatusSuccess;
+        }];
+        [self.mprcPause setEnabled:NO];
+        [self.mprcPause addTarget:self action:@selector(pauseCommand:)];
+        
+        self.mprcPrevious = [MPRemoteCommandCenter sharedCommandCenter].previousTrackCommand;
+        [self.mprcPrevious addTargetWithHandler:^MPRemoteCommandHandlerStatus(MPRemoteCommandEvent *event) {
+            return MPRemoteCommandHandlerStatusSuccess;
+        }];
+        [self.mprcPrevious setEnabled:YES];
+        [self.mprcPrevious addTarget:self action:@selector(previousTrackCommand:)];
+        
+//        
+//        self.mpfbLike = [MPRemoteCommandCenter sharedCommandCenter].likeCommand;
+//        [self.mpfbLike addTargetWithHandler:^MPRemoteCommandHandlerStatus(MPRemoteCommandEvent *event) {
+//            return MPRemoteCommandHandlerStatusSuccess;
+//        }];
+//        [self.mpfbLike setEnabled:YES];
+//        [self.mpfbLike addTarget:self action:@selector(likeCommand:)];
+//        [self.mpfbLike setLocalizedTitle:@"Like this song"];
+//        [self.mpfbLike setLocalizedShortTitle:@"Like"];
+//        
+//        self.mpfbDislike =[MPRemoteCommandCenter sharedCommandCenter].dislikeCommand;
+//        [self.mpfbDislike addTargetWithHandler:^MPRemoteCommandHandlerStatus(MPRemoteCommandEvent *event) {
+//            return MPRemoteCommandHandlerStatusSuccess;
+//        }];
+//        [self.mpfbDislike addTarget:self action:@selector(dislikeCommand:)];
+//        [self.mpfbDislike setEnabled:YES];
+//        [self.mpfbDislike setLocalizedTitle:@"Dislike this"];
+//        [self.mpfbDislike setLocalizedShortTitle:@"Dislist"];
+//        
+//        self.mpfbBookMark = [MPRemoteCommandCenter sharedCommandCenter].bookmarkCommand;
+//        [self.mpfbBookMark addTargetWithHandler:^MPRemoteCommandHandlerStatus(MPRemoteCommandEvent *event) {
+//            return MPRemoteCommandHandlerStatusSuccess;
+//        }];
+//        [self.mpfbBookMark setEnabled:YES];
+//        [self.mpfbBookMark addTarget:self action:@selector(bookmarkCommand:)];
+//        [self.mpfbBookMark setLocalizedTitle:@"Bookmark"];
+//        [self.mpfbBookMark setLocalizedShortTitle:@"Bookmark"];
+        
+//        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(remoteControlPlayPressed:) name:remoteControlPlayButtonTapped object:nil];
+//        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(remoteControlPausePressed:) name:remoteControlPauseButtonTapped object:nil];
+//        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(remoteControlStopPressed:) name:remoteControlStopButtonTapped object:nil];
+//        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(remoteControlForwardPressed:) name:remoteControlForwardButtonTapped object:nil];
+//        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(remoteControlBackwardPressed:) name:remoteControlBackwardButtonTapped object:nil];
+//        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(remoteControlOtherPressed:) name:remoteControlOtherButtonTapped object:nil];
         
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(audioRouteChangeListenerCallback:)
                                                      name:AVAudioSessionRouteChangeNotification
@@ -64,6 +128,63 @@
     }
 }
 
+#pragma mark - Remote command
+
+- (void)bookmarkCommand:(MPFeedbackCommandEvent *)sender
+{
+    NSLog(@"Bookmark");
+}
+
+- (void)dislikeCommand:(MPFeedbackCommandEvent *)sender
+{
+    NSLog(@"Dislike");
+}
+
+- (void)likeCommand:(MPFeedbackCommandEvent *)sender
+{
+    NSLog(@"Like");
+}
+
+- (void)previousTrackCommand:(MPRemoteCommandEvent *)sender
+{
+    NSLog(@"Previous Track");
+    [self playerBackward];
+}
+
+- (void)playCommand:(MPRemoteCommandEvent *)sender
+{
+    NSLog(@"Play in MPRemoteCommandEvent");
+    [self playerPlay];
+}
+
+- (void)pauseCommand:(MPRemoteCommandEvent *)sender
+{
+    NSLog(@"Pause in MPRemoteCommandEvent");
+    [self playerPause];
+}
+
+- (void)nextTrackCommand:(MPRemoteCommandEvent *)sender
+{
+    NSLog(@"Next Track");
+    [self playerForward];
+}
+
+- (void)remoteControlReceivedWithEvent:(UIEvent *)event
+{
+    switch (event.subtype) {
+        case UIEventSubtypeRemoteControlPlay:
+            NSLog(@"Play in RemoteControlEvent");
+            [self playerPlay];
+            break;
+        case UIEventSubtypeRemoteControlPause:
+            NSLog(@"Pause in RemoteControlEvent");
+            [self playerPause];
+            break;
+        default:
+            break;
+    }
+}
+
 #pragma mark - Player Logic
 
 - (void)playerForward{
@@ -82,11 +203,34 @@
 
 - (void)playerPause{
     [[NSNotificationCenter defaultCenter] postNotificationName:WHSoundTrackDidChangeNotifiction object:[NSNull null]];
+    
+    MPNowPlayingInfoCenter *infoCenter = [MPNowPlayingInfoCenter defaultCenter];
+    
+    // Get currently playing information from other method:
+    NSMutableDictionary *displayInfo = [NSMutableDictionary dictionaryWithDictionary:[_playingTrack currentDisplayInfo]];
+    
+    // A playback rate of 0.0f corresponds to a "not playing" state.
+    float playbackRate = 0.0f;
+    [displayInfo setObject:[NSNumber numberWithFloat:playbackRate] forKey:MPNowPlayingInfoPropertyPlaybackRate];
+    
+    // This will update the lock screen button and hide the progress bar if the playback rate is 0.0f:
+    infoCenter.nowPlayingInfo = displayInfo;
     [_playingTrack pause];
 }
 
 - (void)playerPlay{
     [[NSNotificationCenter defaultCenter] postNotificationName:WHSoundTrackDidChangeNotifiction object:_playingTrack];
+    MPNowPlayingInfoCenter *infoCenter = [MPNowPlayingInfoCenter defaultCenter];
+    
+    // Get currently playing information from other method:
+    NSMutableDictionary *displayInfo = [NSMutableDictionary dictionaryWithDictionary:[_playingTrack currentDisplayInfo]];
+    
+    // A playback rate of 0.0f corresponds to a "not playing" state.
+    float playbackRate = 1.0f;
+    [displayInfo setObject:[NSNumber numberWithFloat:playbackRate] forKey:MPNowPlayingInfoPropertyPlaybackRate];
+    
+    // This will update the lock screen button and hide the progress bar if the playback rate is 0.0f:
+    infoCenter.nowPlayingInfo = displayInfo;
     [_playingTrack resume];
 }
 
@@ -111,7 +255,7 @@
         [self.delegate didUpdatePlayingTrack:_playingTrack];
     }
     [[NSNotificationCenter defaultCenter] postNotificationName:WHSoundTrackDidChangeNotifiction object:_playingTrack];
-    
+    self.mprcPlay.enabled = YES;
     [_playingTrack playTrackWithCompletion:^{
         [self playerForward];
     } progress:^(float progress) {

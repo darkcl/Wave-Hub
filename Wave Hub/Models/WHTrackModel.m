@@ -135,7 +135,7 @@
 
 - (void)resume{
     if (_trackType != WHTrackTypeLocal) {
-        [_streamPlayer pause];
+        [_streamPlayer play];
     }else{
         // TODO: Local file handling
     }
@@ -175,6 +175,22 @@
     }
 }
 
+- (NSDictionary *)currentDisplayInfo{
+    
+    if (_trackType != WHTrackTypeLocal) {
+        double time = (self.duration / 1000);
+        return @{MPMediaItemPropertyTitle:self.trackTitle,
+                 MPMediaItemPropertyArtist:self.author,
+                 MPMediaItemPropertyMediaType: @(MPMediaTypeMusic),
+                 MPNowPlayingInfoPropertyElapsedPlaybackTime: @(CMTimeGetSeconds(_streamPlayer.currentTime)),
+                 MPMediaItemPropertyPlaybackDuration: @(time),
+                 MPNowPlayingInfoPropertyPlaybackRate: @1};
+    }else{
+        return nil;
+    }
+    
+}
+
 #pragma mark - Streaming Delegate
 
 - (void)didCompleteAudioStream:(NPAudioStream *)audioStream{
@@ -203,6 +219,7 @@ didUpdateTrackCurrentTime:(CMTime)currentTime{
     [[MPNowPlayingInfoCenter defaultCenter] setNowPlayingInfo:@{MPMediaItemPropertyTitle:self.trackTitle,
                                                                 MPMediaItemPropertyArtist:self.author,
                                                                 MPMediaItemPropertyMediaType: @(MPMediaTypeMusic),
+                                                                MPNowPlayingInfoPropertyElapsedPlaybackTime: @(CMTimeGetSeconds(audioStream.currentTime)),
                                                                 MPMediaItemPropertyPlaybackDuration: @(time),
                                                                 MPNowPlayingInfoPropertyPlaybackRate: @1}];
 }

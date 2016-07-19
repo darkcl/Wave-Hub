@@ -40,6 +40,8 @@ typedef void(^WHTrackError)(NSError *error);
 @property (nonatomic, strong) WHTrackModel *prevTrack;
 @property (nonatomic, strong) WHTrackModel *nextTrack;
 
+@property (nonatomic, strong) NSString *nextHref;
+
 - (void)playTrackWithCompletion:(WHTrackCompletion)completionBlock
                        progress:(WHTrackProgress)progressBlock
                         failure:(WHTrackError)failureBlock;
@@ -51,5 +53,7 @@ typedef void(^WHTrackError)(NSError *error);
 - (BOOL)isPlaying;
 
 - (id)initWithInfo:(NSDictionary *)dict;
+
+- (NSDictionary *)currentDisplayInfo;
 
 @end
