@@ -278,21 +278,21 @@
     WHTrackModel *info = userTracks[indexPath.row];
     
     if (info.trackType == WHTrackTypePlaceHolder) {
-//        [[WHWebrequestManager sharedManager] fetchTracksWithUrl:info.nextHref
-//                                                        success:^(NSArray *responseObject) {
-//                                                            NSMutableArray *result = [NSMutableArray arrayWithArray:self->userTracks];
-//                                                            [result removeLastObject];
-//                                                            [result addObjectsFromArray:responseObject];
-//                                                            self->userTracks =  result;
-//                                                            [self.tableView reloadData];
-//                                                            
-//                                                            if ([[WHSoundManager sharedManager] dataSource] == self) {
-//                                                                [[WHSoundManager sharedManager] reloadTracksData];
-//                                                            }
-//                                                        }
-//                                                        failure:^(NSError *error) {
-//                                                            
-//                                                        }];
+        [[WHWebrequestManager sharedManager] fetchTracksWithUrl:info.nextHref
+                                                        success:^(NSArray *responseObject) {
+                                                            NSMutableArray *result = [NSMutableArray arrayWithArray:self->userTracks];
+                                                            [result removeLastObject];
+                                                            [result addObjectsFromArray:responseObject];
+                                                            self->userTracks =  result;
+                                                            [self.tableView reloadData];
+                                                            
+                                                            if ([[WHSoundManager sharedManager] dataSource] == self) {
+                                                                [[WHSoundManager sharedManager] reloadTracksData];
+                                                            }
+                                                        }
+                                                        failure:^(NSError *error) {
+                                                            
+                                                        }];
     }else{
         MusicTableViewCell *musicCell = (MusicTableViewCell *)cell;
         [musicCell startLoadingCover:info.albumCoverUrl];
