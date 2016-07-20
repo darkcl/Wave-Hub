@@ -60,7 +60,7 @@
         }];
         [self.mprcPrevious setEnabled:YES];
         [self.mprcPrevious addTarget:self action:@selector(previousTrackCommand:)];
-        
+//        
 //        
 //        self.mpfbLike = [MPRemoteCommandCenter sharedCommandCenter].likeCommand;
 //        [self.mpfbLike addTargetWithHandler:^MPRemoteCommandHandlerStatus(MPRemoteCommandEvent *event) {
@@ -70,7 +70,7 @@
 //        [self.mpfbLike addTarget:self action:@selector(likeCommand:)];
 //        [self.mpfbLike setLocalizedTitle:@"Like this song"];
 //        [self.mpfbLike setLocalizedShortTitle:@"Like"];
-//        
+//
 //        self.mpfbDislike =[MPRemoteCommandCenter sharedCommandCenter].dislikeCommand;
 //        [self.mpfbDislike addTargetWithHandler:^MPRemoteCommandHandlerStatus(MPRemoteCommandEvent *event) {
 //            return MPRemoteCommandHandlerStatusSuccess;
@@ -252,6 +252,7 @@
 
 - (void)startPlayTrack{
     if (_playingTrack.trackType == WHTrackTypePlaceHolder) {
+        // Load more
         [[WHWebrequestManager sharedManager] fetchTracksWithUrl:_playingTrack.nextHref
                                                         success:^(NSArray *responseObject) {
                                                             NSMutableArray *result = [NSMutableArray arrayWithArray:self->currentTracks];
@@ -271,6 +272,7 @@
         if (self.delegate && [self.delegate respondsToSelector:@selector(didUpdatePlayingTrack:)]) {
             [self.delegate didUpdatePlayingTrack:_playingTrack];
         }
+        
         [[NSNotificationCenter defaultCenter] postNotificationName:WHSoundTrackDidChangeNotifiction object:_playingTrack];
         self.mprcPlay.enabled = YES;
         [_playingTrack playTrackWithCompletion:^{

@@ -64,6 +64,8 @@
     self.durationLabel.text = [self timeFormatted:(int)info.duration];
     
     self.progressView.hidden = YES;
+    self.progressView.progress = 0.0;
+    
     if (isCurrentlyPlaying) {
         [[NSNotificationCenter defaultCenter] addObserver:self
                                                  selector:@selector(updateProgress:)
@@ -71,7 +73,6 @@
                                                    object:nil];
         
         self.progressView.hidden = NO;
-        self.progressView.progress = [[WHSoundManager sharedManager] playingTrack].progress;
         
         FAKFontAwesome *buttonIcon = [FAKFontAwesome pauseIconWithSize:17];
         [buttonIcon addAttribute:NSForegroundColorAttributeName value:[UIColor whiteColor]];

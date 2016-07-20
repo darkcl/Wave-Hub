@@ -123,6 +123,31 @@
     }else{
         [self playLocalSound];
     }
+    
+//    UILocalNotification *localNotification = [[UILocalNotification alloc] init];
+//    if (_trackType != WHTrackTypeLocal) {
+//        
+//        NSMutableDictionary *result = [NSMutableDictionary dictionaryWithDictionary:self.responseDict];
+//        
+//        for (NSString *key in result.allKeys) {
+//            if ([result[key] isKindOfClass:[NSNull class]]) {
+//                [result removeObjectForKey:key];
+//            }
+//        }
+//        
+//        localNotification.userInfo = @{@"soundCloudTrack": result};
+//    }
+//    localNotification.alertBody = [NSString stringWithFormat:@"Now Playing: %@", _trackTitle];
+//    localNotification.category = @"ACTIONABLE";
+//    
+//    // Clear notifications
+//    NSArray *arrayOfLocalNotifications = [[UIApplication sharedApplication] scheduledLocalNotifications] ;
+//    
+//    for (UILocalNotification *anNotification in arrayOfLocalNotifications) {
+//        [[UIApplication sharedApplication] cancelLocalNotification:anNotification];
+//    }
+//    
+//    [[UIApplication sharedApplication] presentLocalNotificationNow:localNotification];
 }
 
 - (void)stop{
