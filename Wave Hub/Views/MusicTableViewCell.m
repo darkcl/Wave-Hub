@@ -64,6 +64,8 @@
     self.durationLabel.text = [self timeFormatted:(int)info.duration];
     
     self.progressView.hidden = YES;
+    self.progressView.progress = 0.0;
+    
     if (isCurrentlyPlaying) {
         
         

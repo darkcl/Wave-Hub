@@ -17,6 +17,8 @@
 		0E2B7E7C1BF475BC001B7A25 /* WHApplication.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E2B7E7B1BF475BC001B7A25 /* WHApplication.m */; };
 		0E44F8671BEB4DD400F8571D /* WHWebrequestManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E44F8661BEB4DD400F8571D /* WHWebrequestManager.m */; };
 		0EC527FE1C3A236500EC87C1 /* WHPlaylistModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EC527FD1C3A236500EC87C1 /* WHPlaylistModel.m */; };
+		0ED9AF8F1D3F714C00B47E3D /* ContainerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0ED9AF8D1D3F714C00B47E3D /* ContainerViewController.m */; };
+		0ED9AF901D3F714C00B47E3D /* ContainerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0ED9AF8E1D3F714C00B47E3D /* ContainerViewController.xib */; };
 		0EEE6B0A1D3886A800068BFE /* MusicDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EEE6B081D3886A800068BFE /* MusicDetailViewController.m */; };
 		0EEE6B0B1D3886A800068BFE /* MusicDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0EEE6B091D3886A800068BFE /* MusicDetailViewController.xib */; };
 		1A44E872A0401F9F6EC5084C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 7535691D532C79453A972784 /* main.m */; };
@@ -85,6 +87,9 @@
 		0E44F8661BEB4DD400F8571D /* WHWebrequestManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WHWebrequestManager.m; path = ../Models/WHWebrequestManager.m; sourceTree = "<group>"; };
 		0EC527FC1C3A236500EC87C1 /* WHPlaylistModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WHPlaylistModel.h; sourceTree = "<group>"; };
 		0EC527FD1C3A236500EC87C1 /* WHPlaylistModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WHPlaylistModel.m; sourceTree = "<group>"; };
+		0ED9AF8C1D3F714C00B47E3D /* ContainerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContainerViewController.h; sourceTree = "<group>"; };
+		0ED9AF8D1D3F714C00B47E3D /* ContainerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContainerViewController.m; sourceTree = "<group>"; };
+		0ED9AF8E1D3F714C00B47E3D /* ContainerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ContainerViewController.xib; sourceTree = "<group>"; };
 		0EEE6B071D3886A800068BFE /* MusicDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MusicDetailViewController.h; sourceTree = "<group>"; };
 		0EEE6B081D3886A800068BFE /* MusicDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MusicDetailViewController.m; sourceTree = "<group>"; };
 		0EEE6B091D3886A800068BFE /* MusicDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MusicDetailViewController.xib; sourceTree = "<group>"; };
@@ -165,6 +170,16 @@
 			path = Headers;
 			sourceTree = "<group>";
 		};
+		0ED9AF911D3F715100B47E3D /* Container */ = {
+			isa = PBXGroup;
+			children = (
+				0ED9AF8C1D3F714C00B47E3D /* ContainerViewController.h */,
+				0ED9AF8D1D3F714C00B47E3D /* ContainerViewController.m */,
+				0ED9AF8E1D3F714C00B47E3D /* ContainerViewController.xib */,
+			);
+			name = Container;
+			sourceTree = "<group>";
+		};
 		0EEE6B0C1D3886AC00068BFE /* Music Detail */ = {
 			isa = PBXGroup;
 			children = (
@@ -201,9 +216,10 @@
 		1E8CBC8F7C3F90E64799FC7B /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				742B73581D37D41F00837D74 /* Root View */,
+				742B73581D37D41F00837D74 /* Favourite */,
 				0EEE6B0C1D3886AC00068BFE /* Music Detail */,
 				74F235AF1D3B853A005E872B /* User Profile */,
+				0ED9AF911D3F715100B47E3D /* Container */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -251,7 +267,7 @@
 			path = Nibs;
 			sourceTree = "<group>";
 		};
-		742B73581D37D41F00837D74 /* Root View */ = {
+		742B73581D37D41F00837D74 /* Favourite */ = {
 			isa = PBXGroup;
 			children = (
 				742B73591D37D42C00837D74 /* Cell */,
@@ -259,7 +275,7 @@
 				742B734E1D3560C800837D74 /* RootViewController.m */,
 				742B734F1D3560C800837D74 /* RootViewController.xib */,
 			);
-			name = "Root View";
+			name = Favourite;
 			sourceTree = "<group>";
 		};
 		742B73591D37D42C00837D74 /* Cell */ = {
@@ -499,6 +515,7 @@
 				6C5DC8333D90F8BAC26108B1 /* Images.xcassets in Resources */,
 				F8A560A340ED7920227E1490 /* Settings.bundle in Resources */,
 				742B73511D3560C800837D74 /* RootViewController.xib in Resources */,
+				0ED9AF901D3F714C00B47E3D /* ContainerViewController.xib in Resources */,
 				742B735E1D37D44800837D74 /* MusicTableViewCell.xib in Resources */,
 				74F235AE1D3B8536005E872B /* UserProfileViewController.xib in Resources */,
 				74333DAD1D3E8E7500DDAB29 /* PlaceholderTableViewCell.xib in Resources */,
@@ -606,6 +623,7 @@
 			files = (
 				742B73501D3560C800837D74 /* RootViewController.m in Sources */,
 				0E2914B71BF98339004AA529 /* UIViewController+WaveHubAddition.m in Sources */,
+				0ED9AF8F1D3F714C00B47E3D /* ContainerViewController.m in Sources */,
 				0E296DAE1BF4A1F900ED3147 /* CueSheet+WaveHubAddition.m in Sources */,
 				F9272AE40B26984E04F01944 /* WHAppDelegate.m in Sources */,
 				74F235A91D3B8329005E872B /* WHSoundCloudUser.m in Sources */,
