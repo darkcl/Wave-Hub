@@ -6,7 +6,7 @@
 //  Copyright © 2015 Memory Leaks. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
 #import <AVFoundation/AVFoundation.h>
 #import <AudioToolbox/AudioToolbox.h>
@@ -49,6 +49,9 @@ typedef NS_ENUM(NSInteger, WHSoundManagerType) {
     //Traks
     NSArray <WHTrackModel *> *currentTracks;
     WHSoundManagerPlayType playType;
+    
+    NSMutableArray <UIProgressView *> *activeProgressViews;
+    NSTimer *updateTimer;
 }
 
 @property (nonatomic, strong) WHTrackModel *playingTrack;
@@ -75,5 +78,8 @@ typedef NS_ENUM(NSInteger, WHSoundManagerType) {
 
 - (BOOL)isPlaying;
 
+#pragma mark - Progress Views
+- (void)addActiveProgressViews:(UIProgressView *)progressView;
+- (void)removeActiveProgressViews:(UIProgressView *)progressView;
 
 @end

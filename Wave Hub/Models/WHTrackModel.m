@@ -8,24 +8,30 @@
 
 #import "WHTrackModel.h"
 
-#import <NPAudioStream/NPAudioStream.h>
-
 #import <OrigamiEngine/ORGMEngine.h>
 #import <OrigamiEngine/CueSheet.h>
+
+
+#import <FreeStreamer/FSAudioStream.h>
+#import <FreeStreamer/FSAudioController.h>
+#import <FreeStreamer/FSXMLHttpRequest.h>
+#import <FreeStreamer/FSCheckContentTypeRequest.h>
+#import <FreeStreamer/FSParsePlaylistRequest.h>
+#import <FreeStreamer/FSParseRssPodcastFeedRequest.h>
+#import <FreeStreamer/FSPlaylistItem.h>
+
+
 #import "CueSheet+WaveHubAddition.h"
 
 #import <Block-KVO/MTKObserving.h>
 
-@interface WHTrackModel() <NPAudioStreamDelegate> {
+@interface WHTrackModel(){
     WHTrackCompletion complete;
     WHTrackProgress progress;
     WHTrackError failure;
     
-    NSTimer *progressUpdateTimer;
-    NPAudioStream *_streamPlayer;
+    FSAudioStream *_localPlayer;
 }
-
-@property (nonatomic, strong) ORGMEngine *localPlayer;
 
 @end
 
@@ -34,6 +40,7 @@
 - (id)init{
     if (self = [super init]) {
         _nextHref = nil;
+        
     }
     return self;
 }
@@ -55,6 +62,8 @@
         _author = dict[@"user"][@"username"];
         _duration = [dict[@"duration"] floatValue];
         _responseDict = dict;
+        
+        
     }
     return self;
 }
@@ -93,12 +102,8 @@
 }
 
 - (BOOL)isEqual:(id)object{
-    if ([object isKindOfClass:[WHTrackModel class]]) {
-        WHTrackModel *otherTrack = (WHTrackModel *)object;
-        return [_trackUrl isEqual:otherTrack.trackUrl];
-    }else{
-        return NO;
-    }
+    WHTrackModel *otherTrack = (WHTrackModel *)object;
+    return [_trackUrl isEqual:otherTrack.trackUrl];
 }
 
 #pragma mark - Player Logic
@@ -118,143 +123,121 @@
     progress = progressBlock;
     failure = failureBlock;
     
-    if (_trackType != WHTrackTypeLocal) {
-        [self playOnlineSound];
-    }else{
-        [self playLocalSound];
-    }
+    NSLog(@"Play %@", _trackUrl);
+    __weak typeof(self) weakSelf = self;
     
-//    UILocalNotification *localNotification = [[UILocalNotification alloc] init];
-//    if (_trackType != WHTrackTypeLocal) {
-//        
-//        NSMutableDictionary *result = [NSMutableDictionary dictionaryWithDictionary:self.responseDict];
-//        
-//        for (NSString *key in result.allKeys) {
-//            if ([result[key] isKindOfClass:[NSNull class]]) {
-//                [result removeObjectForKey:key];
-//            }
-//        }
-//        
-//        localNotification.userInfo = @{@"soundCloudTrack": result};
-//    }
-//    localNotification.alertBody = [NSString stringWithFormat:@"Now Playing: %@", _trackTitle];
-//    localNotification.category = @"ACTIONABLE";
-//    
-//    // Clear notifications
-//    NSArray *arrayOfLocalNotifications = [[UIApplication sharedApplication] scheduledLocalNotifications] ;
-//    
-//    for (UILocalNotification *anNotification in arrayOfLocalNotifications) {
-//        [[UIApplication sharedApplication] cancelLocalNotification:anNotification];
-//    }
-//    
-//    [[UIApplication sharedApplication] presentLocalNotificationNow:localNotification];
+    _localPlayer = [[FSAudioStream alloc] init];
+    
+    _localPlayer.strictContentTypeChecking = NO;
+    [_localPlayer setOnCompletion:^{
+        __strong typeof(self) strongSelf = weakSelf;
+        [[MPNowPlayingInfoCenter defaultCenter] setNowPlayingInfo:@{MPMediaItemPropertyTitle:strongSelf.trackTitle,
+                                                                    MPMediaItemPropertyArtist:strongSelf.author,
+                                                                    MPMediaItemPropertyMediaType: @(MPMediaTypeMusic),
+                                                                    MPMediaItemPropertyPlaybackDuration: @(strongSelf->_localPlayer.duration.playbackTimeInSeconds),
+                                                                    MPNowPlayingInfoPropertyPlaybackRate: @0}];
+
+        completionBlock();
+    }];
+    
+    [_localPlayer setOnFailure:^(FSAudioStreamError err, NSString *errMsg) {
+        failureBlock([NSError errorWithDomain:@"com.darkcl.wave-hub.stream" code:0 userInfo:@{NSLocalizedDescriptionKey: errMsg}]);
+    }];
+    
+    [_localPlayer setOnStateChange:^(FSAudioStreamState state) {
+        __strong typeof(self) strongSelf = weakSelf;
+        switch (state) {
+            case kFsAudioStreamPlaying:{
+                [[MPNowPlayingInfoCenter defaultCenter] setNowPlayingInfo:strongSelf.currentDisplayInfo];
+                
+                NSLog(@"Stream Playing");
+            }
+                break;
+            case kFsAudioStreamPaused:{
+                [[MPNowPlayingInfoCenter defaultCenter] setNowPlayingInfo:strongSelf.currentPauseDisplayInfo];
+                
+                NSLog(@"Stream Pause");
+            }
+                break;
+            case kFsAudioStreamStopped:{
+                NSLog(@"Stream Stop");
+            }
+                break;
+                
+            default:
+                break;
+        }
+    }];
+    
+    [_localPlayer playFromURL:_trackUrl];
 }
 
 - (void)stop{
-    if (_trackType != WHTrackTypeLocal) {
-        [_streamPlayer pause];
-    }else{
-        // TODO: Local file handling
-    }
+    [_localPlayer stop];
+    
 }
 
 - (void)pause{
-    if (_trackType != WHTrackTypeLocal) {
-        [_streamPlayer pause];
-    }else{
-        // TODO: Local file handling
-    }
+    [_localPlayer pause];
 }
 
 - (void)resume{
-    if (_trackType != WHTrackTypeLocal) {
-        [_streamPlayer play];
-    }else{
-        // TODO: Local file handling
-    }
-}
-
-- (void)playOnlineSound{
-    _streamPlayer = [[NPAudioStream alloc] init];
-    
-    [_streamPlayer setUrls:@[_trackUrl]];
-    NSLog(@"Play %@", _trackUrl);
-    _streamPlayer.repeatMode = NPAudioStreamRepeatModeOff;
-    _streamPlayer.delegate = self;
-    [_streamPlayer selectIndexForPlayback:0];
-}
-
-- (void)playLocalSound{
-    
+    [_localPlayer pause];    
 }
 
 - (BOOL)isPlaying{
-    if (_trackType != WHTrackTypeLocal) {
-        return (_streamPlayer.status == NPAudioStreamStatusPlaying);
-    }else{
-        return NO;
-    }
+    return (_localPlayer.isPlaying);
 }
 
 - (float)progress{
-    if (_trackType != WHTrackTypeLocal) {
-        if (self.isPlaying) {
-            return (float)(CMTimeGetSeconds(_streamPlayer.currentTime) / CMTimeGetSeconds(_streamPlayer.duration));
-        }else{
-            return 0.0f;
-        }
+    if (!self.isPlaying) {
+        return 0.0;
     }else{
-        return 0.0f;
+        return (float)(_localPlayer.currentTimePlayed.playbackTimeInSeconds / _localPlayer.duration.playbackTimeInSeconds);
     }
+    
 }
 
 - (NSDictionary *)currentDisplayInfo{
     
-    if (_trackType != WHTrackTypeLocal) {
-        double time = (self.duration / 1000);
-        return @{MPMediaItemPropertyTitle:self.trackTitle,
-                 MPMediaItemPropertyArtist:self.author,
-                 MPMediaItemPropertyMediaType: @(MPMediaTypeMusic),
-                 MPNowPlayingInfoPropertyElapsedPlaybackTime: @(CMTimeGetSeconds(_streamPlayer.currentTime)),
-                 MPMediaItemPropertyPlaybackDuration: @(time),
-                 MPNowPlayingInfoPropertyPlaybackRate: @1};
-    }else{
-        return nil;
-    }
+    return @{MPMediaItemPropertyTitle:self.trackTitle,
+             MPMediaItemPropertyArtist:self.author,
+             MPMediaItemPropertyMediaType: @(MPMediaTypeMusic),
+             MPNowPlayingInfoPropertyElapsedPlaybackTime: @(_localPlayer.currentTimePlayed.playbackTimeInSeconds),
+             MPMediaItemPropertyPlaybackDuration: @(_localPlayer.duration.playbackTimeInSeconds),
+             MPNowPlayingInfoPropertyPlaybackRate: @1};
     
 }
 
-#pragma mark - Streaming Delegate
-
-- (void)didCompleteAudioStream:(NPAudioStream *)audioStream{
-    double time = (self.duration / 1000);
-    [[MPNowPlayingInfoCenter defaultCenter] setNowPlayingInfo:@{MPMediaItemPropertyTitle:self.trackTitle,
-                                                                MPMediaItemPropertyArtist:self.author,
-                                                                MPMediaItemPropertyMediaType: @(MPMediaTypeMusic),
-                                                                MPMediaItemPropertyPlaybackDuration: @(time),
-                                                                MPNowPlayingInfoPropertyPlaybackRate: @0}];
-    if (complete != nil) {
-        complete();
-    }
-}
-
-- (void)audioStream:(NPAudioStream *)audioStream
-didUpdateTrackCurrentTime:(CMTime)currentTime{
-    float playingProgress = (float)(CMTimeGetSeconds(currentTime) / CMTimeGetSeconds(audioStream.duration));
+- (NSDictionary *)currentPauseDisplayInfo{
     
-    if (progress != nil) {
-        progress(playingProgress);
-    }
+    return @{MPMediaItemPropertyTitle:self.trackTitle,
+             MPMediaItemPropertyArtist:self.author,
+             MPMediaItemPropertyMediaType: @(MPMediaTypeMusic),
+             MPNowPlayingInfoPropertyElapsedPlaybackTime: @(_localPlayer.currentTimePlayed.playbackTimeInSeconds),
+             MPMediaItemPropertyPlaybackDuration: @(_localPlayer.duration.playbackTimeInSeconds),
+             MPNowPlayingInfoPropertyPlaybackRate: @0};
+    
 }
 
-- (void)audioStream:(NPAudioStream *)audioStream didBeginPlaybackForTrackAtIndex:(NSInteger)index{
-    double time = (self.duration / 1000);
-    [[MPNowPlayingInfoCenter defaultCenter] setNowPlayingInfo:@{MPMediaItemPropertyTitle:self.trackTitle,
-                                                                MPMediaItemPropertyArtist:self.author,
-                                                                MPMediaItemPropertyMediaType: @(MPMediaTypeMusic),
-                                                                MPNowPlayingInfoPropertyElapsedPlaybackTime: @(CMTimeGetSeconds(audioStream.currentTime)),
-                                                                MPMediaItemPropertyPlaybackDuration: @(time),
-                                                                MPNowPlayingInfoPropertyPlaybackRate: @1}];
-}
+//#pragma mark - Streaming Delegate
+//
+//- (void)didCompleteAudioStream:(NPAudioStream *)audioStream{
+//    if (complete != nil) {
+//        complete();
+//    }
+//}
+//
+//- (void)audioStream:(NPAudioStream *)audioStream
+//didUpdateTrackCurrentTime:(CMTime)currentTime{
+//    float playingProgress = (float)(CMTimeGetSeconds(currentTime) / CMTimeGetSeconds(audioStream.duration));
+//    
+//    if (progress != nil) {
+//        progress(playingProgress);
+//    }
+//}
+//
+//- (void)audioStream:(NPAudioStream *)audioStream didBeginPlaybackForTrackAtIndex:(NSInteger)index{
+//}
 
 @end

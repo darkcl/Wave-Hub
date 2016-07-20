@@ -31,6 +31,22 @@
     return sharedMyManager;
 }
 
+- (void)addActiveProgressViews:(UIProgressView *)progressView{
+    [activeProgressViews addObject:progressView];
+}
+
+- (void)removeActiveProgressViews:(UIProgressView *)progressView{
+    [activeProgressViews removeObject:progressView];
+}
+
+- (void)updateProgress{
+    if (self.isPlaying) {
+        for (UIProgressView *aProgressView in activeProgressViews) {
+            aProgressView.progress = self.playingTrack.progress;
+        }
+    }
+}
+
 - (id)init{
     if (self = [super init]) {
         [[UIApplication sharedApplication] beginReceivingRemoteControlEvents];
@@ -60,41 +76,9 @@
         }];
         [self.mprcPrevious setEnabled:YES];
         [self.mprcPrevious addTarget:self action:@selector(previousTrackCommand:)];
-//        
-//        
-//        self.mpfbLike = [MPRemoteCommandCenter sharedCommandCenter].likeCommand;
-//        [self.mpfbLike addTargetWithHandler:^MPRemoteCommandHandlerStatus(MPRemoteCommandEvent *event) {
-//            return MPRemoteCommandHandlerStatusSuccess;
-//        }];
-//        [self.mpfbLike setEnabled:YES];
-//        [self.mpfbLike addTarget:self action:@selector(likeCommand:)];
-//        [self.mpfbLike setLocalizedTitle:@"Like this song"];
-//        [self.mpfbLike setLocalizedShortTitle:@"Like"];
-//
-//        self.mpfbDislike =[MPRemoteCommandCenter sharedCommandCenter].dislikeCommand;
-//        [self.mpfbDislike addTargetWithHandler:^MPRemoteCommandHandlerStatus(MPRemoteCommandEvent *event) {
-//            return MPRemoteCommandHandlerStatusSuccess;
-//        }];
-//        [self.mpfbDislike addTarget:self action:@selector(dislikeCommand:)];
-//        [self.mpfbDislike setEnabled:YES];
-//        [self.mpfbDislike setLocalizedTitle:@"Dislike this"];
-//        [self.mpfbDislike setLocalizedShortTitle:@"Dislist"];
-//        
-//        self.mpfbBookMark = [MPRemoteCommandCenter sharedCommandCenter].bookmarkCommand;
-//        [self.mpfbBookMark addTargetWithHandler:^MPRemoteCommandHandlerStatus(MPRemoteCommandEvent *event) {
-//            return MPRemoteCommandHandlerStatusSuccess;
-//        }];
-//        [self.mpfbBookMark setEnabled:YES];
-//        [self.mpfbBookMark addTarget:self action:@selector(bookmarkCommand:)];
-//        [self.mpfbBookMark setLocalizedTitle:@"Bookmark"];
-//        [self.mpfbBookMark setLocalizedShortTitle:@"Bookmark"];
-        
-//        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(remoteControlPlayPressed:) name:remoteControlPlayButtonTapped object:nil];
-//        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(remoteControlPausePressed:) name:remoteControlPauseButtonTapped object:nil];
-//        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(remoteControlStopPressed:) name:remoteControlStopButtonTapped object:nil];
-//        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(remoteControlForwardPressed:) name:remoteControlForwardButtonTapped object:nil];
-//        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(remoteControlBackwardPressed:) name:remoteControlBackwardButtonTapped object:nil];
-//        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(remoteControlOtherPressed:) name:remoteControlOtherButtonTapped object:nil];
+        activeProgressViews = [[NSMutableArray alloc] init];
+        updateTimer = [NSTimer timerWithTimeInterval:1.0 target:self selector:@selector(updateProgress) userInfo:nil repeats:YES];
+        [[NSRunLoop currentRunLoop] addTimer:updateTimer forMode:NSRunLoopCommonModes];
         
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(audioRouteChangeListenerCallback:)
                                                      name:AVAudioSessionRouteChangeNotification

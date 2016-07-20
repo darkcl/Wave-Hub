@@ -138,10 +138,7 @@
                                                  name:WHSoundTrackDidChangeNotifiction
                                                object:nil];
     
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(didUpdatePlayingProgress:)
-                                                 name:WHSoundProgressDidChangeNotifiction
-                                               object:nil];
+//    [[WHSoundManager sharedManager] addActiveProgressViews:self.playingProgress];
 }
 
 - (void)viewDidAppear:(BOOL)animated{
@@ -164,14 +161,6 @@
     FAKFontAwesome *playPauseIcon =  [FAKFontAwesome playIconWithSize:17];
     [playPauseIcon addAttribute:NSForegroundColorAttributeName value:[UIColor blackColor]];
     [self.togglePlayPauseButton setAttributedTitle:playPauseIcon.attributedString forState:UIControlStateNormal];
-}
-
-- (void)didUpdatePlayingProgress:(NSNotification *)info{
-    if ([info.object isKindOfClass:[NSNumber class]]) {
-        float progress = [((NSNumber *)info.object) floatValue];
-        
-        [_playingProgress setProgress:progress animated:YES];
-    }
 }
 
 - (void)didUpdatePlayingTrack:(NSNotification *)track{
