@@ -355,14 +355,13 @@
         case AVAudioSessionRouteChangeReasonNewDeviceAvailable:{
             NSLog(@"AVAudioSessionRouteChangeReasonNewDeviceAvailable");
             NSLog(@"Headphone/Line plugged in");
-            [_playingTrack pause];
         }
             break;
             
         case AVAudioSessionRouteChangeReasonOldDeviceUnavailable:{
             NSLog(@"AVAudioSessionRouteChangeReasonOldDeviceUnavailable");
             NSLog(@"Headphone/Line was pulled. Stopping player....");
-            [_playingTrack pause];
+            [_playingTrack stop];
         }
             break;
             
