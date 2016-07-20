@@ -65,21 +65,19 @@
     
     self.progressView.hidden = YES;
     if (isCurrentlyPlaying) {
-        [[NSNotificationCenter defaultCenter] addObserver:self
-                                                 selector:@selector(updateProgress:)
-                                                     name:WHSoundProgressDidChangeNotifiction
-                                                   object:nil];
+        
         
         self.progressView.hidden = NO;
         self.progressView.progress = [[WHSoundManager sharedManager] playingTrack].progress;
-        
+        [[WHSoundManager sharedManager] addActiveProgressViews:self.progressView];
         FAKFontAwesome *buttonIcon = [FAKFontAwesome pauseIconWithSize:17];
         [buttonIcon addAttribute:NSForegroundColorAttributeName value:[UIColor whiteColor]];
         [self.togglePlayPauseButton setAttributedTitle:buttonIcon.attributedString forState:UIControlStateNormal];
     }else{
         self.progressView.hidden = YES;
         self.progressView.progress = 0.0;
-        [[NSNotificationCenter defaultCenter] removeObserver:self];
+        
+        [[WHSoundManager sharedManager] removeActiveProgressViews:self.progressView];
         
         FAKFontAwesome *buttonIcon =  [FAKFontAwesome playIconWithSize:17];
         [buttonIcon addAttribute:NSForegroundColorAttributeName value:[UIColor whiteColor]];

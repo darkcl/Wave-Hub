@@ -31,6 +31,22 @@
     return sharedMyManager;
 }
 
+- (void)addActiveProgressViews:(UIProgressView *)progressView{
+    [activeProgressViews addObject:progressView];
+}
+
+- (void)removeActiveProgressViews:(UIProgressView *)progressView{
+    [activeProgressViews removeObject:progressView];
+}
+
+- (void)updateProgress{
+    if (self.isPlaying) {
+        for (UIProgressView *aProgressView in activeProgressViews) {
+            aProgressView.progress = self.playingTrack.progress;
+        }
+    }
+}
+
 - (id)init{
     if (self = [super init]) {
         [[UIApplication sharedApplication] beginReceivingRemoteControlEvents];
@@ -61,6 +77,9 @@
         [self.mprcPrevious setEnabled:YES];
         [self.mprcPrevious addTarget:self action:@selector(previousTrackCommand:)];
         
+        activeProgressViews = [[NSMutableArray alloc] init];
+        updateTimer = [NSTimer timerWithTimeInterval:1.0 target:self selector:@selector(updateProgress) userInfo:nil repeats:YES];
+        [[NSRunLoop currentRunLoop] addTimer:updateTimer forMode:NSRunLoopCommonModes];
 //        
 //        self.mpfbLike = [MPRemoteCommandCenter sharedCommandCenter].likeCommand;
 //        [self.mpfbLike addTargetWithHandler:^MPRemoteCommandHandlerStatus(MPRemoteCommandEvent *event) {
