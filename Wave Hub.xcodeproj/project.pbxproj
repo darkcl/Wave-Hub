@@ -19,6 +19,7 @@
 		0EC527FE1C3A236500EC87C1 /* WHPlaylistModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EC527FD1C3A236500EC87C1 /* WHPlaylistModel.m */; };
 		0ED9AF8F1D3F714C00B47E3D /* ContainerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0ED9AF8D1D3F714C00B47E3D /* ContainerViewController.m */; };
 		0ED9AF901D3F714C00B47E3D /* ContainerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0ED9AF8E1D3F714C00B47E3D /* ContainerViewController.xib */; };
+		0ED9AF941D406DDB00B47E3D /* FSAudioStream+WaveHubAddition.m in Sources */ = {isa = PBXBuildFile; fileRef = 0ED9AF931D406DDB00B47E3D /* FSAudioStream+WaveHubAddition.m */; };
 		0EEE6B0A1D3886A800068BFE /* MusicDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EEE6B081D3886A800068BFE /* MusicDetailViewController.m */; };
 		0EEE6B0B1D3886A800068BFE /* MusicDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0EEE6B091D3886A800068BFE /* MusicDetailViewController.xib */; };
 		1A44E872A0401F9F6EC5084C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 7535691D532C79453A972784 /* main.m */; };
@@ -90,6 +91,8 @@
 		0ED9AF8C1D3F714C00B47E3D /* ContainerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContainerViewController.h; sourceTree = "<group>"; };
 		0ED9AF8D1D3F714C00B47E3D /* ContainerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContainerViewController.m; sourceTree = "<group>"; };
 		0ED9AF8E1D3F714C00B47E3D /* ContainerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ContainerViewController.xib; sourceTree = "<group>"; };
+		0ED9AF921D406DDB00B47E3D /* FSAudioStream+WaveHubAddition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FSAudioStream+WaveHubAddition.h"; sourceTree = "<group>"; };
+		0ED9AF931D406DDB00B47E3D /* FSAudioStream+WaveHubAddition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "FSAudioStream+WaveHubAddition.m"; sourceTree = "<group>"; };
 		0EEE6B071D3886A800068BFE /* MusicDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MusicDetailViewController.h; sourceTree = "<group>"; };
 		0EEE6B081D3886A800068BFE /* MusicDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MusicDetailViewController.m; sourceTree = "<group>"; };
 		0EEE6B091D3886A800068BFE /* MusicDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MusicDetailViewController.xib; sourceTree = "<group>"; };
@@ -340,6 +343,8 @@
 				741055BB1D37F45B0092BA43 /* NSLayoutConstraint+Multiplier.m */,
 				74F235A41D3B61D8005E872B /* UIImage+WaveHubAddition.h */,
 				74F235A51D3B61D8005E872B /* UIImage+WaveHubAddition.m */,
+				0ED9AF921D406DDB00B47E3D /* FSAudioStream+WaveHubAddition.h */,
+				0ED9AF931D406DDB00B47E3D /* FSAudioStream+WaveHubAddition.m */,
 			);
 			path = Categories;
 			sourceTree = "<group>";
@@ -629,6 +634,7 @@
 				74F235A91D3B8329005E872B /* WHSoundCloudUser.m in Sources */,
 				74F235AD1D3B8536005E872B /* UserProfileViewController.m in Sources */,
 				EA1D28C0C6A5011119F82B73 /* LaunchScreen.xib in Sources */,
+				0ED9AF941D406DDB00B47E3D /* FSAudioStream+WaveHubAddition.m in Sources */,
 				0E2914931BF58306004AA529 /* NSData+WaveHubAddition.m in Sources */,
 				74333DAC1D3E8E7500DDAB29 /* PlaceholderTableViewCell.m in Sources */,
 				0EC527FE1C3A236500EC87C1 /* WHPlaylistModel.m in Sources */,
