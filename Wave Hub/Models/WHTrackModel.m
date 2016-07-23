@@ -20,7 +20,7 @@
 #import <FreeStreamer/FSParseRssPodcastFeedRequest.h>
 #import <FreeStreamer/FSPlaylistItem.h>
 
-
+#import "FSAudioStream+WaveHubAddition.h"
 #import "CueSheet+WaveHubAddition.h"
 
 #import <Block-KVO/MTKObserving.h>
@@ -40,7 +40,7 @@
 - (id)init{
     if (self = [super init]) {
         _nextHref = nil;
-        
+        _localPlayer = [FSAudioStream sharedInstance];
     }
     return self;
 }
@@ -49,6 +49,7 @@
     if (self = [super init]) {
         _nextHref = url;
         _trackType = WHTrackTypePlaceHolder;
+        _localPlayer = [FSAudioStream sharedInstance];
     }
     return self;
 }
@@ -63,7 +64,7 @@
         _duration = [dict[@"duration"] floatValue];
         _responseDict = dict;
         
-        
+        _localPlayer = [FSAudioStream sharedInstance];
     }
     return self;
 }
@@ -80,6 +81,8 @@
         _trackType = [decoder decodeIntForKey:@"trackType"];
         _duration = [decoder decodeFloatForKey:@"duration"];
         _responseDict = [decoder decodeObjectForKey:@"responseDict"];
+        
+        _localPlayer = [FSAudioStream sharedInstance];
     }
     return self;
 }
@@ -126,7 +129,7 @@
     NSLog(@"Play %@", _trackUrl);
     __weak typeof(self) weakSelf = self;
     
-    _localPlayer = [[FSAudioStream alloc] init];
+    
     
     _localPlayer.strictContentTypeChecking = NO;
     [_localPlayer setOnCompletion:^{
