@@ -18,7 +18,6 @@
 		0E44F8671BEB4DD400F8571D /* WHWebrequestManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E44F8661BEB4DD400F8571D /* WHWebrequestManager.m */; };
 		0EC527FE1C3A236500EC87C1 /* WHPlaylistModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EC527FD1C3A236500EC87C1 /* WHPlaylistModel.m */; };
 		0ED9AF941D406DDB00B47E3D /* FSAudioStream+WaveHubAddition.m in Sources */ = {isa = PBXBuildFile; fileRef = 0ED9AF931D406DDB00B47E3D /* FSAudioStream+WaveHubAddition.m */; };
-		0ED9AF9A1D407BF700B47E3D /* LNPopupController.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0ED9AF991D407BF700B47E3D /* LNPopupController.framework */; };
 		0EEE6B0A1D3886A800068BFE /* MusicDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EEE6B081D3886A800068BFE /* MusicDetailViewController.m */; };
 		0EEE6B0B1D3886A800068BFE /* MusicDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0EEE6B091D3886A800068BFE /* MusicDetailViewController.xib */; };
 		1A44E872A0401F9F6EC5084C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 7535691D532C79453A972784 /* main.m */; };
@@ -33,6 +32,12 @@
 		74333DAC1D3E8E7500DDAB29 /* PlaceholderTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 74333DAA1D3E8E7500DDAB29 /* PlaceholderTableViewCell.m */; };
 		74333DAD1D3E8E7500DDAB29 /* PlaceholderTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 74333DAB1D3E8E7500DDAB29 /* PlaceholderTableViewCell.xib */; };
 		7475A5FE1BF4F9B600100498 /* MediaToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7475A5FD1BF4F9B600100498 /* MediaToolbox.framework */; };
+		74E80CB61D6890EC00A13219 /* splash_background.png in Resources */ = {isa = PBXBuildFile; fileRef = 74E80CB31D6890EC00A13219 /* splash_background.png */; };
+		74E80CB71D6890EC00A13219 /* splash_background@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 74E80CB41D6890EC00A13219 /* splash_background@2x.png */; };
+		74E80CB81D6890EC00A13219 /* splash_background@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 74E80CB51D6890EC00A13219 /* splash_background@3x.png */; };
+		74E80CBC1D68911400A13219 /* app_icon_large.png in Resources */ = {isa = PBXBuildFile; fileRef = 74E80CB91D68911400A13219 /* app_icon_large.png */; };
+		74E80CBD1D68911400A13219 /* app_icon_large@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 74E80CBA1D68911400A13219 /* app_icon_large@2x.png */; };
+		74E80CBE1D68911400A13219 /* app_icon_large@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 74E80CBB1D68911400A13219 /* app_icon_large@3x.png */; };
 		74F235A61D3B61D8005E872B /* UIImage+WaveHubAddition.m in Sources */ = {isa = PBXBuildFile; fileRef = 74F235A51D3B61D8005E872B /* UIImage+WaveHubAddition.m */; };
 		74F235A91D3B8329005E872B /* WHSoundCloudUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 74F235A81D3B8329005E872B /* WHSoundCloudUser.m */; };
 		74F235AD1D3B8536005E872B /* UserProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74F235AB1D3B8536005E872B /* UserProfileViewController.m */; };
@@ -101,6 +106,12 @@
 		74333DAB1D3E8E7500DDAB29 /* PlaceholderTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PlaceholderTableViewCell.xib; sourceTree = "<group>"; };
 		7475A5FD1BF4F9B600100498 /* MediaToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaToolbox.framework; path = System/Library/Frameworks/MediaToolbox.framework; sourceTree = SDKROOT; };
 		749A7F301D3E94D800114449 /* WHConstant.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WHConstant.h; sourceTree = "<group>"; };
+		74E80CB31D6890EC00A13219 /* splash_background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = splash_background.png; sourceTree = "<group>"; };
+		74E80CB41D6890EC00A13219 /* splash_background@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "splash_background@2x.png"; sourceTree = "<group>"; };
+		74E80CB51D6890EC00A13219 /* splash_background@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "splash_background@3x.png"; sourceTree = "<group>"; };
+		74E80CB91D68911400A13219 /* app_icon_large.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = app_icon_large.png; sourceTree = "<group>"; };
+		74E80CBA1D68911400A13219 /* app_icon_large@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "app_icon_large@2x.png"; sourceTree = "<group>"; };
+		74E80CBB1D68911400A13219 /* app_icon_large@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "app_icon_large@3x.png"; sourceTree = "<group>"; };
 		74F235A41D3B61D8005E872B /* UIImage+WaveHubAddition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+WaveHubAddition.h"; sourceTree = "<group>"; };
 		74F235A51D3B61D8005E872B /* UIImage+WaveHubAddition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+WaveHubAddition.m"; sourceTree = "<group>"; };
 		74F235A71D3B8329005E872B /* WHSoundCloudUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WHSoundCloudUser.h; sourceTree = "<group>"; };
@@ -128,7 +139,6 @@
 			files = (
 				7475A5FE1BF4F9B600100498 /* MediaToolbox.framework in Frameworks */,
 				0E064CE51BF2FBD9002D2244 /* AVFoundation.framework in Frameworks */,
-				0ED9AF9A1D407BF700B47E3D /* LNPopupController.framework in Frameworks */,
 				C4F64ECA2A55365875E190E6 /* Foundation.framework in Frameworks */,
 				FE77E4182A70D6332786919E /* libPods-Wave Hub.a in Frameworks */,
 			);
@@ -173,6 +183,12 @@
 			children = (
 				742B73561D37D3A400837D74 /* Montserrat-Bold.ttf */,
 				742B73571D37D3A400837D74 /* Montserrat-Regular.ttf */,
+				74E80CB91D68911400A13219 /* app_icon_large.png */,
+				74E80CBA1D68911400A13219 /* app_icon_large@2x.png */,
+				74E80CBB1D68911400A13219 /* app_icon_large@3x.png */,
+				74E80CB31D6890EC00A13219 /* splash_background.png */,
+				74E80CB41D6890EC00A13219 /* splash_background@2x.png */,
+				74E80CB51D6890EC00A13219 /* splash_background@3x.png */,
 				450213D723237E9D8191F6EF /* Images.xcassets */,
 				4E082CAC323912BD15C3CBAC /* Nibs */,
 				2217E65619CBF89409D3E026 /* Other-Sources */,
@@ -434,7 +450,6 @@
 				6D2EE5C3B0D33F7B2F4DCD0B /* Set version number */,
 				A2159F7FD79EC156ACB94D30 /* 📦 Embed Pods Frameworks */,
 				C6B89D1E85E2E966FA3D0B60 /* 📦 Copy Pods Resources */,
-				0ED9AF981D407B8300B47E3D /* Carthage */,
 			);
 			buildRules = (
 			);
@@ -492,11 +507,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				741055B91D37DC1C0092BA43 /* Montserrat-Regular.ttf in Resources */,
+				74E80CBE1D68911400A13219 /* app_icon_large@3x.png in Resources */,
 				6C5DC8333D90F8BAC26108B1 /* Images.xcassets in Resources */,
 				F8A560A340ED7920227E1490 /* Settings.bundle in Resources */,
+				74E80CBD1D68911400A13219 /* app_icon_large@2x.png in Resources */,
 				742B73511D3560C800837D74 /* RootViewController.xib in Resources */,
 				742B735E1D37D44800837D74 /* MusicTableViewCell.xib in Resources */,
+				74E80CBC1D68911400A13219 /* app_icon_large.png in Resources */,
 				74F235AE1D3B8536005E872B /* UserProfileViewController.xib in Resources */,
+				74E80CB61D6890EC00A13219 /* splash_background.png in Resources */,
+				74E80CB71D6890EC00A13219 /* splash_background@2x.png in Resources */,
+				74E80CB81D6890EC00A13219 /* splash_background@3x.png in Resources */,
 				74333DAD1D3E8E7500DDAB29 /* PlaceholderTableViewCell.xib in Resources */,
 				0EEE6B0B1D3886A800068BFE /* MusicDetailViewController.xib in Resources */,
 				741055B81D37DC190092BA43 /* Montserrat-Bold.ttf in Resources */,
@@ -513,21 +534,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		0ED9AF981D407B8300B47E3D /* Carthage */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"$(SRCROOT)/Carthage/Build/iOS/LNPopupController.framework",
-			);
-			name = Carthage;
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "/usr/local/bin/carthage copy-frameworks";
-		};
 		66B12356BCA96F610A254D72 /* 📦 Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
