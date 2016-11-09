@@ -319,7 +319,7 @@
 
 - (void)didTogglePlayPause:(WHTrackModel *)info{
     if ([[WHSoundManager sharedManager] isPlaying]) {
-        if ([[WHSoundManager sharedManager] playingTrack] == currentPlayingTrack) {
+        if ([[WHSoundManager sharedManager] playingTrack] == info) {
             [[WHSoundManager sharedManager] playerPause];
         }else{
             [[WHSoundManager sharedManager] playTrack:info forceStart:YES];

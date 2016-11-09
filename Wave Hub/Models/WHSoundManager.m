@@ -172,14 +172,14 @@
 #pragma mark - Player Logic
 
 - (void)playerForward{
-    [_playingTrack stop];
+//    [_playingTrack stop];
     _playingTrack = _playingTrack.nextTrack;
     
     [self startPlayTrack];
 }
 
 - (void)playerBackward{
-    [_playingTrack stop];
+//    [_playingTrack stop];
     
     _playingTrack = _playingTrack.prevTrack;
     [self startPlayTrack];

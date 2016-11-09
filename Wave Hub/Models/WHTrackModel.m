@@ -166,7 +166,24 @@
                 NSLog(@"Stream Stop");
             }
                 break;
-                
+            case kFsAudioStreamRetrievingURL:{
+                [[MPNowPlayingInfoCenter defaultCenter] setNowPlayingInfo:@{MPMediaItemPropertyTitle:@"Retrieving URL",
+                                                                            MPMediaItemPropertyArtist:@"-",
+                                                                            MPMediaItemPropertyMediaType: @(MPMediaTypeMusic),
+                                                                            MPNowPlayingInfoPropertyElapsedPlaybackTime: @(0),
+                                                                            MPMediaItemPropertyPlaybackDuration: @(1),
+                                                                            MPNowPlayingInfoPropertyPlaybackRate: @0}];
+            }
+                break;
+            case kFsAudioStreamBuffering:{
+                [[MPNowPlayingInfoCenter defaultCenter] setNowPlayingInfo:@{MPMediaItemPropertyTitle:@"Bufferring",
+                                                                            MPMediaItemPropertyArtist:@"-",
+                                                                            MPMediaItemPropertyMediaType: @(MPMediaTypeMusic),
+                                                                            MPNowPlayingInfoPropertyElapsedPlaybackTime: @(0),
+                                                                            MPMediaItemPropertyPlaybackDuration: @(1),
+                                                                            MPNowPlayingInfoPropertyPlaybackRate: @0}];
+            }
+                break;
             default:
                 break;
         }
