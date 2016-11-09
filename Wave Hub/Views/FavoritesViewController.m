@@ -6,7 +6,7 @@
 //  Copyright © 2016年 Memory Leaks. All rights reserved.
 //
 
-#import "RootViewController.h"
+#import "FavoritesViewController.h"
 #import <MJRefresh/MJRefresh.h>
 #import <DLImageLoader/DLImageLoader.h>
 
@@ -18,11 +18,11 @@
 
 #import "MusicDetailViewController.h"
 
-@interface RootViewController ()
+@interface FavoritesViewController ()
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @end
 
-@implementation RootViewController
+@implementation FavoritesViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];

@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "MusicTableViewCell.h"
 
-@interface RootViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, WHSoundManagerDatasource, MusicTableViewCellDelegate, YSLTransitionAnimatorDataSource> {
+@interface FavoritesViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, WHSoundManagerDatasource, MusicTableViewCellDelegate, YSLTransitionAnimatorDataSource> {
     NSArray <WHTrackModel *> *favourite;
     
     WHTrackModel *currentPlayingTrack;

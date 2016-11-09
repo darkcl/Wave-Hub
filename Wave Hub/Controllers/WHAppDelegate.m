@@ -7,7 +7,7 @@
 //
 
 #import "WHAppDelegate.h"
-#import "RootViewController.h"
+#import "FavoritesViewController.h"
 
 
 #import <FontAwesomeKit/FontAwesomeKit.h>
@@ -64,7 +64,7 @@
     
     
     
-    RootViewController *rootVC = [[RootViewController alloc] initWithNibName:@"RootViewController" bundle:nil];
+    FavoritesViewController *rootVC = [[FavoritesViewController alloc] initWithNibName:@"FavoritesViewController" bundle:nil];
     UINavigationController *rootNav = [[UINavigationController alloc] initWithRootViewController:rootVC];
     [rootNav.navigationBar setBackgroundImage:[[UIImage alloc] init] forBarMetrics:UIBarMetricsDefault];
     [rootNav.navigationBar setShadowImage:[[UIImage alloc] init]];
