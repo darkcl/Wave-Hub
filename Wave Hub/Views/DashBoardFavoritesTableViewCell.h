@@ -8,8 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
-@interface DashBoardFavoritesTableViewCell : UITableViewCell
+@interface DashBoardFavoritesTableViewCell : UITableViewCell <UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout>{
+    NSArray <WHTrackModel *> *favorites;
+}
 
 @property (strong, nonatomic) IBOutlet UICollectionView *collectionView;
+
+- (void)setInfo:(NSArray <WHTrackModel *> *)tracks;
 
 @end

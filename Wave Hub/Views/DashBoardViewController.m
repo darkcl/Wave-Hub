@@ -9,9 +9,14 @@
 #import "DashBoardViewController.h"
 #import "DashBoardSectionHeaderView.h"
 
+#import "DashBoardFavoritesTableViewCell.h"
+
 #import "FavoritesViewController.h"
 
-@interface DashBoardViewController () <UITableViewDelegate, UITableViewDataSource>
+@interface DashBoardViewController () <UITableViewDelegate, UITableViewDataSource> {
+    NSArray <WHTrackModel *> *favourite;
+}
+
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
 
 @end
@@ -29,6 +34,17 @@
     aLabel.backgroundColor = [UIColor clearColor];
     aLabel.textAlignment = NSTextAlignmentCenter;
     self.navigationItem.titleView = aLabel;
+    
+    [[WHDatabaseManager sharedManager] readTrackFromFavourite:^(id result) {
+        if (result == nil) {
+            // Load Online Data?
+        }else{
+            self->favourite = result;
+            [self.tableView reloadData];
+        }
+    }];
+    
+    [self.tableView registerNib:[UINib nibWithNibName:@"DashBoardFavoritesTableViewCell" bundle:nil] forCellReuseIdentifier:@"DashBoardFavoritesTableViewCell"];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -55,7 +71,7 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 40;
+    return 195;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
@@ -74,13 +90,13 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    static NSString* cellIdentifier = @"CellIdentifier";
-    UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+    static NSString* cellIdentifier = @"DashBoardFavoritesTableViewCell";
+    DashBoardFavoritesTableViewCell* cell = (DashBoardFavoritesTableViewCell *)[tableView dequeueReusableCellWithIdentifier:cellIdentifier];
     if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
+        cell = [[DashBoardFavoritesTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
     }
     
-    cell.textLabel.text = @"";
+    [cell setInfo:favourite];
     
     return cell;
 }

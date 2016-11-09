@@ -8,6 +8,8 @@
 
 #import "DashBoardFavoritesTableViewCell.h"
 
+#import "DashBoardFavoriteCollectionViewCell.h"
+
 @implementation DashBoardFavoritesTableViewCell
 
 - (void)awakeFromNib {
@@ -20,5 +22,79 @@
 
     // Configure the view for the selected state
 }
+
+- (void)setInfo:(NSArray <WHTrackModel *> *)tracks{
+    favorites = tracks;
+    [self.collectionView registerNib:[UINib nibWithNibName:@"DashBoardFavoriteCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"DashBoardFavoriteCollectionViewCell"];
+    self.collectionView.delegate = self;
+    self.collectionView.dataSource = self;
+    [self.collectionView reloadData];
+}
+
+#pragma mark <UICollectionViewDataSource>
+
+- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
+    return 1;
+}
+
+- (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section{
+    return UIEdgeInsetsMake(0, 15, 0, 0);
+}
+
+
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
+    return favorites.count;
+}
+
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
+    DashBoardFavoriteCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"DashBoardFavoriteCollectionViewCell" forIndexPath:indexPath];
+    
+    // Configure the cell
+    
+    [cell setInfo:favorites[indexPath.row]];
+    
+    return cell;
+}
+
+- (void)collectionView:(UICollectionView *)collectionView didEndDisplayingCell:(UICollectionViewCell *)cell forItemAtIndexPath:(NSIndexPath *)indexPath{
+    DashBoardFavoriteCollectionViewCell *dashboardCell = (DashBoardFavoriteCollectionViewCell *)cell;
+    [dashboardCell cancelLoadImage];
+}
+
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
+    return CGSizeMake(140, 195);
+}
+
+#pragma mark <UICollectionViewDelegate>
+
+/*
+ // Uncomment this method to specify if the specified item should be highlighted during tracking
+ - (BOOL)collectionView:(UICollectionView *)collectionView shouldHighlightItemAtIndexPath:(NSIndexPath *)indexPath {
+	return YES;
+ }
+ */
+
+/*
+ // Uncomment this method to specify if the specified item should be selected
+ - (BOOL)collectionView:(UICollectionView *)collectionView shouldSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+ return YES;
+ }
+ */
+
+/*
+ // Uncomment these methods to specify if an action menu should be displayed for the specified item, and react to actions performed on the item
+ - (BOOL)collectionView:(UICollectionView *)collectionView shouldShowMenuForItemAtIndexPath:(NSIndexPath *)indexPath {
+	return NO;
+ }
+ 
+ - (BOOL)collectionView:(UICollectionView *)collectionView canPerformAction:(SEL)action forItemAtIndexPath:(NSIndexPath *)indexPath withSender:(id)sender {
+	return NO;
+ }
+ 
+ - (void)collectionView:(UICollectionView *)collectionView performAction:(SEL)action forItemAtIndexPath:(NSIndexPath *)indexPath withSender:(id)sender {
+	
+ }
+ */
+
 
 @end

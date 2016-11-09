@@ -8,6 +8,19 @@
 
 #import <UIKit/UIKit.h>
 
-@interface DashBoardFavoriteCollectionViewCell : UICollectionViewCell
+@interface DashBoardFavoriteCollectionViewCell : UICollectionViewCell{
+    WHTrackModel *trackInfo;
+}
+
+@property (strong, nonatomic) IBOutlet UIImageView *coverImageView;
+@property (strong, nonatomic) IBOutlet UILabel *authorLabel;
+@property (strong, nonatomic) IBOutlet UILabel *songNameLabel;
+@property (strong, nonatomic) IBOutlet UIButton *playPauseToggleButton;
+
+@property (nonatomic, strong) void(^didPressedPlay)(WHTrackModel *info);
+
+- (void)setInfo:(WHTrackModel *)track;
+
+- (void)cancelLoadImage;
 
 @end
