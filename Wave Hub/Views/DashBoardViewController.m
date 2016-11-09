@@ -7,8 +7,12 @@
 //
 
 #import "DashBoardViewController.h"
+#import "DashBoardSectionHeaderView.h"
 
-@interface DashBoardViewController ()
+#import "FavoritesViewController.h"
+
+@interface DashBoardViewController () <UITableViewDelegate, UITableViewDataSource>
+@property (strong, nonatomic) IBOutlet UITableView *tableView;
 
 @end
 
@@ -17,6 +21,14 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    
+    UILabel *aLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 100, 40)];
+    aLabel.text = @"Dashboard";
+    aLabel.font = [UIFont fontWithName:@"Montserrat-Regular" size:17];
+    aLabel.textColor = [UIColor blackColor];
+    aLabel.backgroundColor = [UIColor clearColor];
+    aLabel.textAlignment = NSTextAlignmentCenter;
+    self.navigationItem.titleView = aLabel;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -33,5 +45,48 @@
     // Pass the selected object to the new view controller.
 }
 */
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return 1;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return 1;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return 40;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+    return 68.0f;
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+    DashBoardSectionHeaderView *sectionHeaderView = [DashBoardSectionHeaderView headerWithFrame:CGRectMake(0, 0, tableView.bounds.size.width, 68.0f)];
+    
+    [sectionHeaderView setDidPresseViewMore:^{
+        FavoritesViewController *favVC = [[FavoritesViewController alloc] initWithNibName:@"FavoritesViewController" bundle:nil];
+        [self.navigationController pushViewController:favVC animated:YES];
+    }];
+    
+    return sectionHeaderView;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    static NSString* cellIdentifier = @"CellIdentifier";
+    UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+    if (cell == nil) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
+    }
+    
+    cell.textLabel.text = @"";
+    
+    return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+}
 
 @end

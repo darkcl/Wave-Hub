@@ -92,11 +92,27 @@
     aLabel.textAlignment = NSTextAlignmentCenter;
     self.navigationItem.titleView = aLabel;
     
+    UIButton *backButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    backButton.frame = CGRectMake(0, 0, 36, 36);
+    FAKFontAwesome *buttonIcon =  [FAKFontAwesome chevronLeftIconWithSize:17.0f];
+    [buttonIcon addAttribute:NSForegroundColorAttributeName value:[UIColor blackColor]];
+    
+    [backButton setAttributedTitle:buttonIcon.attributedString forState:UIControlStateNormal];
+    
+    [backButton addTarget:self action:@selector(backButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
+    
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:backButton];
+    
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(didUpdatePlayingTrack:)
                                                  name:WHSoundTrackDidChangeNotifiction
                                                object:nil];
 }
+
+- (void)backButtonPressed:(id)sender{
+    [self.navigationController popViewControllerAnimated:NO];
+}
+
 
 - (NSArray <WHTrackModel *> *)currentPlayingTracks{
     return favourite;

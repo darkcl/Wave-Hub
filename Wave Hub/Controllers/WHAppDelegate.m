@@ -7,8 +7,8 @@
 //
 
 #import "WHAppDelegate.h"
-#import "FavoritesViewController.h"
-
+#import "DashBoardViewController.h"
+#import "ContainerViewController.h"
 
 #import <FontAwesomeKit/FontAwesomeKit.h>
 
@@ -64,8 +64,11 @@
     
     
     
-    FavoritesViewController *rootVC = [[FavoritesViewController alloc] initWithNibName:@"FavoritesViewController" bundle:nil];
+    DashBoardViewController *rootVC = [[DashBoardViewController alloc] initWithNibName:@"DashBoardViewController" bundle:nil];
     UINavigationController *rootNav = [[UINavigationController alloc] initWithRootViewController:rootVC];
+    
+    
+    
     [rootNav.navigationBar setBackgroundImage:[[UIImage alloc] init] forBarMetrics:UIBarMetricsDefault];
     [rootNav.navigationBar setShadowImage:[[UIImage alloc] init]];
     rootNav.navigationBar.barTintColor = [UIColor whiteColor];
@@ -73,7 +76,9 @@
     rootNav.delegate = self;
     [rootNav.navigationBar setTranslucent:NO];
     
-    [self.window setRootViewController:rootNav];
+    ContainerViewController *container = [[ContainerViewController alloc] initWithContentViewController:rootNav];
+    
+    [self.window setRootViewController:container];
     [self.window makeKeyAndVisible];
     
     [[WHWebrequestManager sharedManager]
