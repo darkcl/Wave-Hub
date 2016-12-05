@@ -7,14 +7,21 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MusicTableViewCell.h"
+@class WHSoundCloudUser, WHTrackModel;
 
-@interface MusicDetailViewController : UIViewController<YSLTransitionAnimatorDataSource, UIViewControllerTransitioningDelegate> {
+@interface MusicDetailViewController : UIViewController<YSLTransitionAnimatorDataSource, UIViewControllerTransitioningDelegate, UITableViewDelegate, UITableViewDataSource, WHSoundManagerDatasource, MusicTableViewCellDelegate> {
     UIImageView *transitionImageView;
     
     WHTrackModel *trackInfo;
     WHTrackModel *currentTrack;
     
     NSArray <WHTrackModel *> *sourceTracks;
+    
+    WHSoundCloudUser *userInfo;
+    
+    NSArray <WHTrackModel *> *userTracks;
+    WHTrackModel *currentPlayingTrack;
 }
 
 - (id)initWithTrackInfo:(WHTrackModel *)info withDataSources:(NSArray <WHTrackModel *> *)tracks;
