@@ -185,6 +185,7 @@
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     self.navigationController.delegate = self;
+    [[WHSoundManager sharedManager] setDataSource:self];
 }
 
 - (void)viewDidAppear:(BOOL)animated{

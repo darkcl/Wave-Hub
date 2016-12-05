@@ -27,6 +27,8 @@
 		0E2B7E791BF445D2001B7A25 /* WHSoundManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E2B7E781BF445D2001B7A25 /* WHSoundManager.m */; };
 		0E2B7E7C1BF475BC001B7A25 /* WHApplication.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E2B7E7B1BF475BC001B7A25 /* WHApplication.m */; };
 		0E44F8671BEB4DD400F8571D /* WHWebrequestManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E44F8661BEB4DD400F8571D /* WHWebrequestManager.m */; };
+		0E6DCBFD1DF54159009A5AE5 /* SongListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E6DCBFB1DF54158009A5AE5 /* SongListViewController.m */; };
+		0E6DCBFE1DF54159009A5AE5 /* SongListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0E6DCBFC1DF54158009A5AE5 /* SongListViewController.xib */; };
 		0EC527FE1C3A236500EC87C1 /* WHPlaylistModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EC527FD1C3A236500EC87C1 /* WHPlaylistModel.m */; };
 		0ED9AF941D406DDB00B47E3D /* FSAudioStream+WaveHubAddition.m in Sources */ = {isa = PBXBuildFile; fileRef = 0ED9AF931D406DDB00B47E3D /* FSAudioStream+WaveHubAddition.m */; };
 		0EEE6B0A1D3886A800068BFE /* MusicDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EEE6B081D3886A800068BFE /* MusicDetailViewController.m */; };
@@ -105,6 +107,9 @@
 		0E2B7E7B1BF475BC001B7A25 /* WHApplication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WHApplication.m; sourceTree = "<group>"; };
 		0E44F8651BEB4DD400F8571D /* WHWebrequestManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WHWebrequestManager.h; path = ../Models/WHWebrequestManager.h; sourceTree = "<group>"; };
 		0E44F8661BEB4DD400F8571D /* WHWebrequestManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WHWebrequestManager.m; path = ../Models/WHWebrequestManager.m; sourceTree = "<group>"; };
+		0E6DCBFA1DF54158009A5AE5 /* SongListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SongListViewController.h; sourceTree = "<group>"; };
+		0E6DCBFB1DF54158009A5AE5 /* SongListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SongListViewController.m; sourceTree = "<group>"; };
+		0E6DCBFC1DF54158009A5AE5 /* SongListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SongListViewController.xib; sourceTree = "<group>"; };
 		0EC527FC1C3A236500EC87C1 /* WHPlaylistModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WHPlaylistModel.h; sourceTree = "<group>"; };
 		0EC527FD1C3A236500EC87C1 /* WHPlaylistModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WHPlaylistModel.m; sourceTree = "<group>"; };
 		0ED9AF921D406DDB00B47E3D /* FSAudioStream+WaveHubAddition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FSAudioStream+WaveHubAddition.h"; sourceTree = "<group>"; };
@@ -249,14 +254,24 @@
 			name = Container;
 			sourceTree = "<group>";
 		};
-		0EEE6B0C1D3886AC00068BFE /* Now Playing */ = {
+		0E6DCBFF1DF54160009A5AE5 /* Song List */ = {
+			isa = PBXGroup;
+			children = (
+				0E6DCBFA1DF54158009A5AE5 /* SongListViewController.h */,
+				0E6DCBFB1DF54158009A5AE5 /* SongListViewController.m */,
+				0E6DCBFC1DF54158009A5AE5 /* SongListViewController.xib */,
+			);
+			name = "Song List";
+			sourceTree = "<group>";
+		};
+		0EEE6B0C1D3886AC00068BFE /* Music Detail */ = {
 			isa = PBXGroup;
 			children = (
 				0EEE6B071D3886A800068BFE /* MusicDetailViewController.h */,
 				0EEE6B081D3886A800068BFE /* MusicDetailViewController.m */,
 				0EEE6B091D3886A800068BFE /* MusicDetailViewController.xib */,
 			);
-			name = "Now Playing";
+			name = "Music Detail";
 			sourceTree = "<group>";
 		};
 		155F34F450AAEF294FE1B03B /* Resources */ = {
@@ -293,11 +308,12 @@
 			children = (
 				0E19896E1DD317EB00FC7CAE /* MarqueeLabel.h */,
 				0E19896F1DD317EB00FC7CAE /* MarqueeLabel.m */,
-				742B73581D37D41F00837D74 /* Favourite */,
-				0EEE6B0C1D3886AC00068BFE /* Now Playing */,
+				742B73581D37D41F00837D74 /* Favourite (will change to music list) */,
+				0EEE6B0C1D3886AC00068BFE /* Music Detail */,
 				74F235AF1D3B853A005E872B /* User Profile */,
 				0E19894A1DD2F98C00FC7CAE /* Dash Board */,
 				0E1989661DD3073A00FC7CAE /* Container */,
+				0E6DCBFF1DF54160009A5AE5 /* Song List */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -345,7 +361,7 @@
 			path = Nibs;
 			sourceTree = "<group>";
 		};
-		742B73581D37D41F00837D74 /* Favourite */ = {
+		742B73581D37D41F00837D74 /* Favourite (will change to music list) */ = {
 			isa = PBXGroup;
 			children = (
 				742B73591D37D42C00837D74 /* Cell */,
@@ -353,7 +369,7 @@
 				742B734E1D3560C800837D74 /* FavoritesViewController.m */,
 				742B734F1D3560C800837D74 /* FavoritesViewController.xib */,
 			);
-			name = Favourite;
+			name = "Favourite (will change to music list)";
 			sourceTree = "<group>";
 		};
 		742B73591D37D42C00837D74 /* Cell */ = {
@@ -592,6 +608,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				741055B91D37DC1C0092BA43 /* Montserrat-Regular.ttf in Resources */,
+				0E6DCBFE1DF54159009A5AE5 /* SongListViewController.xib in Resources */,
 				74E80CBE1D68911400A13219 /* app_icon_large@3x.png in Resources */,
 				6C5DC8333D90F8BAC26108B1 /* Images.xcassets in Resources */,
 				0E1989491DD2F98800FC7CAE /* DashBoardViewController.xib in Resources */,
@@ -732,6 +749,7 @@
 				0E19895A1DD3064500FC7CAE /* DashBoardFavoriteCollectionViewCell.m in Sources */,
 				0E2B7E791BF445D2001B7A25 /* WHSoundManager.m in Sources */,
 				74F235A61D3B61D8005E872B /* UIImage+WaveHubAddition.m in Sources */,
+				0E6DCBFD1DF54159009A5AE5 /* SongListViewController.m in Sources */,
 				1A44E872A0401F9F6EC5084C /* main.m in Sources */,
 				742B735D1D37D44800837D74 /* MusicTableViewCell.m in Sources */,
 				0E19896C1DD3076800FC7CAE /* ContainerViewController.m in Sources */,
