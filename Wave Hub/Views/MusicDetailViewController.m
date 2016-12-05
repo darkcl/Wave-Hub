@@ -124,11 +124,29 @@
     [_tableView registerNib:[UINib nibWithNibName:@"MusicTableViewCell" bundle:nil] forCellReuseIdentifier:@"MusicTableViewCell"];
     [_tableView registerNib:[UINib nibWithNibName:@"PlaceholderTableViewCell" bundle:nil] forCellReuseIdentifier:@"PlaceholderTableViewCell"];
     
+    
+    
+    
+    [self loadData];
+    
+    
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(didUpdatePlayingTrack:)
+                                                 name:WHSoundTrackDidChangeNotifiction
+                                               object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(didUpdatePlayingTracksArray:)
+                                                 name:WHSoundPlayerDidLoadMore
+                                               object:nil];
+}
+
+- (void)loadData{
+    [SVProgressHUD show];
     NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
     [formatter setNumberStyle:NSNumberFormatterDecimalStyle];
     [formatter setSecondaryGroupingSize:3];
-    
-    [SVProgressHUD show];
     
     [[WHWebrequestManager sharedManager] fetchUserInfoWithUserId:[trackInfo.responseDict[@"user"][@"id"] stringValue]
                                                          success:^(id responseObject) {
@@ -168,19 +186,6 @@
                                                          failure:^(NSError *error) {
                                                              [SVProgressHUD dismiss];
                                                          }];
-    
-    
-    
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(didUpdatePlayingTrack:)
-                                                 name:WHSoundTrackDidChangeNotifiction
-                                               object:nil];
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(didUpdatePlayingTracksArray:)
-                                                 name:WHSoundPlayerDidLoadMore
-                                               object:nil];
 }
 
 - (void)backButtonPressed:(id)sender{
@@ -245,6 +250,36 @@
                                                          }];
     
     
+}
+
+- (IBAction)toggleFollowButtonPressed:(id)sender {
+    if (currentUser != nil) {
+        if (currentUser.isFollowing) {
+            [SVProgressHUD show];
+            
+            [[WHWebrequestManager sharedManager] unfollowUserId:currentUser.userId
+                                                        success:^(id responseObject) {
+                                                            [SVProgressHUD popActivity];
+                                                            [self loadData];
+                                                        }
+                                                        failure:^(NSError *error) {
+                                                            [SVProgressHUD dismiss];
+                                                        }];
+        }else{
+            [SVProgressHUD show];
+            
+            [[WHWebrequestManager sharedManager] followUserId:currentUser.userId
+                                                        success:^(id responseObject) {
+                                                            [SVProgressHUD popActivity];
+                                                            [self loadData];
+                                                        }
+                                                        failure:^(NSError *error) {
+                                                            [SVProgressHUD dismiss];
+                                                        }];
+        }
+    }else{
+        return;
+    }
 }
 
 - (IBAction)togglePlayPausePressed:(id)sender {
