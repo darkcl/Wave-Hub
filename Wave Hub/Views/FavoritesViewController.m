@@ -24,6 +24,13 @@
 
 @implementation FavoritesViewController
 
+- (id)initWithFavorites:(NSArray <WHTrackModel *> *)songs{
+    if (self = [super initWithNibName:@"FavoritesViewController" bundle:nil]) {
+        favourite = songs;
+    }
+    return self;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     

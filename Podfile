@@ -42,6 +42,7 @@ target 'Wave Hub' do
     pod 'ReactiveCocoa'
     pod 'Block-KVO', :git => 'https://github.com/Tricertops/Block-KVO.git'
     pod 'JRNLocalNotificationCenter'
+    pod 'TransitionKit'
     
 end
 

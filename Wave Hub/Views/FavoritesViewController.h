@@ -15,4 +15,6 @@
     WHTrackModel *currentPlayingTrack;
 }
 
+- (id)initWithFavorites:(NSArray <WHTrackModel *> *)songs;
+
 @end

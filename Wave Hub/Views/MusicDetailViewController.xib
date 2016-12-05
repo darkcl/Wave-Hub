@@ -101,14 +101,8 @@
                             <color key="progressTintColor" red="0.8862745098" green="0.24313725489999999" blue="0.40784313729999999" alpha="1" colorSpace="calibratedRGB"/>
                             <color key="trackTintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         </progressView>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="View More about DarkCL" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ssa-6O-qbf">
-                            <rect key="frame" x="56" y="18" width="256" height="20"/>
-                            <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="16"/>
-                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                            <nil key="highlightedColor"/>
-                        </label>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uSm-xC-fuL">
-                            <rect key="frame" x="8" y="7" width="40" height="40"/>
+                            <rect key="frame" x="15" y="7" width="40" height="40"/>
                             <subviews>
                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="glI-9E-Xyc">
                                     <rect key="frame" x="0.0" y="0.0" width="40" height="40"/>
@@ -139,6 +133,12 @@
                                 <constraint firstItem="q8r-EV-XUU" firstAttribute="centerX" secondItem="uSm-xC-fuL" secondAttribute="centerX" id="vhQ-Gh-wYN"/>
                             </constraints>
                         </view>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="View More about DarkCL" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ssa-6O-qbf">
+                            <rect key="frame" x="63" y="18" width="249" height="20"/>
+                            <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="16"/>
+                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
                     </subviews>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <constraints>
@@ -151,7 +151,7 @@
                         <constraint firstItem="ssa-6O-qbf" firstAttribute="leading" secondItem="uSm-xC-fuL" secondAttribute="trailing" constant="8" id="YtV-yx-adZ"/>
                         <constraint firstItem="yl9-m8-aT2" firstAttribute="leading" secondItem="wZ1-bA-4dT" secondAttribute="leading" id="Zvc-Bd-Dxl"/>
                         <constraint firstAttribute="trailing" secondItem="ssa-6O-qbf" secondAttribute="trailing" constant="8" id="bnU-hh-q5D"/>
-                        <constraint firstItem="uSm-xC-fuL" firstAttribute="leading" secondItem="wZ1-bA-4dT" secondAttribute="leading" constant="8" id="jw4-ty-6z4"/>
+                        <constraint firstItem="uSm-xC-fuL" firstAttribute="leading" secondItem="wZ1-bA-4dT" secondAttribute="leading" constant="15" id="jw4-ty-6z4"/>
                         <constraint firstAttribute="height" constant="55" id="tg1-VU-Ly1"/>
                         <constraint firstItem="PSb-Rc-aEQ" firstAttribute="leading" secondItem="wZ1-bA-4dT" secondAttribute="leading" id="wIB-S2-PBR"/>
                         <constraint firstAttribute="bottom" secondItem="PSb-Rc-aEQ" secondAttribute="bottom" id="wJg-zK-sCE"/>

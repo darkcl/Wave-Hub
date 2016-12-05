@@ -88,6 +88,7 @@ PODS:
   - RMPZoomTransitionAnimator (1.0.2)
   - SCSiriWaveformView (1.0.3)
   - SVProgressHUD (2.0.3)
+  - TransitionKit (2.2.1)
   - YapDatabase (2.7.6):
     - YapDatabase/standard (= 2.7.6)
   - YapDatabase/standard (2.7.6):
@@ -119,6 +120,7 @@ DEPENDENCIES:
   - RMPZoomTransitionAnimator
   - SCSiriWaveformView (from `https://github.com/darkcl/SCSiriWaveformView.git`)
   - SVProgressHUD
+  - TransitionKit
   - YapDatabase
   - YSLTransitionAnimator
 
@@ -173,9 +175,10 @@ SPEC CHECKSUMS:
   RMPZoomTransitionAnimator: fa1a0726e8e227069d9d63d30ef403aa12323960
   SCSiriWaveformView: b8b2756af42addcd31900c3945f24edafefb5395
   SVProgressHUD: b0830714205bea1317ea1a2ebc71e5633af334d4
+  TransitionKit: 9ceccda4cd0cdc0a05ef85eb235e5a3292c3c250
   YapDatabase: 00e5a5d1b5dba1bd540ef644576233b5612e6122
   YSLTransitionAnimator: e5f0a2f253ea72b00a06c594c448e6b992f5630f
 
-PODFILE CHECKSUM: e7a2ab4a72ee9916ac8504d5bc86dd93a4ebe0d7
+PODFILE CHECKSUM: e379af5ae6b16b5f983ff258cf691e9c0641d51e
 
 COCOAPODS: 1.0.0
