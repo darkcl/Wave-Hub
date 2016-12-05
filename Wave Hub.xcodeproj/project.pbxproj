@@ -310,7 +310,7 @@
 				0E19896F1DD317EB00FC7CAE /* MarqueeLabel.m */,
 				742B73581D37D41F00837D74 /* Favourite (will change to music list) */,
 				0EEE6B0C1D3886AC00068BFE /* Music Detail */,
-				74F235AF1D3B853A005E872B /* User Profile */,
+				74F235AF1D3B853A005E872B /* User Profile (Will Delete) */,
 				0E19894A1DD2F98C00FC7CAE /* Dash Board */,
 				0E1989661DD3073A00FC7CAE /* Container */,
 				0E6DCBFF1DF54160009A5AE5 /* Song List */,
@@ -385,14 +385,14 @@
 			name = Cell;
 			sourceTree = "<group>";
 		};
-		74F235AF1D3B853A005E872B /* User Profile */ = {
+		74F235AF1D3B853A005E872B /* User Profile (Will Delete) */ = {
 			isa = PBXGroup;
 			children = (
 				74F235AA1D3B8536005E872B /* UserProfileViewController.h */,
 				74F235AB1D3B8536005E872B /* UserProfileViewController.m */,
 				74F235AC1D3B8536005E872B /* UserProfileViewController.xib */,
 			);
-			name = "User Profile";
+			name = "User Profile (Will Delete)";
 			sourceTree = "<group>";
 		};
 		9A6A2BBA288A8DC74B668219 /* Protocols */ = {

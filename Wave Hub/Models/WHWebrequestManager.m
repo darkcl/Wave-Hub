@@ -270,6 +270,90 @@ static NSString * const kBaseURL = @"https://api.soundcloud.com";
              }];
 }
 
+- (void)followUserId:(NSString *)userId
+             success:(RequestSuccess)successBlock
+             failure:(RequestFailure)failureBlock{
+    NSString *url = [NSString stringWithFormat:@"https://api.soundcloud.com/me/followings/%@", userId];
+    
+    [SCRequest performMethod:SCRequestMethodPUT
+                  onResource:[NSURL URLWithString:url]
+             usingParameters:nil
+                 withAccount:[SCSoundCloud account]
+      sendingProgressHandler:^(unsigned long long bytesSend, unsigned long long bytesTotal) {
+          
+      }
+             responseHandler:^(NSURLResponse *response, NSData *responseData, NSError *error) {
+                 if (error) {
+                     failureBlock(error);
+                     
+                 }else{
+                     NSError *jsonError;
+                     NSDictionary *aDict = [NSJSONSerialization JSONObjectWithData:responseData
+                                                                           options:NSJSONReadingAllowFragments
+                                                                             error:&jsonError];
+                     if (jsonError) {
+                         failureBlock(jsonError);
+                     }else{
+                         
+                         successBlock(aDict);
+                     }
+                 }
+             }];
+}
+
+- (void)unfollowUserId:(NSString *)userId
+               success:(RequestSuccess)successBlock
+               failure:(RequestFailure)failureBlock{
+    NSString *url = [NSString stringWithFormat:@"https://api.soundcloud.com/me/followings/%@", userId];
+    
+    [SCRequest performMethod:SCRequestMethodDELETE
+                  onResource:[NSURL URLWithString:url]
+             usingParameters:nil
+                 withAccount:[SCSoundCloud account]
+      sendingProgressHandler:^(unsigned long long bytesSend, unsigned long long bytesTotal) {
+          
+      }
+             responseHandler:^(NSURLResponse *response, NSData *responseData, NSError *error) {
+                 if (error) {
+                     failureBlock(error);
+                     
+                 }else{
+                     NSError *jsonError;
+                     NSDictionary *aDict = [NSJSONSerialization JSONObjectWithData:responseData
+                                                                           options:NSJSONReadingAllowFragments
+                                                                             error:&jsonError];
+                     if (jsonError) {
+                         failureBlock(jsonError);
+                     }else{
+                         
+                         successBlock(aDict);
+                     }
+                 }
+             }];
+}
+
+- (void)fetchIsFollowUserId:(NSString *)userId
+                    success:(RequestSuccess)successBlock
+                    failure:(RequestFailure)failureBlock{
+    NSString *url = [NSString stringWithFormat:@"https://api.soundcloud.com/me/followings/%@", userId];
+    
+    [SCRequest performMethod:SCRequestMethodGET
+                  onResource:[NSURL URLWithString:url]
+             usingParameters:nil
+                 withAccount:[SCSoundCloud account]
+      sendingProgressHandler:^(unsigned long long bytesSend, unsigned long long bytesTotal) {
+          
+      }
+             responseHandler:^(NSURLResponse *response, NSData *responseData, NSError *error) {
+                 if (error) {
+                     successBlock(@NO);
+                     
+                 }else{
+                     successBlock(@YES);
+                 }
+             }];
+}
+
 //- (void)fetchMyFavouriteWithInfo:(MyFavourite *)info
 //                         success:(RequestSuccess)successBlock
 //                         failure:(RequestFailure)failureBlock{

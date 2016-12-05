@@ -41,6 +41,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *numOfLikesLabel;
 @property (weak, nonatomic) IBOutlet UILabel *numOfFollowinsLabel;
 @property (weak, nonatomic) IBOutlet UILabel *numOfPlaylistLabel;
+@property (strong, nonatomic) IBOutlet UIButton *followButton;
 
 @end
 
@@ -131,21 +132,37 @@
     
     [[WHWebrequestManager sharedManager] fetchUserInfoWithUserId:[trackInfo.responseDict[@"user"][@"id"] stringValue]
                                                          success:^(id responseObject) {
-                                                             WHSoundCloudUser *user = [[WHSoundCloudUser alloc] initWithUserInfo:responseObject];
+                                                             self->currentUser = [[WHSoundCloudUser alloc] initWithUserInfo:responseObject];
+                                                             [SVProgressHUD popActivity];
                                                              
-                                                             self.numOfLikesLabel.text = [formatter stringFromNumber:[NSNumber numberWithInteger:user.favoritesCount]];
-                                                             self.numOfFollowinsLabel.text = [formatter stringFromNumber:[NSNumber numberWithInteger:user.followingsCount]];
-                                                             self.numOfPlaylistLabel.text = [formatter stringFromNumber:[NSNumber numberWithInteger:user.playlistsCount]];
                                                              
-                                                             [[WHWebrequestManager sharedManager] fetchTracksWithUrl:[NSString stringWithFormat:@"https://api.soundcloud.com/users/%@/tracks", user.userId]
+                                                             self.numOfLikesLabel.text = [formatter stringFromNumber:[NSNumber numberWithInteger:self->currentUser.favoritesCount]];
+                                                             self.numOfFollowinsLabel.text = [formatter stringFromNumber:[NSNumber numberWithInteger:self->currentUser.followingsCount]];
+                                                             self.numOfPlaylistLabel.text = [formatter stringFromNumber:[NSNumber numberWithInteger:self->currentUser.playlistsCount]];
+                                                             
+                                                             [SVProgressHUD show];
+                                                             [[WHWebrequestManager sharedManager] fetchTracksWithUrl:[NSString stringWithFormat:@"https://api.soundcloud.com/users/%@/tracks", self->currentUser.userId]
                                                                                                              success:^(id responseObject2) {
-                                                                                                                 [SVProgressHUD dismiss];
+                                                                                                                 [SVProgressHUD popActivity];
                                                                                                                  self->userTracks =  responseObject2;
                                                                                                                  [self.tableView reloadData];
                                                                                                              }
                                                                                                              failure:^(NSError *error) {
                                                                                                                  [SVProgressHUD dismiss];
                                                                                                              }];
+                                                             
+                                                             [SVProgressHUD show];
+                                                             [[WHWebrequestManager sharedManager] fetchIsFollowUserId:self->currentUser.userId
+                                                                                                              success:^(NSNumber *isFollowingObj) {
+                                                                                                                  [SVProgressHUD popActivity];
+                                                                                                                  BOOL isFollowing = [isFollowingObj boolValue];
+                                                                                                                  self->currentUser.isFollowing = isFollowing;
+                                                                                                                  
+                                                                                                                  [self.followButton setTitle:isFollowing ? @"Unfollow" : @"Follow" forState:UIControlStateNormal];
+                                                                                                              }
+                                                                                                              failure:^(NSError *error) {
+                                                                                                                  [SVProgressHUD dismiss];
+                                                                                                              }];
                                                              
                                                          }
                                                          failure:^(NSError *error) {

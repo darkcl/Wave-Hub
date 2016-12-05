@@ -34,6 +34,8 @@
 @property NSInteger playlistsCount;
 @property NSInteger favoritesCount;
 
+@property BOOL isFollowing;
+
 @property (nonatomic, strong) NSDictionary *responseDict;
 
 @end

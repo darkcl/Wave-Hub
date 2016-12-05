@@ -44,6 +44,18 @@ typedef void(^RequestFailure)(NSError *error);
                      success:(RequestSuccess)successBlock
                      failure:(RequestFailure)failureBlock;
 
+- (void)followUserId:(NSString *)userId
+             success:(RequestSuccess)successBlock
+             failure:(RequestFailure)failureBlock;
+
+- (void)unfollowUserId:(NSString *)userId
+             success:(RequestSuccess)successBlock
+             failure:(RequestFailure)failureBlock;
+
+- (void)fetchIsFollowUserId:(NSString *)userId
+             success:(RequestSuccess)successBlock
+             failure:(RequestFailure)failureBlock;
+
 #pragma mark - Pagination
 /**
  *  Fetch My favourites

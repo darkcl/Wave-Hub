@@ -22,6 +22,8 @@
     
     NSArray <WHTrackModel *> *userTracks;
     WHTrackModel *currentPlayingTrack;
+    
+    WHSoundCloudUser *currentUser;
 }
 
 - (id)initWithTrackInfo:(WHTrackModel *)info withDataSources:(NSArray <WHTrackModel *> *)tracks;
