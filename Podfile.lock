@@ -64,7 +64,7 @@ PODS:
   - Mantle (2.0.5):
     - Mantle/extobjc (= 2.0.5)
   - Mantle/extobjc (2.0.5)
-  - MGSwipeTableCell (1.5.6)
+  - MCSwipeTableViewCell (2.1.4)
   - MJRefresh (3.1.0)
   - MNTPullToReact (1.0.2)
   - NPAudioStream (0.1.7)
@@ -109,7 +109,7 @@ DEPENDENCIES:
   - GCDWebServer/WebUploader
   - JRNLocalNotificationCenter
   - Mantle
-  - MGSwipeTableCell
+  - MCSwipeTableViewCell
   - MJRefresh
   - MNTPullToReact (~> 1.0)
   - NPAudioStream (from `https://github.com/darkcl/NPAudioStream.git`)
@@ -163,7 +163,7 @@ SPEC CHECKSUMS:
   GCDWebServer: 76a9540371d5f12f850b32ec7f555dd2d266e543
   JRNLocalNotificationCenter: 1cf072a5e742a84a234b6f316e4bb2a6f64a1c3f
   Mantle: 1912395033f601de5adc8ee91e48f46e4c7051ad
-  MGSwipeTableCell: 616700eb0ffd1c611ba909066cb7fd739790a0a7
+  MCSwipeTableViewCell: 1b303e16c3a26b1982f3a68386e9b8c5fc8344c3
   MJRefresh: 743e6404967d1c2c688472ea3ecfde247d872db4
   MNTPullToReact: 903aadb4deb2706fcc4823e78052b5a3e8ca235f
   NPAudioStream: f1c555c7022abe032c87311914c19b725b59de63
@@ -179,6 +179,6 @@ SPEC CHECKSUMS:
   YapDatabase: 00e5a5d1b5dba1bd540ef644576233b5612e6122
   YSLTransitionAnimator: e5f0a2f253ea72b00a06c594c448e6b992f5630f
 
-PODFILE CHECKSUM: e379af5ae6b16b5f983ff258cf691e9c0641d51e
+PODFILE CHECKSUM: d7e637268dae99ac2546e32123585046bbc3964c
 
 COCOAPODS: 1.0.0

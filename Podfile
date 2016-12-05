@@ -32,7 +32,7 @@ target 'Wave Hub' do
     pod 'YSLTransitionAnimator'
     pod 'RMPZoomTransitionAnimator'
     pod 'SCSiriWaveformView', :git => 'https://github.com/darkcl/SCSiriWaveformView.git'
-    pod 'MGSwipeTableCell'
+    pod 'MCSwipeTableViewCell'
 
     # Database
     pod 'YapDatabase'

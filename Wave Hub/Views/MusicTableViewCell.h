@@ -8,13 +8,15 @@
 
 #import <UIKit/UIKit.h>
 
+#import <MCSwipeTableViewCell/MCSwipeTableViewCell.h>
+
 @protocol MusicTableViewCellDelegate <NSObject>
 
 - (void)didTogglePlayPause:(WHTrackModel *)info;
 
 @end
 
-@interface MusicTableViewCell : UITableViewCell{
+@interface MusicTableViewCell : MCSwipeTableViewCell{
     NSString *tempUrl;
     WHTrackModel *trackInfo;
 }
