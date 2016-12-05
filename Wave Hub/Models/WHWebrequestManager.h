@@ -44,17 +44,33 @@ typedef void(^RequestFailure)(NSError *error);
                      success:(RequestSuccess)successBlock
                      failure:(RequestFailure)failureBlock;
 
+#pragma mark - Following
+
 - (void)followUserId:(NSString *)userId
              success:(RequestSuccess)successBlock
              failure:(RequestFailure)failureBlock;
 
 - (void)unfollowUserId:(NSString *)userId
-             success:(RequestSuccess)successBlock
-             failure:(RequestFailure)failureBlock;
+               success:(RequestSuccess)successBlock
+               failure:(RequestFailure)failureBlock;
 
 - (void)fetchIsFollowUserId:(NSString *)userId
-             success:(RequestSuccess)successBlock
-             failure:(RequestFailure)failureBlock;
+                    success:(RequestSuccess)successBlock
+                    failure:(RequestFailure)failureBlock;
+
+#pragma mark - Like
+
+- (void)favouriteTrack:(NSString *)trackId
+               success:(RequestSuccess)successBlock
+               failure:(RequestFailure)failureBlock;
+
+- (void)unfavouriteTrack:(NSString *)trackId
+                 success:(RequestSuccess)successBlock
+                 failure:(RequestFailure)failureBlock;
+
+- (void)fetchIsFavouriteWithTrackId:(NSString *)trackId
+                            success:(RequestSuccess)successBlock
+                            failure:(RequestFailure)failureBlock;
 
 #pragma mark - Pagination
 /**

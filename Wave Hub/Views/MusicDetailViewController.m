@@ -42,6 +42,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *numOfFollowinsLabel;
 @property (weak, nonatomic) IBOutlet UILabel *numOfPlaylistLabel;
 @property (strong, nonatomic) IBOutlet UIButton *followButton;
+@property (strong, nonatomic) IBOutlet UIView *favouriteView;
 
 @end
 
@@ -181,6 +182,22 @@
                                                                                                               failure:^(NSError *error) {
                                                                                                                   [SVProgressHUD dismiss];
                                                                                                               }];
+                                                             if (self->trackInfo.trackId != nil) {
+                                                                 [SVProgressHUD show];
+                                                                 [[WHWebrequestManager sharedManager] fetchIsFavouriteWithTrackId:self->trackInfo.trackId
+                                                                                                                          success:^(NSNumber *isFavouriteObj) {
+                                                                                                                              [SVProgressHUD popActivity];
+                                                                                                                              self->trackInfo.isFavourite = [isFavouriteObj boolValue];
+                                                                                                                              
+                                                                                                                              [self.favouriteView setHidden:NO];
+                                                                                                                              [self.favouriteButton setBackgroundImage:[UIImage imageNamed:self->trackInfo.isFavourite ? @"favourite_on" : @"favourite_off"] forState:UIControlStateNormal];
+                                                                                                                          }
+                                                                                                                          failure:^(NSError *error) {
+                                                                                                                              [SVProgressHUD dismiss];
+                                                                                                                          }];
+                                                             }
+                                                                 
+                                                             
                                                              
                                                          }
                                                          failure:^(NSError *error) {
@@ -249,6 +266,32 @@
                                                              [SVProgressHUD dismiss];
                                                          }];
     
+    
+}
+- (IBAction)toggleFavouriteButtonPressed:(id)sender {
+    if (trackInfo.trackId.length != 0) {
+        if (trackInfo.isFavourite) {
+            [SVProgressHUD show];
+            [[WHWebrequestManager sharedManager] unfavouriteTrack:trackInfo.trackId
+                                                        success:^(id responseObject) {
+                                                            [SVProgressHUD popActivity];
+                                                            [self loadData];
+                                                        }
+                                                        failure:^(NSError *error) {
+                                                            [SVProgressHUD dismiss];
+                                                        }];
+        }else{
+            [SVProgressHUD show];
+            [[WHWebrequestManager sharedManager] favouriteTrack:trackInfo.trackId
+                                                          success:^(id responseObject) {
+                                                              [SVProgressHUD popActivity];
+                                                              [self loadData];
+                                                          }
+                                                          failure:^(NSError *error) {
+                                                              [SVProgressHUD dismiss];
+                                                          }];
+        }
+    }
     
 }
 

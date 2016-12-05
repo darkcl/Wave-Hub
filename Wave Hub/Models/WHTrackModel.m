@@ -69,6 +69,14 @@
     return self;
 }
 
+- (NSString *)trackId{
+    if (self.responseDict) {
+        return [self.responseDict[@"id"] stringValue];
+    }else{
+        return nil;
+    }
+}
+
 - (id)initWithCoder:(NSCoder *)decoder{
     if ((self = [super init])) {
         _trackUrl = [decoder decodeObjectForKey:@"trackUrl"];

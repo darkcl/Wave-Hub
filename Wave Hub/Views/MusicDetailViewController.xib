@@ -23,6 +23,8 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MusicDetailViewController">
             <connections>
                 <outlet property="authorLabel" destination="wWY-mc-dli" id="yjj-pK-RHL"/>
+                <outlet property="favouriteButton" destination="nUK-bt-eLp" id="Qb2-Ce-p4S"/>
+                <outlet property="favouriteView" destination="EUj-MO-KHJ" id="pgJ-BQ-uXP"/>
                 <outlet property="followButton" destination="0pi-yW-zLO" id="Rcf-zp-wgA"/>
                 <outlet property="musicCoverImageView" destination="fdQ-8M-Ywt" id="lBk-4x-LZP"/>
                 <outlet property="musicTitleLabel" destination="sUf-BP-eOn" id="dua-ho-MCz"/>
@@ -191,6 +193,34 @@
                                             <constraint firstItem="wWY-mc-dli" firstAttribute="top" secondItem="sUf-BP-eOn" secondAttribute="bottom" constant="8" id="qg9-sb-5zT"/>
                                         </constraints>
                                     </view>
+                                    <view hidden="YES" clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EUj-MO-KHJ">
+                                        <rect key="frame" x="8" y="192" width="50" height="50"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nUK-bt-eLp">
+                                                <rect key="frame" x="10" y="12" width="30" height="30"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="30" id="BiZ-uw-5in"/>
+                                                    <constraint firstAttribute="width" constant="30" id="fX4-Ec-9os"/>
+                                                </constraints>
+                                                <state key="normal" backgroundImage="favourite_on"/>
+                                                <connections>
+                                                    <action selector="toggleFavouriteButtonPressed:" destination="-1" eventType="touchUpInside" id="4Gw-jP-3jT"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="0.78103448275862064" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstItem="nUK-bt-eLp" firstAttribute="centerX" secondItem="EUj-MO-KHJ" secondAttribute="centerX" id="NM5-KR-6p7"/>
+                                            <constraint firstItem="nUK-bt-eLp" firstAttribute="centerY" secondItem="EUj-MO-KHJ" secondAttribute="centerY" constant="2" id="R1C-ux-luS"/>
+                                            <constraint firstAttribute="width" constant="50" id="S5b-ID-dVU"/>
+                                            <constraint firstAttribute="height" constant="50" id="fKb-ux-tgt"/>
+                                        </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                <integer key="value" value="25"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </view>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
@@ -199,7 +229,9 @@
                                     <constraint firstAttribute="bottom" secondItem="fdQ-8M-Ywt" secondAttribute="bottom" id="CLs-z4-7qg"/>
                                     <constraint firstAttribute="trailing" secondItem="fdQ-8M-Ywt" secondAttribute="trailing" id="HTS-i9-Tbl"/>
                                     <constraint firstItem="fdQ-8M-Ywt" firstAttribute="leading" secondItem="WLr-lZ-jJh" secondAttribute="leading" id="Lkt-lS-kDa"/>
+                                    <constraint firstItem="EUj-MO-KHJ" firstAttribute="leading" secondItem="WLr-lZ-jJh" secondAttribute="leading" constant="8" id="Uwb-tP-obf"/>
                                     <constraint firstAttribute="height" constant="250" id="ZXc-Em-hWD"/>
+                                    <constraint firstAttribute="bottom" secondItem="EUj-MO-KHJ" secondAttribute="bottom" constant="8" id="fNy-uD-XOe"/>
                                     <constraint firstAttribute="width" constant="250" id="jAJ-Uy-d2V"/>
                                     <constraint firstAttribute="trailing" secondItem="Qhf-xM-Bei" secondAttribute="trailing" id="qvm-X1-OFA"/>
                                     <constraint firstItem="Qhf-xM-Bei" firstAttribute="leading" secondItem="WLr-lZ-jJh" secondAttribute="leading" id="rOG-6h-yO0"/>
@@ -233,7 +265,10 @@
                 <constraint firstItem="qBh-Qc-CCh" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="jVS-uK-TYd"/>
             </constraints>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
-            <point key="canvasLocation" x="-712" y="217"/>
+            <point key="canvasLocation" x="-1141" y="228"/>
         </view>
     </objects>
+    <resources>
+        <image name="favourite_on" width="256" height="256"/>
+    </resources>
 </document>

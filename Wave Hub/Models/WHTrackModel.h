@@ -36,6 +36,10 @@ typedef void(^WHTrackError)(NSError *error);
 
 // Will Not save in db
 @property NSInteger displayIndex;
+@property BOOL isFavourite;
+
+@property (nonatomic, strong, readonly) NSString *trackId;
+
 - (float)progress;
 
 @property (nonatomic, strong) WHTrackModel *prevTrack;
