@@ -126,6 +126,7 @@
 		6C0AE585EC62527A7EF19A9D /* UnitTests-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "UnitTests-Info.plist"; sourceTree = "<group>"; };
 		741055BA1D37F45B0092BA43 /* NSLayoutConstraint+Multiplier.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSLayoutConstraint+Multiplier.h"; sourceTree = "<group>"; };
 		741055BB1D37F45B0092BA43 /* NSLayoutConstraint+Multiplier.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSLayoutConstraint+Multiplier.m"; sourceTree = "<group>"; };
+		7416B16C1E0E5BC0007F82A0 /* Wave Hub.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Wave Hub.entitlements"; sourceTree = "<group>"; };
 		742B734D1D3560C800837D74 /* FavoritesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FavoritesViewController.h; sourceTree = "<group>"; };
 		742B734E1D3560C800837D74 /* FavoritesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FavoritesViewController.m; sourceTree = "<group>"; };
 		742B734F1D3560C800837D74 /* FavoritesViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FavoritesViewController.xib; sourceTree = "<group>"; };
@@ -461,6 +462,7 @@
 		C98CD64752934F35E4A72330 /* Wave Hub */ = {
 			isa = PBXGroup;
 			children = (
+				7416B16C1E0E5BC0007F82A0 /* Wave Hub.entitlements */,
 				B7FDA5198C65651C1AECF5BA /* Categories */,
 				9A6A2BBA288A8DC74B668219 /* Protocols */,
 				0ACDDC5CA697E246FC621548 /* Headers */,
@@ -548,7 +550,6 @@
 				432AED63A1AAA6026CD5B656 /* Frameworks */,
 				287A64EB97E6BCD7530E8830 /* Resources */,
 				7B8A4A9553B8436D3FE2A7B4 /* Warn for TODO and FIXME comments */,
-				6D2EE5C3B0D33F7B2F4DCD0B /* Set version number */,
 				A2159F7FD79EC156ACB94D30 /* 📦 Embed Pods Frameworks */,
 				C6B89D1E85E2E966FA3D0B60 /* 📦 Copy Pods Resources */,
 			);
@@ -655,20 +656,6 @@
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
-		};
-		6D2EE5C3B0D33F7B2F4DCD0B /* Set version number */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Set version number";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "git=$(sh /etc/profile; which git)\ngit_release_version=$(\"$git\" describe --tags --always --abbrev=0)\nnumber_of_commits=$(\"$git\" rev-list master | wc -l | tr -d ' ')\ntarget_plist=\"$TARGET_BUILD_DIR/$INFOPLIST_PATH\"\ndsym_plist=\"$DWARF_DSYM_FOLDER_PATH/$DWARF_DSYM_FILE_NAME/Contents/Info.plist\"\n\nfor plist in \"$target_plist\" \"$dsym_plist\"; do\n  if [ -f \"$plist\" ]; then\n    /usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $number_of_commits\" \"$plist\"\n    /usr/libexec/PlistBuddy -c \"Set :CFBundleShortVersionString ${git_release_version#*v}\" \"$plist\"\n  fi\ndone\n";
 		};
 		7B8A4A9553B8436D3FE2A7B4 /* Warn for TODO and FIXME comments */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -780,6 +767,7 @@
 				CLANG_WARN_CONSTANT_CONVERSION = NO;
 				CLANG_WARN_IMPLICIT_SIGN_CONVERSION = NO;
 				CLANG_WARN_INT_CONVERSION = NO;
+				CODE_SIGN_ENTITLEMENTS = "Wave Hub/Wave Hub.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
@@ -976,6 +964,7 @@
 				CLANG_WARN_CONSTANT_CONVERSION = NO;
 				CLANG_WARN_IMPLICIT_SIGN_CONVERSION = NO;
 				CLANG_WARN_INT_CONVERSION = NO;
+				CODE_SIGN_ENTITLEMENTS = "Wave Hub/Wave Hub.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
