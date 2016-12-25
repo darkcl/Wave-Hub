@@ -50,8 +50,10 @@
     DashBoardFavoriteCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"DashBoardFavoriteCollectionViewCell" forIndexPath:indexPath];
     
     // Configure the cell
+    WHTrackModel *info = favorites[indexPath.row];
+    [cell setInfo:info];
     
-    [cell setInfo:favorites[indexPath.row]];
+    
     
     return cell;
 }
@@ -62,10 +64,16 @@
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
-    return CGSizeMake(140, 195);
+    return CGSizeMake(160, 230);
 }
 
 #pragma mark <UICollectionViewDelegate>
+
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
+    if (self.didSelectTrack) {
+        self.didSelectTrack(favorites[indexPath.row]);
+    }
+}
 
 /*
  // Uncomment this method to specify if the specified item should be highlighted during tracking

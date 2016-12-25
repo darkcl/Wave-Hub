@@ -9,6 +9,8 @@
 #import "WHWebrequestManager.h"
 #import <JRNLocalNotificationCenter/JRNLocalNotificationCenter.h>
 
+#import "WHActivityModel.h"
+
 static NSString * const kBaseURL = @"https://api.soundcloud.com";
 
 @interface WHWebrequestManager ()
@@ -47,25 +49,30 @@ static NSString * const kBaseURL = @"https://api.soundcloud.com";
     }else{
         [SCSoundCloud requestAccessWithPreparedAuthorizationURLHandler:^(NSURL *preparedURL){
             
-            SCLoginViewController *loginViewController;
-            loginViewController = [SCLoginViewController loginViewControllerWithPreparedURL:preparedURL
+            UINavigationController *loginViewController;
+            loginViewController = (UINavigationController *)[SCLoginViewController loginViewControllerWithPreparedURL:preparedURL
                                                                           completionHandler:^(NSError *error){
                                                                               
                                                                               if (SC_CANCELED(error)) {
                                                                                   NSLog(@"Canceled!");
                                                                                   failureBlock(error);
+                                                                                  [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationFade];
                                                                               } else if (error) {
                                                                                   NSLog(@"Ooops, something went wrong: %@", [error localizedDescription]);
                                                                                   failureBlock(error);
+                                                                                  [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationFade];
                                                                               } else {
                                                                                   NSLog(@"Done!");
                                                                                   successBlock(nil);
+                                                                                  [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationFade];
                                                                               }
                                                                           }];
             
             [viewController presentViewController:loginViewController
                                          animated:YES
-                                       completion:nil];
+                                       completion:^{
+                                           [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationFade];
+                                       }];
             
         }];
     }
@@ -253,9 +260,23 @@ static NSString * const kBaseURL = @"https://api.soundcloud.com";
                          NSMutableArray *result = [[NSMutableArray alloc] init];
                          
                          for (NSDictionary *trackInfo in aDict[@"collection"]) {
-                             WHTrackModel *aTrack = [[WHTrackModel alloc] initWithInfo:trackInfo];
-                             aTrack.trackType = WHTrackTypeSoundCloud;
-                             [result addObject:aTrack];
+                             NSDictionary *infoDict = trackInfo;
+                             
+                             if (trackInfo[@"origin"] != nil) {
+                                 infoDict = trackInfo[@"origin"];
+                                 
+                                 if (![infoDict[@"kind"] isEqualToString:@"playlist"]) {
+                                     WHTrackModel *aTrack = [[WHTrackModel alloc] initWithInfo:infoDict];
+                                     aTrack.trackType = WHTrackTypeSoundCloud;
+                                     [result addObject:aTrack];
+                                 }
+                             }else{
+                                 WHTrackModel *aTrack = [[WHTrackModel alloc] initWithInfo:infoDict];
+                                 aTrack.trackType = WHTrackTypeSoundCloud;
+                                 [result addObject:aTrack];
+                             }
+                             
+                             
                          }
                          
                          NSString *nextHref = aDict[@"next_href"];
@@ -436,6 +457,56 @@ static NSString * const kBaseURL = @"https://api.soundcloud.com";
                      
                  }else{
                      successBlock(@YES);
+                 }
+             }];
+}
+
+#pragma mark - Dashboard (Activity)
+
+- (void)fetchActivityWithUrl:(NSString *)url
+                     success:(RequestSuccess)successBlock
+                     failure:(RequestFailure)failureBlock{
+    NSURL *resourceUrl;
+    
+    if(url == nil){
+        resourceUrl = [NSURL URLWithString:@"https://api.soundcloud.com/me/activities/tracks"];
+    }else{
+        resourceUrl = [NSURL URLWithString:url];
+    }
+    
+    [SCRequest performMethod:SCRequestMethodGET
+                  onResource:resourceUrl
+             usingParameters:nil
+                 withAccount:[SCSoundCloud account]
+      sendingProgressHandler:^(unsigned long long bytesSend, unsigned long long bytesTotal) {
+          
+      }
+             responseHandler:^(NSURLResponse *response, NSData *responseData, NSError *error) {
+                 
+                 if (error) {
+                     failureBlock(error);
+                 }else{
+                     NSError *jsonError;
+                     NSDictionary *jsonDict = [NSJSONSerialization JSONObjectWithData:responseData options:NSJSONReadingAllowFragments error:&jsonError];
+                     
+                     if (jsonError != nil) {
+                         failureBlock(jsonError);
+                     }else{
+                         NSMutableArray *result = [[NSMutableArray alloc] init];
+                         
+                         for (NSDictionary *infoDict in jsonDict[@"collection"]) {
+                             WHTrackModel *anActivity = [[WHTrackModel alloc] initWithInfo:infoDict[@"origin"]];
+                             [result addObject:anActivity];
+                         }
+                         
+                         NSString *nextHref = jsonDict[@"next_href"];
+                         
+                         if (nextHref != nil) {
+                             [result addObject:[[WHTrackModel alloc] initWithNextHref:nextHref]];
+                         }
+                         
+                         successBlock([NSArray arrayWithArray:result]);
+                     }
                  }
              }];
 }

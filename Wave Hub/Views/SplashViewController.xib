@@ -9,9 +9,8 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="DashBoardViewController">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SplashViewController">
             <connections>
-                <outlet property="tableView" destination="Nlm-X1-m84" id="vdS-LP-ZxD"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -20,23 +19,20 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Nlm-X1-m84">
-                    <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="V4v-oC-LFr">
+                    <rect key="frame" x="124" y="622" width="126" height="30"/>
+                    <state key="normal" title="Login SoundCloud"/>
                     <connections>
-                        <outlet property="dataSource" destination="-1" id="tv9-DC-JXb"/>
-                        <outlet property="delegate" destination="-1" id="HBk-Hu-ylf"/>
+                        <action selector="loginSoundCloudButtonPressed:" destination="-1" eventType="touchUpInside" id="V2k-5u-iYQ"/>
                     </connections>
-                </tableView>
+                </button>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstAttribute="bottom" secondItem="Nlm-X1-m84" secondAttribute="bottom" id="Ahw-If-0wh"/>
-                <constraint firstItem="Nlm-X1-m84" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="Llv-xN-Icu"/>
-                <constraint firstAttribute="trailing" secondItem="Nlm-X1-m84" secondAttribute="trailing" id="R2O-2a-FNh"/>
-                <constraint firstItem="Nlm-X1-m84" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="qw8-LB-Efl"/>
+                <constraint firstAttribute="bottom" secondItem="V4v-oC-LFr" secondAttribute="bottom" constant="15" id="ZkJ-Xl-GII"/>
+                <constraint firstItem="V4v-oC-LFr" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="dQq-0F-o9o"/>
             </constraints>
-            <point key="canvasLocation" x="-270" y="-432"/>
+            <point key="canvasLocation" x="-174" y="8"/>
         </view>
     </objects>
 </document>

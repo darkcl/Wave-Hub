@@ -8,6 +8,14 @@
 
 #import <UIKit/UIKit.h>
 
-@interface DashBoardViewController : UIViewController
+typedef NS_ENUM(NSInteger, DashBoardPlayingType) {
+    DashBoardPlayingTypeUnknown,
+    DashBoardPlayingTypeFavorite,
+    DashBoardPlayingTypeActivity
+};
+
+@interface DashBoardViewController : UIViewController{
+    DashBoardPlayingType playingType;
+}
 
 @end

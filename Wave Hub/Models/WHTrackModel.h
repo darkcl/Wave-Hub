@@ -28,6 +28,7 @@ typedef void(^WHTrackError)(NSError *error);
 @property (nonatomic, strong) NSString *albumTitle;
 @property (nonatomic, strong) NSString *author;
 @property (nonatomic, strong) NSString *albumCoverUrl;
+@property (nonatomic, strong) NSString *userImageUrl;
 
 @property (nonatomic, strong) UIImage *albumCoverImage;
 @property float duration;
@@ -58,6 +59,8 @@ typedef void(^WHTrackError)(NSError *error);
 - (BOOL)isPlaying;
 
 - (id)initWithInfo:(NSDictionary *)dict;
+
+- (id)initWithActivityInfo:(NSDictionary *)dict;
 
 - (id)initWithNextHref:(NSString *)url;
 

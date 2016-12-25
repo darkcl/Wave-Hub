@@ -72,6 +72,12 @@ typedef void(^RequestFailure)(NSError *error);
                             success:(RequestSuccess)successBlock
                             failure:(RequestFailure)failureBlock;
 
+#pragma mark - Dashboard (Activity)
+
+- (void)fetchActivityWithUrl:(NSString *)url
+                     success:(RequestSuccess)successBlock
+                     failure:(RequestFailure)failureBlock;
+
 #pragma mark - Pagination
 /**
  *  Fetch My favourites

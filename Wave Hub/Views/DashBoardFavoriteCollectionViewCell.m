@@ -19,8 +19,39 @@
     // Initialization code
 }
 
+#pragma mark - Spinning
+
+- (void)rotateImageView
+{
+    [UIView animateWithDuration:3.0 delay:0 options:UIViewAnimationOptionCurveLinear animations:^{
+        [self.coverImageView setTransform:CGAffineTransformRotate(self.coverImageView.transform, M_PI_2)];
+    }completion:^(BOOL finished){
+        if (finished && [self->trackInfo isEqual:[WHSoundManager sharedManager].playingTrack]) {
+            [self rotateImageView];
+        }else{
+            [self.coverImageView.layer removeAllAnimations];
+            self.coverImageView.transform = CGAffineTransformIdentity;
+        }
+    }];
+}
+
 - (void)setInfo:(WHTrackModel *)track{
     trackInfo = track;
+    
+    [self.coverImageView.layer removeAllAnimations];
+    self.coverImageView.transform = CGAffineTransformIdentity;
+    
+    if ([trackInfo isEqual:[WHSoundManager sharedManager].playingTrack]) {
+        self.authorLabel.textColor = [UIColor wh_playingLabelColor];
+        self.songNameLabel.textColor = [UIColor wh_playingLabelColor];
+        [self rotateImageView];
+        
+    }else{
+        self.authorLabel.textColor = [UIColor wh_userTitleColor];
+        self.songNameLabel.textColor = [UIColor wh_songTitleColor];
+        [self.coverImageView.layer removeAllAnimations];
+        self.coverImageView.transform = CGAffineTransformIdentity;
+    }
     
     self.authorLabel.text = track.author;
     self.songNameLabel.text = track.trackTitle;

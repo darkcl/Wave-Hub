@@ -10,6 +10,10 @@
 
 @interface DashBoardFavoriteCollectionViewCell : UICollectionViewCell{
     WHTrackModel *trackInfo;
+    
+    BOOL animate;
+    BOOL animationCompleting;
+    BOOL animationPending;
 }
 
 @property (strong, nonatomic) IBOutlet UIImageView *coverImageView;

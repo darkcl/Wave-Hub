@@ -33,6 +33,9 @@ target 'Wave Hub' do
     pod 'RMPZoomTransitionAnimator'
     pod 'SCSiriWaveformView', :git => 'https://github.com/darkcl/SCSiriWaveformView.git'
     pod 'MCSwipeTableViewCell'
+    pod 'ZFDragableModalTransition'
+    pod 'UIAlertView+Blocks'
+    pod 'ContextMenu.iOS', '~> 1.1.0'
 
     # Database
     pod 'YapDatabase'

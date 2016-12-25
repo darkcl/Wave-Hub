@@ -54,6 +54,13 @@
     return self;
 }
 
+- (id)initWithActivityInfo:(NSDictionary *)dict{
+    if (self = [super init]) {
+        
+    }
+    return self;
+}
+
 - (id)initWithInfo:(NSDictionary *)dict{
     if (self = [super init]) {
         _trackUrl = [NSURL URLWithString:[NSString stringWithFormat:@"%@?client_id=47724625bbc02bbc335e84f2ed87c001", dict[@"stream_url"]]];
@@ -61,6 +68,7 @@
         _albumTitle = @"-";
         _albumCoverUrl = dict[@"artwork_url"];
         _author = dict[@"user"][@"username"];
+        _userImageUrl = dict[@"user"][@"avatar_url"];
         _duration = [dict[@"duration"] floatValue];
         _responseDict = dict;
         

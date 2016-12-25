@@ -37,6 +37,7 @@ PODS:
   - CocoaSoundCloudUI (1.0.9):
     - CocoaSoundCloudAPI (~> 1.0.2)
     - OHAttributedLabel
+  - ContextMenu.iOS (1.1.0)
   - DLImageLoader (2.2.0)
   - DZNEmptyDataSet (1.7.2)
   - FLKAutoLayout (0.2.1)
@@ -89,11 +90,13 @@ PODS:
   - SCSiriWaveformView (1.0.3)
   - SVProgressHUD (2.0.3)
   - TransitionKit (2.2.1)
+  - UIAlertView+Blocks (0.9)
   - YapDatabase (2.7.6):
     - YapDatabase/standard (= 2.7.6)
   - YapDatabase/standard (2.7.6):
     - CocoaLumberjack (~> 2)
   - YSLTransitionAnimator (0.0.2)
+  - ZFDragableModalTransition (0.6)
 
 DEPENDENCIES:
   - AFNetworking
@@ -101,6 +104,7 @@ DEPENDENCIES:
   - ChameleonFramework
   - CocoaSoundCloudAPI
   - CocoaSoundCloudUI
+  - ContextMenu.iOS (~> 1.1.0)
   - DLImageLoader
   - DZNEmptyDataSet
   - FLKAutoLayout
@@ -121,8 +125,10 @@ DEPENDENCIES:
   - SCSiriWaveformView (from `https://github.com/darkcl/SCSiriWaveformView.git`)
   - SVProgressHUD
   - TransitionKit
+  - UIAlertView+Blocks
   - YapDatabase
   - YSLTransitionAnimator
+  - ZFDragableModalTransition
 
 EXTERNAL SOURCES:
   Block-KVO:
@@ -155,6 +161,7 @@ SPEC CHECKSUMS:
   CocoaLumberjack: 17fe8581f84914d5d7e6360f7c70022b173c3ae0
   CocoaSoundCloudAPI: bef452c90f3a3af6de41a620d7d156d716d68f79
   CocoaSoundCloudUI: f5aed254f432bc68a5a3570b74cdd6d18ce7b037
+  ContextMenu.iOS: 7f3b63915e660f51aada2c4285c40a837b2c9737
   DLImageLoader: a1b96c95744a8d0ebd9a39d7194774b0c4f59b03
   DZNEmptyDataSet: 0ec00bfc230d7450997b60c127afdd0b9f24f3b6
   FLKAutoLayout: 9db6b30c2008d230da608e62c607b11c23b942e6
@@ -176,9 +183,11 @@ SPEC CHECKSUMS:
   SCSiriWaveformView: b8b2756af42addcd31900c3945f24edafefb5395
   SVProgressHUD: b0830714205bea1317ea1a2ebc71e5633af334d4
   TransitionKit: 9ceccda4cd0cdc0a05ef85eb235e5a3292c3c250
+  UIAlertView+Blocks: a46c99c5144f6c5dbc7d62fd2a0678daceec89a3
   YapDatabase: 00e5a5d1b5dba1bd540ef644576233b5612e6122
   YSLTransitionAnimator: e5f0a2f253ea72b00a06c594c448e6b992f5630f
+  ZFDragableModalTransition: 0d294eaaba6edfcb9839595de765f9ca06a4b524
 
-PODFILE CHECKSUM: d7e637268dae99ac2546e32123585046bbc3964c
+PODFILE CHECKSUM: 95bc555dac5a5863da5a292afd18ca42599656e4
 
 COCOAPODS: 1.0.0

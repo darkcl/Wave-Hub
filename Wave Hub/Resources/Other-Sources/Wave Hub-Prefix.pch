@@ -8,9 +8,12 @@
 #import <UIKit/UIKit.h>
 
 //#import <ChameleonFramework/Chameleon.h>
+
 #import <AVFoundation/AVFoundation.h>
 #import <AudioToolbox/AudioToolbox.h>
 #import <SVProgressHUD/SVProgressHUD.h>
+
+#import <UIAlertView+Blocks.h>
 
 #import "WHConstant.h"
 #import "WHTrackModel.h"
@@ -22,6 +25,8 @@
 #import "WHWebrequestManager.h"
 #import "WHSoundManager.h"
 #import "WHDatabaseManager.h"
+
+#import "UIColor+WaveHubAddition.h"
 
 #import <YSLTransitionAnimator/YSLTransitionAnimator.h>
 #import <YSLTransitionAnimator/UIViewController+YSLTransition.h>

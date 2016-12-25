@@ -16,4 +16,6 @@
 
 - (void)setInfo:(NSArray <WHTrackModel *> *)tracks;
 
+@property (nonatomic, strong) void(^didSelectTrack)(WHTrackModel *track);
+
 @end
