@@ -209,6 +209,9 @@
 - (IBAction)previousButtonAction:(id)sender {
     
 }
+- (IBAction)closeButtonPressed:(id)sender {
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
 - (IBAction)songDurationChanged:(id)sender {
     [[WHSoundManager sharedManager] playerSeekTime:self.songProgressSlider.value];
 }
@@ -359,7 +362,7 @@
         
         [self.collectionView reloadData];
         [self scrollToPage:currentPlayingIdx animated:YES];
-        
+        [self loadData];
     }else if ([info.object isKindOfClass:[NSNull class]]) {
         FAKFontAwesome *playPauseIcon = [FAKFontAwesome playIconWithSize:20];
         [playPauseIcon addAttribute:NSForegroundColorAttributeName value:[UIColor blackColor]];
@@ -369,7 +372,7 @@
 
 - (void)didUpdatePlayingTracksArray:(NSNotification *)info{
     if ([info.object isKindOfClass:[NSArray class]]) {
-        self.dataSource = (NSArray *)info.object;
+        self.dataSource = [[WHSoundManager sharedManager] nowPlayingTrackWithLimit:30];
         
         [self.collectionView reloadData];
     }

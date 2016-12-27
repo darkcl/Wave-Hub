@@ -196,6 +196,9 @@
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pdY-cf-Q6I">
                             <rect key="frame" x="0.0" y="0.0" width="40" height="40"/>
+                            <connections>
+                                <action selector="closeButtonPressed:" destination="-1" eventType="touchUpInside" id="TCY-J1-e4g"/>
+                            </connections>
                         </button>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -254,7 +257,7 @@
                 <constraint firstItem="qLn-Fq-w3B" firstAttribute="leading" secondItem="4E2-Fj-wuT" secondAttribute="trailing" constant="8" id="yGC-vr-r1v"/>
                 <constraint firstItem="RKM-fj-0ms" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="15" id="zXc-uc-Rja"/>
             </constraints>
-            <point key="canvasLocation" x="-1677" y="-46"/>
+            <point key="canvasLocation" x="-2049" y="-17"/>
         </view>
     </objects>
 </document>

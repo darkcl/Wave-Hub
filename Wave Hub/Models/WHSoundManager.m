@@ -251,7 +251,7 @@
                                                             [result addObjectsFromArray:responseObject];
                                                             self->currentTracks =  result;
                                                             WHTrackModel *continueOnTrack = [responseObject firstObject];
-                                                            
+                                                            [self generatePlaylistForLoop:self->currentTracks];
                                                             [[NSNotificationCenter defaultCenter] postNotificationName:WHSoundPlayerDidLoadMore object:result];
                                                             
                                                             [self playTrack:continueOnTrack forceStart:YES];
