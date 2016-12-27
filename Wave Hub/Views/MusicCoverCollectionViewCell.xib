@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16C68" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="MusicCoverCollectionViewCell" id="gTV-IL-0wX" customClass="MusicCoverCollectionViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="311" height="361"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="311" height="361"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="XTH-Vy-Abx">
+                        <rect key="frame" x="0.0" y="0.0" width="311" height="361"/>
+                    </imageView>
+                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="deZ-nq-P0K">
+                        <rect key="frame" x="137" y="162" width="37" height="37"/>
+                    </activityIndicatorView>
+                </subviews>
+            </view>
+            <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="XTH-Vy-Abx" secondAttribute="trailing" id="96s-Gb-8iM"/>
+                <constraint firstItem="XTH-Vy-Abx" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="DLz-EN-wZN"/>
+                <constraint firstItem="XTH-Vy-Abx" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="FgV-Ig-LZZ"/>
+                <constraint firstAttribute="bottom" secondItem="XTH-Vy-Abx" secondAttribute="bottom" id="VOW-bX-L8r"/>
+                <constraint firstItem="deZ-nq-P0K" firstAttribute="centerY" secondItem="gTV-IL-0wX" secondAttribute="centerY" id="hHx-HE-Y2k"/>
+                <constraint firstItem="deZ-nq-P0K" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="xj8-jm-sI2"/>
+            </constraints>
+            <size key="customSize" width="311" height="361"/>
+            <connections>
+                <outlet property="coverImageView" destination="XTH-Vy-Abx" id="FAk-6H-RNT"/>
+                <outlet property="loadingIndicator" destination="deZ-nq-P0K" id="UQB-Nd-f7a"/>
+            </connections>
+            <point key="canvasLocation" x="-95.5" y="-57.5"/>
+        </collectionViewCell>
+    </objects>
+</document>

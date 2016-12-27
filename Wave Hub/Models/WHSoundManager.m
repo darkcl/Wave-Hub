@@ -44,6 +44,13 @@
         for (UIProgressView *aProgressView in activeProgressViews) {
             aProgressView.progress = self.playingTrack.progress;
         }
+        
+        [[NSNotificationCenter defaultCenter] postNotificationName:WHSoundTrackProgressNotifiction
+                                                            object:[NSNumber numberWithDouble:self.playingTrack.progress]];
+    }else{
+        for (UIProgressView *aProgressView in activeProgressViews) {
+            aProgressView.progress = 0.0;
+        }
     }
 }
 
@@ -226,8 +233,8 @@
     
 }
 
-- (void)playerSeekTime:(double)time{
-    
+- (void)playerSeekTime:(float)time{
+    [self.playingTrack seekTime:time];
 }
 
 - (BOOL)isPlaying{
@@ -327,6 +334,10 @@
         default:
             break;
     }
+}
+
+- (NSArray <WHTrackModel *> *)nowPlayingTrackWithLimit:(NSInteger)limit{
+    return currentTracks;
 }
 
 #pragma mark - AVAudioSession

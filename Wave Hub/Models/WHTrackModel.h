@@ -56,6 +56,8 @@ typedef void(^WHTrackError)(NSError *error);
 - (void)resume;
 - (void)stop;
 
+- (void)seekTime:(float)progress;
+
 - (BOOL)isPlaying;
 
 - (id)initWithInfo:(NSDictionary *)dict;

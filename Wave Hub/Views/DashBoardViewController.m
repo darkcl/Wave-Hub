@@ -87,7 +87,10 @@ NSInteger const kSectionActivity = 1;
                                                       }];
     
     playingType = DashBoardPlayingTypeUnknown;
-    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(didUpdatePlayingTrack:)
+                                                 name:WHSoundTrackDidChangeNotifiction
+                                               object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(didUpdatePlayingTracksArray:)
                                                  name:WHSoundPlayerDidLoadMore

@@ -23,7 +23,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="375" height="167"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4nY-lI-SsF">
+                    <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4nY-lI-SsF">
                         <rect key="frame" x="15" y="13" width="140" height="140"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ZOE-Mn-7a4">
@@ -46,7 +46,7 @@
                                 </userDefinedRuntimeAttributes>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="User Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zy9-lj-UKW">
-                                <rect key="frame" x="46" y="109.5" width="86" height="16"/>
+                                <rect key="frame" x="46" y="109" width="86" height="16"/>
                                 <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="13"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
@@ -111,7 +111,7 @@
                 <outlet property="userImageView" destination="UDn-lg-5NY" id="4Hc-Vv-gDo"/>
                 <outlet property="userNameLabel" destination="Zy9-lj-UKW" id="vlx-cl-Fze"/>
             </connections>
-            <point key="canvasLocation" x="-554.5" y="-811"/>
+            <point key="canvasLocation" x="-887" y="-1121"/>
         </tableViewCell>
     </objects>
     <resources>

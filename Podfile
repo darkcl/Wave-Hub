@@ -36,6 +36,7 @@ target 'Wave Hub' do
     pod 'ZFDragableModalTransition'
     pod 'UIAlertView+Blocks'
     pod 'ContextMenu.iOS', '~> 1.1.0'
+    pod 'iCarousel'
 
     # Database
     pod 'YapDatabase'

@@ -44,6 +44,11 @@
 		7416B1781E0F1E43007F82A0 /* WHActivityModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7416B1771E0F1E43007F82A0 /* WHActivityModel.m */; };
 		7416B17C1E0FAE5D007F82A0 /* DashboardWhatsNewTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7416B17A1E0FAE5D007F82A0 /* DashboardWhatsNewTableViewCell.m */; };
 		7416B17D1E0FAE5D007F82A0 /* DashboardWhatsNewTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7416B17B1E0FAE5D007F82A0 /* DashboardWhatsNewTableViewCell.xib */; };
+		7416B1831E125A20007F82A0 /* NowPlayingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7416B1811E125A20007F82A0 /* NowPlayingViewController.m */; };
+		7416B1841E125A20007F82A0 /* NowPlayingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7416B1821E125A20007F82A0 /* NowPlayingViewController.xib */; };
+		7416B1891E1267CD007F82A0 /* MusicCoverCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7416B1871E1267CD007F82A0 /* MusicCoverCollectionViewCell.m */; };
+		7416B18A1E1267CD007F82A0 /* MusicCoverCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7416B1881E1267CD007F82A0 /* MusicCoverCollectionViewCell.xib */; };
+		7416B18E1E126873007F82A0 /* LGHorizontalLinearFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 7416B18D1E126873007F82A0 /* LGHorizontalLinearFlowLayout.m */; };
 		742B73501D3560C800837D74 /* FavoritesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 742B734E1D3560C800837D74 /* FavoritesViewController.m */; };
 		742B73511D3560C800837D74 /* FavoritesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 742B734F1D3560C800837D74 /* FavoritesViewController.xib */; };
 		742B735D1D37D44800837D74 /* MusicTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 742B735B1D37D44800837D74 /* MusicTableViewCell.m */; };
@@ -143,6 +148,14 @@
 		7416B1791E0FAE5D007F82A0 /* DashboardWhatsNewTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DashboardWhatsNewTableViewCell.h; sourceTree = "<group>"; };
 		7416B17A1E0FAE5D007F82A0 /* DashboardWhatsNewTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DashboardWhatsNewTableViewCell.m; sourceTree = "<group>"; };
 		7416B17B1E0FAE5D007F82A0 /* DashboardWhatsNewTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DashboardWhatsNewTableViewCell.xib; sourceTree = "<group>"; };
+		7416B1801E125A20007F82A0 /* NowPlayingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NowPlayingViewController.h; sourceTree = "<group>"; };
+		7416B1811E125A20007F82A0 /* NowPlayingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NowPlayingViewController.m; sourceTree = "<group>"; };
+		7416B1821E125A20007F82A0 /* NowPlayingViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NowPlayingViewController.xib; sourceTree = "<group>"; };
+		7416B1861E1267CD007F82A0 /* MusicCoverCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MusicCoverCollectionViewCell.h; sourceTree = "<group>"; };
+		7416B1871E1267CD007F82A0 /* MusicCoverCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MusicCoverCollectionViewCell.m; sourceTree = "<group>"; };
+		7416B1881E1267CD007F82A0 /* MusicCoverCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MusicCoverCollectionViewCell.xib; sourceTree = "<group>"; };
+		7416B18C1E126873007F82A0 /* LGHorizontalLinearFlowLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LGHorizontalLinearFlowLayout.h; sourceTree = "<group>"; };
+		7416B18D1E126873007F82A0 /* LGHorizontalLinearFlowLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LGHorizontalLinearFlowLayout.m; sourceTree = "<group>"; };
 		742B734D1D3560C800837D74 /* FavoritesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FavoritesViewController.h; sourceTree = "<group>"; };
 		742B734E1D3560C800837D74 /* FavoritesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FavoritesViewController.m; sourceTree = "<group>"; };
 		742B734F1D3560C800837D74 /* FavoritesViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FavoritesViewController.xib; sourceTree = "<group>"; };
@@ -321,6 +334,8 @@
 		1E8CBC8F7C3F90E64799FC7B /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				7416B18C1E126873007F82A0 /* LGHorizontalLinearFlowLayout.h */,
+				7416B18D1E126873007F82A0 /* LGHorizontalLinearFlowLayout.m */,
 				0E19896E1DD317EB00FC7CAE /* MarqueeLabel.h */,
 				0E19896F1DD317EB00FC7CAE /* MarqueeLabel.m */,
 				742B73581D37D41F00837D74 /* Favourite (will change to music list) */,
@@ -330,6 +345,7 @@
 				0E1989661DD3073A00FC7CAE /* Container */,
 				0E6DCBFF1DF54160009A5AE5 /* Song List */,
 				7416B1751E0F1B3A007F82A0 /* SplashViewController */,
+				7416B1851E125A24007F82A0 /* Now Playing */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -406,6 +422,27 @@
 				0E1989531DD3029500FC7CAE /* DashBoardFavoritesTableViewCell.xib */,
 			);
 			name = Favorite;
+			sourceTree = "<group>";
+		};
+		7416B1851E125A24007F82A0 /* Now Playing */ = {
+			isa = PBXGroup;
+			children = (
+				7416B18B1E1267D0007F82A0 /* Cell */,
+				7416B1801E125A20007F82A0 /* NowPlayingViewController.h */,
+				7416B1811E125A20007F82A0 /* NowPlayingViewController.m */,
+				7416B1821E125A20007F82A0 /* NowPlayingViewController.xib */,
+			);
+			name = "Now Playing";
+			sourceTree = "<group>";
+		};
+		7416B18B1E1267D0007F82A0 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				7416B1861E1267CD007F82A0 /* MusicCoverCollectionViewCell.h */,
+				7416B1871E1267CD007F82A0 /* MusicCoverCollectionViewCell.m */,
+				7416B1881E1267CD007F82A0 /* MusicCoverCollectionViewCell.xib */,
+			);
+			name = Cell;
 			sourceTree = "<group>";
 		};
 		742B73581D37D41F00837D74 /* Favourite (will change to music list) */ = {
@@ -663,6 +700,7 @@
 				74E80CBE1D68911400A13219 /* app_icon_large@3x.png in Resources */,
 				7416B1741E0F1B37007F82A0 /* SplashViewController.xib in Resources */,
 				6C5DC8333D90F8BAC26108B1 /* Images.xcassets in Resources */,
+				7416B18A1E1267CD007F82A0 /* MusicCoverCollectionViewCell.xib in Resources */,
 				0E1989491DD2F98800FC7CAE /* DashBoardViewController.xib in Resources */,
 				F8A560A340ED7920227E1490 /* Settings.bundle in Resources */,
 				74E80CBD1D68911400A13219 /* app_icon_large@2x.png in Resources */,
@@ -678,6 +716,7 @@
 				0E19896D1DD3076800FC7CAE /* ContainerViewController.xib in Resources */,
 				74E80CB81D6890EC00A13219 /* splash_background@3x.png in Resources */,
 				74333DAD1D3E8E7500DDAB29 /* PlaceholderTableViewCell.xib in Resources */,
+				7416B1841E125A20007F82A0 /* NowPlayingViewController.xib in Resources */,
 				0E19895B1DD3064500FC7CAE /* DashBoardFavoriteCollectionViewCell.xib in Resources */,
 				0EEE6B0B1D3886A800068BFE /* MusicDetailViewController.xib in Resources */,
 				741055B81D37DC190092BA43 /* Montserrat-Bold.ttf in Resources */,
@@ -793,7 +832,10 @@
 				74F235A61D3B61D8005E872B /* UIImage+WaveHubAddition.m in Sources */,
 				7416B1781E0F1E43007F82A0 /* WHActivityModel.m in Sources */,
 				0E6DCBFD1DF54159009A5AE5 /* SongListViewController.m in Sources */,
+				7416B18E1E126873007F82A0 /* LGHorizontalLinearFlowLayout.m in Sources */,
+				7416B1891E1267CD007F82A0 /* MusicCoverCollectionViewCell.m in Sources */,
 				1A44E872A0401F9F6EC5084C /* main.m in Sources */,
+				7416B1831E125A20007F82A0 /* NowPlayingViewController.m in Sources */,
 				742B735D1D37D44800837D74 /* MusicTableViewCell.m in Sources */,
 				0E19896C1DD3076800FC7CAE /* ContainerViewController.m in Sources */,
 				0E2B7E7C1BF475BC001B7A25 /* WHApplication.m in Sources */,

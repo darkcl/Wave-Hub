@@ -17,4 +17,7 @@
 #define WHSoundPlayModeDidChangeNotifiction @"WHSoundPlayModeDidChangeNotifiction"
 #define WHSoundProgressDidChangeNotifiction @"WHSoundProgressDidChangeNotifiction"
 #define WHSoundPlayerDidLoadMore @"WHSoundPlayerDidLoadMore"
+
+#define WHSoundTrackProgressNotifiction @"WHSoundTrackProgressNotifiction"
+
 #define WHSoundCloudResourceMyFavourite @"https://api.soundcloud.com/me/favorites"

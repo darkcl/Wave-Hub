@@ -54,6 +54,15 @@
 - (void)setInfo:(WHTrackModel *)info{
     trackInfo = info;
     
+    if ([trackInfo isEqual:[WHSoundManager sharedManager].playingTrack]) {
+        self.titleLabel.textColor = [UIColor wh_playingLabelColor];
+        self.remarkLabel.textColor = [UIColor wh_playingLabelColor];
+        
+    }else{
+        self.titleLabel.textColor = [UIColor wh_songTitleColor];
+        self.remarkLabel.textColor = [UIColor wh_songTitleColor];
+    }
+    
     self.coverImageView.image = [UIImage musicPlaceHolder];
     self.userImageView.image = nil;
     

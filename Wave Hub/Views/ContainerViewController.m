@@ -15,6 +15,10 @@
 
 #import "MarqueeLabel.h"
 
+#import "NowPlayingViewController.h"
+
+#import <ZFDragableModalTransition/ZFModalTransitionAnimator.h>
+
 CGFloat const kMiniPlayerHeight = 65.0f;
 
 @interface ContainerViewController (){
@@ -30,6 +34,8 @@ CGFloat const kMiniPlayerHeight = 65.0f;
 @property (strong, nonatomic) IBOutlet UILabel *authorLabel;
 @property (strong, nonatomic) IBOutlet MarqueeLabel *songNameLabel;
 @property (strong, nonatomic) IBOutlet UIImageView *coverImageView;
+
+@property (nonatomic, strong) ZFModalTransitionAnimator *animator;
 
 @end
 
@@ -135,6 +141,23 @@ CGFloat const kMiniPlayerHeight = 65.0f;
                      animations:^{
                          [self.view layoutIfNeeded];
                      }];
+}
+- (IBAction)showMusicDetail:(id)sender {
+    NowPlayingViewController *modalVC = [[NowPlayingViewController alloc] initWithNibName:@"NowPlayingViewController" bundle:nil];
+    modalVC.modalPresentationStyle = UIModalPresentationFullScreen;
+    
+    self.animator = [[ZFModalTransitionAnimator alloc] initWithModalViewController:modalVC];
+    self.animator.dragable = YES;
+    self.animator.bounces = NO;
+    self.animator.behindViewAlpha = 0.5f;
+    self.animator.behindViewScale = 0.5f;
+    self.animator.transitionDuration = 0.7f;
+    self.animator.direction = ZFModalTransitonDirectionBottom;
+    
+    [self.animator setContentScrollView:modalVC.collectionView];
+    
+    modalVC.transitioningDelegate = self.animator;
+    [self presentViewController:modalVC animated:YES completion:nil];
 }
 
 - (void)didUpdatePlayingTrack:(NSNotification *)info{

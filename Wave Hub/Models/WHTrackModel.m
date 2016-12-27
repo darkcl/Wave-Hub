@@ -234,6 +234,12 @@
     
 }
 
+- (void)seekTime:(float)fprogress{
+    FSStreamPosition aPosition;
+    aPosition.position = fprogress;
+    [_localPlayer seekToPosition:aPosition];
+}
+
 - (NSDictionary *)currentDisplayInfo{
     
     return @{MPMediaItemPropertyTitle:self.trackTitle,

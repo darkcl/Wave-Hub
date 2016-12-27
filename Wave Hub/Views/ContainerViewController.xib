@@ -106,6 +106,12 @@
                             <color key="progressTintColor" red="0.8862745098" green="0.24313725489999999" blue="0.40784313729999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <color key="trackTintColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                         </progressView>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tr5-EC-ejX">
+                            <rect key="frame" x="0.0" y="0.0" width="246" height="65"/>
+                            <connections>
+                                <action selector="showMusicDetail:" destination="-1" eventType="touchUpInside" id="7hl-ps-mwM"/>
+                            </connections>
+                        </button>
                     </subviews>
                     <color key="backgroundColor" red="0.90588235294117647" green="0.91764705882352937" blue="0.94509803921568625" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
@@ -114,6 +120,7 @@
                         <constraint firstItem="5EN-Af-9eL" firstAttribute="top" secondItem="Ccu-uP-8ka" secondAttribute="bottom" id="5e5-TC-56K"/>
                         <constraint firstItem="kmW-29-zso" firstAttribute="leading" secondItem="nCh-IT-HSu" secondAttribute="trailing" constant="8" id="A36-WY-a57"/>
                         <constraint firstItem="5EN-Af-9eL" firstAttribute="leading" secondItem="U3Z-Ba-45o" secondAttribute="trailing" constant="5" id="FHi-ct-iOr"/>
+                        <constraint firstItem="Tr5-EC-ejX" firstAttribute="top" secondItem="SuI-BT-ziO" secondAttribute="top" id="Fk6-ro-VC1"/>
                         <constraint firstItem="Xuf-oX-8xh" firstAttribute="leading" secondItem="kmW-29-zso" secondAttribute="trailing" constant="8" id="Fy8-VA-RZ6"/>
                         <constraint firstAttribute="trailing" secondItem="RiK-cG-eD8" secondAttribute="trailing" id="GOY-4z-Uhf"/>
                         <constraint firstItem="Ccu-uP-8ka" firstAttribute="bottom" secondItem="SuI-BT-ziO" secondAttribute="centerY" id="GrB-li-tD5"/>
@@ -122,10 +129,13 @@
                         <constraint firstItem="5EN-Af-9eL" firstAttribute="top" secondItem="SuI-BT-ziO" secondAttribute="centerY" id="dC3-oy-V6a"/>
                         <constraint firstItem="kmW-29-zso" firstAttribute="centerY" secondItem="SuI-BT-ziO" secondAttribute="centerY" id="gPv-44-gCL"/>
                         <constraint firstItem="Xuf-oX-8xh" firstAttribute="centerY" secondItem="SuI-BT-ziO" secondAttribute="centerY" id="h6W-o8-Nzd"/>
+                        <constraint firstAttribute="bottom" secondItem="Tr5-EC-ejX" secondAttribute="bottom" id="hzg-6F-GdL"/>
+                        <constraint firstItem="nCh-IT-HSu" firstAttribute="leading" secondItem="Tr5-EC-ejX" secondAttribute="trailing" constant="8" id="jDl-jS-hA3"/>
                         <constraint firstItem="U3Z-Ba-45o" firstAttribute="leading" secondItem="SuI-BT-ziO" secondAttribute="leading" constant="15" id="kC0-1k-uyB"/>
                         <constraint firstAttribute="bottom" secondItem="RiK-cG-eD8" secondAttribute="bottom" id="kK3-7E-y4u"/>
                         <constraint firstItem="nCh-IT-HSu" firstAttribute="centerY" secondItem="SuI-BT-ziO" secondAttribute="centerY" id="kOH-tS-664"/>
                         <constraint firstAttribute="height" constant="65" id="lTJ-sg-Giy"/>
+                        <constraint firstItem="Tr5-EC-ejX" firstAttribute="leading" secondItem="SuI-BT-ziO" secondAttribute="leading" id="mvc-QB-hPo"/>
                         <constraint firstItem="nCh-IT-HSu" firstAttribute="leading" secondItem="Ccu-uP-8ka" secondAttribute="trailing" constant="8" id="qLe-v6-QUG"/>
                         <constraint firstItem="Ccu-uP-8ka" firstAttribute="leading" secondItem="U3Z-Ba-45o" secondAttribute="trailing" constant="5" id="use-IS-tk4"/>
                     </constraints>
@@ -176,7 +186,7 @@
                 <constraint firstItem="qAq-Rc-bHs" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="oMH-Ks-mbb"/>
                 <constraint firstAttribute="trailing" secondItem="Ycq-gN-jq6" secondAttribute="trailing" constant="15" id="vgE-qd-Phz"/>
             </constraints>
-            <point key="canvasLocation" x="-164" y="563"/>
+            <point key="canvasLocation" x="-164.5" y="562.5"/>
         </view>
     </objects>
 </document>

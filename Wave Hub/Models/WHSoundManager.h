@@ -71,7 +71,9 @@ typedef NS_ENUM(NSInteger, WHSoundManagerType) {
 - (void)playerPause;
 - (void)playerPlay;
 - (void)playerStop;
-- (void)playerSeekTime:(double)time;
+- (void)playerSeekTime:(float)time;
+
+- (NSArray <WHTrackModel *> *)nowPlayingTrackWithLimit:(NSInteger)limit;
 
 @property (assign) id<WHSoundManagerDelegate>delegate;
 @property (assign) id<WHSoundManagerDatasource>dataSource;
