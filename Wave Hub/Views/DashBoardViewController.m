@@ -98,6 +98,13 @@ NSInteger const kSectionActivity = 1;
     
 }
 
+- (void)reloadFavorite{
+    [[WHDatabaseManager sharedManager] readTrackFromFavourite:^(id result) {
+        self->favourite = result;
+        [self.tableView reloadData];
+    }];
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -106,6 +113,12 @@ NSInteger const kSectionActivity = 1;
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     [[WHSoundManager sharedManager] setDataSource:self];
+    
+    [[WHDatabaseManager sharedManager] readTrackFromFavourite:^(id result) {
+        self->favourite = result;
+        [self.tableView reloadData];
+    }];
+    
     [self.tableView reloadData];
 }
 

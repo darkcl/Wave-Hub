@@ -72,7 +72,7 @@
     [self.repostButton setAttributedTitle:repostIcon.attributedString forState:UIControlStateNormal];
     
     FAKFontAwesome *favoriteIcon =  [FAKFontAwesome heartIconWithSize:17];
-    [favoriteIcon addAttribute:NSForegroundColorAttributeName value:[UIColor blackColor]];
+    [favoriteIcon addAttribute:NSForegroundColorAttributeName value:[UIColor wh_favoriteColor]];
     [self.favoriteButton setAttributedTitle:favoriteIcon.attributedString forState:UIControlStateNormal];
     
     [self configureCollectionView];
@@ -100,7 +100,7 @@
 - (void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
     [self scrollToPage:currentPlayingIdx animated:YES];
-    
+    [self loadData];
     [UIView animateWithDuration:0.5
                           delay:0.5
                         options:UIViewAnimationOptionCurveEaseInOut
@@ -122,6 +122,29 @@
     // Pass the selected object to the new view controller.
 }
 */
+
+- (void)loadData{
+    WHTrackModel *currentPlaying = [[WHSoundManager sharedManager] playingTrack];
+    [[WHWebrequestManager sharedManager] fetchIsFavouriteWithTrackId:currentPlaying.trackId
+                                                             success:^(NSNumber *isFavouriteObj) {
+                                                                 currentPlaying.isFavourite = [isFavouriteObj boolValue];
+                                                                 
+                                                                 FAKFontAwesome *favoriteIcon = currentPlaying.isFavourite ? [FAKFontAwesome heartIconWithSize:17] : [FAKFontAwesome heartOIconWithSize:17] ;
+                                                                 [favoriteIcon addAttribute:NSForegroundColorAttributeName value:[UIColor wh_favoriteColor]];
+                                                                 [self.favoriteButton setAttributedTitle:favoriteIcon.attributedString forState:UIControlStateNormal];
+                                                                 
+                                                                 [UIView animateWithDuration:0.5
+                                                                                  animations:^{
+                                                                                      self.favoriteButton.alpha = 1.0;
+                                                                                  }
+                                                                                  completion:^(BOOL finished) {
+                                                                                      
+                                                                                  }];
+                                                             }
+                                                             failure:^(NSError *error) {
+                                                                 [SVProgressHUD dismiss];
+                                                             }];
+}
 
 #pragma mark - Configuration
 
@@ -194,6 +217,55 @@
     [self.collectionView scrollRectToVisible:CGRectMake(page * [self pageWidth], 0.0, 250, 250) animated:YES];
 }
 
+- (IBAction)favoriteButtonPressed:(id)sender {
+    WHTrackModel *currentPlaying = [[WHSoundManager sharedManager] playingTrack];
+    if (currentPlaying.trackId.length != 0) {
+        if (currentPlaying.isFavourite) {
+            [UIView animateWithDuration:0.5
+                             animations:^{
+                                 self.favoriteButton.alpha = 0.0;
+                             }
+                             completion:^(BOOL finished) {
+                                 
+                             }];
+            [[WHWebrequestManager sharedManager] unfavouriteTrack:currentPlaying.trackId
+                                                          success:^(id responseObject) {
+                                                              [self loadData];
+                                                              
+                                                              if (self.didRemoveFavorite != nil) {
+                                                                  self.didRemoveFavorite(currentPlaying);
+                                                              }
+                                                          }
+                                                          failure:^(NSError *error) {
+                                                              
+                                                          }];
+        }else{
+            [UIView animateWithDuration:0.5
+                             animations:^{
+                                 self.favoriteButton.alpha = 0.0;
+                             }
+                             completion:^(BOOL finished) {
+                                 
+                             }];
+            [[WHWebrequestManager sharedManager] favouriteTrack:currentPlaying.trackId
+                                                        success:^(id responseObject) {
+                                                            [self loadData];
+                                                            
+                                                            if (self.didAddFavorite != nil) {
+                                                                self.didAddFavorite(currentPlaying);
+                                                            }
+                                                        }
+                                                        failure:^(NSError *error) {
+                                                            
+                                                        }];
+        }
+    }
+}
+
+- (IBAction)repostButtonPressed:(id)sender {
+    
+}
+
 #pragma mark - UICollectionViewDataSource
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
@@ -231,7 +303,7 @@
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
     currentPage = (int) (self.contentOffset / self.pageWidth);
-    
+    [self loadData];
     [self didTogglePlayPause:self.dataSource[currentPage]];
 }
 

@@ -19,6 +19,8 @@
 
 #import <ZFDragableModalTransition/ZFModalTransitionAnimator.h>
 
+#import "DashBoardViewController.h"
+
 CGFloat const kMiniPlayerHeight = 65.0f;
 
 @interface ContainerViewController (){
@@ -155,6 +157,14 @@ CGFloat const kMiniPlayerHeight = 65.0f;
     self.animator.direction = ZFModalTransitonDirectionBottom;
     
     [self.animator setContentScrollView:modalVC.collectionView];
+    
+    [modalVC setDidAddFavorite:^(WHTrackModel *info) {
+        [[WHDatabaseManager sharedManager] addFavoriteTrack:info];
+    }];
+    
+    [modalVC setDidRemoveFavorite:^(WHTrackModel *info) {
+        [[WHDatabaseManager sharedManager] removeFavoriteTrack:info];
+    }];
     
     modalVC.transitioningDelegate = self.animator;
     [self presentViewController:modalVC animated:YES completion:nil];

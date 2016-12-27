@@ -171,19 +171,25 @@
                         <constraint firstAttribute="width" constant="35" id="g7b-v6-7nZ"/>
                     </constraints>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IZz-ti-9M0">
+                <button opaque="NO" alpha="0.0" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IZz-ti-9M0">
                     <rect key="frame" x="15" y="409" width="35" height="35"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="35" id="Iw1-ui-Muq"/>
                         <constraint firstAttribute="height" constant="35" id="tdz-ur-wem"/>
                     </constraints>
+                    <connections>
+                        <action selector="favoriteButtonPressed:" destination="-1" eventType="touchUpInside" id="wOu-5t-Agm"/>
+                    </connections>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qLn-Fq-w3B">
+                <button opaque="NO" alpha="0.0" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qLn-Fq-w3B">
                     <rect key="frame" x="325" y="409" width="35" height="35"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="35" id="JCd-rb-Re1"/>
                         <constraint firstAttribute="width" constant="35" id="rs0-Yk-s5H"/>
                     </constraints>
+                    <connections>
+                        <action selector="repostButtonPressed:" destination="-1" eventType="touchUpInside" id="rx1-D7-vNr"/>
+                    </connections>
                 </button>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nrA-DG-hYi">
                     <rect key="frame" x="15" y="35" width="40" height="40"/>
@@ -248,7 +254,7 @@
                 <constraint firstItem="qLn-Fq-w3B" firstAttribute="leading" secondItem="4E2-Fj-wuT" secondAttribute="trailing" constant="8" id="yGC-vr-r1v"/>
                 <constraint firstItem="RKM-fj-0ms" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="15" id="zXc-uc-Rja"/>
             </constraints>
-            <point key="canvasLocation" x="-1272" y="-56"/>
+            <point key="canvasLocation" x="-1677" y="-46"/>
         </view>
     </objects>
 </document>

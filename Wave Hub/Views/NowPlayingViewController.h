@@ -12,4 +12,7 @@
 
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 
+@property (nonatomic, strong) void(^didAddFavorite)(WHTrackModel *aTrack);
+@property (nonatomic, strong) void(^didRemoveFavorite)(WHTrackModel *aTrack);
+
 @end

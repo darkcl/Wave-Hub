@@ -13,6 +13,8 @@
 @interface UIColor (WaveHubAddition)
 
 + (UIColor *)wh_playingLabelColor;
++ (UIColor *)wh_favoriteColor;
+
 + (UIColor *)wh_userTitleColor;
 + (UIColor *)wh_songTitleColor;
 

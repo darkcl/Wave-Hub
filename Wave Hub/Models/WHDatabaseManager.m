@@ -76,6 +76,23 @@
     }];
 }
 
+- (void)addFavoriteTrack:(WHTrackModel *)aTrack{
+    YapDatabaseConnection *connection = [db newConnection];
+    [connection readWithBlock:^(YapDatabaseReadTransaction * _Nonnull transaction) {
+        NSMutableArray *result = [NSMutableArray arrayWithArray:[transaction objectForKey:@"favourites_track" inCollection:@"wave_hub"]];
+        [result insertObject:aTrack atIndex:0];
+        [self saveTrackFromFavouriteArray:result];
+    }];
+}
+
+- (void)removeFavoriteTrack:(WHTrackModel *)aTrack{
+    YapDatabaseConnection *connection = [db newConnection];
+    [connection readWithBlock:^(YapDatabaseReadTransaction * _Nonnull transaction) {
+        NSMutableArray *result = [NSMutableArray arrayWithArray:[transaction objectForKey:@"favourites_track" inCollection:@"wave_hub"]];
+        [result removeObject:aTrack];
+        [self saveTrackFromFavouriteArray:result];
+    }];
+}
 
 - (void)readTrackFromFavourite:(DatabaseReturn)successBlock{
     YapDatabaseConnection *connection = [db newConnection];

@@ -18,4 +18,6 @@ typedef NS_ENUM(NSInteger, DashBoardPlayingType) {
     DashBoardPlayingType playingType;
 }
 
+- (void)reloadFavorite;
+
 @end

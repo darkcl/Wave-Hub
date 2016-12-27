@@ -22,4 +22,8 @@
     return UIColorFromRGB(0x000000);
 }
 
++ (UIColor *)wh_favoriteColor{
+    return UIColorFromRGB(0xD23371);
+}
+
 @end

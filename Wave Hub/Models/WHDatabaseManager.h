@@ -32,4 +32,8 @@ typedef void(^DatabaseReturn)(id result);
 
 - (void)readTrackFromFavourite:(DatabaseReturn)successBlock;
 
+- (void)addFavoriteTrack:(WHTrackModel *)aTrack;
+
+- (void)removeFavoriteTrack:(WHTrackModel *)aTrack;
+
 @end
