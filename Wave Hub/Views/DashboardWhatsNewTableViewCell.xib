@@ -24,7 +24,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4nY-lI-SsF">
-                        <rect key="frame" x="15" y="13" width="140" height="140"/>
+                        <rect key="frame" x="20" y="13" width="140" height="140"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ZOE-Mn-7a4">
                                 <rect key="frame" x="0.0" y="0.0" width="140" height="140"/>
@@ -72,19 +72,19 @@
                         </constraints>
                     </view>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Repost" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tu2-Ax-1SP">
-                        <rect key="frame" x="163" y="13" width="47" height="16"/>
+                        <rect key="frame" x="168" y="13" width="47" height="16"/>
                         <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="13"/>
                         <color key="textColor" red="0.33333333329999998" green="0.33333333329999998" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1:30" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tDq-UN-lFO">
-                        <rect key="frame" x="163" y="135" width="197" height="18"/>
+                        <rect key="frame" x="168" y="135.5" width="192" height="17.5"/>
                         <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="14"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title Name" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ioZ-kq-HB2">
-                        <rect key="frame" x="163" y="37" width="197" height="21"/>
+                        <rect key="frame" x="168" y="37" width="192" height="21"/>
                         <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
@@ -93,7 +93,7 @@
                 <constraints>
                     <constraint firstAttribute="trailing" secondItem="tDq-UN-lFO" secondAttribute="trailing" constant="15" id="0Kf-tS-gd0"/>
                     <constraint firstItem="ioZ-kq-HB2" firstAttribute="leading" secondItem="4nY-lI-SsF" secondAttribute="trailing" constant="8" id="41p-XR-LGQ"/>
-                    <constraint firstItem="4nY-lI-SsF" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="15" id="Cgy-nu-JD5"/>
+                    <constraint firstItem="4nY-lI-SsF" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="Cgy-nu-JD5"/>
                     <constraint firstItem="ioZ-kq-HB2" firstAttribute="top" secondItem="Tu2-Ax-1SP" secondAttribute="bottom" constant="8" id="LhW-Dk-gcV"/>
                     <constraint firstItem="4nY-lI-SsF" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="Rjf-nk-TDs"/>
                     <constraint firstItem="Tu2-Ax-1SP" firstAttribute="top" secondItem="4nY-lI-SsF" secondAttribute="top" id="SI3-1b-Rwr"/>

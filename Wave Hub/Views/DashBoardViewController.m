@@ -10,6 +10,7 @@
 #import "DashBoardSectionHeaderView.h"
 
 #import "DashBoardFavoritesTableViewCell.h"
+#import "DashBoardPlaylistsTableViewCell.h"
 
 #import "FavoritesViewController.h"
 
@@ -20,12 +21,15 @@
 #import "PlaceholderTableViewCell.h"
 
 NSInteger const kSectionFav = 0;
-NSInteger const kSectionActivity = 1;
+NSInteger const kSectionPlaylist = 1;
+NSInteger const kSectionActivity = 2;
 
 @interface DashBoardViewController () <UITableViewDelegate, UITableViewDataSource, WHSoundManagerDatasource> {
     NSArray <WHTrackModel *> *favourite;
     
     NSArray <WHTrackModel *> *activities;
+    
+    NSArray <WHPlaylistModel *> *myPlaylists;
     
     NSArray <WHTrackModel *> *selectedSongSet;
     
@@ -55,11 +59,14 @@ NSInteger const kSectionActivity = 1;
     [self.tableView registerNib:[UINib nibWithNibName:@"DashBoardFavoritesTableViewCell" bundle:nil] forCellReuseIdentifier:@"DashBoardFavoritesTableViewCell"];
     [self.tableView registerNib:[UINib nibWithNibName:@"DashboardWhatsNewTableViewCell" bundle:nil] forCellReuseIdentifier:@"DashboardWhatsNewTableViewCell"];
     [self.tableView registerNib:[UINib nibWithNibName:@"PlaceholderTableViewCell" bundle:nil] forCellReuseIdentifier:@"PlaceholderTableViewCell"];
+    [self.tableView registerNib:[UINib nibWithNibName:@"DashBoardPlaylistsTableViewCell" bundle:nil] forCellReuseIdentifier:@"DashBoardPlaylistsTableViewCell"];
+    
     
     
     [[WHWebrequestManager sharedManager] fetchMyPlaylistWithInfo:nil
-                                                         success:^(id responseObject) {
-                                                             
+                                                         success:^(NSArray *responseObject) {
+                                                             self->myPlaylists = responseObject;
+                                                             [self.tableView reloadData];
                                                          } failure:^(NSError *error) {
                                                              
                                                          }];
@@ -136,7 +143,7 @@ NSInteger const kSectionActivity = 1;
 
 - (void)goToPlaylist{
     [self.navigationController popToViewController:self animated:YES];
-    [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:kSectionFav] atScrollPosition:UITableViewScrollPositionTop animated:YES];
+    [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:kSectionPlaylist] atScrollPosition:UITableViewScrollPositionTop animated:YES];
 }
 
 - (void)goToWhatsNew{
@@ -176,7 +183,7 @@ NSInteger const kSectionActivity = 1;
 */
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 2;
+    return 3;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -199,6 +206,9 @@ NSInteger const kSectionActivity = 1;
     switch (indexPath.section) {
         case kSectionFav:
             return 230;
+            break;
+        case kSectionPlaylist:
+            return 195;
             break;
         case kSectionActivity:{
             WHTrackModel *trackInfo = activities[indexPath.row];
@@ -230,6 +240,10 @@ NSInteger const kSectionActivity = 1;
             sectionHeaderView.sectionTitleLabel.text = @"What's New";
         }
             break;
+        case kSectionPlaylist:{
+            sectionHeaderView.sectionTitleLabel.text = @"My Playlists";
+        }
+            break;
         default:
             break;
     }
@@ -257,6 +271,33 @@ NSInteger const kSectionActivity = 1;
                 [[WHSoundManager sharedManager] reloadTracksData];
                 [self didTogglePlayPause:trackInfo];
             }];
+            
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            
+            return cell;
+        }
+            break;
+        case kSectionPlaylist:{
+            NSString *cellIdentifier = @"DashBoardPlaylistsTableViewCell";
+            DashBoardPlaylistsTableViewCell* cell = (DashBoardPlaylistsTableViewCell *)[tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+            if (cell == nil) {
+                cell = [[DashBoardPlaylistsTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
+            }
+            
+            [cell setInfo:myPlaylists];
+            
+            [cell setDidSelectPlaylist:^(WHPlaylistModel *aPlaylist) {
+                if (aPlaylist.playlistTracks != nil && aPlaylist.playlistTracks.count > 0) {
+                    self->selectedSongSet = [NSArray arrayWithArray:aPlaylist.playlistTracks];
+                    
+                    [[WHSoundManager sharedManager] setDataSource:self];
+                    [[WHSoundManager sharedManager] reloadTracksData];
+                    
+                    [self didTogglePlayPause:self->selectedSongSet[0]];
+                }
+            }];
+            
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
             
             return cell;
         }

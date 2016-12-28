@@ -16,7 +16,7 @@
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+        <view clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
@@ -36,7 +36,7 @@
                 <constraint firstAttribute="trailing" secondItem="Nlm-X1-m84" secondAttribute="trailing" id="R2O-2a-FNh"/>
                 <constraint firstItem="Nlm-X1-m84" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="qw8-LB-Efl"/>
             </constraints>
-            <point key="canvasLocation" x="-270" y="-432"/>
+            <point key="canvasLocation" x="-619.5" y="-357.5"/>
         </view>
     </objects>
 </document>

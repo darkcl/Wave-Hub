@@ -55,6 +55,10 @@
 		742B735E1D37D44800837D74 /* MusicTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 742B735C1D37D44800837D74 /* MusicTableViewCell.xib */; };
 		74333DAC1D3E8E7500DDAB29 /* PlaceholderTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 74333DAA1D3E8E7500DDAB29 /* PlaceholderTableViewCell.m */; };
 		74333DAD1D3E8E7500DDAB29 /* PlaceholderTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 74333DAB1D3E8E7500DDAB29 /* PlaceholderTableViewCell.xib */; };
+		744DF6A91E13DE7F002E6A88 /* DashBoardPlaylistsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 744DF6A71E13DE7F002E6A88 /* DashBoardPlaylistsTableViewCell.m */; };
+		744DF6AA1E13DE7F002E6A88 /* DashBoardPlaylistsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 744DF6A81E13DE7F002E6A88 /* DashBoardPlaylistsTableViewCell.xib */; };
+		744DF6AE1E13DEB5002E6A88 /* DashBoardPlaylistCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 744DF6AC1E13DEB5002E6A88 /* DashBoardPlaylistCollectionViewCell.m */; };
+		744DF6AF1E13DEB5002E6A88 /* DashBoardPlaylistCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 744DF6AD1E13DEB5002E6A88 /* DashBoardPlaylistCollectionViewCell.xib */; };
 		7475A5FE1BF4F9B600100498 /* MediaToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7475A5FD1BF4F9B600100498 /* MediaToolbox.framework */; };
 		74E80CB61D6890EC00A13219 /* splash_background.png in Resources */ = {isa = PBXBuildFile; fileRef = 74E80CB31D6890EC00A13219 /* splash_background.png */; };
 		74E80CB71D6890EC00A13219 /* splash_background@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 74E80CB41D6890EC00A13219 /* splash_background@2x.png */; };
@@ -167,6 +171,12 @@
 		74333DA91D3E8E7500DDAB29 /* PlaceholderTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlaceholderTableViewCell.h; sourceTree = "<group>"; };
 		74333DAA1D3E8E7500DDAB29 /* PlaceholderTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaceholderTableViewCell.m; sourceTree = "<group>"; };
 		74333DAB1D3E8E7500DDAB29 /* PlaceholderTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PlaceholderTableViewCell.xib; sourceTree = "<group>"; };
+		744DF6A61E13DE7F002E6A88 /* DashBoardPlaylistsTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DashBoardPlaylistsTableViewCell.h; sourceTree = "<group>"; };
+		744DF6A71E13DE7F002E6A88 /* DashBoardPlaylistsTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DashBoardPlaylistsTableViewCell.m; sourceTree = "<group>"; };
+		744DF6A81E13DE7F002E6A88 /* DashBoardPlaylistsTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DashBoardPlaylistsTableViewCell.xib; sourceTree = "<group>"; };
+		744DF6AB1E13DEB5002E6A88 /* DashBoardPlaylistCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DashBoardPlaylistCollectionViewCell.h; sourceTree = "<group>"; };
+		744DF6AC1E13DEB5002E6A88 /* DashBoardPlaylistCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DashBoardPlaylistCollectionViewCell.m; sourceTree = "<group>"; };
+		744DF6AD1E13DEB5002E6A88 /* DashBoardPlaylistCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DashBoardPlaylistCollectionViewCell.xib; sourceTree = "<group>"; };
 		7475A5FD1BF4F9B600100498 /* MediaToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaToolbox.framework; path = System/Library/Frameworks/MediaToolbox.framework; sourceTree = SDKROOT; };
 		749A7F301D3E94D800114449 /* WHConstant.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WHConstant.h; sourceTree = "<group>"; };
 		74E80CB31D6890EC00A13219 /* splash_background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = splash_background.png; sourceTree = "<group>"; };
@@ -256,6 +266,7 @@
 		0E1989561DD3029A00FC7CAE /* Cell */ = {
 			isa = PBXGroup;
 			children = (
+				744DF6A51E13DE54002E6A88 /* Playlist */,
 				7416B17F1E0FAE6B007F82A0 /* Favorite */,
 				7416B17E1E0FAE61007F82A0 /* Activity */,
 			);
@@ -467,6 +478,27 @@
 				74333DAB1D3E8E7500DDAB29 /* PlaceholderTableViewCell.xib */,
 			);
 			name = Cell;
+			sourceTree = "<group>";
+		};
+		744DF6A51E13DE54002E6A88 /* Playlist */ = {
+			isa = PBXGroup;
+			children = (
+				744DF6B01E13DEB9002E6A88 /* Collection View Cell */,
+				744DF6A61E13DE7F002E6A88 /* DashBoardPlaylistsTableViewCell.h */,
+				744DF6A71E13DE7F002E6A88 /* DashBoardPlaylistsTableViewCell.m */,
+				744DF6A81E13DE7F002E6A88 /* DashBoardPlaylistsTableViewCell.xib */,
+			);
+			name = Playlist;
+			sourceTree = "<group>";
+		};
+		744DF6B01E13DEB9002E6A88 /* Collection View Cell */ = {
+			isa = PBXGroup;
+			children = (
+				744DF6AB1E13DEB5002E6A88 /* DashBoardPlaylistCollectionViewCell.h */,
+				744DF6AC1E13DEB5002E6A88 /* DashBoardPlaylistCollectionViewCell.m */,
+				744DF6AD1E13DEB5002E6A88 /* DashBoardPlaylistCollectionViewCell.xib */,
+			);
+			name = "Collection View Cell";
 			sourceTree = "<group>";
 		};
 		74F235AF1D3B853A005E872B /* User Profile (Will Delete) */ = {
@@ -715,10 +747,12 @@
 				74E80CB71D6890EC00A13219 /* splash_background@2x.png in Resources */,
 				0E19896D1DD3076800FC7CAE /* ContainerViewController.xib in Resources */,
 				74E80CB81D6890EC00A13219 /* splash_background@3x.png in Resources */,
+				744DF6AF1E13DEB5002E6A88 /* DashBoardPlaylistCollectionViewCell.xib in Resources */,
 				74333DAD1D3E8E7500DDAB29 /* PlaceholderTableViewCell.xib in Resources */,
 				7416B1841E125A20007F82A0 /* NowPlayingViewController.xib in Resources */,
 				0E19895B1DD3064500FC7CAE /* DashBoardFavoriteCollectionViewCell.xib in Resources */,
 				0EEE6B0B1D3886A800068BFE /* MusicDetailViewController.xib in Resources */,
+				744DF6AA1E13DE7F002E6A88 /* DashBoardPlaylistsTableViewCell.xib in Resources */,
 				741055B81D37DC190092BA43 /* Montserrat-Bold.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -813,6 +847,7 @@
 				F9272AE40B26984E04F01944 /* WHAppDelegate.m in Sources */,
 				7416B1731E0F1B37007F82A0 /* SplashViewController.m in Sources */,
 				74F235A91D3B8329005E872B /* WHSoundCloudUser.m in Sources */,
+				744DF6AE1E13DEB5002E6A88 /* DashBoardPlaylistCollectionViewCell.m in Sources */,
 				74F235AD1D3B8536005E872B /* UserProfileViewController.m in Sources */,
 				EA1D28C0C6A5011119F82B73 /* LaunchScreen.xib in Sources */,
 				0ED9AF941D406DDB00B47E3D /* FSAudioStream+WaveHubAddition.m in Sources */,
@@ -830,6 +865,7 @@
 				7416B16F1E0E6ABE007F82A0 /* UIColor+WaveHubAddition.m in Sources */,
 				0E2B7E791BF445D2001B7A25 /* WHSoundManager.m in Sources */,
 				74F235A61D3B61D8005E872B /* UIImage+WaveHubAddition.m in Sources */,
+				744DF6A91E13DE7F002E6A88 /* DashBoardPlaylistsTableViewCell.m in Sources */,
 				7416B1781E0F1E43007F82A0 /* WHActivityModel.m in Sources */,
 				0E6DCBFD1DF54159009A5AE5 /* SongListViewController.m in Sources */,
 				7416B18E1E126873007F82A0 /* LGHorizontalLinearFlowLayout.m in Sources */,

@@ -69,7 +69,7 @@
                 <outlet property="coverImageView" destination="9DW-Nh-A4g" id="NWy-uK-Srp"/>
                 <outlet property="songNameLabel" destination="tlF-Xv-rSa" id="dtP-E8-xcp"/>
             </connections>
-            <point key="canvasLocation" x="-358" y="-46"/>
+            <point key="canvasLocation" x="-464" y="-91"/>
         </collectionViewCell>
     </objects>
 </document>

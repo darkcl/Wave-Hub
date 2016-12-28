@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface WHPlaylistModel : NSObject {
+@interface WHPlaylistModel : NSObject <NSCoding> {
     
 }
 
@@ -22,5 +22,11 @@
 
 
 @property (nonatomic, strong) NSDictionary *responseDict;
+
+@property (nonatomic, strong, readonly) NSString *coverImageUrl;
+@property (nonatomic, strong, readonly) NSString *playlistTitle;
+@property (nonatomic, strong, readonly) NSString *playlistId;
+
+@property (nonatomic, strong, readonly) NSArray <WHTrackModel *> *playlistTracks;
 
 @end
