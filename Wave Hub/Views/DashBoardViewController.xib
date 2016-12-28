@@ -20,7 +20,7 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Nlm-X1-m84">
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Nlm-X1-m84">
                     <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                     <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <connections>
@@ -28,12 +28,22 @@
                         <outlet property="delegate" destination="-1" id="HBk-Hu-ylf"/>
                     </connections>
                 </tableView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9TA-ip-w0o">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="20"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="20" id="y9E-QR-Svd"/>
+                    </constraints>
+                </view>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstAttribute="bottom" secondItem="Nlm-X1-m84" secondAttribute="bottom" id="Ahw-If-0wh"/>
+                <constraint firstAttribute="trailing" secondItem="9TA-ip-w0o" secondAttribute="trailing" id="GDk-y9-T5q"/>
                 <constraint firstItem="Nlm-X1-m84" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="Llv-xN-Icu"/>
                 <constraint firstAttribute="trailing" secondItem="Nlm-X1-m84" secondAttribute="trailing" id="R2O-2a-FNh"/>
+                <constraint firstItem="9TA-ip-w0o" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="cWn-vS-C31"/>
+                <constraint firstItem="9TA-ip-w0o" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="fZ5-Mc-1Uy"/>
                 <constraint firstItem="Nlm-X1-m84" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="qw8-LB-Efl"/>
             </constraints>
             <point key="canvasLocation" x="-619.5" y="-357.5"/>

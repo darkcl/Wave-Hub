@@ -55,6 +55,9 @@ NSInteger const kSectionActivity = 2;
 //    aLabel.backgroundColor = [UIColor clearColor];
 //    aLabel.textAlignment = NSTextAlignmentCenter;
     self.navigationItem.titleView = nil;
+    [self.navigationController.navigationBar setTranslucent:NO];
+    [self.navigationController setNavigationBarHidden:YES];
+    
     isMenuShown = NO;
     [self.tableView registerNib:[UINib nibWithNibName:@"DashBoardFavoritesTableViewCell" bundle:nil] forCellReuseIdentifier:@"DashBoardFavoritesTableViewCell"];
     [self.tableView registerNib:[UINib nibWithNibName:@"DashboardWhatsNewTableViewCell" bundle:nil] forCellReuseIdentifier:@"DashboardWhatsNewTableViewCell"];
@@ -288,6 +291,8 @@ NSInteger const kSectionActivity = 2;
             
             [cell setDidSelectPlaylist:^(WHPlaylistModel *aPlaylist) {
                 if (aPlaylist.playlistTracks != nil && aPlaylist.playlistTracks.count > 0) {
+                    self->playingType = DashBoardPlayingTypePlaylist;
+                    
                     self->selectedSongSet = [NSArray arrayWithArray:aPlaylist.playlistTracks];
                     
                     [[WHSoundManager sharedManager] setDataSource:self];
@@ -376,7 +381,7 @@ NSInteger const kSectionActivity = 2;
                                                                 self->activities =  result;
                                                                 [self.tableView reloadData];
                                                                 
-                                                                if ([[WHSoundManager sharedManager] dataSource] == self) {
+                                                                if ([[WHSoundManager sharedManager] dataSource] == self && self->playingType == DashBoardPlayingTypeActivity) {
                                                                     [[WHSoundManager sharedManager] reloadTracksData];
                                                                 }
                                                             }
