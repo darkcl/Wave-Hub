@@ -14,6 +14,13 @@ typedef NS_ENUM(NSInteger, WHTrackType) {
     WHTrackTypePlaceHolder
 };
 
+typedef NS_ENUM(NSInteger, WHSoundCloudActiviyType) {
+    WHSoundCloudActiviyTypeUnknown,
+    WHSoundCloudActiviyTypeNewTrack,
+    WHSoundCloudActiviyTypeRepostTrack,
+    WHSoundCloudActiviyTypePlaylist
+};
+
 typedef void(^WHTrackCompletion)(void);
 typedef void(^WHTrackProgress)(float progress);
 typedef void(^WHTrackError)(NSError *error);
@@ -40,6 +47,7 @@ typedef void(^WHTrackError)(NSError *error);
 @property BOOL isFavourite;
 
 @property (nonatomic, strong, readonly) NSString *trackId;
+@property (readonly) WHSoundCloudActiviyType activityType;
 
 - (float)progress;
 

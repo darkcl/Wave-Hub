@@ -55,6 +55,7 @@ typedef NS_ENUM(NSInteger, WHSoundManagerType) {
 }
 
 @property (nonatomic, strong) WHTrackModel *playingTrack;
+@property (nonatomic, strong) WHTrackModel *playingPlayList;
 
 //- (NSInteger)displayIndexForPlayingTrack:(WHTrackModel *)track;
 

@@ -8,11 +8,19 @@
 
 #import <Foundation/Foundation.h>
 
-@interface WHPlaylistModel : NSObject
+@interface WHPlaylistModel : NSObject {
+    
+}
 
 - (id)initWithTracks:(NSArray *)tracks nextHref:(NSString *)url;
 
+// SoundCloud Only
+- (id)initWithDictionary:(NSDictionary *)dict;
+
 @property (nonatomic, strong) NSArray *tracks;
 @property (nonatomic, strong) NSString *nextHref;
+
+
+@property (nonatomic, strong) NSDictionary *responseDict;
 
 @end

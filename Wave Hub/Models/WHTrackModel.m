@@ -122,7 +122,24 @@
 
 - (BOOL)isEqual:(id)object{
     WHTrackModel *otherTrack = (WHTrackModel *)object;
-    return [_trackUrl isEqual:otherTrack.trackUrl];
+    return [_responseDict isEqual:otherTrack.responseDict];
+}
+
+- (WHSoundCloudActiviyType)activityType{
+    if (self.responseDict != nil && [self.responseDict isKindOfClass:[NSDictionary class]]) {
+        NSString *typeString = self.responseDict[@"kind"];
+        if ([typeString isEqualToString:@"track"]) {
+            return WHSoundCloudActiviyTypeNewTrack;
+        }else if ([typeString isEqualToString:@"track-repost"]){
+            return WHSoundCloudActiviyTypeRepostTrack;
+        }else if ([typeString isEqualToString:@"playlist"]){
+            return WHSoundCloudActiviyTypePlaylist;
+        }else{
+            return WHSoundCloudActiviyTypeUnknown;
+        }
+    }else{
+        return WHSoundCloudActiviyTypeUnknown;
+    }
 }
 
 #pragma mark - Player Logic

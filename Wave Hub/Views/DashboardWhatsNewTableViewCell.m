@@ -72,6 +72,21 @@
     
     [self startLoadingCover:info.albumCoverUrl];
     
+    switch (info.activityType) {
+        case WHSoundCloudActiviyTypeRepostTrack:
+            self.activityTypeLabel.text = @"Repost";
+            break;
+        case WHSoundCloudActiviyTypeNewTrack:
+            self.activityTypeLabel.text = @"New Track";
+            break;
+        case WHSoundCloudActiviyTypePlaylist:
+            self.activityTypeLabel.text = @"Playlist";
+            break;
+        default:
+            self.activityTypeLabel.text = @"Track";
+            break;
+    }
+    
     [[DLImageLoader sharedInstance] imageFromUrl:info.userImageUrl
                                        completed:^(NSError *error, UIImage *image) {
                                            if (error == nil && image != nil) {

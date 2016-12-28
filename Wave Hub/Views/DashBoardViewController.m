@@ -55,6 +55,13 @@ NSInteger const kSectionActivity = 1;
     [self.tableView registerNib:[UINib nibWithNibName:@"PlaceholderTableViewCell" bundle:nil] forCellReuseIdentifier:@"PlaceholderTableViewCell"];
     
     
+    [[WHWebrequestManager sharedManager] fetchMyPlaylistWithInfo:nil
+                                                         success:^(id responseObject) {
+                                                             
+                                                         } failure:^(NSError *error) {
+                                                             
+                                                         }];
+    
     [[WHDatabaseManager sharedManager] readTrackFromFavourite:^(id result) {
         if (result == nil) {
             [[WHWebrequestManager sharedManager] fetchAllFavouriteWithInfo:nil

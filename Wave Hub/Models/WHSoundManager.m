@@ -242,7 +242,27 @@
 }
 
 - (void)startPlayTrack{
-    if (_playingTrack.trackType == WHTrackTypePlaceHolder) {
+    if (_playingTrack.activityType == WHSoundCloudActiviyTypePlaylist) {
+        // Load more
+        [[WHWebrequestManager sharedManager] fetchTracksWithPlaylistId:_playingTrack.trackId
+                                                               success:^(NSArray *responseObject) {
+                                                                   self.playingPlayList = self.playingTrack;
+                                                                   
+                                                                   NSMutableArray *result = [NSMutableArray arrayWithArray:self->currentTracks];
+                                                                   [result replaceObjectsInRange:NSMakeRange([result indexOfObject:self.playingTrack], 1) withObjectsFromArray:responseObject];
+                                                                   
+                                                                   self->currentTracks =  result;
+                                                                   WHTrackModel *continueOnTrack = [responseObject firstObject];
+                                                                   
+                                                                   [self generatePlaylistForLoop:self->currentTracks];
+                                                                   [[NSNotificationCenter defaultCenter] postNotificationName:WHSoundPlayerDidLoadMore object:result];
+                                                                   
+                                                                   [self playTrack:continueOnTrack forceStart:YES];
+                                                               }
+                                                               failure:^(NSError *error) {
+                                                                   
+                                                               }];
+    }else if (_playingTrack.trackType == WHTrackTypePlaceHolder) {
         // Load more
         [[WHWebrequestManager sharedManager] fetchTracksWithUrl:_playingTrack.nextHref
                                                         success:^(NSArray *responseObject) {

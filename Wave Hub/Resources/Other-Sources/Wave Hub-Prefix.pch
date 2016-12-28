@@ -17,6 +17,7 @@
 
 #import "WHConstant.h"
 #import "WHTrackModel.h"
+#import "WHPlaylistModel.h"
 
 #import "SCUI.h"
 #import "SCAPI.h"

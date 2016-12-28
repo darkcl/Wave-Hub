@@ -44,6 +44,10 @@ typedef void(^RequestFailure)(NSError *error);
                      success:(RequestSuccess)successBlock
                      failure:(RequestFailure)failureBlock;
 
+- (void)fetchTracksWithPlaylistId:(NSString *)playlistId
+                          success:(RequestSuccess)successBlock
+                          failure:(RequestFailure)failureBlock;
+
 #pragma mark - Following
 
 - (void)followUserId:(NSString *)userId

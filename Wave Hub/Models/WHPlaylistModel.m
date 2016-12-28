@@ -10,4 +10,19 @@
 
 @implementation WHPlaylistModel
 
+- (id)initWithTracks:(NSArray *)tracks nextHref:(NSString *)url{
+    if (self = [super init]) {
+        
+    }
+    return self;
+}
+
+- (id)initWithDictionary:(NSDictionary *)dict{
+    if (self = [super init]) {
+        _responseDict = dict;
+    }
+    return self;
+}
+
+
 @end

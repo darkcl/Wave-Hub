@@ -102,8 +102,15 @@ static NSString * const kBaseURL = @"https://api.soundcloud.com";
                      if (jsonError) {
                          failureBlock(jsonError);
                      }else{
+                         NSArray *collections = aDict[@"collection"];
                          
-                         successBlock(aDict);
+                         NSMutableArray *result = [[NSMutableArray alloc] init];
+                         
+                         for (NSDictionary *infoDict in collections) {
+                             [result addObject:[[WHPlaylistModel alloc] initWithDictionary:infoDict]];
+                         }
+                         
+                         successBlock(result);
                      }
                  }
              }];
@@ -233,6 +240,42 @@ static NSString * const kBaseURL = @"https://api.soundcloud.com";
              }];
 }
 
+- (void)fetchTracksWithPlaylistId:(NSString *)playlistId
+                          success:(RequestSuccess)successBlock
+                          failure:(RequestFailure)failureBlock{
+    NSString *url = [NSString stringWithFormat:@"https://api.soundcloud.com/playlists/%@", playlistId];
+    [SCRequest performMethod:SCRequestMethodGET
+                  onResource:[NSURL URLWithString:url]
+             usingParameters:@{@"linked_partitioning":@"1"}
+                 withAccount:[SCSoundCloud account]
+      sendingProgressHandler:^(unsigned long long bytesSend, unsigned long long bytesTotal) {
+          
+      }
+             responseHandler:^(NSURLResponse *response, NSData *responseData, NSError *error) {
+                 if (error) {
+                     failureBlock(error);
+                     
+                 }else{
+                     NSError *jsonError;
+                     NSDictionary *aDict = [NSJSONSerialization JSONObjectWithData:responseData
+                                                                           options:NSJSONReadingAllowFragments
+                                                                             error:&jsonError];
+                     if (jsonError) {
+                         failureBlock(jsonError);
+                     }else{
+                         NSArray *tracks = aDict[@"tracks"];
+                         NSMutableArray *result = [[NSMutableArray alloc] init];
+                         
+                         for (NSDictionary *infoDict in tracks) {
+                             [result addObject:[[WHTrackModel alloc] initWithInfo:infoDict]];
+                         }
+                         
+                         successBlock(result);
+                     }
+                 }
+             }];
+}
+
 - (void)fetchTracksWithUrl:(NSString *)url
                     success:(RequestSuccess)successBlock
                     failure:(RequestFailure)failureBlock{
@@ -265,11 +308,9 @@ static NSString * const kBaseURL = @"https://api.soundcloud.com";
                              if (trackInfo[@"origin"] != nil) {
                                  infoDict = trackInfo[@"origin"];
                                  
-                                 if (![infoDict[@"kind"] isEqualToString:@"playlist"]) {
-                                     WHTrackModel *aTrack = [[WHTrackModel alloc] initWithInfo:infoDict];
-                                     aTrack.trackType = WHTrackTypeSoundCloud;
-                                     [result addObject:aTrack];
-                                 }
+                                 WHTrackModel *aTrack = [[WHTrackModel alloc] initWithInfo:infoDict];
+                                 aTrack.trackType = WHTrackTypeSoundCloud;
+                                 [result addObject:aTrack];
                              }else{
                                  WHTrackModel *aTrack = [[WHTrackModel alloc] initWithInfo:infoDict];
                                  aTrack.trackType = WHTrackTypeSoundCloud;
@@ -495,8 +536,24 @@ static NSString * const kBaseURL = @"https://api.soundcloud.com";
                          NSMutableArray *result = [[NSMutableArray alloc] init];
                          
                          for (NSDictionary *infoDict in jsonDict[@"collection"]) {
+                             /*
+                              track	Track
+                              track-sharing	Track and Sharing-Note
+                              comment	Comment with Mini-User and Mini-Track
+                              favoriting	Mini-Track and Mini-User
+                              */
+                             
                              WHTrackModel *anActivity = [[WHTrackModel alloc] initWithInfo:infoDict[@"origin"]];
                              [result addObject:anActivity];
+//                             if (anActivity.activityType != WHSoundCloudActiviyTypePlaylist) {
+//                                 [result addObject:anActivity];
+//                             }else{
+//                                 // Playlist handling
+//                                 
+//                                 [result addObject:[[WHPlaylistModel alloc] initWithDictionary:infoDict[@"origin"]]];
+//                             }
+                             
+                             
                          }
                          
                          NSString *nextHref = jsonDict[@"next_href"];
