@@ -40,7 +40,7 @@
                 <outlet property="coverImageView" destination="XTH-Vy-Abx" id="FAk-6H-RNT"/>
                 <outlet property="loadingIndicator" destination="deZ-nq-P0K" id="UQB-Nd-f7a"/>
             </connections>
-            <point key="canvasLocation" x="-95.5" y="-57.5"/>
+            <point key="canvasLocation" x="-215" y="-90"/>
         </collectionViewCell>
     </objects>
 </document>

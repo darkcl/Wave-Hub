@@ -20,4 +20,10 @@ typedef NS_ENUM(NSInteger, DashBoardPlayingType) {
 
 - (void)reloadFavorite;
 
+#pragma mark - Shortcuts
+
+- (void)goToFavorite;
+- (void)goToPlaylist;
+- (void)goToWhatsNew;
+
 @end

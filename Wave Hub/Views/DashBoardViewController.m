@@ -30,6 +30,8 @@ NSInteger const kSectionActivity = 1;
     NSArray <WHTrackModel *> *selectedSongSet;
     
     WHTrackModel *currentPlayingTrack;
+    
+    BOOL isMenuShown;
 }
 
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
@@ -49,7 +51,7 @@ NSInteger const kSectionActivity = 1;
 //    aLabel.backgroundColor = [UIColor clearColor];
 //    aLabel.textAlignment = NSTextAlignmentCenter;
     self.navigationItem.titleView = nil;
-    
+    isMenuShown = NO;
     [self.tableView registerNib:[UINib nibWithNibName:@"DashBoardFavoritesTableViewCell" bundle:nil] forCellReuseIdentifier:@"DashBoardFavoritesTableViewCell"];
     [self.tableView registerNib:[UINib nibWithNibName:@"DashboardWhatsNewTableViewCell" bundle:nil] forCellReuseIdentifier:@"DashboardWhatsNewTableViewCell"];
     [self.tableView registerNib:[UINib nibWithNibName:@"PlaceholderTableViewCell" bundle:nil] forCellReuseIdentifier:@"PlaceholderTableViewCell"];
@@ -103,6 +105,21 @@ NSInteger const kSectionActivity = 1;
                                                  name:WHSoundPlayerDidLoadMore
                                                object:nil];
     
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(goToFavorite)
+                                                 name:WHMenuPressFavoriteNotifiction
+                                               object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(goToPlaylist)
+                                                 name:WHMenuPressPlayListsNotifiction
+                                               object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(goToWhatsNew)
+                                                 name:WHMenuPressWhatsNewNotifiction
+                                               object:nil];
+    
 }
 
 - (void)reloadFavorite{
@@ -110,6 +127,21 @@ NSInteger const kSectionActivity = 1;
         self->favourite = result;
         [self.tableView reloadData];
     }];
+}
+
+- (void)goToFavorite{
+    [self.navigationController popToViewController:self animated:YES];
+    [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:kSectionFav] atScrollPosition:UITableViewScrollPositionTop animated:YES];
+}
+
+- (void)goToPlaylist{
+    [self.navigationController popToViewController:self animated:YES];
+    [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:kSectionFav] atScrollPosition:UITableViewScrollPositionTop animated:YES];
+}
+
+- (void)goToWhatsNew{
+    [self.navigationController popToViewController:self animated:YES];
+    [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:kSectionActivity] atScrollPosition:UITableViewScrollPositionTop animated:YES];
 }
 
 - (void)didReceiveMemoryWarning {

@@ -22,9 +22,13 @@
 #import "DashBoardViewController.h"
 
 CGFloat const kMiniPlayerHeight = 65.0f;
+CGFloat const kMenuWidth = 184.0f;
+
 
 @interface ContainerViewController (){
     UIViewController *childVC;
+    
+    BOOL isMenuShown;
 }
 @property (strong, nonatomic) IBOutlet UIProgressView *playerProgressView;
 @property (strong, nonatomic) IBOutlet UIView *containerView;
@@ -38,6 +42,13 @@ CGFloat const kMiniPlayerHeight = 65.0f;
 @property (strong, nonatomic) IBOutlet UIImageView *coverImageView;
 
 @property (nonatomic, strong) ZFModalTransitionAnimator *animator;
+@property (weak, nonatomic) IBOutlet UIView *menuView;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *menuRightConstraint;
+
+@property (weak, nonatomic) IBOutlet UIImageView *favoriteImageView;
+@property (weak, nonatomic) IBOutlet UIImageView *whatsNewImageView;
+@property (weak, nonatomic) IBOutlet UIImageView *settingImageView;
+@property (weak, nonatomic) IBOutlet UIImageView *playlistsImageView;
 
 @end
 
@@ -59,6 +70,8 @@ CGFloat const kMiniPlayerHeight = 65.0f;
                                                  name:WHSoundTrackDidChangeNotifiction
                                                object:nil];
     
+    isMenuShown = NO;
+    
     [[WHSoundManager sharedManager] addActiveProgressViews:self.playerProgressView];
     
     FAKFontAwesome *playIcon =  [FAKFontAwesome pauseIconWithSize:17];
@@ -72,6 +85,26 @@ CGFloat const kMiniPlayerHeight = 65.0f;
     FAKFontAwesome *backwardIcon =  [FAKFontAwesome backwardIconWithSize:17];
     [backwardIcon addAttribute:NSForegroundColorAttributeName value:[UIColor blackColor]];
     [self.backwardButton setAttributedTitle:backwardIcon.attributedString forState:UIControlStateNormal];
+    
+    FAKFontAwesome *heartIcon = [FAKFontAwesome heartIconWithSize:13];
+    [heartIcon addAttribute:NSForegroundColorAttributeName value:[UIColor whiteColor]];
+    heartIcon.drawingBackgroundColor = [UIColor clearColor];
+    self.favoriteImageView.image = [heartIcon imageWithSize:CGSizeMake(30, 30)];
+    
+    FAKFontAwesome *newsIcon = [FAKFontAwesome newspaperOIconWithSize:13];
+    [newsIcon addAttribute:NSForegroundColorAttributeName value:[UIColor whiteColor]];
+    newsIcon.drawingBackgroundColor = [UIColor clearColor];
+    self.whatsNewImageView.image = [newsIcon imageWithSize:CGSizeMake(30, 30)];
+    
+    FAKFontAwesome *listIcon = [FAKFontAwesome listUlIconWithSize:13];
+    [listIcon addAttribute:NSForegroundColorAttributeName value:[UIColor whiteColor]];
+    listIcon.drawingBackgroundColor = [UIColor clearColor];
+    self.playlistsImageView.image = [listIcon imageWithSize:CGSizeMake(30, 30)];
+    
+    FAKFontAwesome *settingsIcon = [FAKFontAwesome cogIconWithSize:13];
+    [settingsIcon addAttribute:NSForegroundColorAttributeName value:[UIColor whiteColor]];
+    settingsIcon.drawingBackgroundColor = [UIColor clearColor];
+    self.settingImageView.image = [settingsIcon imageWithSize:CGSizeMake(30, 30)];
 }
 
 - (void)viewDidLayoutSubviews{
@@ -168,6 +201,67 @@ CGFloat const kMiniPlayerHeight = 65.0f;
     
     modalVC.transitioningDelegate = self.animator;
     [self presentViewController:modalVC animated:YES completion:nil];
+}
+- (IBAction)settingButtonPressed:(id)sender {
+    self.menuRightConstraint.constant = -kMenuWidth;
+    [UIView animateWithDuration:0.5
+                     animations:^{
+                         [self.view layoutIfNeeded];
+                     }];
+    isMenuShown = NO;
+    
+    // TODO: Show setting?
+}
+
+- (IBAction)playlistButtonPressed:(id)sender {
+    
+    self.menuRightConstraint.constant = -kMenuWidth;
+    [UIView animateWithDuration:0.5
+                     animations:^{
+                         [self.view layoutIfNeeded];
+                     }];
+    isMenuShown = NO;
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:WHMenuPressPlayListsNotifiction object:nil];
+}
+
+- (IBAction)whatsNewButtonPressed:(id)sender {
+    
+    self.menuRightConstraint.constant = -kMenuWidth;
+    [UIView animateWithDuration:0.5
+                     animations:^{
+                         [self.view layoutIfNeeded];
+                     }];
+    isMenuShown = NO;
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:WHMenuPressWhatsNewNotifiction object:nil];
+}
+
+- (IBAction)favoriteButtonPressed:(id)sender {
+    
+    self.menuRightConstraint.constant = -kMenuWidth;
+    [UIView animateWithDuration:0.5
+                     animations:^{
+                         [self.view layoutIfNeeded];
+                     }];
+    isMenuShown = NO;
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:WHMenuPressFavoriteNotifiction object:nil];
+}
+
+- (IBAction)menuButtonPressed:(id)sender {
+    if (isMenuShown) {
+        self.menuRightConstraint.constant = -kMenuWidth;
+    }else{
+        self.menuRightConstraint.constant = 0.0f;
+    }
+    
+    isMenuShown = !isMenuShown;
+    
+    [UIView animateWithDuration:0.5
+                     animations:^{
+                         [self.view layoutIfNeeded];
+                     }];
 }
 
 - (void)didUpdatePlayingTrack:(NSNotification *)info{

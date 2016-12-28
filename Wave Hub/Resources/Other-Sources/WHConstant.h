@@ -20,4 +20,8 @@
 
 #define WHSoundTrackProgressNotifiction @"WHSoundTrackProgressNotifiction"
 
+#define WHMenuPressPlayListsNotifiction @"WHMenuPressPlayListsNotifiction"
+#define WHMenuPressWhatsNewNotifiction @"WHMenuPressWhatsNewNotifiction"
+#define WHMenuPressFavoriteNotifiction @"WHMenuPressFavoriteNotifiction"
+
 #define WHSoundCloudResourceMyFavourite @"https://api.soundcloud.com/me/favorites"
