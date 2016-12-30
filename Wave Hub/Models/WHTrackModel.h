@@ -74,6 +74,8 @@ typedef void(^WHTrackError)(NSError *error);
 
 - (id)initWithNextHref:(NSString *)url;
 
+- (id)initWithFileUrl:(NSString *)fileUrl;
+
 - (NSDictionary *)currentDisplayInfo;
 
 @end

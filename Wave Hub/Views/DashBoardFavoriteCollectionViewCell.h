@@ -20,6 +20,8 @@
 @property (strong, nonatomic) IBOutlet UILabel *authorLabel;
 @property (strong, nonatomic) IBOutlet UILabel *songNameLabel;
 @property (strong, nonatomic) IBOutlet UIButton *playPauseToggleButton;
+@property (weak, nonatomic) IBOutlet UILabel *typeLabel;
+@property (weak, nonatomic) IBOutlet UIView *containerView;
 
 @property (nonatomic, strong) void(^didPressedPlay)(WHTrackModel *info);
 

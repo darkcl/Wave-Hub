@@ -48,4 +48,12 @@ typedef void(^DatabaseReturn)(id result);
 
 - (void)removePlaylist:(WHPlaylistModel *)aTrack;
 
+#pragma mark - Local Files
+
+- (void)saveLocalTrack:(NSArray <WHTrackModel *> *)tracks;
+
+- (void)readLocalTrack:(DatabaseReturn)successBlock;
+
+- (void)updateLocalTrack:(WHTrackModel *)track;
+
 @end

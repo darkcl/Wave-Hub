@@ -125,25 +125,43 @@
 
 - (void)loadData{
     WHTrackModel *currentPlaying = [[WHSoundManager sharedManager] playingTrack];
-    [[WHWebrequestManager sharedManager] fetchIsFavouriteWithTrackId:currentPlaying.trackId
-                                                             success:^(NSNumber *isFavouriteObj) {
-                                                                 currentPlaying.isFavourite = [isFavouriteObj boolValue];
-                                                                 
-                                                                 FAKFontAwesome *favoriteIcon = currentPlaying.isFavourite ? [FAKFontAwesome heartIconWithSize:17] : [FAKFontAwesome heartOIconWithSize:17] ;
-                                                                 [favoriteIcon addAttribute:NSForegroundColorAttributeName value:[UIColor wh_favoriteColor]];
-                                                                 [self.favoriteButton setAttributedTitle:favoriteIcon.attributedString forState:UIControlStateNormal];
-                                                                 
-                                                                 [UIView animateWithDuration:0.5
-                                                                                  animations:^{
-                                                                                      self.favoriteButton.alpha = 1.0;
-                                                                                  }
-                                                                                  completion:^(BOOL finished) {
-                                                                                      
-                                                                                  }];
-                                                             }
-                                                             failure:^(NSError *error) {
-                                                                 [SVProgressHUD dismiss];
-                                                             }];
+    
+    if (currentPlaying.trackType == WHTrackTypeSoundCloud) {
+        [[WHWebrequestManager sharedManager] fetchIsFavouriteWithTrackId:currentPlaying.trackId
+                                                                 success:^(NSNumber *isFavouriteObj) {
+                                                                     currentPlaying.isFavourite = [isFavouriteObj boolValue];
+                                                                     
+                                                                     FAKFontAwesome *favoriteIcon = currentPlaying.isFavourite ? [FAKFontAwesome heartIconWithSize:17] : [FAKFontAwesome heartOIconWithSize:17] ;
+                                                                     [favoriteIcon addAttribute:NSForegroundColorAttributeName value:[UIColor wh_favoriteColor]];
+                                                                     [self.favoriteButton setAttributedTitle:favoriteIcon.attributedString forState:UIControlStateNormal];
+                                                                     
+                                                                     [UIView animateWithDuration:0.5
+                                                                                      animations:^{
+                                                                                          self.favoriteButton.alpha = 1.0;
+                                                                                      }
+                                                                                      completion:^(BOOL finished) {
+                                                                                          
+                                                                                      }];
+                                                                 }
+                                                                 failure:^(NSError *error) {
+                                                                     [SVProgressHUD dismiss];
+                                                                 }];
+    }else{
+        [[WHDatabaseManager sharedManager] readTrackFromFavourite:^(NSArray *result) {
+            currentPlaying.isFavourite = [result containsObject:currentPlaying];
+            FAKFontAwesome *favoriteIcon = currentPlaying.isFavourite ? [FAKFontAwesome heartIconWithSize:17] : [FAKFontAwesome heartOIconWithSize:17] ;
+            [favoriteIcon addAttribute:NSForegroundColorAttributeName value:[UIColor wh_favoriteColor]];
+            [self.favoriteButton setAttributedTitle:favoriteIcon.attributedString forState:UIControlStateNormal];
+            
+            [UIView animateWithDuration:0.5
+                             animations:^{
+                                 self.favoriteButton.alpha = 1.0;
+                             }
+                             completion:^(BOOL finished) {
+                                 
+                             }];
+        }];
+    }
 }
 
 #pragma mark - Configuration
@@ -222,7 +240,7 @@
 
 - (IBAction)favoriteButtonPressed:(id)sender {
     WHTrackModel *currentPlaying = [[WHSoundManager sharedManager] playingTrack];
-    if (currentPlaying.trackId.length != 0) {
+    if (currentPlaying.trackType == WHTrackTypeLocal) {
         if (currentPlaying.isFavourite) {
             [UIView animateWithDuration:0.5
                              animations:^{
@@ -231,17 +249,10 @@
                              completion:^(BOOL finished) {
                                  
                              }];
-            [[WHWebrequestManager sharedManager] unfavouriteTrack:currentPlaying.trackId
-                                                          success:^(id responseObject) {
-                                                              [self loadData];
-                                                              
-                                                              if (self.didRemoveFavorite != nil) {
-                                                                  self.didRemoveFavorite(currentPlaying);
-                                                              }
-                                                          }
-                                                          failure:^(NSError *error) {
-                                                              
-                                                          }];
+            if (self.didRemoveFavorite != nil) {
+                self.didRemoveFavorite(currentPlaying);
+            }
+            [self loadData];
         }else{
             [UIView animateWithDuration:0.5
                              animations:^{
@@ -250,19 +261,55 @@
                              completion:^(BOOL finished) {
                                  
                              }];
-            [[WHWebrequestManager sharedManager] favouriteTrack:currentPlaying.trackId
-                                                        success:^(id responseObject) {
-                                                            [self loadData];
-                                                            
-                                                            if (self.didAddFavorite != nil) {
-                                                                self.didAddFavorite(currentPlaying);
+            if (self.didAddFavorite != nil) {
+                self.didAddFavorite(currentPlaying);
+            }
+            [self loadData];
+        }
+    }else{
+        if (currentPlaying.trackId.length != 0) {
+            if (currentPlaying.isFavourite) {
+                [UIView animateWithDuration:0.5
+                                 animations:^{
+                                     self.favoriteButton.alpha = 0.0;
+                                 }
+                                 completion:^(BOOL finished) {
+                                     
+                                 }];
+                [[WHWebrequestManager sharedManager] unfavouriteTrack:currentPlaying.trackId
+                                                              success:^(id responseObject) {
+                                                                  [self loadData];
+                                                                  
+                                                                  if (self.didRemoveFavorite != nil) {
+                                                                      self.didRemoveFavorite(currentPlaying);
+                                                                  }
+                                                              }
+                                                              failure:^(NSError *error) {
+                                                                  
+                                                              }];
+            }else{
+                [UIView animateWithDuration:0.5
+                                 animations:^{
+                                     self.favoriteButton.alpha = 0.0;
+                                 }
+                                 completion:^(BOOL finished) {
+                                     
+                                 }];
+                [[WHWebrequestManager sharedManager] favouriteTrack:currentPlaying.trackId
+                                                            success:^(id responseObject) {
+                                                                [self loadData];
+                                                                
+                                                                if (self.didAddFavorite != nil) {
+                                                                    self.didAddFavorite(currentPlaying);
+                                                                }
                                                             }
-                                                        }
-                                                        failure:^(NSError *error) {
-                                                            
-                                                        }];
+                                                            failure:^(NSError *error) {
+                                                                
+                                                            }];
+            }
         }
     }
+    
 }
 
 - (IBAction)repostButtonPressed:(id)sender {

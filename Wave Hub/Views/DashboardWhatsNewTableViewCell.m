@@ -86,15 +86,18 @@
             self.activityTypeLabel.text = @"Track";
             break;
     }
-    
-    [[DLImageLoader sharedInstance] imageFromUrl:info.userImageUrl
-                                       completed:^(NSError *error, UIImage *image) {
-                                           if (error == nil && image != nil) {
-                                               self.userImageView.image = image;
-                                           }else{
-                                               self.userImageView.image = nil;
-                                           }
-                                       }];
+    if (info.albumCoverImage != nil){
+        self.coverImageView.image = info.albumCoverImage;
+    }else{
+        [[DLImageLoader sharedInstance] imageFromUrl:info.userImageUrl
+                                           completed:^(NSError *error, UIImage *image) {
+                                               if (error == nil && image != nil) {
+                                                   self.userImageView.image = image;
+                                               }else{
+                                                   self.userImageView.image = nil;
+                                               }
+                                           }];
+    }
     
     self.selectionStyle = UITableViewCellSelectionStyleNone;
 }

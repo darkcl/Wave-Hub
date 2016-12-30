@@ -52,13 +52,13 @@
                             </constraints>
                         </imageView>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="-" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ccu-uP-8ka">
-                            <rect key="frame" x="60" y="18" width="186" height="15"/>
+                            <rect key="frame" x="60" y="19" width="186" height="14"/>
                             <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="12"/>
                             <color key="textColor" red="0.33333333333333331" green="0.33333333333333331" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5EN-Af-9eL" customClass="MarqueeLabel">
-                            <rect key="frame" x="60" y="33" width="186" height="18"/>
+                            <rect key="frame" x="60" y="33" width="186" height="17"/>
                             <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="14"/>
                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <nil key="highlightedColor"/>
@@ -255,10 +255,10 @@
                             </userDefinedRuntimeAttributes>
                         </view>
                         <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zfG-f5-Jl4">
-                            <rect key="frame" x="58.5" y="0.5" width="67.5" height="30"/>
+                            <rect key="frame" x="65" y="1" width="61" height="30"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Setting" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dHS-HC-neV">
-                                    <rect key="frame" x="8" y="4" width="51.5" height="22"/>
+                                    <rect key="frame" x="8" y="4" width="45" height="22"/>
                                     <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="14"/>
                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <nil key="highlightedColor"/>
@@ -302,10 +302,10 @@
                             </userDefinedRuntimeAttributes>
                         </view>
                         <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oDN-Oh-Sbv">
-                            <rect key="frame" x="27" y="38.5" width="99" height="30"/>
+                            <rect key="frame" x="35" y="39" width="91" height="30"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="My Playlists" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hbO-6X-IRq">
-                                    <rect key="frame" x="8" y="4" width="83" height="22"/>
+                                    <rect key="frame" x="8" y="4" width="75" height="22"/>
                                     <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="14"/>
                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <nil key="highlightedColor"/>
@@ -326,10 +326,10 @@
                             </userDefinedRuntimeAttributes>
                         </view>
                         <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3Pz-7d-V9j">
-                            <rect key="frame" x="25" y="76.5" width="101" height="30"/>
+                            <rect key="frame" x="34" y="77" width="92" height="30"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="What's New" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="J3B-zN-lVV">
-                                    <rect key="frame" x="8" y="4" width="85" height="22"/>
+                                    <rect key="frame" x="8" y="4" width="76" height="22"/>
                                     <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="14"/>
                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <nil key="highlightedColor"/>
@@ -350,10 +350,10 @@
                             </userDefinedRuntimeAttributes>
                         </view>
                         <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="a06-Yv-WlS">
-                            <rect key="frame" x="52.5" y="114" width="73.5" height="30"/>
+                            <rect key="frame" x="59" y="114" width="67" height="30"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Favorite" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8L2-yA-7Zm">
-                                    <rect key="frame" x="8" y="4" width="57.5" height="22"/>
+                                    <rect key="frame" x="8" y="4" width="51" height="22"/>
                                     <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="14"/>
                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <nil key="highlightedColor"/>

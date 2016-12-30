@@ -21,13 +21,18 @@
 #import "PlaceholderTableViewCell.h"
 
 NSInteger const kSectionFav = 0;
-NSInteger const kSectionPlaylist = 1;
-NSInteger const kSectionActivity = 2;
+NSInteger const kSectionLocal = 1;
+NSInteger const kSectionPlaylist = 2;
+NSInteger const kSectionActivity = 3;
 
 @interface DashBoardViewController () <UITableViewDelegate, UITableViewDataSource, WHSoundManagerDatasource> {
     NSArray <WHTrackModel *> *favourite;
     
     NSArray <WHTrackModel *> *activities;
+    
+    NSArray <WHTrackModel *> *localTracks;
+    
+    NSArray <WHTrackModel *> *localNewTracks;
     
     NSArray <WHPlaylistModel *> *myPlaylists;
     
@@ -36,9 +41,13 @@ NSInteger const kSectionActivity = 2;
     WHTrackModel *currentPlayingTrack;
     
     BOOL isMenuShown;
+    
+    
+    NSInteger loadingCount;
 }
 
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
+@property (weak, nonatomic) IBOutlet UIView *loadingView;
 
 @end
 
@@ -57,7 +66,7 @@ NSInteger const kSectionActivity = 2;
     self.navigationItem.titleView = nil;
     [self.navigationController.navigationBar setTranslucent:NO];
     [self.navigationController setNavigationBarHidden:YES];
-    
+    loadingCount = 3;
     isMenuShown = NO;
     [self.tableView registerNib:[UINib nibWithNibName:@"DashBoardFavoritesTableViewCell" bundle:nil] forCellReuseIdentifier:@"DashBoardFavoritesTableViewCell"];
     [self.tableView registerNib:[UINib nibWithNibName:@"DashboardWhatsNewTableViewCell" bundle:nil] forCellReuseIdentifier:@"DashboardWhatsNewTableViewCell"];
@@ -70,8 +79,16 @@ NSInteger const kSectionActivity = 2;
                                                          success:^(NSArray *responseObject) {
                                                              self->myPlaylists = responseObject;
                                                              [self.tableView reloadData];
+                                                             [[WHDatabaseManager sharedManager] saveMyPlaylistsArray:responseObject];
+                                                             [self loadCompleted];
                                                          } failure:^(NSError *error) {
+                                                             // Load Cached Playlist
+                                                             [[WHDatabaseManager sharedManager] readFromMyPlaylists:^(NSArray *result) {
+                                                                 self->myPlaylists = result;
+                                                                 [self.tableView reloadData];
+                                                             }];
                                                              
+                                                             [self loadCompleted];
                                                          }];
     
     [[WHDatabaseManager sharedManager] readTrackFromFavourite:^(id result) {
@@ -83,26 +100,56 @@ NSInteger const kSectionActivity = 2;
                                                                        self->favourite = responseObject;
                                                                        
                                                                        [self.tableView reloadData];
-                                                                       
+                                                                       [self loadCompleted];
                                                                    }
                                                                    failure:^(NSError *error) {
-                                                                       
+                                                                       [self loadCompleted];
                                                                    }];
         }else{
             self->favourite = result;
             [self.tableView reloadData];
+            [self loadCompleted];
         }
     }];
     
     [[WHWebrequestManager sharedManager] fetchActivityWithUrl:nil
                                                       success:^(NSArray *responseObject) {
-                                                          NSLog(@"%@", responseObject);
                                                           
-                                                          self->activities = responseObject;
-                                                          [self.tableView reloadData];
+                                                          [[WHFileManager sharedManager] fetchLocalTracks:^(NSArray<WHTrackModel *> *newTracks, NSArray<WHTrackModel *> *allTracks) {
+                                                              [[WHDatabaseManager sharedManager] saveLocalTrack:allTracks];
+                                                              
+                                                              NSMutableArray *activityResult = [[NSMutableArray alloc] init];
+                                                              [activityResult addObjectsFromArray:newTracks];
+                                                              [activityResult addObjectsFromArray:responseObject];
+                                                              
+                                                              self->activities = [NSArray arrayWithArray:activityResult];
+                                                              self->localTracks = [NSArray arrayWithArray:allTracks];
+                                                              
+                                                              [[WHDatabaseManager sharedManager] saveTrackFromActivityArray:self->activities];
+                                                              [self.tableView reloadData];
+                                                              [self loadCompleted];
+                                                          }];
+                                                          
+                                                          
                                                       }
                                                       failure:^(NSError *error) {
-                                                          
+                                                          // Load Cached Activities
+                                                          [[WHDatabaseManager sharedManager] readTrackFromActivity:^(NSArray *result) {
+                                                              [[WHFileManager sharedManager] fetchLocalTracks:^(NSArray<WHTrackModel *> *newTracks, NSArray<WHTrackModel *> *allTracks) {
+                                                                  [[WHDatabaseManager sharedManager] saveLocalTrack:allTracks];
+                                                                  
+                                                                  NSMutableArray *activityResult = [[NSMutableArray alloc] init];
+                                                                  [activityResult addObjectsFromArray:newTracks];
+                                                                  [activityResult addObjectsFromArray:result];
+                                                                  
+                                                                  self->activities = [NSArray arrayWithArray:activityResult];
+                                                                  self->localTracks = [NSArray arrayWithArray:allTracks];
+                                                                  
+                                                                  [[WHDatabaseManager sharedManager] saveTrackFromActivityArray:self->activities];
+                                                                  [self.tableView reloadData];
+                                                                  [self loadCompleted];
+                                                              }];
+                                                          }];
                                                       }];
     
     playingType = DashBoardPlayingTypeUnknown;
@@ -129,7 +176,20 @@ NSInteger const kSectionActivity = 2;
                                              selector:@selector(goToWhatsNew)
                                                  name:WHMenuPressWhatsNewNotifiction
                                                object:nil];
-    
+}
+
+- (void)loadCompleted{
+    loadingCount --;
+    NSLog(@"%li", (long)loadingCount);
+    if (loadingCount == 0) {
+        [UIView animateWithDuration:0.5
+                         animations:^{
+                             self.loadingView.alpha = 0.0;
+                         }
+                         completion:^(BOOL finished) {
+                             self.loadingView.hidden = YES;
+                         }];
+    }
 }
 
 - (void)reloadFavorite{
@@ -186,7 +246,7 @@ NSInteger const kSectionActivity = 2;
 */
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 3;
+    return 4;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -194,7 +254,11 @@ NSInteger const kSectionActivity = 2;
         case kSectionFav:{
             return 1;
         }
-            
+            break;
+        case kSectionLocal:{
+            return 1;
+        }
+            break;
         case kSectionActivity:{
             return activities.count;
         }
@@ -208,6 +272,9 @@ NSInteger const kSectionActivity = 2;
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     switch (indexPath.section) {
         case kSectionFav:
+            return 230;
+            break;
+        case kSectionLocal:
             return 230;
             break;
         case kSectionPlaylist:
@@ -239,6 +306,10 @@ NSInteger const kSectionActivity = 2;
             sectionHeaderView.sectionTitleLabel.text = @"Favorite";
         }
             break;
+        case kSectionLocal:{
+            sectionHeaderView.sectionTitleLabel.text = @"Local Files";
+        }
+            break;
         case kSectionActivity:{
             sectionHeaderView.sectionTitleLabel.text = @"What's New";
         }
@@ -257,6 +328,29 @@ NSInteger const kSectionActivity = 2;
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     switch (indexPath.section) {
+        case kSectionLocal:{
+            NSString *cellIdentifier = @"DashBoardFavoritesTableViewCell";
+            DashBoardFavoritesTableViewCell* cell = (DashBoardFavoritesTableViewCell *)[tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+            if (cell == nil) {
+                cell = [[DashBoardFavoritesTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
+            }
+            
+            [cell setInfo:localTracks];
+            
+            [cell setDidSelectTrack:^(WHTrackModel *trackInfo) {
+                self->playingType = DashBoardPlayingTypeFavorite;
+                
+                self->selectedSongSet = self->localTracks;
+                [[WHSoundManager sharedManager] setDataSource:self];
+                [[WHSoundManager sharedManager] reloadTracksData];
+                [self didTogglePlayPause:trackInfo];
+            }];
+            
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            
+            return cell;
+        }
+            break;
         case kSectionFav:{
             NSString *cellIdentifier = @"DashBoardFavoritesTableViewCell";
             DashBoardFavoritesTableViewCell* cell = (DashBoardFavoritesTableViewCell *)[tableView dequeueReusableCellWithIdentifier:cellIdentifier];
@@ -267,7 +361,7 @@ NSInteger const kSectionActivity = 2;
             [cell setInfo:favourite];
             
             [cell setDidSelectTrack:^(WHTrackModel *trackInfo) {
-                self->playingType = DashBoardPlayingTypeFavorite;
+                self->playingType = DashBoardPlayingTypeLocalFiles;
                 
                 self->selectedSongSet = self->favourite;
                 [[WHSoundManager sharedManager] setDataSource:self];
@@ -280,6 +374,7 @@ NSInteger const kSectionActivity = 2;
             return cell;
         }
             break;
+            
         case kSectionPlaylist:{
             NSString *cellIdentifier = @"DashBoardPlaylistsTableViewCell";
             DashBoardPlaylistsTableViewCell* cell = (DashBoardPlaylistsTableViewCell *)[tableView dequeueReusableCellWithIdentifier:cellIdentifier];
@@ -380,6 +475,7 @@ NSInteger const kSectionActivity = 2;
                                                                 [result addObjectsFromArray:responseObject];
                                                                 self->activities =  result;
                                                                 [self.tableView reloadData];
+                                                                [[WHDatabaseManager sharedManager] saveTrackFromActivityArray:result];
                                                                 
                                                                 if ([[WHSoundManager sharedManager] dataSource] == self && self->playingType == DashBoardPlayingTypeActivity) {
                                                                     [[WHSoundManager sharedManager] reloadTracksData];
@@ -424,6 +520,8 @@ NSInteger const kSectionActivity = 2;
     if ([info.object isKindOfClass:[NSArray class]]) {
         if (playingType == DashBoardPlayingTypeActivity) {
             activities = (NSArray *)info.object;
+            
+            [[WHDatabaseManager sharedManager] saveTrackFromActivityArray:activities];
         }
         
         [_tableView reloadData];

@@ -72,14 +72,15 @@
 - (void)saveTrackFromActivityArray:(NSArray <WHTrackModel *> *)activities{
     YapDatabaseConnection *connection = [db newConnection];
     [connection readWriteWithBlock:^(YapDatabaseReadWriteTransaction * _Nonnull transaction) {
-        
-        
         [transaction setObject:activities forKey:@"activity_track" inCollection:@"wave_hub"];
     }];
 }
 
 - (void)readTrackFromActivity:(DatabaseReturn)successBlock{
-    
+    YapDatabaseConnection *connection = [db newConnection];
+    [connection readWithBlock:^(YapDatabaseReadTransaction * _Nonnull transaction) {
+        successBlock([transaction objectForKey:@"activity_track" inCollection:@"wave_hub"]);
+    }];
 }
 
 - (void)addActivityTrack:(WHTrackModel *)aTrack{
@@ -93,19 +94,63 @@
 #pragma mark - Playlists
 
 - (void)saveMyPlaylistsArray:(NSArray <WHPlaylistModel *> *)playlists{
-    
+    YapDatabaseConnection *connection = [db newConnection];
+    [connection readWriteWithBlock:^(YapDatabaseReadWriteTransaction * _Nonnull transaction) {
+        [transaction setObject:playlists forKey:@"my_play_list" inCollection:@"wave_hub"];
+    }];
 }
 
 - (void)readFromMyPlaylists:(DatabaseReturn)successBlock{
-    
+    YapDatabaseConnection *connection = [db newConnection];
+    [connection readWithBlock:^(YapDatabaseReadTransaction * _Nonnull transaction) {
+        successBlock([transaction objectForKey:@"my_play_list" inCollection:@"wave_hub"]);
+    }];
 }
 
-- (void)addPlaylist:(WHPlaylistModel *)aTrack{
-    
+- (void)addPlaylist:(WHPlaylistModel *)aPlaylist{
+    YapDatabaseConnection *connection = [db newConnection];
+    [connection readWithBlock:^(YapDatabaseReadTransaction * _Nonnull transaction) {
+        NSMutableArray *result = [NSMutableArray arrayWithArray:[transaction objectForKey:@"my_play_list" inCollection:@"wave_hub"]];
+        [result insertObject:aPlaylist atIndex:0];
+        [self saveMyPlaylistsArray:result];
+    }];
 }
 
-- (void)removePlaylist:(WHPlaylistModel *)aTrack{
-    
+- (void)removePlaylist:(WHPlaylistModel *)aPlaylist{
+    YapDatabaseConnection *connection = [db newConnection];
+    [connection readWithBlock:^(YapDatabaseReadTransaction * _Nonnull transaction) {
+        NSMutableArray *result = [NSMutableArray arrayWithArray:[transaction objectForKey:@"my_play_list" inCollection:@"wave_hub"]];
+        [result removeObject:aPlaylist];
+        [self saveMyPlaylistsArray:result];
+    }];
+}
+
+#pragma mark - Local Track
+
+- (void)saveLocalTrack:(NSArray <WHTrackModel *> *)tracks{
+    YapDatabaseConnection *connection = [db newConnection];
+    [connection readWriteWithBlock:^(YapDatabaseReadWriteTransaction * _Nonnull transaction) {
+        [transaction setObject:tracks forKey:@"local_file_list" inCollection:@"wave_hub"];
+    }];
+}
+
+- (void)readLocalTrack:(DatabaseReturn)successBlock{
+    YapDatabaseConnection *connection = [db newConnection];
+    [connection readWithBlock:^(YapDatabaseReadTransaction * _Nonnull transaction) {
+        successBlock([transaction objectForKey:@"local_file_list" inCollection:@"wave_hub"]);
+    }];
+}
+
+- (void)updateLocalTrack:(WHTrackModel *)track{
+    YapDatabaseConnection *connection = [db newConnection];
+    [connection readWithBlock:^(YapDatabaseReadTransaction * _Nonnull transaction) {
+        NSMutableArray *result = [NSMutableArray arrayWithArray:[transaction objectForKey:@"local_file_list" inCollection:@"wave_hub"]];
+        if ([result containsObject:track]) {
+            [result replaceObjectAtIndex:[result indexOfObject:track] withObject:track];
+            [self saveLocalTrack:result];
+        }
+        
+    }];
 }
 
 @end

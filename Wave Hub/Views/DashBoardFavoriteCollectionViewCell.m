@@ -72,6 +72,17 @@
             self.coverImageView.image = [UIImage musicPlaceHolder];
         }
     }
+    
+    if (track.trackType == WHTrackTypeSoundCloud) {
+        self.typeLabel.text = @"SoundCloud";
+    }else{
+        self.typeLabel.text = @"Local";
+    }
+    
+    self.containerView.layer.shadowColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:1.0].CGColor;
+    self.containerView.layer.shadowRadius = 3.0;
+    self.containerView.layer.shadowOffset = CGSizeMake(0, 3);
+    self.containerView.layer.shadowOpacity = 0.1f;
 }
 
 - (void)cancelLoadImage{

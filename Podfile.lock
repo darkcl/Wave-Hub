@@ -40,6 +40,7 @@ PODS:
   - ContextMenu.iOS (1.1.0)
   - DLImageLoader (2.2.0)
   - DZNEmptyDataSet (1.7.2)
+  - FCFileManager (1.0.18)
   - FLKAutoLayout (0.2.1)
   - FontAwesomeKit (2.1.8):
     - FontAwesomeKit/Core (= 2.1.8)
@@ -108,6 +109,7 @@ DEPENDENCIES:
   - ContextMenu.iOS (~> 1.1.0)
   - DLImageLoader
   - DZNEmptyDataSet
+  - FCFileManager
   - FLKAutoLayout
   - FontAwesomeKit (~> 2.1.0)
   - FreeStreamer
@@ -166,6 +168,7 @@ SPEC CHECKSUMS:
   ContextMenu.iOS: 7f3b63915e660f51aada2c4285c40a837b2c9737
   DLImageLoader: a1b96c95744a8d0ebd9a39d7194774b0c4f59b03
   DZNEmptyDataSet: 0ec00bfc230d7450997b60c127afdd0b9f24f3b6
+  FCFileManager: 3d13576da1f709d37460bd7669cdf07b9d6d8bc3
   FLKAutoLayout: 9db6b30c2008d230da608e62c607b11c23b942e6
   FontAwesomeKit: 64759fb28b5d2e74a1bd81553d7c11ca10e32179
   FreeStreamer: 61471ef4a1934c67de7ec152adb91ca8fff8318f
@@ -191,6 +194,6 @@ SPEC CHECKSUMS:
   YSLTransitionAnimator: e5f0a2f253ea72b00a06c594c448e6b992f5630f
   ZFDragableModalTransition: 0d294eaaba6edfcb9839595de765f9ca06a4b524
 
-PODFILE CHECKSUM: 621de13bf4db6db6a9ea454baaa997d8432f255c
+PODFILE CHECKSUM: b0db788d16054f2de7294c2bf89b24909e719e9c
 
 COCOAPODS: 1.0.0

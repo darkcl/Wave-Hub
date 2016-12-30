@@ -12,7 +12,8 @@ typedef NS_ENUM(NSInteger, DashBoardPlayingType) {
     DashBoardPlayingTypeUnknown,
     DashBoardPlayingTypeFavorite,
     DashBoardPlayingTypeActivity,
-    DashBoardPlayingTypePlaylist
+    DashBoardPlayingTypePlaylist,
+    DashBoardPlayingTypeLocalFiles
 };
 
 @interface DashBoardViewController : UIViewController{

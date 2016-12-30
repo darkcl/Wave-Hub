@@ -41,6 +41,7 @@ target 'Wave Hub' do
     # Database
     pod 'YapDatabase'
     pod 'Mantle'
+    pod 'FCFileManager'
 
     # General
     pod 'ReactiveCocoa'

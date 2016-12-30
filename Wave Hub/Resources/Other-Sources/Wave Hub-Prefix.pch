@@ -26,6 +26,7 @@
 #import "WHWebrequestManager.h"
 #import "WHSoundManager.h"
 #import "WHDatabaseManager.h"
+#import "WHFileManager.h"
 
 #import "UIColor+WaveHubAddition.h"
 

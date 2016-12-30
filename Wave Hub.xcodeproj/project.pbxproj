@@ -59,6 +59,9 @@
 		744DF6AA1E13DE7F002E6A88 /* DashBoardPlaylistsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 744DF6A81E13DE7F002E6A88 /* DashBoardPlaylistsTableViewCell.xib */; };
 		744DF6AE1E13DEB5002E6A88 /* DashBoardPlaylistCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 744DF6AC1E13DEB5002E6A88 /* DashBoardPlaylistCollectionViewCell.m */; };
 		744DF6AF1E13DEB5002E6A88 /* DashBoardPlaylistCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 744DF6AD1E13DEB5002E6A88 /* DashBoardPlaylistCollectionViewCell.xib */; };
+		744DF6B31E161FD6002E6A88 /* WHLocalTrackModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 744DF6B21E161FD6002E6A88 /* WHLocalTrackModel.m */; };
+		744DF6B61E166C14002E6A88 /* ORGMEngine+WaveHubAddition.m in Sources */ = {isa = PBXBuildFile; fileRef = 744DF6B51E166C14002E6A88 /* ORGMEngine+WaveHubAddition.m */; };
+		744DF6C31E16A355002E6A88 /* WHFileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 744DF6C21E16A355002E6A88 /* WHFileManager.m */; };
 		7475A5FE1BF4F9B600100498 /* MediaToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7475A5FD1BF4F9B600100498 /* MediaToolbox.framework */; };
 		74E80CB61D6890EC00A13219 /* splash_background.png in Resources */ = {isa = PBXBuildFile; fileRef = 74E80CB31D6890EC00A13219 /* splash_background.png */; };
 		74E80CB71D6890EC00A13219 /* splash_background@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 74E80CB41D6890EC00A13219 /* splash_background@2x.png */; };
@@ -177,6 +180,12 @@
 		744DF6AB1E13DEB5002E6A88 /* DashBoardPlaylistCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DashBoardPlaylistCollectionViewCell.h; sourceTree = "<group>"; };
 		744DF6AC1E13DEB5002E6A88 /* DashBoardPlaylistCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DashBoardPlaylistCollectionViewCell.m; sourceTree = "<group>"; };
 		744DF6AD1E13DEB5002E6A88 /* DashBoardPlaylistCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DashBoardPlaylistCollectionViewCell.xib; sourceTree = "<group>"; };
+		744DF6B11E161FD6002E6A88 /* WHLocalTrackModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WHLocalTrackModel.h; sourceTree = "<group>"; };
+		744DF6B21E161FD6002E6A88 /* WHLocalTrackModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WHLocalTrackModel.m; sourceTree = "<group>"; };
+		744DF6B41E166C14002E6A88 /* ORGMEngine+WaveHubAddition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ORGMEngine+WaveHubAddition.h"; sourceTree = "<group>"; };
+		744DF6B51E166C14002E6A88 /* ORGMEngine+WaveHubAddition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ORGMEngine+WaveHubAddition.m"; sourceTree = "<group>"; };
+		744DF6C11E16A355002E6A88 /* WHFileManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WHFileManager.h; sourceTree = "<group>"; };
+		744DF6C21E16A355002E6A88 /* WHFileManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WHFileManager.m; sourceTree = "<group>"; };
 		7475A5FD1BF4F9B600100498 /* MediaToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaToolbox.framework; path = System/Library/Frameworks/MediaToolbox.framework; sourceTree = SDKROOT; };
 		749A7F301D3E94D800114449 /* WHConstant.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WHConstant.h; sourceTree = "<group>"; };
 		74E80CB31D6890EC00A13219 /* splash_background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = splash_background.png; sourceTree = "<group>"; };
@@ -267,7 +276,7 @@
 			isa = PBXGroup;
 			children = (
 				744DF6A51E13DE54002E6A88 /* Playlist */,
-				7416B17F1E0FAE6B007F82A0 /* Favorite */,
+				7416B17F1E0FAE6B007F82A0 /* Favorite / Local Files */,
 				7416B17E1E0FAE61007F82A0 /* Activity */,
 			);
 			name = Cell;
@@ -424,7 +433,7 @@
 			name = Activity;
 			sourceTree = "<group>";
 		};
-		7416B17F1E0FAE6B007F82A0 /* Favorite */ = {
+		7416B17F1E0FAE6B007F82A0 /* Favorite / Local Files */ = {
 			isa = PBXGroup;
 			children = (
 				0E19895C1DD3064A00FC7CAE /* Collection View Cell */,
@@ -432,7 +441,7 @@
 				0E1989521DD3029500FC7CAE /* DashBoardFavoritesTableViewCell.m */,
 				0E1989531DD3029500FC7CAE /* DashBoardFavoritesTableViewCell.xib */,
 			);
-			name = Favorite;
+			name = "Favorite / Local Files";
 			sourceTree = "<group>";
 		};
 		7416B1851E125A24007F82A0 /* Now Playing */ = {
@@ -555,6 +564,8 @@
 				0ED9AF931D406DDB00B47E3D /* FSAudioStream+WaveHubAddition.m */,
 				7416B16D1E0E6ABE007F82A0 /* UIColor+WaveHubAddition.h */,
 				7416B16E1E0E6ABE007F82A0 /* UIColor+WaveHubAddition.m */,
+				744DF6B41E166C14002E6A88 /* ORGMEngine+WaveHubAddition.h */,
+				744DF6B51E166C14002E6A88 /* ORGMEngine+WaveHubAddition.m */,
 			);
 			path = Categories;
 			sourceTree = "<group>";
@@ -572,6 +583,8 @@
 				241B6531260B64A07C64DCF3 /* WHAppDelegate.m */,
 				0E2B7E7A1BF475BC001B7A25 /* WHApplication.h */,
 				0E2B7E7B1BF475BC001B7A25 /* WHApplication.m */,
+				744DF6C11E16A355002E6A88 /* WHFileManager.h */,
+				744DF6C21E16A355002E6A88 /* WHFileManager.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -611,6 +624,8 @@
 			children = (
 				0E29149E1BF96F3D004AA529 /* WHTrackModel.h */,
 				0E29149F1BF96F3D004AA529 /* WHTrackModel.m */,
+				744DF6B11E161FD6002E6A88 /* WHLocalTrackModel.h */,
+				744DF6B21E161FD6002E6A88 /* WHLocalTrackModel.m */,
 				0EC527FC1C3A236500EC87C1 /* WHPlaylistModel.h */,
 				0EC527FD1C3A236500EC87C1 /* WHPlaylistModel.m */,
 				74F235A71D3B8329005E872B /* WHSoundCloudUser.h */,
@@ -860,6 +875,8 @@
 				0E1989701DD317EB00FC7CAE /* MarqueeLabel.m in Sources */,
 				0E1989481DD2F98800FC7CAE /* DashBoardViewController.m in Sources */,
 				741055BC1D37F45B0092BA43 /* NSLayoutConstraint+Multiplier.m in Sources */,
+				744DF6C31E16A355002E6A88 /* WHFileManager.m in Sources */,
+				744DF6B31E161FD6002E6A88 /* WHLocalTrackModel.m in Sources */,
 				0E2914A01BF96F3D004AA529 /* WHTrackModel.m in Sources */,
 				0E19895A1DD3064500FC7CAE /* DashBoardFavoriteCollectionViewCell.m in Sources */,
 				7416B16F1E0E6ABE007F82A0 /* UIColor+WaveHubAddition.m in Sources */,
@@ -874,6 +891,7 @@
 				7416B1831E125A20007F82A0 /* NowPlayingViewController.m in Sources */,
 				742B735D1D37D44800837D74 /* MusicTableViewCell.m in Sources */,
 				0E19896C1DD3076800FC7CAE /* ContainerViewController.m in Sources */,
+				744DF6B61E166C14002E6A88 /* ORGMEngine+WaveHubAddition.m in Sources */,
 				0E2B7E7C1BF475BC001B7A25 /* WHApplication.m in Sources */,
 				0E1989541DD3029500FC7CAE /* DashBoardFavoritesTableViewCell.m in Sources */,
 				0E44F8671BEB4DD400F8571D /* WHWebrequestManager.m in Sources */,

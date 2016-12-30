@@ -37,21 +37,43 @@
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UBh-xM-139">
+                        <rect key="frame" x="92" y="20" width="48" height="20"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Local" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zf2-jy-G4V">
+                                <rect key="frame" x="8" y="3" width="32" height="14"/>
+                                <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="12"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.63642942549452053" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="20" id="3cg-7D-hkY"/>
+                            <constraint firstItem="zf2-jy-G4V" firstAttribute="leading" secondItem="UBh-xM-139" secondAttribute="leading" constant="8" id="IyU-Gh-WKE"/>
+                            <constraint firstAttribute="bottom" secondItem="zf2-jy-G4V" secondAttribute="bottom" constant="3" id="MJD-Ld-E3m"/>
+                            <constraint firstAttribute="trailing" secondItem="zf2-jy-G4V" secondAttribute="trailing" constant="8" id="R4B-Z8-yrg"/>
+                            <constraint firstItem="zf2-jy-G4V" firstAttribute="top" secondItem="UBh-xM-139" secondAttribute="top" constant="3" id="fXd-FJ-FQY"/>
+                        </constraints>
+                    </view>
                 </subviews>
             </view>
             <constraints>
+                <constraint firstAttribute="trailing" secondItem="UBh-xM-139" secondAttribute="trailing" id="5kV-Dv-De5"/>
                 <constraint firstItem="jqk-ru-MYR" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="8" id="djW-x9-qEM"/>
                 <constraint firstItem="jqk-ru-MYR" firstAttribute="top" secondItem="2dW-Ko-m08" secondAttribute="bottom" constant="8" id="e4d-wo-3yc"/>
                 <constraint firstAttribute="trailing" secondItem="jqk-ru-MYR" secondAttribute="trailing" constant="8" id="hCX-OA-35F"/>
                 <constraint firstItem="2dW-Ko-m08" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="i03-65-i1w"/>
                 <constraint firstItem="2dW-Ko-m08" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="8" id="kMz-ey-z4B"/>
                 <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="jqk-ru-MYR" secondAttribute="bottom" constant="8" id="ogj-Jw-Zcg"/>
+                <constraint firstItem="UBh-xM-139" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="20" id="ygz-6l-ffK"/>
             </constraints>
             <connections>
                 <outlet property="coverImageView" destination="2dW-Ko-m08" id="gof-vw-pV1"/>
                 <outlet property="playlistTitleLabel" destination="jqk-ru-MYR" id="0sY-KO-26s"/>
+                <outlet property="typeLabel" destination="zf2-jy-G4V" id="Gbr-oT-bAV"/>
             </connections>
-            <point key="canvasLocation" x="-23" y="-87.5"/>
+            <point key="canvasLocation" x="-548" y="-45"/>
         </collectionViewCell>
     </objects>
 </document>
