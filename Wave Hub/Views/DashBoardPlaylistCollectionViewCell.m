@@ -35,6 +35,10 @@
         self.coverImageView.image = [UIImage musicPlaceHolder];
     }
     
+    self.containerView.layer.shadowColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:1.0].CGColor;
+    self.containerView.layer.shadowRadius = 3.0;
+    self.containerView.layer.shadowOffset = CGSizeMake(0, 3);
+    self.containerView.layer.shadowOpacity = 0.3f;
 }
 
 - (void)cancelLoadImage{

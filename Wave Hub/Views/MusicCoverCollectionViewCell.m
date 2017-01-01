@@ -25,17 +25,23 @@
         self.loadingIndicator.hidden = YES;
         self.coverImageView.image = nil;
         
-        if ([info.albumCoverUrl isKindOfClass:[NSString class]]) {
-            [[DLImageLoader sharedInstance] imageFromUrl:[info.albumCoverUrl  stringByReplacingOccurrencesOfString:@"-large" withString:@"-t500x500"]
-                                               completed:^(NSError *error, UIImage *image) {
-                                                   if (error == nil && image != nil) {
-                                                       self.coverImageView.image = image;
-                                                   }else{
-                                                       self.coverImageView.image = [UIImage musicPlaceHolder];                                               }
-                                               }];
+        if (info.albumCoverImage != nil) {
+            self.coverImageView.image = info.albumCoverImage;
         }else{
-            self.coverImageView.image = [UIImage musicPlaceHolder];
+            if ([info.albumCoverUrl isKindOfClass:[NSString class]]) {
+                [[DLImageLoader sharedInstance] imageFromUrl:[info.albumCoverUrl  stringByReplacingOccurrencesOfString:@"-large" withString:@"-t500x500"]
+                                                   completed:^(NSError *error, UIImage *image) {
+                                                       if (error == nil && image != nil) {
+                                                           self.coverImageView.image = image;
+                                                       }else{
+                                                           self.coverImageView.image = [UIImage musicPlaceHolder];                                               }
+                                                   }];
+            }else{
+                self.coverImageView.image = [UIImage musicPlaceHolder];
+            }
         }
+        
+        
         
         
     }else{

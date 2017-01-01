@@ -23,14 +23,28 @@
                 <rect key="frame" x="0.0" y="0.0" width="140" height="195"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="2dW-Ko-m08">
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="R9H-p5-MTB">
                         <rect key="frame" x="5" y="8" width="130" height="130"/>
-                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="2dW-Ko-m08">
+                                <rect key="frame" x="0.0" y="0.0" width="130" height="130"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="130" id="Are-IL-sSE"/>
+                                    <constraint firstAttribute="width" constant="130" id="oMp-Zk-09u"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="130" id="Are-IL-sSE"/>
-                            <constraint firstAttribute="width" constant="130" id="oMp-Zk-09u"/>
+                            <constraint firstAttribute="bottom" secondItem="2dW-Ko-m08" secondAttribute="bottom" id="Alo-m6-W06"/>
+                            <constraint firstItem="2dW-Ko-m08" firstAttribute="top" secondItem="R9H-p5-MTB" secondAttribute="top" id="Mws-SV-ZyX"/>
+                            <constraint firstItem="2dW-Ko-m08" firstAttribute="leading" secondItem="R9H-p5-MTB" secondAttribute="leading" id="N2R-S0-Ydt"/>
+                            <constraint firstAttribute="height" constant="130" id="eYW-94-zzG"/>
+                            <constraint firstAttribute="trailing" secondItem="2dW-Ko-m08" secondAttribute="trailing" id="hcO-ye-jde"/>
+                            <constraint firstAttribute="width" constant="130" id="oQi-7E-CBA"/>
                         </constraints>
-                    </imageView>
+                    </view>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jqk-ru-MYR">
                         <rect key="frame" x="8" y="146" width="124" height="18"/>
                         <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="14"/>
@@ -60,20 +74,21 @@
             </view>
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="UBh-xM-139" secondAttribute="trailing" id="5kV-Dv-De5"/>
+                <constraint firstItem="jqk-ru-MYR" firstAttribute="top" secondItem="R9H-p5-MTB" secondAttribute="bottom" constant="8" id="5vn-cV-A7w"/>
+                <constraint firstItem="R9H-p5-MTB" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="8" id="Uwt-ya-f4I"/>
+                <constraint firstItem="R9H-p5-MTB" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="VC8-y0-eMg"/>
                 <constraint firstItem="jqk-ru-MYR" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="8" id="djW-x9-qEM"/>
-                <constraint firstItem="jqk-ru-MYR" firstAttribute="top" secondItem="2dW-Ko-m08" secondAttribute="bottom" constant="8" id="e4d-wo-3yc"/>
                 <constraint firstAttribute="trailing" secondItem="jqk-ru-MYR" secondAttribute="trailing" constant="8" id="hCX-OA-35F"/>
-                <constraint firstItem="2dW-Ko-m08" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="i03-65-i1w"/>
-                <constraint firstItem="2dW-Ko-m08" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="8" id="kMz-ey-z4B"/>
                 <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="jqk-ru-MYR" secondAttribute="bottom" constant="8" id="ogj-Jw-Zcg"/>
                 <constraint firstItem="UBh-xM-139" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="20" id="ygz-6l-ffK"/>
             </constraints>
             <connections>
+                <outlet property="containerView" destination="R9H-p5-MTB" id="bhk-uk-gFG"/>
                 <outlet property="coverImageView" destination="2dW-Ko-m08" id="gof-vw-pV1"/>
                 <outlet property="playlistTitleLabel" destination="jqk-ru-MYR" id="0sY-KO-26s"/>
                 <outlet property="typeLabel" destination="zf2-jy-G4V" id="Gbr-oT-bAV"/>
             </connections>
-            <point key="canvasLocation" x="-548" y="-45"/>
+            <point key="canvasLocation" x="-605" y="-17.5"/>
         </collectionViewCell>
     </objects>
 </document>

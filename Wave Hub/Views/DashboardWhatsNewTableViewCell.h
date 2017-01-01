@@ -22,6 +22,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *activityTypeLabel;
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet UILabel *remarkLabel;
+@property (weak, nonatomic) IBOutlet UIView *containerView;
 
 
 - (void)setInfo:(WHTrackModel *)info;

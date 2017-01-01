@@ -14,6 +14,7 @@
 @property (weak, nonatomic) IBOutlet UIImageView *coverImageView;
 @property (weak, nonatomic) IBOutlet UILabel *playlistTitleLabel;
 
+@property (weak, nonatomic) IBOutlet UIView *containerView;
 @property (weak, nonatomic) IBOutlet UILabel *typeLabel;
 
 - (void)setInfo:(WHPlaylistModel *)info;

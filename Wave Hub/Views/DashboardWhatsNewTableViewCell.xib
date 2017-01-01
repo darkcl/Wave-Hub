@@ -23,7 +23,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="375" height="167"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4nY-lI-SsF">
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4nY-lI-SsF">
                         <rect key="frame" x="20" y="13" width="140" height="140"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ZOE-Mn-7a4">
@@ -105,13 +105,14 @@
             </tableViewCellContentView>
             <connections>
                 <outlet property="activityTypeLabel" destination="Tu2-Ax-1SP" id="miB-c6-wjR"/>
+                <outlet property="containerView" destination="4nY-lI-SsF" id="rgh-6Y-T1j"/>
                 <outlet property="coverImageView" destination="ZOE-Mn-7a4" id="sjV-YK-vXC"/>
                 <outlet property="remarkLabel" destination="tDq-UN-lFO" id="iEZ-Du-vMN"/>
                 <outlet property="titleLabel" destination="ioZ-kq-HB2" id="vQf-dJ-jNX"/>
                 <outlet property="userImageView" destination="UDn-lg-5NY" id="4Hc-Vv-gDo"/>
                 <outlet property="userNameLabel" destination="Zy9-lj-UKW" id="vlx-cl-Fze"/>
             </connections>
-            <point key="canvasLocation" x="-887" y="-1121"/>
+            <point key="canvasLocation" x="-1142" y="-1287"/>
         </tableViewCell>
     </objects>
     <resources>

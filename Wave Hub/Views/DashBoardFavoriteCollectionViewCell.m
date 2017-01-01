@@ -60,7 +60,7 @@
         self.coverImageView.image = track.albumCoverImage;
     }else{
         if ([track.albumCoverUrl isKindOfClass:[NSString class]]) {
-            [[DLImageLoader sharedInstance] imageFromUrl:track.albumCoverUrl
+            [[DLImageLoader sharedInstance] imageFromUrl:[track.albumCoverUrl stringByReplacingOccurrencesOfString:@"-large" withString:@"-t500x500"]
                                                completed:^(NSError *error, UIImage *image) {
                                                    if (error == nil && image != nil) {
                                                        self.coverImageView.image = image;
@@ -82,16 +82,19 @@
     self.containerView.layer.shadowColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:1.0].CGColor;
     self.containerView.layer.shadowRadius = 3.0;
     self.containerView.layer.shadowOffset = CGSizeMake(0, 3);
-    self.containerView.layer.shadowOpacity = 0.1f;
+    self.containerView.layer.shadowOpacity = 0.3f;
 }
 
 - (void)cancelLoadImage{
-    self.coverImageView.image = [UIImage musicPlaceHolder];
-    if ([trackInfo.albumCoverUrl isKindOfClass:[NSString class]]) {
+    if (trackInfo.albumCoverImage == nil){
+        self.coverImageView.image = [UIImage musicPlaceHolder];
         
-        
-        [[DLImageLoader sharedInstance] cancelOperation:trackInfo.albumCoverUrl];
+        if ([trackInfo.albumCoverUrl isKindOfClass:[NSString class]]) {
+            [[DLImageLoader sharedInstance] cancelOperation:[trackInfo.albumCoverUrl stringByReplacingOccurrencesOfString:@"-large" withString:@"-t500x500"]];
+        }
     }
+    
+    
 }
 
 - (IBAction)playPauseTogglePressed:(id)sender {
