@@ -1,5 +1,7 @@
 # Wave Hub #
 
+![Screenshot_1](https://raw.githubusercontent.com/darkcl/Wave-Hub/master/screen_1.PNG)
+
 ## Setup ##
 
 Run `bin/setup`
